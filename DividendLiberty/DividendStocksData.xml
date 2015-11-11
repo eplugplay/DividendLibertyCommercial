@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DocumentElement>
+  <dividendstocks>
+    <dividendstock ID="1">
+      <id>1</id>
+      <symbol>EMR</symbol>
+      <industry>Industrials</industry>
+      <active>true</active>
+      <interval>Quarterly</interval>
+      <cost>45.62</cost>
+      <purchasedate>09-18-2015</purchasedate>
+      <shares>22</shares>
+    </dividendstock>
+    <dividendstock ID="2">
+      <id>2</id>
+      <symbol>JNJ</symbol>
+      <industry>Health Care</industry>
+      <active>true</active>
+      <interval>Quarterly</interval>
+      <cost>94.58</cost>
+      <purchasedate>09-21-2015</purchasedate>
+      <shares>11</shares>
+    </dividendstock>
+  </dividendstocks>
+</DocumentElement>
