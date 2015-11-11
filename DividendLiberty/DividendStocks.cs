@@ -222,7 +222,10 @@ namespace DividendLiberty
             try
             {
                 lv.Clear();
-                DataTable dtXml = uti.GetXMLData();
+                DataTable dt = uti.GetXMLData();
+                DataView view = dt.DefaultView;
+                view.Sort = "symbol asc";
+                DataTable dtXml = view.ToTable();
                 lv.View = View.Details;
                 lv.Columns.Add("");
                 lv.Columns.Add("Symbol");
