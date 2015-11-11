@@ -191,35 +191,36 @@ namespace DividendLiberty
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //AddRemoveDividends(lbAllDividends, "true");
+            AddRemoveDividends(lvAllDividends, "true");
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            //AddRemoveDividends(lbCurrentDividends, "false");
+            AddRemoveDividends(lvCurrentDividends, "false");
         }
 
-        public void AddRemoveDividends(ListBox lb, string stockActive)
+        public void AddRemoveDividends(ListView lv, string stockActive)
         {
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
             lstID.Clear();
-            int selectedItemsCount = lb.SelectedItems.Count;
+            int selectedItemsCount = lv.SelectedItems.Count;
             if (selectedItemsCount > 1)
             {
-                foreach (DataRowView drv in lb.SelectedItems)
+                for(int i = 0; i < lv.SelectedItems.Count; i++)
                 {
-                   // DividendStocks.UpdateDividendStock(drv.Row["id"].ToString(), stockActive);
-                    lstID.Add(Convert.ToInt32(drv.Row["id"]));
+                    DividendStocks.MoveStock(lv.SelectedItems[i].Tag.ToString(), lv.SelectedItems[i].SubItems[1].Text, stockActive);
+                    // DividendStocks.UpdateDividendStock(drv.Row["id"].ToString(), stockActive);
+                    //lstID.Add(Convert.ToInt32(drv.Row["id"]));
                 }
             }
             else
             {
-               // DividendStocks.UpdateDividendStock(lb.SelectedValue.ToString(), stockActive);
+                DividendStocks.MoveStock(lv.SelectedItems[0].Tag.ToString(), Symbol, stockActive);
             }
-            //LoadAllDividends();
-            //LoadCurrentDividends();
+            LoadDividends(lvCurrentDividends, "true");
+            LoadDividends(lvAllDividends, "false");
             SelectStocks(selectedItemsCount);
             pw.Close();
         }

@@ -404,6 +404,26 @@ namespace DividendLiberty
             return newID;
         }
 
+        public static void MoveStock(string id, string origSymbol, string active)
+        {
+            try
+            {
+                DataTable dt = uti.GetXMLData();
+                XmlDocument doc = new XmlDocument();
+                doc.Load(uti.GetXMLPath());
+                XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
+                if (elements[0]["symbol"].InnerText.ToString() == origSymbol)
+                {
+                    elements[0]["active"].InnerText = active;
+                    doc.Save(uti.GetXMLPath());
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
         public static void UpdateDividendStock(string id, string origSymbol, string symbol, string industry, string interval)
         {
             try
