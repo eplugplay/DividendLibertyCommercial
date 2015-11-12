@@ -12,14 +12,12 @@ namespace DividendLiberty
     public partial class Shares : Form
     {
         public bool Edit { get; set; }
-        public string ID { get; set; }
-        public string DividendPriceID { get; set; }
         public bool CurrentDiv { get; set; }
-        public Shares(bool edit, string id, string dividendPriceID, bool currentDiv)
+        List<StockInfo> LstStockInfo = new List<StockInfo>();
+        public Shares(bool edit, bool currentDiv, List<StockInfo> lstStockInfo)
         {
-            ID = id;
+            LstStockInfo = lstStockInfo;
             Edit = edit;
-            DividendPriceID = dividendPriceID;
             CurrentDiv = currentDiv;
             InitializeComponent();
         }
@@ -35,10 +33,16 @@ namespace DividendLiberty
 
         public void LoadSharesInfo()
         {
-            DataTable dt = DividendStocks.GetSharePriceInfo(DividendPriceID);
-            txtPurchasePrice.Text = dt.Rows[0]["purchaseprice"].ToString();
-            txtNumberOfShares.Text = dt.Rows[0]["numberofshares"].ToString();
-            dtpPurchaseDate.Value = Convert.ToDateTime(dt.Rows[0]["purchasedate"]);
+            DataTable dt = uti.GetXMLData();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i]["symbol"].ToString() == LstStockInfo[0].Symbol)
+                {
+                   txtPurchasePrice.Text = dt.Rows[i]["cost"].ToString();
+                   txtNumberOfShares.Text = dt.Rows[i]["shares"].ToString();
+                   dtpPurchaseDate.Value = Convert.ToDateTime(dt.Rows[i]["purchasedate"]);
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -78,11 +82,11 @@ namespace DividendLiberty
             Application.DoEvents();
             if (Edit)
             {
-                DividendStocks.UpdateShare(Convert.ToDecimal(txtPurchasePrice.Text), Convert.ToDecimal(txtNumberOfShares.Text), DividendPriceID, dtpPurchaseDate.Value);
+                DividendStocks.UpdateShare(LstStockInfo[0].ID, LstStockInfo[0].Symbol, txtPurchasePrice.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString());
             }
             else
             {
-                DividendStocks.NewShare(Convert.ToDecimal(txtPurchasePrice.Text), Convert.ToDecimal(txtNumberOfShares.Text), ID, dtpPurchaseDate.Value);
+                //DividendStocks.NewShare();
             }
             MainMenu._Dividends.LoadDividendStock();
             LoadAllMainDividends();
@@ -109,11 +113,11 @@ namespace DividendLiberty
         {
             if (CurrentDiv)
             {
-                //Program.MainMenu.LoadCurrentDividends();
+                Program.MainMenu.LoadDividends(Program.MainMenu.lvCurrentDividends, "true");
             }
             else
             {
-                //Program.MainMenu.LoadAllDividends();
+                Program.MainMenu.LoadDividends(Program.MainMenu.lvAllDividends, "false");
             }
         }
 

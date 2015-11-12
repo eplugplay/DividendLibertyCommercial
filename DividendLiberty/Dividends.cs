@@ -131,16 +131,29 @@ namespace DividendLiberty
             txtCurrentPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "a", false);
             txtOpenPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "o", false);
             // load purchase dates
-            LoadPurchaseDates();
-            LoadPurchaseData();
+            LoadPurchaseInfo();
         }
 
-        public void LoadPurchaseDates()
+        public void LoadPurchaseInfo()
         {
             txtSharePrice.Clear();
             txtNumberOfShares.Clear();
             ddlSharePurchaseDate.SelectedIndexChanged -= ddlSharePurchaseDate_SelectedIndexChanged;
-            ddlSharePurchaseDate.DataSource = DividendStocks.GetDividendActionDate(ID);
+            DataTable dt = uti.GetXMLData();
+            DataTable dtFinal = dt.Copy();
+
+            for (int i = dt.Rows.Count -1; i >= 0; i--)
+            {
+                if (dt.Rows[i]["symbol"].ToString() != LstStockInfo[0].Symbol)
+                {
+                    dtFinal.Rows.RemoveAt(i);
+                }
+            }
+
+            txtSharePrice.Text = dtFinal.Rows[0]["cost"].ToString();
+            txtNumberOfShares.Text = dtFinal.Rows[0]["shares"].ToString();
+
+            ddlSharePurchaseDate.DataSource = dtFinal;
             ddlSharePurchaseDate.DisplayMember = "purchasedate";
             ddlSharePurchaseDate.ValueMember = "id";
             if (ddlSharePurchaseDate.Text != "")
@@ -166,19 +179,10 @@ namespace DividendLiberty
         {
             if (ddlSharePurchaseDate.SelectedIndex != -1)
             {
-                LoadPurchaseData();
+         
             }
         }
 
-        public void LoadPurchaseData()
-        {
-            if (ddlSharePurchaseDate.SelectedValue != null)
-            {
-                DataTable dt = DividendStocks.GetPurchasePrice(ddlSharePurchaseDate.SelectedValue.ToString());
-                txtSharePrice.Text = dt.Rows[0]["purchaseprice"].ToString();
-                txtNumberOfShares.Text = dt.Rows[0]["numberofshares"].ToString();
-            }
-        }
 
         public bool ValidateAll()
         {
@@ -221,7 +225,7 @@ namespace DividendLiberty
         {
             if (_Shares == null || _Shares.IsDisposed)
             {
-                _Shares = new Shares(edit, ID, ddlSharePurchaseDate.SelectedValue == null ? "" : ddlSharePurchaseDate.SelectedValue.ToString(), CurrentDiv);
+                _Shares = new Shares(edit, CurrentDiv, LstStockInfo);
                 _Shares.Show();
             }
             else
@@ -261,8 +265,7 @@ namespace DividendLiberty
                     pw.Show();
                     Application.DoEvents();
                     DividendStocks.DeleteShare(ddlSharePurchaseDate.SelectedValue.ToString());
-                    LoadPurchaseDates();
-                    LoadPurchaseData();
+                    LoadPurchaseInfo();
                     ReloadMainDividends();
                     pw.Close();
                 }

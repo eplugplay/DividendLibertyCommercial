@@ -100,7 +100,7 @@ namespace DividendLiberty
             decimal MonthlyDiv = 0;
             decimal DividendTotalPercentage = 0;
             decimal MarketTotalPrice = 0;
-            DataTable dt = DividendStocks.GetCurrentDividends();
+            DataTable dt = uti.GetXMLData();
             decimal Purchaseprice = 0;
             string Stocks = uti.GetMultiSymbols(dt);
             string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(Stocks, "d", true));
@@ -112,25 +112,28 @@ namespace DividendLiberty
             //val = Math.Round(90 / val, 0);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                string id = dt.Rows[i]["id"].ToString();
-                Purchaseprice = Convert.ToDecimal(dt.Rows[i]["purchaseprice"]);
-                YearDiv += (Convert.ToDecimal(dt.Rows[i]["numberofshares"]) * Convert.ToDecimal(AnnualDiv[i]));
-                TotalDividendStockValue += (Convert.ToDecimal(dt.Rows[i]["numberofshares"]) * Purchaseprice);
-                TotalDividendCount++;
-                DividendTotalPercentage += DivYield[i] == "N/A" ? 0 : Convert.ToDecimal(DivYield[i]);
-                if (dt.Rows[i]["symbol"].ToString() == "SIL")
+                if (dt.Rows[i]["active"].ToString() == "true")
                 {
-                    DividendTotalPercentage += (decimal).09;
+                    string id = dt.Rows[i]["id"].ToString();
+                    Purchaseprice = Convert.ToDecimal(dt.Rows[i]["cost"]);
+                    YearDiv += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(AnnualDiv[i]));
+                    TotalDividendStockValue += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Purchaseprice);
+                    TotalDividendCount++;
+                    DividendTotalPercentage += DivYield[i] == "N/A" ? 0 : Convert.ToDecimal(DivYield[i]);
+                    if (dt.Rows[i]["symbol"].ToString() == "SIL")
+                    {
+                        DividendTotalPercentage += (decimal).09;
+                    }
+                    //if (dt.Rows[i]["symbol"].ToString() == "GDX")
+                    //{
+                    //    DividendTotalPercentage -= Convert.ToDecimal(DivYield[i]);
+                    //    DividendTotalPercentage += (decimal).80;
+                    //}
+                    MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(CurrentStockPrice[i]));
+                    //StatusVal += val;
+                    //if (StatusVal < 88)
+                    //    pbStatus.InvokeEx(x => x.Value = Convert.ToInt32(StatusVal));
                 }
-                //if (dt.Rows[i]["symbol"].ToString() == "GDX")
-                //{
-                //    DividendTotalPercentage -= Convert.ToDecimal(DivYield[i]);
-                //    DividendTotalPercentage += (decimal).80;
-                //}
-                MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["numberofshares"]) * Convert.ToDecimal(CurrentStockPrice[i]));
-                //StatusVal += val;
-                //if (StatusVal < 88)
-                //    pbStatus.InvokeEx(x => x.Value = Convert.ToInt32(StatusVal));
             }
             DividendTotalPercentage = DividendTotalPercentage / TotalDividendCount;
             QuarterDiv = (YearDiv / 4);
@@ -211,13 +214,13 @@ namespace DividendLiberty
                 for(int i = 0; i < lv.SelectedItems.Count; i++)
                 {
                     DividendStocks.MoveStock(lv.SelectedItems[i].Tag.ToString(), lv.SelectedItems[i].SubItems[1].Text, stockActive);
-                    // DividendStocks.UpdateDividendStock(drv.Row["id"].ToString(), stockActive);
-                    //lstID.Add(Convert.ToInt32(drv.Row["id"]));
+                    lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag.ToString()));
                 }
             }
             else
             {
                 DividendStocks.MoveStock(lv.SelectedItems[0].Tag.ToString(), Symbol, stockActive);
+                lstID.Add(Convert.ToInt32(lv.SelectedItems[0].Tag.ToString()));
             }
             LoadDividends(lvCurrentDividends, "true");
             LoadDividends(lvAllDividends, "false");
@@ -225,26 +228,27 @@ namespace DividendLiberty
             pw.Close();
         }
 
-        public List<int> SaveListBoxItems(ListBox lb)
+        public List<int> SaveListBoxItems(ListView lv)
         {
             List<int> toReturn = new List<int>();
-            foreach (DataRowView drv in lb.Items)
+            for (int i = 0; i < lv.Items.Count; i++)
             {
-                toReturn.Add(Convert.ToInt32(drv.Row["id"]));
+                toReturn.Add(Convert.ToInt32(lv.Items[i].Tag.ToString()));
             }
             return toReturn;
         }
 
-        public void SelectMultiple(ListBox lb)
+        public void SelectMultiple(ListView lv)
         {
-            List<int> lst = SaveListBoxItems(lb);
+            List<int> lst = SaveListBoxItems(lv);
             for (int a = 0; a < lstID.Count; a++)
             {
                 for (int b = 0; b < lst.Count; b++)
                 {
                     if (lstID[a] == lst[b])
                     {
-                        lb.SetSelected(b, true);
+                        lv.SelectedIndices.Add(b);
+                        lv.Select();
                     }
                 }
             }
@@ -252,44 +256,44 @@ namespace DividendLiberty
 
         public void SelectStocks(int selectedItemsCount)
         {
-            //if (!CurrentDiv)
-            //{
-            //    CurrentDiv = true;
-            //    lbAllDividends.ClearSelected();
-            //    lbCurrentDividends.SelectedIndexChanged -= lbCurrentDividends_SelectedIndexChanged;
-            //    lbCurrentDividends.ClearSelected();
-            //    if (selectedItemsCount == 1)
-            //    {
-            //        lbCurrentDividends.SelectedValue = Convert.ToInt32(ID);
-            //    }
-            //    else
-            //    {
-            //        SelectMultiple(lbCurrentDividends);
-            //    }
-            //    lbCurrentDividends.SelectedIndexChanged += lbCurrentDividends_SelectedIndexChanged;
-            //}
-            //else
-            //{
-            //    CurrentDiv = false;
-            //    lbCurrentDividends.ClearSelected();
-            //    lbAllDividends.SelectedIndexChanged -= lbAllDividends_SelectedIndexChanged;
-            //    lbAllDividends.ClearSelected();
-            //    if (selectedItemsCount == 1)
-            //    {
-            //        lbAllDividends.SelectedValue = Convert.ToInt32(ID);
-            //    }
-            //    else
-            //    {
-            //        SelectMultiple(lbAllDividends);
-            //    }
-            //    lbAllDividends.SelectedIndexChanged += lbAllDividends_SelectedIndexChanged;
-            //}
+            if (!CurrentDiv)
+            {
+                CurrentDiv = true;
+                lvAllDividends.SelectedItems.Clear();
+                SelectMultiple(lvCurrentDividends);
+            }
+            else
+            {
+                CurrentDiv = false;
+                lvCurrentDividends.SelectedItems.Clear();
+                SelectMultiple(lvAllDividends);
+            }
         }
 
         private void lvCurrentDividends_MouseClick(object sender, MouseEventArgs e)
         {
             Symbol = lvCurrentDividends.SelectedItems[0].SubItems[1].Text;
             CurrentDiv = true;
+            HighlightColor(lvCurrentDividends);
+        }
+
+        public void HighlightColor(ListView lv)
+        {
+            int index = lv.SelectedItems[0].Index;
+            lv.SelectedItems.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                if (lv.Items[i].SubItems[1].Text == Symbol)
+                {
+                    lv.Items[i].BackColor = Color.SkyBlue;
+                    lv.SelectedIndices.Add(i);
+                    lv.Select();
+                }
+                else
+                {
+                    lv.Items[i].BackColor = Color.White;
+                }
+            }
         }
 
         private void lvCurrentDividends_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -323,20 +327,12 @@ namespace DividendLiberty
             return lst;
         }
 
-
-        public string GetStockSymbol(ListBox lb)
-        {
-            string symbol = lb.Text;
-            string[] split = symbol.Split('-');
-            return symbol = split[0].Trim();
-        }
-
-        public void GetDividendPrice(ListBox lb)
+        public void GetDividendPrice(ListView lv)
         {
             decimal TotalDividendPrice = 0;
             decimal QuarterlyDividendPrice = 0;
             decimal MonthlyDividendPrice = 0;
-            DividendStocks.GetDividendPrice(Symbol, lb.SelectedValue.ToString(), out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice);
+            DividendStocks.GetDividendPrice(Symbol, lv.SelectedItems[0].Tag.ToString(), out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice);
             MessageBox.Show("Yearly: $" + Math.Round(TotalDividendPrice, 2).ToString() + "\n\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\n\nMonthly: $" + Math.Round(MonthlyDividendPrice, 2));
         }
 
@@ -365,7 +361,7 @@ namespace DividendLiberty
 
         private void btnHighlight_Click(object sender, EventArgs e)
         {
-            //Highlight(lbCurrentDividends, ddlIndustry, lblTotalPortfolioDividends, true);
+            Highlight(lvCurrentDividends, ddlIndustry, true);
         }
 
         public void SearchSymbol(TextBox tb, ListBox lb)
@@ -389,18 +385,23 @@ namespace DividendLiberty
             }
         }
 
-        public void Highlight(ListBox lb, ComboBox ddl, Label lbl, bool showMsg)
+        public void Highlight(ListView lv, ComboBox ddl, bool showMsg)
         {
-            lb.ClearSelected();
             decimal count = 0;
-            decimal percentage = Convert.ToDecimal(lbl.Text);
-            for (int i = 0; i < lb.Items.Count; i++)
+            decimal percentage = Convert.ToDecimal(lv.Items.Count);
+            lv.SelectedItems.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
             {
-                DataRowView drv = lb.Items[i] as DataRowView;
-                if (drv["symbolName"].ToString().Contains(ddl.Text))
+                if (lv.Items[i].SubItems[3].Text == ddl.Text)
                 {
                     count++;
-                    lb.SelectedIndices.Add(i);
+                    //lv.SelectedIndices.Add(i);
+                    //lv.Select();
+                    lv.Items[i].BackColor = Color.SkyBlue;
+                }
+                else
+                {
+                    lv.Items[i].BackColor = Color.White;
                 }
             }
             percentage = (count / percentage) * 100;
@@ -425,7 +426,7 @@ namespace DividendLiberty
             chkNextBuy.Checked = true;
             chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
             int cnt = 0;
-            DataTable dt = DividendStocks.GetAllNextToBuy(ID);
+            DataTable dt = uti.GetXMLData();
             for (int i = 0; i < lb.Items.Count; i++)
             {
                 for (int a = 0; a < dt.Rows.Count; a++)
@@ -442,9 +443,9 @@ namespace DividendLiberty
             MessageBox.Show(string.Format("{0} results.", cnt));
         }
 
-        public void ShowIndustryPercentages(ListBox lb, Label lbl)
+        public void ShowIndustryPercentages(ListView lv)
         {
-            decimal portfolioCnt = Convert.ToDecimal(lbl.Text);
+            decimal portfolioCnt = Convert.ToDecimal(lv.Items.Count);
             decimal percentage = 0;
             List<string> lstIndustries = new List<string>() {"Consumer Discretionary", "Consumer Staples", "Energy", "Financials", "Health Care", "Industrials", "Information Technology", 
                                                             "Materials", "Telecommunication Services", "Utilities", "Equity Precious Metals" };
@@ -452,10 +453,9 @@ namespace DividendLiberty
             decimal cnt = 0;
             for (int i = 0; i < lstIndustries.Count; i++)
             {
-                for (int a = 0; a < lb.Items.Count; a++)
+                for (int a = 0; a < lv.Items.Count; a++)
                 {
-                    DataRowView drv = lb.Items[a] as DataRowView;
-                    if (drv["symbolName"].ToString().Contains(lstIndustries[i].ToString()))
+                    if (lv.Items[a].SubItems[3].Text == lstIndustries[i].ToString())
                     {
                         cnt++;
                     }
@@ -476,12 +476,12 @@ namespace DividendLiberty
         private void btnHighlightAll_Click(object sender, EventArgs e)
         {
             HighlightActive = true;
-            //Highlight(lbAllDividends, ddlIndustryAll, lblTotalAllDividends, false);
+            Highlight(lvAllDividends, ddlIndustryAll, false);
         }
 
         private void btnCurrentIndustryPercentage_Click(object sender, EventArgs e)
         {
-            //ShowIndustryPercentages(lbCurrentDividends, lblTotalPortfolioDividends);
+            ShowIndustryPercentages(lvCurrentDividends);
         }
 
         private void btnAllIndustryPercentages_Click(object sender, EventArgs e)

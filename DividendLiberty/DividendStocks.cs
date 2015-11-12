@@ -145,53 +145,6 @@ namespace DividendLiberty
             }
         }
 
-        public static DataTable GetSharePriceInfo(string id)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-                {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "SELECT purchaseprice, numberofshares, purchasedate FROM dividendprice WHERE id=@id";
-                        cmd.Parameters.AddWithValue("id", id);
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-            return dt;
-        }
-
-        public static DataTable GetDividendActionDate(string id)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-                {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "SELECT dp.id, dp.purchasedate FROM dividendstocks ds join dividendprice dp on ds.id = dp.dividendstockid WHERE ds.id=@id ORDER BY purchasedate";
-                        cmd.Parameters.AddWithValue("id", id);
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-            return dt;
-        }
 
         public static DataTable GetPurchasePrice(string id)
         {
@@ -473,22 +426,20 @@ namespace DividendLiberty
             }
         }
 
-        public static void UpdateShare(decimal purchaseprice, decimal numberofshares, string id, DateTime purchasedate)
+        public static void UpdateShare(string id, string origSymbol, string cost, string shares, string purchasedate)
         {
             try
             {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
+                DataTable dt = uti.GetXMLData();
+                XmlDocument doc = new XmlDocument();
+                doc.Load(uti.GetXMLPath());
+                XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
+                if (elements[0]["symbol"].InnerText.ToString() == origSymbol)
                 {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "UPDATE dividendprice SET purchaseprice=@purchaseprice, numberofshares=@numberofshares, purchasedate=@purchasedate WHERE id=@id";
-                        cmd.Parameters.AddWithValue("purchaseprice", purchaseprice);
-                        cmd.Parameters.AddWithValue("numberofshares", numberofshares);
-                        cmd.Parameters.AddWithValue("purchasedate", purchasedate);
-                        cmd.Parameters.AddWithValue("id", id);
-                        cmd.ExecuteNonQuery();
-                    }
+                    elements[0]["cost"].InnerText = cost;
+                    elements[0]["shares"].InnerText = shares;
+                    elements[0]["purchasedate"].InnerText = purchasedate;
+                    doc.Save(uti.GetXMLPath());
                 }
             }
             catch (Exception e)
