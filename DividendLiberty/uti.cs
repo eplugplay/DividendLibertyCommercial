@@ -131,24 +131,34 @@ namespace DividendLiberty
             return Color.SkyBlue;
         }
 
-        public static string FilterDuplicates(string symbols)
+        public static decimal GetTotalSectorCount(List<decimal> lst)
         {
-            string Symbols = "";
-            string[] Split = symbols.Split('+');
-            List<string> lstSymbols = new List<string>();
-            for (int i = 0; i < Split.Length; i++)
+            decimal sectorCount = 0;
+            for (int i = 0; i < lst.Count; i++)
             {
-                if (!lstSymbols.Contains(Split[i]))
-                {
-                    lstSymbols.Add(Split[i]);
-                }
+                sectorCount += lst[i];
             }
-            for (int i = 0; i < lstSymbols.Count; i++)
-            {
-                Symbols += lstSymbols[i] + "+"; 
-            }
-            return Symbols = Symbols.Substring(0, Symbols.Length - 1);
+            return sectorCount;
         }
+
+        //public static string FilterDuplicates(string symbols)
+        //{
+        //    string Symbols = "";
+        //    string[] Split = symbols.Split('+');
+        //    List<string> lstSymbols = new List<string>();
+        //    for (int i = 0; i < Split.Length; i++)
+        //    {
+        //        if (!lstSymbols.Contains(Split[i]))
+        //        {
+        //            lstSymbols.Add(Split[i]);
+        //        }
+        //    }
+        //    for (int i = 0; i < lstSymbols.Count; i++)
+        //    {
+        //        Symbols += lstSymbols[i] + "+"; 
+        //    }
+        //    return Symbols = Symbols.Substring(0, Symbols.Length - 1);
+        //}
     }
 
     public static class ISynchronizeInvokeExtensions

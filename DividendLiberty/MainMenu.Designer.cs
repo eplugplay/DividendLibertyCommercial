@@ -147,6 +147,7 @@
             this.lvAllDividends.Size = new System.Drawing.Size(800, 287);
             this.lvAllDividends.TabIndex = 40;
             this.lvAllDividends.UseCompatibleStateImageBehavior = false;
+            this.lvAllDividends.SelectedIndexChanged += new System.EventHandler(this.lvAllDividends_SelectedIndexChanged);
             this.lvAllDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseClick);
             this.lvAllDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDoubleClick);
             this.lvAllDividends.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseUp);

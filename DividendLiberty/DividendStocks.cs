@@ -252,7 +252,6 @@ namespace DividendLiberty
         {
             try
             {
-                DataTable dt = uti.GetXMLData();
                 XmlDocument doc = new XmlDocument();
                 doc.Load(uti.GetXMLPath());
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
@@ -272,7 +271,6 @@ namespace DividendLiberty
         {
             try
             {
-                DataTable dt = uti.GetXMLData();
                 XmlDocument doc = new XmlDocument();
                 doc.Load(uti.GetXMLPath());
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
@@ -294,7 +292,6 @@ namespace DividendLiberty
         {
             try
             {
-                DataTable dt = uti.GetXMLData();
                 XmlDocument doc = new XmlDocument();
                 doc.Load(uti.GetXMLPath());
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
@@ -312,68 +309,31 @@ namespace DividendLiberty
             }
         }
 
-        public static void DeleteShare(string id)
+        public static string LoadNextPurchase(string symbol)
+        {
+            string nextToBuy = "";
+            DataTable dt = uti.GetXMLData();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i]["symbol"].ToString() == symbol)
+                {
+                    nextToBuy = dt.Rows[i]["nexttobuy"].ToString();
+                }
+            }
+            return nextToBuy;
+        }
+
+        public static void SaveNextPurchase(int id, string nexttobuy, string symbol)
         {
             try
             {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
+                XmlDocument doc = new XmlDocument();
+                doc.Load(uti.GetXMLPath());
+                XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
+                if (elements[0]["symbol"].InnerText.ToString() == symbol)
                 {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "DELETE FROM dividendprice WHERE id=@id";
-                        cmd.Parameters.AddWithValue("id", id);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        public static int LoadNextPurchase(int id)
-        {
-            int nextPurchase = 0;
-            using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-            {
-                cnn.Open();
-                using (var cmd = cnn.CreateCommand())
-                {
-                    cmd.CommandText = "SELECT nextpurchase FROM dividendstocks WHERE id=@id order by symbol";
-                    cmd.Parameters.AddWithValue("id", id);
-                    try
-                    {
-                        using (var rdr = cmd.ExecuteReader())
-                        {
-                            rdr.Read();
-                            nextPurchase = Convert.ToInt32(rdr["nextpurchase"]);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-                }
-            }
-            return nextPurchase;
-        }
-
-        public static void SaveNextPurchase(int id, int nextPurchase)
-        {
-            try
-            {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-                {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "UPDATE dividendstocks SET nextpurchase=@nextpurchase WHERE id=@id";
-                        cmd.Parameters.AddWithValue("id", id);
-                        cmd.Parameters.AddWithValue("nextpurchase", nextPurchase);
-                        cmd.ExecuteNonQuery();
-                    }
+                    elements[0]["nexttobuy"].InnerText = nexttobuy;
+                    doc.Save(uti.GetXMLPath());
                 }
             }
             catch
@@ -381,30 +341,6 @@ namespace DividendLiberty
 
             }
         }
-
-        public static DataTable GetAllNextToBuy(int id)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-                {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "SELECT * FROM dividendstocks WHERE nextpurchase='1'";
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-            return dt;
-        }
-
     }
 
     public struct StockInfo

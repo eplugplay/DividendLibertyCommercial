@@ -554,7 +554,8 @@ namespace DividendLiberty
             decimal percentage = 0;
             List<string> lstIndustries = new List<string>() {"Consumer Discretionary", "Consumer Staples", "Energy", "Financials", "Health Care", "Industrials", "Information Technology", 
                                                             "Materials", "Telecommunication Services", "Utilities", "Equity Precious Metals" };
-            List<decimal> count = new List<decimal>();
+            List<decimal> percentages = new List<decimal>();
+            List<decimal> sectorCount = new List<decimal>();
             decimal cnt = 0;
             for (int i = 0; i < lstIndustries.Count; i++)
             {
@@ -566,13 +567,14 @@ namespace DividendLiberty
                     }
                 }
                 percentage = cnt == 0 ? 0 : (cnt / portfolioCnt) * 100;
-                count.Add(percentage);
+                percentages.Add(percentage);
+                sectorCount.Add(cnt);
                 cnt = 0;
             }
             string msg = "";
             for (int i = 0; i < lstIndustries.Count; i++)
             {
-                msg += lstIndustries[i] + ": " + Math.Round(count[i], 2) + "%" + "\n\n";
+                msg += sectorCount[i] + " - " + lstIndustries[i] + ": " + Math.Round(percentages[i], 2) + "%" + "\n\nTotal Sectors: " + uti.GetTotalSectorCount(sectorCount);
             }
             msg = msg.Substring(0, msg.Length - 2);
             MessageBox.Show(msg);
@@ -591,7 +593,7 @@ namespace DividendLiberty
 
         private void btnAllIndustryPercentages_Click(object sender, EventArgs e)
         {
-            //ShowIndustryPercentages(lbAllDividends, lblTotalAllDividends);
+            ShowIndustryPercentages(lvAllDividends);
         }
 
         private void txtSearchSymbol_TextChanged(object sender, EventArgs e)
@@ -619,22 +621,15 @@ namespace DividendLiberty
             }
         }
 
-        public void LoadNextToBuy()
-        {
-            chkNextBuy.CheckedChanged -= chkNextBuy_CheckedChanged;
-            chkNextBuy.Checked = DividendStocks.LoadNextPurchase(ID) == 1 ? true : false;
-            chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
-        }
-
         private void chkNextBuy_CheckedChanged(object sender, EventArgs e)
         {
             if (chkNextBuy.Checked)
             {
-                DividendStocks.SaveNextPurchase(ID, 1);
+                DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "yes", Symbol);
             }
             else
             {
-                DividendStocks.SaveNextPurchase(ID, 0);
+                DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "no", Symbol);
             }
         }
 
@@ -709,6 +704,16 @@ namespace DividendLiberty
                 }
             }
             return divInterval;
+        }
+
+        private void lvAllDividends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Control.ModifierKeys != Keys.Control)
+            {
+                chkNextBuy.CheckedChanged -= chkNextBuy_CheckedChanged;
+                chkNextBuy.Checked = DividendStocks.LoadNextPurchase(Symbol) == "yes" ? true : false;
+                chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
+            }
         }
     }
 }
