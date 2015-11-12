@@ -8,6 +8,8 @@ using System.Data;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace DividendLiberty
 {
@@ -47,6 +49,15 @@ namespace DividendLiberty
             return false;
         }
 
+        public static bool DividendStatsValid(List<int> lst)
+        {
+            if (lst.Count == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static List<StockInfo> LoadStockInfo(string id, string symbol, string name, string industry, string shares, string cost, string exDiv, string payDate, string interval)
         {
             List<StockInfo> lst = new List<StockInfo>();
@@ -62,6 +73,24 @@ namespace DividendLiberty
             stockInfo.Interval = interval;
             lst.Add(stockInfo);
             return lst;
+        }
+
+        public static void ClearListViewColors(ListView lv, List<int> lstID)
+        {
+            lstID.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                lv.Items[i].BackColor = Color.White;
+            }
+        }
+
+        public static bool IsLettersOnly(string input)
+        {
+            if (Regex.IsMatch(input, @"^[a-zA-Z]+$"))
+            {
+                return true;
+            }
+            return false;
         }
 
         public static string[] SplitStockData(string val)

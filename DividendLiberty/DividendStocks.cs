@@ -73,32 +73,24 @@ namespace DividendLiberty
             return dt;
         }
 
-        public static void GetTotalSharePrice(string dividendstockid, out decimal totalPrice)
+        public static void GetTotalSharePrice(List<int> lstID, out decimal totalPrice)
         {
-            DataTable dt = new DataTable();
-            //decimal transactionPrice = (decimal)9.99;
+            DataTable dt = uti.GetXMLData();
             totalPrice = 0;
             int numShares = 0;
             decimal price = 0;
             try
             {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
+                    for (int b = 0; b < lstID.Count; b++)
                     {
-                        cmd.CommandText = "SELECT purchaseprice, numberofshares FROM dividendprice WHERE dividendstockid=@dividendstockid";
-                        cmd.Parameters.AddWithValue("dividendstockid", dividendstockid);
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-
-
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        numShares = Convert.ToInt32(dt.Rows[i]["numberofshares"]);
-                        price = Convert.ToDecimal(dt.Rows[i]["purchaseprice"]);
-                        totalPrice += ((decimal)numShares * price);
+                        if (Convert.ToInt32(dt.Rows[i]["id"]) == lstID[b])
+                        {
+                            numShares = dt.Rows[i]["shares"].ToString() == "" ? 0 : Convert.ToInt32(dt.Rows[i]["shares"]);
+                            price = dt.Rows[i]["cost"].ToString() == "" ? 0 : Convert.ToDecimal(dt.Rows[i]["cost"]);
+                            totalPrice += ((decimal)numShares * price);
+                        }
                     }
                 }
             }
@@ -108,9 +100,9 @@ namespace DividendLiberty
             }
         }
 
-        public static void GetDividendPrice(string symbol, string dividendstockid, out decimal totalDividendPrice, out decimal quarterlyDividendPrice, out decimal monthlyDividendPrice)
+        public static void GetDividendPrice(List<int> lstID, out decimal totalDividendPrice, out decimal quarterlyDividendPrice, out decimal monthlyDividendPrice)
         {
-            DataTable dt = new DataTable();
+            DataTable dt = uti.GetXMLData();
             totalDividendPrice = 0;
             quarterlyDividendPrice = 0;
             monthlyDividendPrice = 0;
@@ -118,22 +110,16 @@ namespace DividendLiberty
             decimal yield = 0;
             try
             {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
+                    for (int b = 0; b < lstID.Count; b++)
                     {
-                        cmd.CommandText = "SELECT purchaseprice, numberofshares FROM dividendprice WHERE dividendstockid=@dividendstockid";
-                        cmd.Parameters.AddWithValue("dividendstockid", dividendstockid);
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        numShares = Convert.ToInt32(dt.Rows[i]["numberofshares"]);
-                        yield = Convert.ToDecimal(YahooFinance.GetValues(symbol, "d", false));
-                        totalDividendPrice += ((decimal)numShares * yield);
+                        if (Convert.ToInt32(dt.Rows[i]["id"]) == lstID[b])
+                        {
+                            numShares = dt.Rows[i]["shares"].ToString() == "" ? 0 : Convert.ToInt32(dt.Rows[i]["shares"]);
+                            yield = Convert.ToDecimal(YahooFinance.GetValues(dt.Rows[i]["symbol"].ToString(), "d", false));
+                            totalDividendPrice += ((decimal)numShares * yield);
+                        }
                     }
                 }
                 quarterlyDividendPrice = totalDividendPrice / 4;
@@ -143,31 +129,6 @@ namespace DividendLiberty
             {
 
             }
-        }
-
-
-        public static DataTable GetPurchasePrice(string id)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-                {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "SELECT purchaseprice, numberofshares FROM dividendprice WHERE id=@id";
-                        cmd.Parameters.AddWithValue("id", id);
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-            return dt;
         }
 
         public static void LoadDividends(ListView lv, string active)
@@ -226,86 +187,6 @@ namespace DividendLiberty
 
             }
         }
-
-        public static DataTable GetCurrentStocksData(MySqlConnection cnn, string stockactive)
-        {
-            using (var cmd = cnn.CreateCommand())
-            {
-                cmd.CommandText = "SELECT ds.id, ds.symbol, ds.stockname, ds.industry FROM dividendstocks ds WHERE ds.stockactive=@stockactive order by id";
-                cmd.Parameters.AddWithValue("stockactive", stockactive);
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                return dt;
-            }
-        }
-
-        public static DataTable BuildDividendTable(DataTable dt)
-        {
-            DataTable dtFinal = new DataTable();
-            dtFinal.Columns.Add("id", typeof(int));
-            dtFinal.Columns.Add("symbol", typeof(string));
-            dtFinal.Columns.Add("stockname", typeof(string));
-            dtFinal.Columns.Add("industry", typeof(string));
-            dtFinal.Columns.Add("numberofshares", typeof(int));
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                DataRow dr = dtFinal.NewRow();
-                dr["id"] = Convert.ToInt32(dt.Rows[i]["id"]);
-                dr["symbol"] = dt.Rows[i]["symbol"].ToString();
-                dr["stockname"] = dt.Rows[i]["stockname"].ToString();
-                dr["industry"] = dt.Rows[i]["industry"].ToString();
-                dtFinal.Rows.Add(dr);
-            }
-            return dtFinal;
-        }
-
-        public static DataTable AddPrice(DataTable dt, MySqlConnection cnn)
-        {
-            DataTable dtTemp = new DataTable();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                using (var cmd = cnn.CreateCommand())
-                {
-                    cmd.CommandText = "SELECT purchaseprice, numberofshares FROM dividendprice WHERE dividendstockid=@dividendstockid order by dividendstockid";
-                    cmd.Parameters.AddWithValue("dividendstockid", dt.Rows[i]["id"].ToString());
-                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                    da.Fill(dtTemp);
-                }
-                int numShares = 0;
-                for (int a = 0; a < dtTemp.Rows.Count; a++)
-                {
-                    numShares += Convert.ToInt32(dtTemp.Rows[a]["numberofshares"]);
-                }
-
-                dt.Rows[i]["numberofshares"] = numShares;
-                dtTemp.Clear();
-            }
-            return dt;
-        }
-
-
-        //public static void UpdateDividendStock(string id, string stockactive)
-        //{
-        //    try
-        //    {
-        //        using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-        //        {
-        //            cnn.Open();
-        //            using (var cmd = cnn.CreateCommand())
-        //            {
-        //                cmd.CommandText = "UPDATE dividendstocks SET stockactive=@stockactive WHERE id=@id";
-        //                cmd.Parameters.AddWithValue("id", id);
-        //                cmd.Parameters.AddWithValue("stockactive", stockactive);
-        //                cmd.ExecuteNonQuery();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-
-        //    }
-        //}
 
         public static string NewDividendStock(string symbol, string industry, string interval)
         {
@@ -394,30 +275,6 @@ namespace DividendLiberty
                     elements[0]["industry"].InnerText = industry;
                     elements[0]["interval"].InnerText = interval;
                     doc.Save(uti.GetXMLPath());
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        public static void NewShare(decimal purchaseprice, decimal numberofshares, string dividendstockid, DateTime purchasedate)
-        {
-            try
-            {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-                {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "INSERT INTO dividendprice (purchaseprice, numberofshares, dividendstockid, purchasedate) VALUES (@purchaseprice, @numberofshares, @dividendstockid, @purchasedate)";
-                        cmd.Parameters.AddWithValue("purchaseprice", purchaseprice);
-                        cmd.Parameters.AddWithValue("numberofshares", numberofshares);
-                        cmd.Parameters.AddWithValue("dividendstockid", dividendstockid);
-                        cmd.Parameters.AddWithValue("purchasedate", purchasedate);
-                        cmd.ExecuteNonQuery();
-                    }
                 }
             }
             catch (Exception e)
@@ -541,26 +398,6 @@ namespace DividendLiberty
             return dt;
         }
 
-        //public static void Get(string id)
-        //{
-        //    try
-        //    {
-        //        using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-        //        {
-        //            cnn.Open();
-        //            using (var cmd = cnn.CreateCommand())
-        //            {
-        //                cmd.CommandText = "DELETE FROM dividendprice WHERE id=@id";
-        //                cmd.Parameters.AddWithValue("id", id);
-        //                cmd.ExecuteNonQuery();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-
-        //    }
-        //}
     }
 
     public struct StockInfo

@@ -9,8 +9,8 @@
       <interval>Quarterly</interval>
       <nextpurchase>no</nextpurchase>
       <cost>45.62</cost>
-      <purchasedate>09-18-2015</purchasedate>
       <shares>22</shares>
+      <purchasedate>09-18-2015</purchasedate>
     </dividendstock>
     <dividendstock ID="2">
       <id>2</id>
@@ -20,8 +20,8 @@
       <interval>Quarterly</interval>
       <nextpurchase>no</nextpurchase>
       <cost>94.58</cost>
-      <purchasedate>09-21-2015</purchasedate>
       <shares>11</shares>
+      <purchasedate>09-21-2015</purchasedate>
     </dividendstock>
   </dividendstocks>
 </DocumentElement>

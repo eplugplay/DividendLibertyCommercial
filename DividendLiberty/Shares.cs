@@ -47,6 +47,23 @@ namespace DividendLiberty
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //if (MainMenu._Dividends.txtSymbol.Text == "")
+            //{
+            //    MessageBox.Show("Please enter symbol.");
+            //    return;
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        YahooFinance.GetValues(MainMenu._Dividends.txtSymbol.Text, "n", false);
+            //    }
+            //    catch
+            //    {
+            //        MessageBox.Show("Please enter valide symbol.");
+            //        return;
+            //    }
+            //}
             if (txtNumberOfShares.Text == "")
             {
                 MessageBox.Show("Please enter number of shares.");
@@ -80,15 +97,7 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
-            if (Edit)
-            {
-                DividendStocks.UpdateShare(LstStockInfo[0].ID, LstStockInfo[0].Symbol, txtPurchasePrice.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString());
-            }
-            else
-            {
-                //DividendStocks.NewShare();
-            }
-            MainMenu._Dividends.LoadDividendStock();
+            DividendStocks.UpdateShare(LstStockInfo[0].ID, LstStockInfo[0].Symbol, txtPurchasePrice.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString());
             LoadAllMainDividends();
             SelectCurrentStock();
             pw.Close();

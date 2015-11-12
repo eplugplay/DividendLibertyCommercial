@@ -40,16 +40,16 @@ namespace DividendLiberty
             {
                 return;
             }
+
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
+
             if (Edit)
             {
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text);
+                DividendStocks.UpdateShare(LstStockInfo[0].ID, Symbol, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString());
                 ReloadMainDividends();
-                //Program.MainMenu.lbAllDividends.SelectedValue = Convert.ToInt32(ID);
-                pw.Close();
-                this.Close();
             }
             else
             {
@@ -59,12 +59,13 @@ namespace DividendLiberty
                     MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
                     return;
                 }
-                DividendStocks.NewDividendStock(txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text);
+                string newID = DividendStocks.NewDividendStock(txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text);
+                DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString());
                 ReloadMainDividends();
-                //Program.MainMenu.lbAllDividends.SelectedValue = Convert.ToInt32(ID);
-                pw.Close();
-                this.Close();
             }
+
+            pw.Close();
+            this.Close();
         }
 
         public void ReloadMainDividends()
@@ -91,7 +92,7 @@ namespace DividendLiberty
             else
             {
                 HideTextBoxes();
-                gpSharesOptions.Enabled = false;
+                //gpSharesOptions.Enabled = false;
                 btnSave.Text = "Save";
                 ddlDividendInterval.SelectedIndex = 0;
             }
@@ -136,53 +137,44 @@ namespace DividendLiberty
 
         public void LoadPurchaseInfo()
         {
-            txtSharePrice.Clear();
+            txtCost.Clear();
             txtNumberOfShares.Clear();
-            ddlSharePurchaseDate.SelectedIndexChanged -= ddlSharePurchaseDate_SelectedIndexChanged;
+            //ddlSharePurchaseDate.SelectedIndexChanged -= ddlSharePurchaseDate_SelectedIndexChanged;
             DataTable dt = uti.GetXMLData();
             DataTable dtFinal = dt.Copy();
 
             for (int i = dt.Rows.Count -1; i >= 0; i--)
             {
-                if (dt.Rows[i]["symbol"].ToString() != LstStockInfo[0].Symbol)
+                if (dt.Rows[i]["symbol"].ToString() == LstStockInfo[0].Symbol)
                 {
-                    dtFinal.Rows.RemoveAt(i);
+                    dtpPurchaseDate.Value = Convert.ToDateTime(dt.Rows[i]["purchasedate"]);
                 }
             }
 
-            txtSharePrice.Text = dtFinal.Rows[0]["cost"].ToString();
+            txtCost.Text = dtFinal.Rows[0]["cost"].ToString();
             txtNumberOfShares.Text = dtFinal.Rows[0]["shares"].ToString();
 
-            ddlSharePurchaseDate.DataSource = dtFinal;
-            ddlSharePurchaseDate.DisplayMember = "purchasedate";
-            ddlSharePurchaseDate.ValueMember = "id";
-            if (ddlSharePurchaseDate.Text != "")
-            {
-                btnNewShares.Enabled = false;
-                btnDeleteShares.Enabled = true;
-                btnEditShares.Enabled = true;
-                btnGetSharePrice.Enabled = true;
-                btnDividendPrice.Enabled = true;
-            }
-            else
-            {
-                btnNewShares.Enabled = true;
-                btnDeleteShares.Enabled = false;
-                btnEditShares.Enabled = false;
-                btnGetSharePrice.Enabled = false;
-                btnDividendPrice.Enabled = false;
-            }
-            ddlSharePurchaseDate.SelectedIndexChanged += ddlSharePurchaseDate_SelectedIndexChanged;
+            //ddlSharePurchaseDate.DataSource = dtFinal;
+            //ddlSharePurchaseDate.DisplayMember = "purchasedate";
+            //ddlSharePurchaseDate.ValueMember = "id";
+            //if (ddlSharePurchaseDate.Text != "")
+            //{
+            //    btnNewShares.Enabled = false;
+            //    btnDeleteShares.Enabled = true;
+            //    btnEditShares.Enabled = true;
+            //    btnGetSharePrice.Enabled = true;
+            //    btnDividendPrice.Enabled = true;
+            //}
+            //else
+            //{
+            //    btnNewShares.Enabled = true;
+            //    btnDeleteShares.Enabled = false;
+            //    btnEditShares.Enabled = false;
+            //    btnGetSharePrice.Enabled = false;
+            //    btnDividendPrice.Enabled = false;
+            //}
+            //ddlSharePurchaseDate.SelectedIndexChanged += ddlSharePurchaseDate_SelectedIndexChanged;
         }
-
-        private void ddlSharePurchaseDate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlSharePurchaseDate.SelectedIndex != -1)
-            {
-         
-            }
-        }
-
 
         public bool ValidateAll()
         {
@@ -191,9 +183,44 @@ namespace DividendLiberty
                 MessageBox.Show("Please enter symbol.");
                 return false;
             }
+            if(!uti.IsLettersOnly(txtSymbol.Text))
+            {
+                MessageBox.Show("Please enter letters only for symbol.");
+                return false;
+            }
             if (ddlIndustry.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select Industry.");
+                return false;
+            }
+            if (txtNumberOfShares.Text == "")
+            {
+                MessageBox.Show("Please enter number of shares.");
+                return false;
+            }
+            try
+            {
+                decimal.Parse(txtNumberOfShares.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Please enter numbers only.");
+                txtNumberOfShares.Focus();
+                return false;
+            }
+            if (txtCost.Text == "")
+            {
+                MessageBox.Show("Please enter purchase price.");
+                return false;
+            }
+            try
+            {
+                decimal.Parse(txtCost.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Please enter numbers only.");
+                txtCost.Focus();
                 return false;
             }
             return true;
@@ -201,74 +228,22 @@ namespace DividendLiberty
 
         private void btnGetSharePrice_Click(object sender, EventArgs e)
         {
-            if (txtNumberOfShares.Text != "")
+            if (txtNumberOfShares.Text != "" && txtCost.Text != "")
             {
                 decimal TotalSharePrice = 0;
-                TotalSharePrice = Convert.ToDecimal(txtNumberOfShares.Text) * Convert.ToDecimal(txtSharePrice.Text);
+                TotalSharePrice = Convert.ToDecimal(txtNumberOfShares.Text) * Convert.ToDecimal(txtCost.Text);
                 MessageBox.Show("$" + Math.Round(TotalSharePrice, 2).ToString());
             }
         }
 
         private void btnDividendPrice_Click(object sender, EventArgs e)
         {
-            if (txtNumberOfShares.Text != "")
+            if (txtNumberOfShares.Text != "" && txtCost.Text != "")
             {
                 decimal TotalDividendPrice = Convert.ToDecimal(txtAnnualDividend.Text) * Convert.ToDecimal(txtNumberOfShares.Text);
                 decimal QuarterlyDividendPrice = TotalDividendPrice / 4;
                 decimal MonthlyDividendPrice = TotalDividendPrice / 12;
                 MessageBox.Show("Yearly: $" + Math.Round(TotalDividendPrice, 2).ToString() + "\n\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\n\nMonthly: $" + Math.Round(MonthlyDividendPrice, 2));
-            }
-        }
-
-
-        public void OpenSharesForm(bool edit)
-        {
-            if (_Shares == null || _Shares.IsDisposed)
-            {
-                _Shares = new Shares(edit, CurrentDiv, LstStockInfo);
-                _Shares.Show();
-            }
-            else
-            {
-                if (_Shares.WindowState == FormWindowState.Minimized)
-                {
-                    _Shares.WindowState = FormWindowState.Normal;
-                }
-                else
-                {
-                    _Shares.BringToFront();
-                }
-            }
-        }
-
-
-        private void btnNewShares_Click(object sender, EventArgs e)
-        {
-            OpenSharesForm(false);
-        }
-
-        private void btnEditShares_Click(object sender, EventArgs e)
-        {
-            if (txtSharePrice.Text != "")
-            {
-                OpenSharesForm(true);
-            }
-        }
-
-        private void btnDeleteShares_Click(object sender, EventArgs e)
-        {
-            if (txtSharePrice.Text != "")
-            {
-                if (MessageBox.Show("Delete?", "Delete?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    PleaseWait pw = new PleaseWait();
-                    pw.Show();
-                    Application.DoEvents();
-                    DividendStocks.DeleteShare(ddlSharePurchaseDate.SelectedValue.ToString());
-                    LoadPurchaseInfo();
-                    ReloadMainDividends();
-                    pw.Close();
-                }
             }
         }
     }

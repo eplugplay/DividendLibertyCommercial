@@ -32,6 +32,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpDividendStocks = new System.Windows.Forms.GroupBox();
+            this.lblMyPortfolio = new System.Windows.Forms.Label();
             this.lvAllDividends = new System.Windows.Forms.ListView();
             this.lvCurrentDividends = new System.Windows.Forms.ListView();
             this.dtpPayDate = new System.Windows.Forms.DateTimePicker();
@@ -53,14 +54,13 @@
             this.ddlIndustry = new System.Windows.Forms.ComboBox();
             this.btnDividendPrice = new System.Windows.Forms.Button();
             this.btnGetSharePrice = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblMyPortfolio = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -128,6 +128,17 @@
             this.gpDividendStocks.TabStop = false;
             this.gpDividendStocks.Text = "Dividend Stocks";
             // 
+            // lblMyPortfolio
+            // 
+            this.lblMyPortfolio.AutoSize = true;
+            this.lblMyPortfolio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMyPortfolio.ForeColor = System.Drawing.Color.White;
+            this.lblMyPortfolio.Location = new System.Drawing.Point(878, 18);
+            this.lblMyPortfolio.Name = "lblMyPortfolio";
+            this.lblMyPortfolio.Size = new System.Drawing.Size(78, 13);
+            this.lblMyPortfolio.TabIndex = 41;
+            this.lblMyPortfolio.Text = "My Portfolio:";
+            // 
             // lvAllDividends
             // 
             this.lvAllDividends.Location = new System.Drawing.Point(9, 37);
@@ -137,6 +148,7 @@
             this.lvAllDividends.UseCompatibleStateImageBehavior = false;
             this.lvAllDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseClick);
             this.lvAllDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDoubleClick);
+            this.lvAllDividends.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDown);
             // 
             // lvCurrentDividends
             // 
@@ -147,6 +159,7 @@
             this.lvCurrentDividends.UseCompatibleStateImageBehavior = false;
             this.lvCurrentDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseClick);
             this.lvCurrentDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseDoubleClick);
+            this.lvCurrentDividends.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseDown);
             // 
             // dtpPayDate
             // 
@@ -379,6 +392,17 @@
             this.btnGetSharePrice.UseVisualStyleBackColor = true;
             this.btnGetSharePrice.Click += new System.EventHandler(this.btnGetSharePrice_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(6, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Not In Portfolio:";
+            // 
             // btnCalculate
             // 
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
@@ -436,28 +460,6 @@
             this.lblStatus.TabIndex = 40;
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(6, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Not In Portfolio:";
-            // 
-            // lblMyPortfolio
-            // 
-            this.lblMyPortfolio.AutoSize = true;
-            this.lblMyPortfolio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMyPortfolio.ForeColor = System.Drawing.Color.White;
-            this.lblMyPortfolio.Location = new System.Drawing.Point(878, 18);
-            this.lblMyPortfolio.Name = "lblMyPortfolio";
-            this.lblMyPortfolio.Size = new System.Drawing.Size(78, 13);
-            this.lblMyPortfolio.TabIndex = 41;
-            this.lblMyPortfolio.Text = "My Portfolio:";
             // 
             // MainMenu
             // 
