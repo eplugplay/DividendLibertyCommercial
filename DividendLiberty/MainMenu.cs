@@ -116,11 +116,10 @@ namespace DividendLiberty
             decimal MarketTotalPrice = 0;
             DataTable dt = uti.GetXMLData();
             decimal Purchaseprice = 0;
-            string Stocks = uti.GetMultiSymbols(dt);
-            string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(Stocks, "d", true));
-            string[] DivYield = uti.SplitStockData(YahooFinance.GetValues(Stocks, "y", true));
+            string[] AnnualDiv = uti.GetYahooMultiData(dt, "d");
+            string[] DivYield = uti.GetYahooMultiData(dt, "y");
             // l1 is last trade price, c1 change in price, b is bid price, a is ask price; Ask price is current price as you're asking for a price when selling therefore that is the price of your portfolio
-            string[] CurrentStockPrice = uti.SplitStockData(YahooFinance.GetValues(Stocks, "a", true));
+            string[] CurrentStockPrice = uti.GetYahooMultiData(dt, "a");
             //decimal val = dt.Rows.Count;
             //decimal StatusVal = 0;
             //val = Math.Round(90 / val, 0);
@@ -245,7 +244,7 @@ namespace DividendLiberty
                 {
                     if (lstID[b] == Convert.ToInt32(lv.Items[a].Tag))
                     {
-                        lv.Items[a].BackColor = Color.SkyBlue;
+                        lv.Items[a].BackColor = uti.GetHighlightColor();
                     }
                 }
             }
@@ -310,7 +309,7 @@ namespace DividendLiberty
             {
                 if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
-                    lv.Items[i].BackColor = Color.SkyBlue;
+                    lv.Items[i].BackColor = uti.GetHighlightColor();
                 }
                 if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
@@ -331,7 +330,7 @@ namespace DividendLiberty
             {
                 if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
-                    lv.Items[i].BackColor = Color.SkyBlue;
+                    lv.Items[i].BackColor = uti.GetHighlightColor();
                 }
                 else
                 {
@@ -436,7 +435,7 @@ namespace DividendLiberty
             decimal TotalDividendPrice = 0;
             decimal QuarterlyDividendPrice = 0;
             decimal MonthlyDividendPrice = 0;
-            DividendStocks.GetDividendPrice(lstID, out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice);
+            DividendStocks.GetDividendPrice(lvCurrentDividends, lstID, out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice);
             MessageBox.Show("Yearly: $" + Math.Round(TotalDividendPrice, 2).ToString() + "\n\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\n\nMonthly: $" + Math.Round(MonthlyDividendPrice, 2));
         }
 
@@ -454,7 +453,7 @@ namespace DividendLiberty
 
         private void btnDividendPrice_Click(object sender, EventArgs e)
         {
-                GetDividendPrice();
+            GetDividendPrice();
         }
 
         private void btnHighlight_Click(object sender, EventArgs e)
@@ -462,25 +461,21 @@ namespace DividendLiberty
             Highlight(lvCurrentDividends, ddlIndustry, true);
         }
 
-        public void SearchSymbol(TextBox tb, ListBox lb)
+        public void SearchSymbol(TextBox tb, ListView lv)
         {
-            bool selectedOne = false;
-            lb.ClearSelected();
-            for (int i = 0; i < lb.Items.Count; i++)
+            lv.SelectedItems.Clear();
+            lstID.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
             {
-                DataRowView drv = lb.Items[i] as DataRowView;
-                if (drv["symbolName"].ToString().Contains(tb.Text.ToUpper()))
+                if (lv.Items[i].SubItems[1].Text == tb.Text.ToUpper())
                 {
-                    selectedOne = true;
-                    lb.SelectedIndices.Add(i);
+                    lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
+                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                    //lv.Items[i].Selected = true;
+                    //lv.Select();
                 }
             }
             HighlightActive = false;
-            if (!selectedOne)
-            {
-                MessageBox.Show("Not Found");
-                tb.Clear();
-            }
         }
 
         public void Highlight(ListView lv, ComboBox ddl, bool showMsg)
@@ -488,14 +483,16 @@ namespace DividendLiberty
             decimal count = 0;
             decimal percentage = Convert.ToDecimal(lv.Items.Count);
             lv.SelectedItems.Clear();
+            lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 if (lv.Items[i].SubItems[3].Text == ddl.Text)
                 {
                     count++;
+                    lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                     //lv.SelectedIndices.Add(i);
                     //lv.Select();
-                    lv.Items[i].BackColor = Color.SkyBlue;
+                    lv.Items[i].BackColor = uti.GetHighlightColor();
                 }
                 else
                 {
@@ -514,30 +511,40 @@ namespace DividendLiberty
         private void btnNextPurchase_Click(object sender, EventArgs e)
         {
             HighlightActive = true;
-            //HighlightAllNextToBuy(lbAllDividends);
+            HighlightAllNextToBuy(lvAllDividends);
         }
 
-        public void HighlightAllNextToBuy(ListBox lb)
+        public void HighlightAllNextToBuy(ListView lv)
         {
-            lb.ClearSelected();
-            chkNextBuy.CheckedChanged -= chkNextBuy_CheckedChanged;
-            chkNextBuy.Checked = true;
-            chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
             int cnt = 0;
-            DataTable dt = uti.GetXMLData();
-            for (int i = 0; i < lb.Items.Count; i++)
+            try
             {
-                for (int a = 0; a < dt.Rows.Count; a++)
+                lv.SelectedItems.Clear();
+                chkNextBuy.CheckedChanged -= chkNextBuy_CheckedChanged;
+                chkNextBuy.Checked = true;
+                chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
+                DataTable dt = uti.GetXMLData();
+                for (int i = 0; i < lv.Items.Count; i++)
                 {
-                    DataRowView drv = lb.Items[i] as DataRowView;
-                    if (drv["id"].Equals(dt.Rows[a]["id"]))
+                    for (int a = 0; a < dt.Rows.Count; a++)
                     {
-                        cnt++;
-                        lb.SelectedIndices.Add(i);
+                        if (dt.Rows[a]["nexttobuy"].ToString() == "yes" && dt.Rows[a]["active"].ToString().Trim() == "false")
+                        {
+                            if (Convert.ToInt32(lv.Items[i].Tag) == Convert.ToInt32(dt.Rows[a]["id"]))
+                            {
+                                lv.Items[i].BackColor = uti.GetHighlightColor();
+                                cnt++;
+                                //lv.SelectedIndices.Add(i);
+                            }
+                        }
                     }
                 }
+                HighlightActive = false;
             }
-            HighlightActive = false;
+            catch
+            {
+
+            }
             MessageBox.Show(string.Format("{0} results.", cnt));
         }
 
@@ -589,27 +596,27 @@ namespace DividendLiberty
 
         private void txtSearchSymbol_TextChanged(object sender, EventArgs e)
         {
-            //if (txtSearchSymbol.Text != "")
-            //{
-            //    SearchSymbol(txtSearchSymbol, lbCurrentDividends);
-            //}
-            //else
-            //{
-            //    lbCurrentDividends.ClearSelected();
-            //}
+            if (txtSearchSymbol.Text != "")
+            {
+                SearchSymbol(txtSearchSymbol, lvCurrentDividends);
+            }
+            else
+            {
+                uti.ClearListViewColors(lvCurrentDividends, lstID);
+            }
         }
 
         private void txtSearchAllSymbol_TextChanged(object sender, EventArgs e)
         {
             HighlightActive = true;
-            //if (txtSearchAllSymbol.Text != "")
-            //{
-            //    SearchSymbol(txtSearchAllSymbol, lbAllDividends);
-            //}
-            //else
-            //{
-            //    lbAllDividends.ClearSelected();
-            //}
+            if (txtSearchAllSymbol.Text != "")
+            {
+                SearchSymbol(txtSearchAllSymbol, lvAllDividends);
+            }
+            else
+            {
+                uti.ClearListViewColors(lvAllDividends, lstID);
+            }
         }
 
         public void LoadNextToBuy()
@@ -648,54 +655,42 @@ namespace DividendLiberty
             string dtpMonthYear = "";
             string individualDivData = "";
             decimal div = 0;
-            DataTable dt = uti.GetXMLData();
+            lv.SelectedItems.Clear();
+            lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 string date = lv.Items[i].SubItems[7].Text;
                 string[] dateSplit = date.Split('/');
-                monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
-                dtpMonthYear = dtpPayDate.Value.ToString("MM/yyyy");
-                string dividendInterval = dt.Rows[i]["interval"].ToString();
-                //if (dividendInterval == "Monthly")
-                //{
-                //    lv.SelectedIndices.Add(i);
-                //    totalDiv += 
-                //    individualDivData += symbol + ": $" + Math.Round((GetDiv(Convert.ToInt32(drv["id"]), dt) / 4), 2) + "\n\n";
-                //}
-                if (monthYear == dtpMonthYear)
+                if (date != "N/A")
                 {
-                    if (dt.Rows[i]["active"].ToString() == "true")
+                    monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
+                    dtpMonthYear = dtpPayDate.Value.ToString("MM/yyyy");
+                    string dividendInterval = lv.Items[i].SubItems[8].Text.ToString();
+                    //if (dividendInterval == "Monthly")
+                    //{
+                    //    lv.SelectedIndices.Add(i);
+                    //    totalDiv += 
+                    //    individualDivData += symbol + ": $" + Math.Round((GetDiv(Convert.ToInt32(drv["id"]), dt) / 4), 2) + "\n\n";
+                    //}
+                    if (monthYear == dtpMonthYear)
                     {
-                        div = Convert.ToDecimal(YahooFinance.GetValues(dt.Rows[i]["symbol"].ToString(), "d", false));
-                        lv.SelectedIndices.Add(i);
-                        totalDiv += uti.GetDivPrice(Convert.ToDecimal(dt.Rows[i]["shares"]), div);
-                        //individualDivData += dt.Rows[i]["symbol"].ToString() + ": $" + Math.Round((GetDiv(Convert.ToInt32(drv["id"]), dt) / 4), 2) + "\n\n";
+                        lv.Items[i].BackColor = uti.GetHighlightColor();
+                        string symbol = lv.Items[i].SubItems[1].Text.ToString();
+                        div = Convert.ToDecimal(YahooFinance.GetValues(symbol, "d", false));
+                        decimal divReceived = uti.GetDivPrice(Convert.ToDecimal(lv.Items[i].SubItems[4].Text.ToString()), div);
+                        totalDiv += divReceived;
+                        individualDivData += symbol + ": $" + Math.Round(divReceived/4, 2) + " (Pay Date: " + lv.Items[i].SubItems[7].Text.ToString() + ")\n\n";
+                        lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                         cnt++;
                     }
                 }
-
-                //lv.SelectedItems.Clear();
-                //for (int i = 0; i < lv.Items.Count; i++)
-                //{
-                //    if (lv.Items[i].SubItems[3].Text == ddl.Text)
-                //    {
-                //        count++;
-                //        //lv.SelectedIndices.Add(i);
-                //        //lv.Select();
-                //        lv.Items[i].BackColor = Color.SkyBlue;
-                //    }
-                //    else
-                //    {
-                //        lv.Items[i].BackColor = Color.White;
-                //    }
-                //}
             }
             HighlightActive = false;
             quarterlyDiv = totalDiv / 4;
             pw.Close();
             if (cnt != 0)
             {
-                MessageBox.Show(string.Format("{0} results\n\n" + "{1} \n\n" + individualDivData + "Total: ${2}\n\n", cnt, "Dividends for " + dtpMonthYear + ":",  Math.Round(quarterlyDiv, 2)));
+                MessageBox.Show(string.Format("{0} results\n\n" + "{1} \n\n" + individualDivData + "Total: ${2}\n\n", cnt, "Dividends for " + dtpMonthYear + "",  Math.Round(quarterlyDiv, 2)));
             }
             else
             {

@@ -102,7 +102,6 @@ namespace DividendLiberty
         public static decimal GetDivPrice(decimal shares, decimal annualDiv)
         {
             decimal toReturn = (shares * annualDiv);
-
             return toReturn;
         }
 
@@ -112,15 +111,24 @@ namespace DividendLiberty
             return split;
         }
 
-        public static string GetMultiSymbols(DataTable dt)
+        public static string[] GetYahooMultiData(DataTable dt, string code)
         {
-            string toReturn = "";
+            string symbols = "";
+            int count = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                toReturn += dt.Rows[i]["symbol"].ToString() + "+";
+                symbols += dt.Rows[i]["symbol"].ToString() + "+";
+                count++;
             }
-            toReturn = toReturn.Substring(0, toReturn.Length - 1);
+            symbols = symbols.Substring(0, symbols.Length - 1);
+            string[] toReturn = new string[count];
+            toReturn = uti.SplitStockData(YahooFinance.GetValues(symbols, code, true));
             return toReturn;
+        }
+
+        public static Color GetHighlightColor()
+        {
+            return Color.SkyBlue;
         }
 
         public static string FilterDuplicates(string symbols)

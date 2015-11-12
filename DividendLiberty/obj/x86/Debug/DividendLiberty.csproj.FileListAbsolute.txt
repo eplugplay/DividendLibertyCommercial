@@ -17,7 +17,6 @@ C:\Users\stevey\Documents\GitHub\DividendLiberty\DividendLiberty\obj\x86\Debug\D
 C:\Users\stevey\Documents\GitHub\DividendLiberty\DividendLiberty\obj\x86\Debug\DividendLiberty.MainMenu.resources
 C:\Users\stevey\Documents\GitHub\DividendLiberty\DividendLiberty\obj\x86\Debug\DividendLiberty.PleaseWait.resources
 C:\Users\stevey\Documents\GitHub\DividendLiberty\DividendLiberty\obj\x86\Debug\DividendLiberty.Properties.Resources.resources
-C:\Users\stevey\Documents\GitHub\DividendLiberty\DividendLiberty\obj\x86\Debug\DividendLiberty.Shares.resources
 C:\Users\stevey\Documents\GitHub\DividendLiberty\DividendLiberty\obj\x86\Debug\DividendLiberty.csproj.GenerateResource.Cache
 C:\Users\stevey\Documents\GitHub\DividendLiberty\DividendLiberty\obj\x86\Debug\DividendLiberty.exe
 C:\Users\stevey\Documents\GitHub\DividendLiberty\DividendLiberty\obj\x86\Debug\DividendLiberty.pdb

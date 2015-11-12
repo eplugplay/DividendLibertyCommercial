@@ -100,25 +100,25 @@ namespace DividendLiberty
             }
         }
 
-        public static void GetDividendPrice(List<int> lstID, out decimal totalDividendPrice, out decimal quarterlyDividendPrice, out decimal monthlyDividendPrice)
+        public static void GetDividendPrice(ListView lv, List<int> lstID, out decimal totalDividendPrice, out decimal quarterlyDividendPrice, out decimal monthlyDividendPrice)
         {
-            DataTable dt = uti.GetXMLData();
+            //DataTable dt = uti.GetXMLData();
             totalDividendPrice = 0;
             quarterlyDividendPrice = 0;
             monthlyDividendPrice = 0;
-            int numShares = 0;
+            decimal numShares = 0;
             decimal yield = 0;
             try
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
+                for (int b = 0; b < lstID.Count; b++)
                 {
-                    for (int b = 0; b < lstID.Count; b++)
+                    for (int i = 0; i < lv.Items.Count; i++)
                     {
-                        if (Convert.ToInt32(dt.Rows[i]["id"]) == lstID[b])
+                        if (Convert.ToInt32(lv.Items[i].Tag) == lstID[b])
                         {
-                            numShares = dt.Rows[i]["shares"].ToString() == "" ? 0 : Convert.ToInt32(dt.Rows[i]["shares"]);
-                            yield = Convert.ToDecimal(YahooFinance.GetValues(dt.Rows[i]["symbol"].ToString(), "d", false));
-                            totalDividendPrice += ((decimal)numShares * yield);
+                            numShares = lv.Items[i].SubItems[4].Text == "" ? 0 : Convert.ToDecimal(lv.Items[i].SubItems[4].Text);
+                            yield = Convert.ToDecimal(YahooFinance.GetValues(lv.Items[i].SubItems[1].Text, "d", false));
+                            totalDividendPrice += (numShares * yield);
                         }
                     }
                 }
@@ -140,6 +140,9 @@ namespace DividendLiberty
                 DataView view = dt.DefaultView;
                 view.Sort = "symbol asc";
                 DataTable dtXml = view.ToTable();
+                string[] names = uti.GetYahooMultiData(dtXml, "n");
+                string[] exDiv = uti.GetYahooMultiData(dtXml, "q");
+                string[] payDate = uti.GetYahooMultiData(dtXml, "r1");
                 lv.View = View.Details;
                 lv.Columns.Add("");
                 lv.Columns.Add("Symbol");
@@ -160,12 +163,12 @@ namespace DividendLiberty
                         ListViewItem lvItem = new ListViewItem(count++.ToString());
                         lvItem.SubItems.Add(symbol);
                         lvItem.Tag = dtXml.Rows[i]["id"].ToString();
-                        lvItem.SubItems.Add(YahooFinance.GetValues(symbol, "n", false));
+                        lvItem.SubItems.Add(names[i]);
                         lvItem.SubItems.Add(dtXml.Rows[i]["industry"].ToString());
                         lvItem.SubItems.Add(dtXml.Rows[i]["shares"].ToString());
                         lvItem.SubItems.Add(dtXml.Rows[i]["cost"].ToString());
-                        lvItem.SubItems.Add(YahooFinance.GetValues(symbol, "q", false));
-                        lvItem.SubItems.Add(YahooFinance.GetValues(symbol, "r1", false));
+                        lvItem.SubItems.Add(exDiv[i]);
+                        lvItem.SubItems.Add(payDate[i]);
                         lvItem.SubItems.Add(dtXml.Rows[i]["interval"].ToString());
                         lv.Items.Add(lvItem);
                     }
@@ -230,6 +233,10 @@ namespace DividendLiberty
                 XmlNode nodeShares = doc.CreateElement("shares");
                 nodeShares.InnerText = "";
                 node.AppendChild(nodeShares);
+
+                XmlNode nodeNextToBuy = doc.CreateElement("nexttobuy");
+                nodeNextToBuy.InnerText = "no";
+                node.AppendChild(nodeNextToBuy);
 
                 doc.DocumentElement["dividendstocks"].AppendChild(node);
                 doc.Save(uti.GetXMLPath());

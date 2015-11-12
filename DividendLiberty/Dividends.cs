@@ -12,7 +12,6 @@ namespace DividendLiberty
 {
     public partial class Dividends : Form
     {
-        static public Shares _Shares;
         public bool Edit { get; set; }
         public string ID { get; set; }
         bool CurrentDiv {get;set;}
