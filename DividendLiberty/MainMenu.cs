@@ -34,7 +34,6 @@ namespace DividendLiberty
         public void OpenDividends(bool edit, bool currentDiv)
         {
             List<StockInfo> lstStockInfo = new List<StockInfo>(); ;
-
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
@@ -268,14 +267,6 @@ namespace DividendLiberty
             }
         }
 
-        private void lvCurrentDividends_MouseClick(object sender, MouseEventArgs e)
-        {
-            Symbol = lvCurrentDividends.SelectedItems[0].SubItems[1].Text;
-            CurrentDiv = true;
-            SelectedIndex = lvCurrentDividends.SelectedItems[0].Index;
-            HighlightColor(lvCurrentDividends);
-        }
-
         public int GetTagCount(List<int> lst, int tag)
         {
             int count = 0;
@@ -302,10 +293,10 @@ namespace DividendLiberty
             return tempList;
         }
 
-        public void HighlightColor(ListView lv)
+        public void HighlightMultipleColor(ListView lv)
         {
             int index = lv.SelectedItems[0].Index;
-            int tag = Convert.ToInt32(lv.SelectedItems[0].Tag);
+            int tag = Convert.ToInt32(lv.Items[index].Tag);
             string color = lv.Items[index].BackColor.Name;
             lstID.Add(tag);
 
@@ -328,23 +319,107 @@ namespace DividendLiberty
             }
         }
 
-        private void lvCurrentDividends_MouseDoubleClick(object sender, MouseEventArgs e)
+        public void HighlightSingleColor(ListView lv)
         {
-            OpenDividends(true, CurrentDiv);
+            int index = lv.SelectedItems[0].Index;
+            int tag = Convert.ToInt32(lv.Items[index].Tag);
+            string color = lv.Items[index].BackColor.Name;
+            lstID.Clear();
+            lstID.Add(tag);
+            lv.SelectedItems.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
+                {
+                    lv.Items[i].BackColor = Color.SkyBlue;
+                }
+                else
+                {
+                    lv.Items[i].BackColor = Color.White;
+                }
+            }
+        }
+
+        private void lvCurrentDividends_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (Control.ModifierKeys != Keys.Control)
+            {
+                uti.ClearListViewColors(lvAllDividends, lstID);
+                uti.SetStockIndexSymbol(lvCurrentDividends);
+                HighlightSingleColor(lvCurrentDividends);
+            }
+        }
+
+        private void lvCurrentDividends_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (Control.ModifierKeys == Keys.Control)
+            {
+                uti.SetStockIndexSymbol(lvCurrentDividends);
+                HighlightMultipleColor(lvCurrentDividends);
+            }
+            CurrentDiv = true;
+        }
+
+
+        private void lvCurrentDividends_MouseDown(object sender, MouseEventArgs e)
+        {
+            //var info = lvCurrentDividends.HitTest(e.X, e.Y);
+            //try
+            //{
+            //    int s = info.Item.Index;
+            //}
+            //catch
+            //{
+            //    uti.ClearListViewColors(lvCurrentDividends, lstID);
+            //    uti.ClearListViewColors(lvAllDividends, lstID);
+            //}
+        }
+
+        private void lvAllDividends_MouseDown(object sender, MouseEventArgs e)
+        {
+
         }
 
         private void lvAllDividends_MouseClick(object sender, MouseEventArgs e)
         {
-            Symbol = lvAllDividends.SelectedItems[0].SubItems[1].Text;
+            if (Control.ModifierKeys != Keys.Control)
+            {
+                uti.ClearListViewColors(lvCurrentDividends, lstID);
+                uti.SetStockIndexSymbol(lvAllDividends);
+                HighlightSingleColor(lvAllDividends);
+            }
+        }
+
+        private void lvAllDividends_MouseUp(object sender, MouseEventArgs e)
+        {
+            var info = lvAllDividends.HitTest(e.X, e.Y);
+            try
+            {
+                int s = info.Item.Index;
+                if (Control.ModifierKeys == Keys.Control)
+                {
+                    uti.SetStockIndexSymbol(lvAllDividends);
+                    HighlightMultipleColor(lvAllDividends);
+                }
+            }
+            catch
+            {
+                uti.ClearListViewColors(lvAllDividends, lstID);
+                uti.ClearListViewColors(lvCurrentDividends, lstID);
+            }
             CurrentDiv = false;
-            SelectedIndex = lvAllDividends.SelectedItems[0].Index;
-            HighlightColor(lvAllDividends);
+        }
+
+        private void lvCurrentDividends_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            OpenDividends(true, CurrentDiv);
         }
 
         private void lvAllDividends_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             OpenDividends(true, CurrentDiv);
         }
+
 
         public List<StockInfo> GetStockInfoList(ListView lv)
         {
@@ -558,52 +633,62 @@ namespace DividendLiberty
 
         private void btnPayDate_Click(object sender, EventArgs e)
         {
-            //HighlightPayDate(lbCurrentDividends);
+            HighlightPayDate(lvCurrentDividends);
         }
 
-        public void HighlightPayDate(ListBox lb)
+        public void HighlightPayDate(ListView lv)
         {
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
-            lb.ClearSelected();
             decimal totalDiv = 0;
             decimal quarterlyDiv = 0;
             int cnt = 0;
             string monthYear = "";
             string dtpMonthYear = "";
             string individualDivData = "";
-            DataTable dt = DividendStocks.GetCurrentDividends();
-            for (int i = 0; i < lb.Items.Count; i++)
+            decimal div = 0;
+            DataTable dt = uti.GetXMLData();
+            for (int i = 0; i < lv.Items.Count; i++)
             {
-                DataRowView drv = lb.Items[i] as DataRowView;
-                string[] date = drv["symbolName"].ToString().Split('*');
-                string[] symbolSplit = date[0].Split('-');
-                string symbol = symbolSplit[0].Trim();
-                if (date.Length == 2)
+                string date = lv.Items[i].SubItems[7].Text;
+                string[] dateSplit = date.Split('/');
+                monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
+                dtpMonthYear = dtpPayDate.Value.ToString("MM/yyyy");
+                string dividendInterval = dt.Rows[i]["interval"].ToString();
+                //if (dividendInterval == "Monthly")
+                //{
+                //    lv.SelectedIndices.Add(i);
+                //    totalDiv += 
+                //    individualDivData += symbol + ": $" + Math.Round((GetDiv(Convert.ToInt32(drv["id"]), dt) / 4), 2) + "\n\n";
+                //}
+                if (monthYear == dtpMonthYear)
                 {
-                    monthYear = date[1].ToString();
-                    if (monthYear != "N/A")
+                    if (dt.Rows[i]["active"].ToString() == "true")
                     {
-                        date = monthYear.Split('/');
-                        monthYear = date[0].Trim() + "/" + date[2];
-                        dtpMonthYear = dtpPayDate.Value.ToString("MM/yyyy");
-                        //string dividendInterval = GetDividendInterval(Convert.ToInt32(drv["id"]), dt);
-                        //if (dividendInterval == "Monthly")
-                        //{
-                        //    lb.SelectedIndices.Add(i);
-                        //    totalDiv += GetDiv(Convert.ToInt32(drv["id"]), dt);
-                        //    individualDivData += symbol + ": $" + Math.Round((GetDiv(Convert.ToInt32(drv["id"]), dt) / 4), 2) + "\n\n";
-                        //}
-                        if (monthYear == dtpMonthYear)
-                        {
-                            lb.SelectedIndices.Add(i);
-                            totalDiv += GetDiv(Convert.ToInt32(drv["id"]), dt);
-                            individualDivData += symbol + ": $" + Math.Round((GetDiv(Convert.ToInt32(drv["id"]), dt) / 4), 2) + "\n\n";
-                            cnt++;
-                        }
+                        div = Convert.ToDecimal(YahooFinance.GetValues(dt.Rows[i]["symbol"].ToString(), "d", false));
+                        lv.SelectedIndices.Add(i);
+                        totalDiv += uti.GetDivPrice(Convert.ToDecimal(dt.Rows[i]["shares"]), div);
+                        //individualDivData += dt.Rows[i]["symbol"].ToString() + ": $" + Math.Round((GetDiv(Convert.ToInt32(drv["id"]), dt) / 4), 2) + "\n\n";
+                        cnt++;
                     }
                 }
+
+                //lv.SelectedItems.Clear();
+                //for (int i = 0; i < lv.Items.Count; i++)
+                //{
+                //    if (lv.Items[i].SubItems[3].Text == ddl.Text)
+                //    {
+                //        count++;
+                //        //lv.SelectedIndices.Add(i);
+                //        //lv.Select();
+                //        lv.Items[i].BackColor = Color.SkyBlue;
+                //    }
+                //    else
+                //    {
+                //        lv.Items[i].BackColor = Color.White;
+                //    }
+                //}
             }
             HighlightActive = false;
             quarterlyDiv = totalDiv / 4;
@@ -629,49 +714,6 @@ namespace DividendLiberty
                 }
             }
             return divInterval;
-        }
-
-        public decimal GetDiv(int id, DataTable dt)
-        {
-            decimal div = 0;
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (Convert.ToInt32(dt.Rows[i]["id"]) == id)
-                {
-                    div = Convert.ToDecimal(YahooFinance.GetValues(dt.Rows[i]["symbol"].ToString(), "d", false)) * Convert.ToDecimal(dt.Rows[i]["numberofshares"]);
-                }
-            }
-            return div;
-        }
-
-        private void lvCurrentDividends_MouseDown(object sender, MouseEventArgs e)
-        {
-            var info = lvCurrentDividends.HitTest(e.X, e.Y);
-            try
-            {
-               int s = info.Item.Index;
-            }
-            catch
-            {
-                uti.ClearListViewColors(lvCurrentDividends, lstID);
-                uti.ClearListViewColors(lvAllDividends, lstID);
-                //MessageBox.Show("null");
-            }
-        }
-
-        private void lvAllDividends_MouseDown(object sender, MouseEventArgs e)
-        {
-            var info = lvAllDividends.HitTest(e.X, e.Y);
-            try
-            {
-                int s = info.Item.Index;
-            }
-            catch
-            {
-                uti.ClearListViewColors(lvAllDividends, lstID);
-                uti.ClearListViewColors(lvCurrentDividends, lstID);
-                //MessageBox.Show("null");
-            }
         }
     }
 }

@@ -48,7 +48,7 @@ namespace DividendLiberty
             if (Edit)
             {
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text);
-                DividendStocks.UpdateShare(LstStockInfo[0].ID, Symbol, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString());
+                DividendStocks.UpdateShare(LstStockInfo[0].ID, Symbol, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
                 ReloadMainDividends();
             }
             else
@@ -60,7 +60,7 @@ namespace DividendLiberty
                     return;
                 }
                 string newID = DividendStocks.NewDividendStock(txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text);
-                DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString());
+                DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
                 ReloadMainDividends();
             }
 
@@ -86,6 +86,7 @@ namespace DividendLiberty
             if (Edit)
             {
                 LoadDividendStock();
+                LoadPurchaseInfo();
                 btnSave.Text = "Update";
                 this.Text = "Edit Dividend Stock";
             }
@@ -94,7 +95,7 @@ namespace DividendLiberty
                 HideTextBoxes();
                 //gpSharesOptions.Enabled = false;
                 btnSave.Text = "Save";
-                ddlDividendInterval.SelectedIndex = 0;
+                ddlDividendInterval.SelectedIndex = 1;
             }
         }
 
@@ -131,49 +132,23 @@ namespace DividendLiberty
             txt52WeekHigh.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "k", false);
             txtCurrentPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "a", false);
             txtOpenPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "o", false);
-            // load purchase dates
-            LoadPurchaseInfo();
         }
 
         public void LoadPurchaseInfo()
         {
             txtCost.Clear();
             txtNumberOfShares.Clear();
-            //ddlSharePurchaseDate.SelectedIndexChanged -= ddlSharePurchaseDate_SelectedIndexChanged;
             DataTable dt = uti.GetXMLData();
             DataTable dtFinal = dt.Copy();
-
             for (int i = dt.Rows.Count -1; i >= 0; i--)
             {
                 if (dt.Rows[i]["symbol"].ToString() == LstStockInfo[0].Symbol)
                 {
                     dtpPurchaseDate.Value = Convert.ToDateTime(dt.Rows[i]["purchasedate"]);
+                    txtCost.Text = dtFinal.Rows[i]["cost"].ToString();
+                    txtNumberOfShares.Text = dtFinal.Rows[i]["shares"].ToString();
                 }
             }
-
-            txtCost.Text = dtFinal.Rows[0]["cost"].ToString();
-            txtNumberOfShares.Text = dtFinal.Rows[0]["shares"].ToString();
-
-            //ddlSharePurchaseDate.DataSource = dtFinal;
-            //ddlSharePurchaseDate.DisplayMember = "purchasedate";
-            //ddlSharePurchaseDate.ValueMember = "id";
-            //if (ddlSharePurchaseDate.Text != "")
-            //{
-            //    btnNewShares.Enabled = false;
-            //    btnDeleteShares.Enabled = true;
-            //    btnEditShares.Enabled = true;
-            //    btnGetSharePrice.Enabled = true;
-            //    btnDividendPrice.Enabled = true;
-            //}
-            //else
-            //{
-            //    btnNewShares.Enabled = true;
-            //    btnDeleteShares.Enabled = false;
-            //    btnEditShares.Enabled = false;
-            //    btnGetSharePrice.Enabled = false;
-            //    btnDividendPrice.Enabled = false;
-            //}
-            //ddlSharePurchaseDate.SelectedIndexChanged += ddlSharePurchaseDate_SelectedIndexChanged;
         }
 
         public bool ValidateAll()

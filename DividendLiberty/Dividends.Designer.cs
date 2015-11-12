@@ -130,7 +130,6 @@
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(210, 20);
             this.txtCost.TabIndex = 5;
-            this.txtCost.TabStop = false;
             // 
             // lblIndustry
             // 
@@ -159,7 +158,6 @@
             this.txtNumberOfShares.Name = "txtNumberOfShares";
             this.txtNumberOfShares.Size = new System.Drawing.Size(210, 20);
             this.txtNumberOfShares.TabIndex = 4;
-            this.txtNumberOfShares.TabStop = false;
             // 
             // lblAnnualDividend
             // 

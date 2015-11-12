@@ -141,6 +141,7 @@
             // 
             // lvAllDividends
             // 
+            this.lvAllDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvAllDividends.Location = new System.Drawing.Point(9, 37);
             this.lvAllDividends.Name = "lvAllDividends";
             this.lvAllDividends.Size = new System.Drawing.Size(800, 287);
@@ -148,10 +149,11 @@
             this.lvAllDividends.UseCompatibleStateImageBehavior = false;
             this.lvAllDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseClick);
             this.lvAllDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDoubleClick);
-            this.lvAllDividends.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDown);
+            this.lvAllDividends.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseUp);
             // 
             // lvCurrentDividends
             // 
+            this.lvCurrentDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvCurrentDividends.Location = new System.Drawing.Point(863, 37);
             this.lvCurrentDividends.Name = "lvCurrentDividends";
             this.lvCurrentDividends.Size = new System.Drawing.Size(754, 287);
@@ -160,6 +162,7 @@
             this.lvCurrentDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseClick);
             this.lvCurrentDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseDoubleClick);
             this.lvCurrentDividends.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseDown);
+            this.lvCurrentDividends.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseUp);
             // 
             // dtpPayDate
             // 

@@ -93,6 +93,19 @@ namespace DividendLiberty
             return false;
         }
 
+        public static void SetStockIndexSymbol(ListView lv)
+        {
+            Program.MainMenu.SelectedIndex = lv.SelectedItems[0].Index;
+            Program.MainMenu.Symbol = lv.Items[Program.MainMenu.SelectedIndex].SubItems[1].Text;
+        }
+
+        public static decimal GetDivPrice(decimal shares, decimal annualDiv)
+        {
+            decimal toReturn = (shares * annualDiv);
+
+            return toReturn;
+        }
+
         public static string[] SplitStockData(string val)
         {
             string[] split = val.Split('\n');
