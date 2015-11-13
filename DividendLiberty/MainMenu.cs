@@ -158,7 +158,7 @@ namespace DividendLiberty
             MessageBox.Show("Cost Basis: $" + Math.Round(TotalDividendStockValue, 2) + "\n\nMarket Value: $" + Math.Round(MarketTotalPrice, 2) + "\n\nAnnual Dividend: $" + Math.Round(YearDiv, 2) + "\n\n" + "Quarterly Dividend: $" + Math.Round(QuarterDiv, 2) + "\n\nMonthly Dividend: $" + Math.Round(MonthlyDiv, 2) + "\n\nPortfolio Dividend Yield: " + Math.Round(DividendTotalPercentage, 2) + "%");
         }
 
-        public void LoadDividends(ListView lv, string active)
+        public string LoadDividends(ListView lv, string active)
         {
             if (!File.Exists(uti.GetXMLPath()))
             {
@@ -169,11 +169,12 @@ namespace DividendLiberty
             {
                 
             }
-            DividendStocks.LoadDividends(lv, active);
+           return DividendStocks.LoadDividends(lv, active);
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            string result = "";
             ddlIndustry.SelectedIndex = 0;
             ddlIndustryAll.SelectedIndex = 0;
             dtpPayDate.Format = DateTimePickerFormat.Custom;
@@ -181,8 +182,12 @@ namespace DividendLiberty
             dtpPayDate.ShowUpDown = true;
             lvAllDividends.FullRowSelect = true;
             lvCurrentDividends.FullRowSelect = true;
-            LoadDividends(lvCurrentDividends, "true");
+            result = LoadDividends(lvCurrentDividends, "true");
             LoadDividends(lvAllDividends, "false");
+            if (result != "")
+            {
+                MessageBox.Show(result);
+            }
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)

@@ -72,7 +72,7 @@ namespace DividendLiberty
             }
         }
 
-        public static void LoadDividends(ListView lv, string active)
+        public static string LoadDividends(ListView lv, string active)
         {
             try
             {
@@ -128,8 +128,9 @@ namespace DividendLiberty
             }
             catch (Exception e)
             {
-
+                return "Error retrieving stock information. Yahoo! is currently down.";
             }
+            return "";
         }
 
         public static string NewDividendStock(string symbol, string industry, string interval)
