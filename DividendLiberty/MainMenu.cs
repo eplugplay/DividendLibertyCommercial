@@ -192,24 +192,21 @@ namespace DividendLiberty
             {
                 count++;
                 StockDataType += "stock names,";
-                //MessageBox.Show("Error! Could not load stock names in " + LvNames + " and cannot connect to Yahoo, please try again later.");
             }
             string[] names = uti.SplitStockData(stockNames);
 
-            string exDividend = YahooFinance.GetValues(symbols, "q", true);
+            string exDividend = YahooFinance.GetValues(symbols, "r1", true);
             if (exDividend == "")
             {
                 count++;
                 StockDataType += "dividend dates,";
-                //MessageBox.Show("Error! Could not load ex dividend dates in " + LvNames + " and cannot connect to Yahoo, please try again later.");
             }
             string[] exDiv = uti.SplitStockData(exDividend);
-            string payDates = YahooFinance.GetValues(symbols, "r1", true);
+            string payDates = YahooFinance.GetValues(symbols, "q", true);
             if (payDates == "")
             {
                 count++;
                 StockDataType += "pay dates,";
-                //MessageBox.Show("Error! could not load pay dates in " + LvNames + " and cannot connect to Yahoo, please try again later.");
             }
             string[] payDate = uti.SplitStockData(payDates);
             if (count > 0)
