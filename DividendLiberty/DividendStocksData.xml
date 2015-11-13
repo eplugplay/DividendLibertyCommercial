@@ -34,9 +34,9 @@
     <dividendstock ID="4">
       <id>4</id>
       <symbol>CAT</symbol>
-      <industry>Energy</industry>
+      <industry>Industrials</industry>
       <active>true</active>
-      <interval>Monthly</interval>
+      <interval>Quarterly</interval>
       <cost>64.18</cost>
       <purchasedate>11-12-2015</purchasedate>
       <shares>16</shares>
@@ -94,7 +94,7 @@
     <dividendstock ID="10">
       <id>10</id>
       <symbol>KO</symbol>
-      <industry>Consumer Discretionary</industry>
+      <industry>Consumer Staples</industry>
       <active>true</active>
       <interval>Quarterly</interval>
       <cost>39.269</cost>
@@ -114,7 +114,7 @@
     <dividendstock ID="12">
       <id>12</id>
       <symbol>GIS</symbol>
-      <industry>Consumer Discretionary</industry>
+      <industry>Consumer Staples</industry>
       <active>true</active>
       <interval>Quarterly</interval>
       <cost>57.06093</cost>
@@ -154,7 +154,7 @@
     <dividendstock ID="16">
       <id>16</id>
       <symbol>WMT</symbol>
-      <industry>Consumer Discretionary</industry>
+      <industry>Consumer Staples</industry>
       <active>true</active>
       <interval>Quarterly</interval>
       <cost>62.586663</cost>
@@ -174,7 +174,7 @@
     <dividendstock ID="18">
       <id>18</id>
       <symbol>GG</symbol>
-      <industry>Consumer Discretionary</industry>
+      <industry>Materials</industry>
       <active>true</active>
       <interval>Quarterly</interval>
       <cost>13.601255</cost>
@@ -184,7 +184,7 @@
     <dividendstock ID="19">
       <id>19</id>
       <symbol>ABX</symbol>
-      <industry>Consumer Discretionary</industry>
+      <industry>Materials</industry>
       <active>true</active>
       <interval>Quarterly</interval>
       <cost>7.095</cost>
@@ -214,7 +214,7 @@
     <dividendstock ID="22">
       <id>22</id>
       <symbol>XOM</symbol>
-      <industry>Consumer Discretionary</industry>
+      <industry>Energy</industry>
       <active>true</active>
       <interval>Quarterly</interval>
       <cost>73.1198</cost>
