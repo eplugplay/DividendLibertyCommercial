@@ -163,6 +163,7 @@ namespace DividendLiberty
         public void LoadDividends(ListView lv, string active)
         {
             string LvNames = "";
+            string StockDataType = "";
             if (!File.Exists(uti.GetXMLPath()))
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "DividendStocksData.xml");
@@ -186,24 +187,35 @@ namespace DividendLiberty
             DataTable dtXml = view.ToTable();
             string symbols = uti.GetStockSymbols(dtXml);
             string stockNames = YahooFinance.GetValues(symbols, "n", true);
+            int count = 0;
             if (stockNames == "")
             {
-                MessageBox.Show("Error! Could not load stock names in " + LvNames + " and cannot connect to Yahoo, please try again later.");
+                count++;
+                StockDataType += "stock names,";
+                //MessageBox.Show("Error! Could not load stock names in " + LvNames + " and cannot connect to Yahoo, please try again later.");
             }
             string[] names = uti.SplitStockData(stockNames);
 
             string exDividend = YahooFinance.GetValues(symbols, "q", true);
             if (exDividend == "")
             {
-                MessageBox.Show("Error! Could not load ex dividend dates in " + LvNames + " and cannot connect to Yahoo, please try again later.");
+                count++;
+                StockDataType += "dividend dates,";
+                //MessageBox.Show("Error! Could not load ex dividend dates in " + LvNames + " and cannot connect to Yahoo, please try again later.");
             }
             string[] exDiv = uti.SplitStockData(exDividend);
             string payDates = YahooFinance.GetValues(symbols, "r1", true);
             if (payDates == "")
             {
-                MessageBox.Show("Error! could not load pay dates in " + LvNames + " and cannot connect to Yahoo, please try again later.");
+                count++;
+                StockDataType += "pay dates,";
+                //MessageBox.Show("Error! could not load pay dates in " + LvNames + " and cannot connect to Yahoo, please try again later.");
             }
             string[] payDate = uti.SplitStockData(payDates);
+            if (count > 0)
+            {
+                MessageBox.Show("Error! " + StockDataType + " could not be loaded." + LvNames + " and cannot connect to Yahoo, please try again later.");
+            }
             DividendStocks.LoadDividends(lv, names, payDate, exDiv, active, dtXml);
         }
 
