@@ -25,7 +25,13 @@ namespace DividendLiberty
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            PleaseWait pw = new PleaseWait();
+            pw.lblMsg.Text = "Connecting to yahoo for stock data..";
+            pw.lblMsg.Visible = true;
+            pw.Show();
+            Application.DoEvents();
             Application.Run(MainMenu = new MainMenu());
+            pw.Close();
         }
     }
 }

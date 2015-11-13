@@ -38,7 +38,6 @@ C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendStocksData.xml
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendLiberty.exe
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendLiberty.pdb
-C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.csprojResolveAssemblyReference.cache
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.Dividends.resources
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.MainMenu.resources
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.PleaseWait.resources

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.lblMsg = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -41,18 +42,30 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Please Wait...";
             // 
+            // lblMsg
+            // 
+            this.lblMsg.AutoSize = true;
+            this.lblMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMsg.Location = new System.Drawing.Point(12, 53);
+            this.lblMsg.Name = "lblMsg";
+            this.lblMsg.Size = new System.Drawing.Size(56, 13);
+            this.lblMsg.TabIndex = 1;
+            this.lblMsg.Text = "message";
+            this.lblMsg.Visible = false;
+            // 
             // PleaseWait
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gold;
             this.ClientSize = new System.Drawing.Size(246, 75);
+            this.Controls.Add(this.lblMsg);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "PleaseWait";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Please Wait";
+            this.Text = "Please Wait...";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -61,5 +74,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lblMsg;
     }
 }
