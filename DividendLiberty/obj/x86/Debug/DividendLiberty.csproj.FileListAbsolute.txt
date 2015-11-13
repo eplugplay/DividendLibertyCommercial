@@ -31,5 +31,4 @@ C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.MainMenu.resources
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.PleaseWait.resources
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.Properties.Resources.resources
-C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.Shares.resources
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.csproj.GenerateResource.Cache

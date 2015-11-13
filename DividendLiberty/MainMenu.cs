@@ -571,12 +571,14 @@ namespace DividendLiberty
                 sectorCount.Add(cnt);
                 cnt = 0;
             }
+            decimal totalSectors = uti.GetTotalSectorCount(sectorCount);
             string msg = "";
             for (int i = 0; i < lstIndustries.Count; i++)
             {
-                msg += sectorCount[i] + " - " + lstIndustries[i] + ": " + Math.Round(percentages[i], 2) + "%" + "\n\nTotal Sectors: " + uti.GetTotalSectorCount(sectorCount);
+                msg += sectorCount[i] + " - " + lstIndustries[i] + ": " + Math.Round(percentages[i], 2) + "%" + "\n\n";
             }
             msg = msg.Substring(0, msg.Length - 2);
+            msg += "\n\nTotal Sectors: " + totalSectors;
             MessageBox.Show(msg);
         }
 

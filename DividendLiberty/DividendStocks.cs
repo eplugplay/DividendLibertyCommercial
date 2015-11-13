@@ -14,65 +14,6 @@ namespace DividendLiberty
 {
     public static class DividendStocks
     {
-        public static DataTable GetCurrentDividends()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-                {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "SELECT ds.id, dp.numberofshares, dp.purchaseprice, ds.symbol, ds.dividendinterval FROM dividendstocks ds JOIN dividendprice dp ON ds.id=dp.dividendstockid WHERE ds.stockactive='true' order by ds.Symbol";
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-            return dt;
-        }
-
-        public static DataTable GetDividend(string id)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (MySqlConnection cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["cnn"].ToString()))
-                {
-                    cnn.Open();
-                    using (var cmd = cnn.CreateCommand())
-                    {
-                        cmd.CommandText = "SELECT ds.symbol, ds.stockname, ds.industry, dp.numberofshares, ds.stockactive, dp.purchaseprice, ds.dividendinterval FROM dividendstocks ds join dividendprice dp on ds.id = dp.dividendstockid WHERE ds.id=@id";
-                        cmd.Parameters.AddWithValue("id", id);
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-
-                    // if shares data doesn't exist (not bought yet)
-                    if (dt.Rows.Count == 0)
-                    {
-                        using (var cmd = cnn.CreateCommand())
-                        {
-                            cmd.CommandText = "SELECT ds.symbol, ds.stockname, ds.industry, ds.stockactive, ds.dividendinterval FROM dividendstocks ds WHERE ds.id=@id";
-                            cmd.Parameters.AddWithValue("id", id);
-                            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                            da.Fill(dt);
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-            }
-            return dt;
-        }
-
         public static void GetTotalSharePrice(List<int> lstID, out decimal totalPrice)
         {
             DataTable dt = uti.GetXMLData();
