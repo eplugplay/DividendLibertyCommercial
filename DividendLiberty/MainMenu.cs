@@ -702,6 +702,7 @@ namespace DividendLiberty
             string individualDivData = "";
             decimal div = 0;
             lv.SelectedItems.Clear();
+            uti.ClearListViewColors(lv, lstID);
             lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
