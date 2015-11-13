@@ -111,7 +111,7 @@ namespace DividendLiberty
             return split;
         }
 
-        public static string[] GetYahooMultiData(DataTable dt, string code)
+        public static string GetStockSymbols(DataTable dt)
         {
             string symbols = "";
             int count = 0;
@@ -120,10 +120,7 @@ namespace DividendLiberty
                 symbols += dt.Rows[i]["symbol"].ToString() + "+";
                 count++;
             }
-            symbols = symbols.Substring(0, symbols.Length - 1);
-            string[] toReturn = new string[count];
-            toReturn = uti.SplitStockData(YahooFinance.GetValues(symbols, code, true));
-            return toReturn;
+            return symbols = symbols.Substring(0, symbols.Length - 1);
         }
 
         public static Color GetHighlightColor()

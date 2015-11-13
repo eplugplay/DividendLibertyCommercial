@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
+using System.Net;
 
 namespace DividendLiberty
 {
@@ -116,10 +117,11 @@ namespace DividendLiberty
             decimal MarketTotalPrice = 0;
             DataTable dt = uti.GetXMLData();
             decimal Purchaseprice = 0;
-            string[] AnnualDiv = uti.GetYahooMultiData(dt, "d");
-            string[] DivYield = uti.GetYahooMultiData(dt, "y");
+            string symbols = uti.GetStockSymbols(dt);
+            string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(symbols, "d", true));
+            string[] DivYield = uti.SplitStockData(YahooFinance.GetValues(symbols, "y", true));
             // l1 is last trade price, c1 change in price, b is bid price, a is ask price; Ask price is current price as you're asking for a price when selling therefore that is the price of your portfolio
-            string[] CurrentStockPrice = uti.GetYahooMultiData(dt, "a");
+            string[] CurrentStockPrice = uti.SplitStockData(YahooFinance.GetValues(symbols, "a", true));
             //decimal val = dt.Rows.Count;
             //decimal StatusVal = 0;
             //val = Math.Round(90 / val, 0);
@@ -158,8 +160,9 @@ namespace DividendLiberty
             MessageBox.Show("Cost Basis: $" + Math.Round(TotalDividendStockValue, 2) + "\n\nMarket Value: $" + Math.Round(MarketTotalPrice, 2) + "\n\nAnnual Dividend: $" + Math.Round(YearDiv, 2) + "\n\n" + "Quarterly Dividend: $" + Math.Round(QuarterDiv, 2) + "\n\nMonthly Dividend: $" + Math.Round(MonthlyDiv, 2) + "\n\nPortfolio Dividend Yield: " + Math.Round(DividendTotalPercentage, 2) + "%");
         }
 
-        public string LoadDividends(ListView lv, string active)
+        public void LoadDividends(ListView lv, string active)
         {
+            string LvNames = "";
             if (!File.Exists(uti.GetXMLPath()))
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "DividendStocksData.xml");
@@ -167,9 +170,41 @@ namespace DividendLiberty
             }
             else
             {
-                
+
             }
-           return DividendStocks.LoadDividends(lv, active);
+            if (lv.Name == "lvCurrentDividends")
+            {
+                LvNames = "Portfolio Data";
+            }
+            else
+            {
+                LvNames = "Non Portfolio Data";
+            }
+            DataTable dt = uti.GetXMLData();
+            DataView view = dt.DefaultView;
+            view.Sort = "symbol asc";
+            DataTable dtXml = view.ToTable();
+            string symbols = uti.GetStockSymbols(dtXml);
+            string stockNames = YahooFinance.GetValues(symbols, "n", true);
+            if (stockNames == "")
+            {
+                MessageBox.Show("Error! Could not load stock names in " + LvNames + " and cannot connect to Yahoo, please try again later.");
+            }
+            string[] names = uti.SplitStockData(stockNames);
+
+            string exDividend = YahooFinance.GetValues(symbols, "q", true);
+            if (exDividend == "")
+            {
+                MessageBox.Show("Error! Could not load ex dividend dates in " + LvNames + " and cannot connect to Yahoo, please try again later.");
+            }
+            string[] exDiv = uti.SplitStockData(exDividend);
+            string payDates = YahooFinance.GetValues(symbols, "r1", true);
+            if (payDates == "")
+            {
+                MessageBox.Show("Error! could not load pay dates in " + LvNames + " and cannot connect to Yahoo, please try again later.");
+            }
+            string[] payDate = uti.SplitStockData(payDates);
+            DividendStocks.LoadDividends(lv, names, payDate, exDiv, active, dtXml);
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
@@ -182,7 +217,7 @@ namespace DividendLiberty
             dtpPayDate.ShowUpDown = true;
             lvAllDividends.FullRowSelect = true;
             lvCurrentDividends.FullRowSelect = true;
-            result = LoadDividends(lvCurrentDividends, "true");
+            LoadDividends(lvCurrentDividends, "true");
             LoadDividends(lvAllDividends, "false");
             if (result != "")
             {

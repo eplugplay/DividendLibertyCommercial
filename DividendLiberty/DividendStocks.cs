@@ -58,7 +58,8 @@ namespace DividendLiberty
                         if (Convert.ToInt32(lv.Items[i].Tag) == lstID[b])
                         {
                             numShares = lv.Items[i].SubItems[4].Text == "" ? 0 : Convert.ToDecimal(lv.Items[i].SubItems[4].Text);
-                            yield = Convert.ToDecimal(YahooFinance.GetValues(lv.Items[i].SubItems[1].Text, "d", false));
+                            string yieldTemp = YahooFinance.GetValues(lv.Items[i].SubItems[1].Text, "d", false);
+                            yield = Convert.ToDecimal(yieldTemp == "" ? "0" : yieldTemp);
                             totalDividendPrice += (numShares * yield);
                         }
                     }
@@ -72,18 +73,11 @@ namespace DividendLiberty
             }
         }
 
-        public static string LoadDividends(ListView lv, string active)
+        public static void LoadDividends(ListView lv, string[] names, string[] exDiv, string[] payDate, string active, DataTable dtXml)
         {
             try
             {
                 lv.Clear();
-                DataTable dt = uti.GetXMLData();
-                DataView view = dt.DefaultView;
-                view.Sort = "symbol asc";
-                DataTable dtXml = view.ToTable();
-                string[] names = uti.GetYahooMultiData(dtXml, "n");
-                string[] exDiv = uti.GetYahooMultiData(dtXml, "q");
-                string[] payDate = uti.GetYahooMultiData(dtXml, "r1");
                 lv.View = View.Details;
                 lv.Columns.Add("");
                 lv.Columns.Add("Symbol");
@@ -104,12 +98,12 @@ namespace DividendLiberty
                         ListViewItem lvItem = new ListViewItem(count++.ToString());
                         lvItem.SubItems.Add(symbol);
                         lvItem.Tag = dtXml.Rows[i]["id"].ToString();
-                        lvItem.SubItems.Add(names[i]);
+                        lvItem.SubItems.Add(names.Length == 1 ? "" : names[i]);
                         lvItem.SubItems.Add(dtXml.Rows[i]["industry"].ToString());
                         lvItem.SubItems.Add(dtXml.Rows[i]["shares"].ToString());
                         lvItem.SubItems.Add(dtXml.Rows[i]["cost"].ToString());
-                        lvItem.SubItems.Add(exDiv[i]);
-                        lvItem.SubItems.Add(payDate[i]);
+                        lvItem.SubItems.Add(exDiv.Length == 1 ? "" : exDiv[i]);
+                        lvItem.SubItems.Add(payDate.Length == 1 ? "" : payDate[i]);
                         lvItem.SubItems.Add(dtXml.Rows[i]["interval"].ToString());
                         lv.Items.Add(lvItem);
                     }
@@ -128,9 +122,8 @@ namespace DividendLiberty
             }
             catch (Exception e)
             {
-                return "Error retrieving stock information. Yahoo! is currently down.";
+
             }
-            return "";
         }
 
         public static string NewDividendStock(string symbol, string industry, string interval)
