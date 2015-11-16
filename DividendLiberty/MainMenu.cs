@@ -726,7 +726,7 @@ namespace DividendLiberty
                 if (date != "N/A")
                 {
                     monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
-                    dtpMonthYear = dtpPayDate.Value.ToString("MM/yyyy");
+                    dtpMonthYear = dtpPayDate.Value.ToString("M/yyyy");
                     string dividendInterval = lv.Items[i].SubItems[8].Text.ToString();
                     //if (dividendInterval == "Monthly")
                     //{
