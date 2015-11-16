@@ -632,7 +632,7 @@ namespace DividendLiberty
 
         private void btnHighlightAll_Click(object sender, EventArgs e)
         {
-            Highlight(lvAllDividends, ddlIndustryAll, false);
+            Highlight(lvAllDividends, ddlIndustryAll, true);
         }
 
         private void txtSearchSymbol_TextChanged(object sender, EventArgs e)
@@ -661,27 +661,35 @@ namespace DividendLiberty
 
         private void chkNextBuy_CheckedChanged(object sender, EventArgs e)
         {
-            if (lstID.Count == 0)
+            if (!CurrentDiv)
             {
-                UncheckNextBuy();
-                MessageBox.Show("Please select a stock.");
-                return;
-            }
-            if (lstID.Count <= 1)
-            {
-                if (chkNextBuy.Checked)
+                if (lstID.Count == 0)
                 {
-                    DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "yes", Symbol);
+                    UncheckNextBuy();
+                    MessageBox.Show("Please select a stock.");
+                    return;
+                }
+                if (lstID.Count <= 1)
+                {
+                    if (chkNextBuy.Checked)
+                    {
+                        DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "yes", Symbol);
+                    }
+                    else
+                    {
+                        DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "no", Symbol);
+                    }
                 }
                 else
                 {
-                    DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "no", Symbol);
+                    UncheckNextBuy();
+                    MessageBox.Show("Please select one stock at a time.");
                 }
             }
             else
             {
                 UncheckNextBuy();
-                MessageBox.Show("Please select one stock at a time.");
+                MessageBox.Show("Please select one stock in the non portfolio section.");
             }
         }
 

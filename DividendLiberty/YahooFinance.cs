@@ -6,6 +6,24 @@ using System.Net;
 
 namespace DividendLiberty
 {
+    public class TimedWebClient : WebClient
+    {
+        // Timeout in milliseconds, default = 600,000 msec
+        public int Timeout { get; set; }
+
+        public TimedWebClient()
+        {
+            this.Timeout = 600000;
+        }
+
+        protected override WebRequest GetWebRequest(Uri address)
+        {
+            var objWebRequest = base.GetWebRequest(address);
+            objWebRequest.Timeout = this.Timeout;
+            return objWebRequest;
+        }
+    }
+
     public static class YahooFinance
     {
         public static string GetValues(string symbol, string code, bool isMulti)
@@ -44,23 +62,5 @@ namespace DividendLiberty
 
         //    var r = e.Result;
         //}
-    }
-
-    public class TimedWebClient : WebClient
-    {
-        // Timeout in milliseconds, default = 600,000 msec
-        public int Timeout { get; set; }
-
-        public TimedWebClient()
-        {
-            this.Timeout = 600000;
-        }
-
-        protected override WebRequest GetWebRequest(Uri address)
-        {
-            var objWebRequest = base.GetWebRequest(address);
-            objWebRequest.Timeout = this.Timeout;
-            return objWebRequest;
-        }
     }
 }
