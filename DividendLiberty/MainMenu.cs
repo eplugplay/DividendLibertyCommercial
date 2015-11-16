@@ -20,7 +20,6 @@ namespace DividendLiberty
         public int ID { get; set; }
         public int SelectedIndex { get; set; }
         public List<int> lstID = new List<int>();
-        public bool HighlightActive { get; set; }
         public string Symbol { get; set; }
         public MainMenu()
         {
@@ -108,8 +107,8 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
-            uti.ClearListViewColors(lvAllDividends, lstID);
-            uti.ClearListViewColors(lvCurrentDividends, lstID);
+            uti.ClearListViewColors(lvAllDividends);
+            uti.ClearListViewColors(lvCurrentDividends);
             lstID.Clear();
             decimal TotalDividendCount = 0;
             decimal TotalDividendStockValue = 0;
@@ -237,23 +236,6 @@ namespace DividendLiberty
             }
         }
 
-        private void btnCalculate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (backgroundWorker1.IsBusy)
-                {
-                    MessageBox.Show("Please wait until data is processed.");
-                    return;
-                }
-                backgroundWorker1.RunWorkerAsync();
-            }
-            catch
-            {
-
-            }
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (lstID.Count != 0)
@@ -267,7 +249,15 @@ namespace DividendLiberty
             if (lstID.Count != 0)
             {
                 AddRemoveDividends(lvCurrentDividends, "false");
+                HighlightNextBuy();
             }
+        }
+
+        public void UncheckNextBuy()
+        {
+            chkNextBuy.CheckedChanged -= chkNextBuy_CheckedChanged;
+            chkNextBuy.Checked = false;
+            chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
         }
 
         public void AddRemoveDividends(ListView lv, string stockActive)
@@ -275,6 +265,7 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
+            UncheckNextBuy();
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
@@ -286,20 +277,6 @@ namespace DividendLiberty
             LoadDividends(lvAllDividends, "false");
             SelectStocks();
             pw.Close();
-        }
-
-        public void SelectMultiple(ListView lv)
-        {
-            for (int a = 0; a < lv.Items.Count; a++)
-            {
-                for (int b = 0; b < lstID.Count; b++)
-                {
-                    if (lstID[b] == Convert.ToInt32(lv.Items[a].Tag))
-                    {
-                        lv.Items[a].BackColor = uti.GetHighlightColor();
-                    }
-                }
-            }
         }
 
         public void SelectStocks()
@@ -315,6 +292,23 @@ namespace DividendLiberty
                 CurrentDiv = false;
                 lvCurrentDividends.SelectedItems.Clear();
                 SelectMultiple(lvAllDividends);
+            }
+        }
+
+        public void SelectMultiple(ListView lv)
+        {
+            for (int a = 0; a < lv.Items.Count; a++)
+            {
+                for (int b = 0; b < lstID.Count; b++)
+                {
+                    if (lstID[b] == Convert.ToInt32(lv.Items[a].Tag))
+                    {
+                        lv.Items[a].BackColor = uti.GetHighlightColor();
+                        lv.Items[a].Selected = true;
+                        lv.Items[a].Focused = true;
+                        lv.TopItem = lv.Items[a];
+                    }
+                }
             }
         }
 
@@ -395,7 +389,7 @@ namespace DividendLiberty
         {
             if (Control.ModifierKeys != Keys.Control)
             {
-                uti.ClearListViewColors(lvAllDividends, lstID);
+                uti.ClearListViewColors(lvAllDividends);
                 uti.SetStockIndexSymbol(lvCurrentDividends);
                 HighlightSingleColor(lvCurrentDividends);
             }
@@ -435,9 +429,11 @@ namespace DividendLiberty
         {
             if (Control.ModifierKeys != Keys.Control)
             {
-                uti.ClearListViewColors(lvCurrentDividends, lstID);
+                uti.ClearListViewColors(lvCurrentDividends);
+                lstID.Clear();
                 uti.SetStockIndexSymbol(lvAllDividends);
                 HighlightSingleColor(lvAllDividends);
+                HighlightNextBuy();
             }
         }
 
@@ -455,8 +451,9 @@ namespace DividendLiberty
             }
             catch
             {
-                uti.ClearListViewColors(lvAllDividends, lstID);
-                uti.ClearListViewColors(lvCurrentDividends, lstID);
+                lstID.Clear();
+                uti.ClearListViewColors(lvAllDividends);
+                uti.ClearListViewColors(lvCurrentDividends);
             }
             CurrentDiv = false;
         }
@@ -484,7 +481,7 @@ namespace DividendLiberty
 
         public void GetDividendPrice()
         {
-            uti.ClearListViewColors(lvAllDividends, lstID);
+            uti.ClearListViewColors(lvAllDividends);
             decimal TotalDividendPrice = 0;
             decimal QuarterlyDividendPrice = 0;
             decimal MonthlyDividendPrice = 0;
@@ -494,20 +491,10 @@ namespace DividendLiberty
 
         public void GetSharePrice()
         {
-            uti.ClearListViewColors(lvAllDividends, lstID);
+            uti.ClearListViewColors(lvAllDividends);
             decimal totalPrice = 0;
             DividendStocks.GetTotalSharePrice(lstID, out totalPrice);
             MessageBox.Show("$" + Math.Round(totalPrice, 2).ToString());
-        }
-
-        private void btnGetSharePrice_Click(object sender, EventArgs e)
-        {
-            GetSharePrice();
-        }
-
-        private void btnDividendPrice_Click(object sender, EventArgs e)
-        {
-            GetDividendPrice();
         }
 
         private void btnHighlight_Click(object sender, EventArgs e)
@@ -518,7 +505,7 @@ namespace DividendLiberty
         public void SearchSymbol(TextBox tb, ListView lv)
         {
             lv.SelectedItems.Clear();
-            uti.ClearListViewColors(lv, lstID);
+            uti.ClearListViewColors(lv);
             lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
@@ -532,7 +519,6 @@ namespace DividendLiberty
                     //lv.Select();
                 }
             }
-            HighlightActive = false;
         }
 
         public void Highlight(ListView lv, ComboBox ddl, bool showMsg)
@@ -540,7 +526,7 @@ namespace DividendLiberty
             decimal count = 0;
             decimal percentage = Convert.ToDecimal(lv.Items.Count);
             lv.SelectedItems.Clear();
-            uti.ClearListViewColors(lvAllDividends, lstID);
+            uti.ClearListViewColors(lvAllDividends);
             lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
@@ -556,18 +542,10 @@ namespace DividendLiberty
                 }
             }
             percentage = (count / percentage) * 100;
-            HighlightActive = false;
             if (showMsg)
             {
                 MessageBox.Show(count + " " + ddl.Text + ": " + Math.Round(percentage, 2) + "%");
             }
-        }
-
-
-        private void btnNextPurchase_Click(object sender, EventArgs e)
-        {
-            HighlightActive = true;
-            HighlightAllNextToBuy(lvAllDividends);
         }
 
         public void HighlightAllNextToBuy(ListView lv)
@@ -576,11 +554,8 @@ namespace DividendLiberty
             try
             {
                 lv.SelectedItems.Clear();
-                chkNextBuy.CheckedChanged -= chkNextBuy_CheckedChanged;
-                chkNextBuy.Checked = true;
-                chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
                 DataTable dt = uti.GetXMLData();
-                uti.ClearListViewColors(lv, lstID);
+                uti.ClearListViewColors(lv);
                 for (int i = 0; i < lv.Items.Count; i++)
                 {
                     for (int a = 0; a < dt.Rows.Count; a++)
@@ -596,13 +571,29 @@ namespace DividendLiberty
                         }
                     }
                 }
-                HighlightActive = false;
             }
             catch
             {
 
             }
             MessageBox.Show(string.Format("{0} results.", cnt));
+        }
+
+        public void HighlightNextBuy()
+        {
+            try
+            {
+                if (lstID.Count == 1)
+                {
+                    chkNextBuy.CheckedChanged -= chkNextBuy_CheckedChanged;
+                    chkNextBuy.Checked = DividendStocks.LoadNextPurchase(Symbol) == "yes" ? true : false;
+                    chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         public void ShowIndustryPercentages(ListView lv)
@@ -641,18 +632,7 @@ namespace DividendLiberty
 
         private void btnHighlightAll_Click(object sender, EventArgs e)
         {
-            HighlightActive = true;
             Highlight(lvAllDividends, ddlIndustryAll, false);
-        }
-
-        private void btnCurrentIndustryPercentage_Click(object sender, EventArgs e)
-        {
-            ShowIndustryPercentages(lvCurrentDividends);
-        }
-
-        private void btnAllIndustryPercentages_Click(object sender, EventArgs e)
-        {
-            ShowIndustryPercentages(lvAllDividends);
         }
 
         private void txtSearchSymbol_TextChanged(object sender, EventArgs e)
@@ -663,32 +643,45 @@ namespace DividendLiberty
             }
             else
             {
-                uti.ClearListViewColors(lvCurrentDividends, lstID);
+                uti.ClearListViewColors(lvCurrentDividends);
             }
         }
 
         private void txtSearchAllSymbol_TextChanged(object sender, EventArgs e)
         {
-            HighlightActive = true;
             if (txtSearchAllSymbol.Text != "")
             {
                 SearchSymbol(txtSearchAllSymbol, lvAllDividends);
             }
             else
             {
-                uti.ClearListViewColors(lvAllDividends, lstID);
+                uti.ClearListViewColors(lvAllDividends);
             }
         }
 
         private void chkNextBuy_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkNextBuy.Checked)
+            if (lstID.Count == 0)
             {
-                DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "yes", Symbol);
+                UncheckNextBuy();
+                MessageBox.Show("Please select a stock.");
+                return;
+            }
+            if (lstID.Count <= 1)
+            {
+                if (chkNextBuy.Checked)
+                {
+                    DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "yes", Symbol);
+                }
+                else
+                {
+                    DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "no", Symbol);
+                }
             }
             else
             {
-                DividendStocks.SaveNextPurchase(Convert.ToInt32(lstID[0]), "no", Symbol);
+                UncheckNextBuy();
+                MessageBox.Show("Please select one stock at a time.");
             }
         }
 
@@ -710,7 +703,8 @@ namespace DividendLiberty
             string individualDivData = "";
             decimal div = 0;
             lv.SelectedItems.Clear();
-            uti.ClearListViewColors(lv, lstID);
+            uti.ClearListViewColors(lv);
+            lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 string date = lv.Items[i].SubItems[7].Text;
@@ -739,7 +733,6 @@ namespace DividendLiberty
                     }
                 }
             }
-            HighlightActive = false;
             quarterlyDiv = totalDiv / 4;
             pw.Close();
             if (cnt != 0)
@@ -769,10 +762,50 @@ namespace DividendLiberty
         {
             if (Control.ModifierKeys != Keys.Control)
             {
-                chkNextBuy.CheckedChanged -= chkNextBuy_CheckedChanged;
-                chkNextBuy.Checked = DividendStocks.LoadNextPurchase(Symbol) == "yes" ? true : false;
-                chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
+        
             }
+        }
+
+        private void getCostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetSharePrice();
+        }
+
+        private void getDividendsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetDividendPrice();
+        }
+
+        private void showSectorPercentagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowIndustryPercentages(lvCurrentDividends);
+        }
+
+        private void calculateResultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (backgroundWorker1.IsBusy)
+                {
+                    MessageBox.Show("Please wait until data is processed.");
+                    return;
+                }
+                backgroundWorker1.RunWorkerAsync();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void highlightNextPurchasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HighlightAllNextToBuy(lvAllDividends);
+        }
+
+        private void showPercentagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowIndustryPercentages(lvAllDividends);
         }
     }
 }

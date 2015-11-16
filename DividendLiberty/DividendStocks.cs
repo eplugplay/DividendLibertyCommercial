@@ -18,8 +18,6 @@ namespace DividendLiberty
         {
             DataTable dt = uti.GetXMLData();
             totalPrice = 0;
-            int numShares = 0;
-            decimal price = 0;
             try
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -28,8 +26,8 @@ namespace DividendLiberty
                     {
                         if (Convert.ToInt32(dt.Rows[i]["id"]) == lstID[b])
                         {
-                            numShares = dt.Rows[i]["shares"].ToString() == "" ? 0 : Convert.ToInt32(dt.Rows[i]["shares"]);
-                            price = dt.Rows[i]["cost"].ToString() == "" ? 0 : Convert.ToDecimal(dt.Rows[i]["cost"]);
+                            decimal numShares = Convert.ToDecimal(dt.Rows[i]["shares"]);
+                            decimal price = Convert.ToDecimal(dt.Rows[i]["cost"]);
                             totalPrice += ((decimal)numShares * price);
                         }
                     }
@@ -162,11 +160,11 @@ namespace DividendLiberty
                 node.AppendChild(nodeCost);
 
                 XmlNode nodePurchaseDate = doc.CreateElement("purchasedate");
-                nodePurchaseDate.InnerText = "";
+                nodePurchaseDate.InnerText = "0";
                 node.AppendChild(nodePurchaseDate);
 
                 XmlNode nodeShares = doc.CreateElement("shares");
-                nodeShares.InnerText = "";
+                nodeShares.InnerText = "0";
                 node.AppendChild(nodeShares);
 
                 XmlNode nodeNextToBuy = doc.CreateElement("nexttobuy");

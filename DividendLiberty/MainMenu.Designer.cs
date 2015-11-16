@@ -38,29 +38,31 @@
             this.dtpPayDate = new System.Windows.Forms.DateTimePicker();
             this.btnPayDate = new System.Windows.Forms.Button();
             this.lblPayDate = new System.Windows.Forms.Label();
-            this.btnNextPurchase = new System.Windows.Forms.Button();
             this.chkNextBuy = new System.Windows.Forms.CheckBox();
             this.lblSearchAllSymbol = new System.Windows.Forms.Label();
             this.txtSearchAllSymbol = new System.Windows.Forms.TextBox();
             this.lblSearchSymbol = new System.Windows.Forms.Label();
             this.txtSearchSymbol = new System.Windows.Forms.TextBox();
-            this.btnAllIndustryPercentages = new System.Windows.Forms.Button();
-            this.btnCurrentIndustryPercentage = new System.Windows.Forms.Button();
             this.btnHighlightAll = new System.Windows.Forms.Button();
             this.lblIndustryAll = new System.Windows.Forms.Label();
             this.ddlIndustryAll = new System.Windows.Forms.ComboBox();
             this.btnHighlight = new System.Windows.Forms.Button();
             this.lblIndustry = new System.Windows.Forms.Label();
             this.ddlIndustry = new System.Windows.Forms.ComboBox();
-            this.btnDividendPrice = new System.Windows.Forms.Button();
-            this.btnGetSharePrice = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnCalculate = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.portfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nonPortfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getDividendsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSectorPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.calculateResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highlightNextPurchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +70,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.nonPortfolioOptionsToolStripMenuItem,
+            this.portfolioOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1647, 24);
@@ -99,24 +103,18 @@
             this.gpDividendStocks.Controls.Add(this.dtpPayDate);
             this.gpDividendStocks.Controls.Add(this.btnPayDate);
             this.gpDividendStocks.Controls.Add(this.lblPayDate);
-            this.gpDividendStocks.Controls.Add(this.btnNextPurchase);
             this.gpDividendStocks.Controls.Add(this.chkNextBuy);
             this.gpDividendStocks.Controls.Add(this.lblSearchAllSymbol);
             this.gpDividendStocks.Controls.Add(this.txtSearchAllSymbol);
             this.gpDividendStocks.Controls.Add(this.lblSearchSymbol);
             this.gpDividendStocks.Controls.Add(this.txtSearchSymbol);
-            this.gpDividendStocks.Controls.Add(this.btnAllIndustryPercentages);
-            this.gpDividendStocks.Controls.Add(this.btnCurrentIndustryPercentage);
             this.gpDividendStocks.Controls.Add(this.btnHighlightAll);
             this.gpDividendStocks.Controls.Add(this.lblIndustryAll);
             this.gpDividendStocks.Controls.Add(this.ddlIndustryAll);
             this.gpDividendStocks.Controls.Add(this.btnHighlight);
             this.gpDividendStocks.Controls.Add(this.lblIndustry);
             this.gpDividendStocks.Controls.Add(this.ddlIndustry);
-            this.gpDividendStocks.Controls.Add(this.btnDividendPrice);
-            this.gpDividendStocks.Controls.Add(this.btnGetSharePrice);
             this.gpDividendStocks.Controls.Add(this.label2);
-            this.gpDividendStocks.Controls.Add(this.btnCalculate);
             this.gpDividendStocks.Controls.Add(this.btnRemove);
             this.gpDividendStocks.Controls.Add(this.btnAdd);
             this.gpDividendStocks.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -126,14 +124,14 @@
             this.gpDividendStocks.Size = new System.Drawing.Size(1623, 366);
             this.gpDividendStocks.TabIndex = 3;
             this.gpDividendStocks.TabStop = false;
-            this.gpDividendStocks.Text = "Dividend Stocks";
             // 
             // lblMyPortfolio
             // 
             this.lblMyPortfolio.AutoSize = true;
+            this.lblMyPortfolio.BackColor = System.Drawing.Color.Yellow;
             this.lblMyPortfolio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMyPortfolio.ForeColor = System.Drawing.Color.White;
-            this.lblMyPortfolio.Location = new System.Drawing.Point(878, 18);
+            this.lblMyPortfolio.ForeColor = System.Drawing.Color.Black;
+            this.lblMyPortfolio.Location = new System.Drawing.Point(863, 18);
             this.lblMyPortfolio.Name = "lblMyPortfolio";
             this.lblMyPortfolio.Size = new System.Drawing.Size(78, 13);
             this.lblMyPortfolio.TabIndex = 41;
@@ -168,7 +166,7 @@
             // dtpPayDate
             // 
             this.dtpPayDate.CalendarMonthBackground = System.Drawing.Color.AliceBlue;
-            this.dtpPayDate.Location = new System.Drawing.Point(947, 333);
+            this.dtpPayDate.Location = new System.Drawing.Point(932, 330);
             this.dtpPayDate.Name = "dtpPayDate";
             this.dtpPayDate.Size = new System.Drawing.Size(149, 20);
             this.dtpPayDate.TabIndex = 38;
@@ -176,7 +174,7 @@
             // btnPayDate
             // 
             this.btnPayDate.ForeColor = System.Drawing.Color.Black;
-            this.btnPayDate.Location = new System.Drawing.Point(1102, 332);
+            this.btnPayDate.Location = new System.Drawing.Point(1087, 329);
             this.btnPayDate.Name = "btnPayDate";
             this.btnPayDate.Size = new System.Drawing.Size(76, 23);
             this.btnPayDate.TabIndex = 37;
@@ -190,29 +188,17 @@
             this.lblPayDate.AutoSize = true;
             this.lblPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPayDate.ForeColor = System.Drawing.Color.White;
-            this.lblPayDate.Location = new System.Drawing.Point(878, 337);
+            this.lblPayDate.Location = new System.Drawing.Point(863, 334);
             this.lblPayDate.Name = "lblPayDate";
             this.lblPayDate.Size = new System.Drawing.Size(63, 13);
             this.lblPayDate.TabIndex = 36;
             this.lblPayDate.Text = "Pay Date:";
             // 
-            // btnNextPurchase
-            // 
-            this.btnNextPurchase.ForeColor = System.Drawing.Color.Black;
-            this.btnNextPurchase.Location = new System.Drawing.Point(242, 11);
-            this.btnNextPurchase.Name = "btnNextPurchase";
-            this.btnNextPurchase.Size = new System.Drawing.Size(167, 23);
-            this.btnNextPurchase.TabIndex = 34;
-            this.btnNextPurchase.TabStop = false;
-            this.btnNextPurchase.Text = "Highlight Next Purchases";
-            this.btnNextPurchase.UseVisualStyleBackColor = true;
-            this.btnNextPurchase.Click += new System.EventHandler(this.btnNextPurchase_Click);
-            // 
             // chkNextBuy
             // 
             this.chkNextBuy.AutoSize = true;
             this.chkNextBuy.ForeColor = System.Drawing.Color.White;
-            this.chkNextBuy.Location = new System.Drawing.Point(113, 16);
+            this.chkNextBuy.Location = new System.Drawing.Point(113, 18);
             this.chkNextBuy.Name = "chkNextBuy";
             this.chkNextBuy.Size = new System.Drawing.Size(123, 17);
             this.chkNextBuy.TabIndex = 33;
@@ -224,7 +210,7 @@
             // 
             this.lblSearchAllSymbol.AutoSize = true;
             this.lblSearchAllSymbol.ForeColor = System.Drawing.Color.White;
-            this.lblSearchAllSymbol.Location = new System.Drawing.Point(515, 338);
+            this.lblSearchAllSymbol.Location = new System.Drawing.Point(651, 334);
             this.lblSearchAllSymbol.Name = "lblSearchAllSymbol";
             this.lblSearchAllSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchAllSymbol.TabIndex = 32;
@@ -234,7 +220,7 @@
             // 
             this.txtSearchAllSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchAllSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchAllSymbol.Location = new System.Drawing.Point(616, 335);
+            this.txtSearchAllSymbol.Location = new System.Drawing.Point(752, 331);
             this.txtSearchAllSymbol.Name = "txtSearchAllSymbol";
             this.txtSearchAllSymbol.Size = new System.Drawing.Size(57, 20);
             this.txtSearchAllSymbol.TabIndex = 31;
@@ -244,7 +230,7 @@
             // 
             this.lblSearchSymbol.AutoSize = true;
             this.lblSearchSymbol.ForeColor = System.Drawing.Color.White;
-            this.lblSearchSymbol.Location = new System.Drawing.Point(1204, 338);
+            this.lblSearchSymbol.Location = new System.Drawing.Point(1457, 334);
             this.lblSearchSymbol.Name = "lblSearchSymbol";
             this.lblSearchSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchSymbol.TabIndex = 30;
@@ -254,33 +240,11 @@
             // 
             this.txtSearchSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchSymbol.Location = new System.Drawing.Point(1305, 335);
+            this.txtSearchSymbol.Location = new System.Drawing.Point(1558, 331);
             this.txtSearchSymbol.Name = "txtSearchSymbol";
             this.txtSearchSymbol.Size = new System.Drawing.Size(59, 20);
             this.txtSearchSymbol.TabIndex = 29;
             this.txtSearchSymbol.TextChanged += new System.EventHandler(this.txtSearchSymbol_TextChanged);
-            // 
-            // btnAllIndustryPercentages
-            // 
-            this.btnAllIndustryPercentages.ForeColor = System.Drawing.Color.Black;
-            this.btnAllIndustryPercentages.Location = new System.Drawing.Point(679, 332);
-            this.btnAllIndustryPercentages.Name = "btnAllIndustryPercentages";
-            this.btnAllIndustryPercentages.Size = new System.Drawing.Size(130, 23);
-            this.btnAllIndustryPercentages.TabIndex = 28;
-            this.btnAllIndustryPercentages.Text = "Show Percentages";
-            this.btnAllIndustryPercentages.UseVisualStyleBackColor = true;
-            this.btnAllIndustryPercentages.Click += new System.EventHandler(this.btnAllIndustryPercentages_Click);
-            // 
-            // btnCurrentIndustryPercentage
-            // 
-            this.btnCurrentIndustryPercentage.ForeColor = System.Drawing.Color.Black;
-            this.btnCurrentIndustryPercentage.Location = new System.Drawing.Point(1370, 333);
-            this.btnCurrentIndustryPercentage.Name = "btnCurrentIndustryPercentage";
-            this.btnCurrentIndustryPercentage.Size = new System.Drawing.Size(122, 23);
-            this.btnCurrentIndustryPercentage.TabIndex = 27;
-            this.btnCurrentIndustryPercentage.Text = "Show Percentages";
-            this.btnCurrentIndustryPercentage.UseVisualStyleBackColor = true;
-            this.btnCurrentIndustryPercentage.Click += new System.EventHandler(this.btnCurrentIndustryPercentage_Click);
             // 
             // btnHighlightAll
             // 
@@ -330,7 +294,7 @@
             // btnHighlight
             // 
             this.btnHighlight.ForeColor = System.Drawing.Color.Black;
-            this.btnHighlight.Location = new System.Drawing.Point(1331, 13);
+            this.btnHighlight.Location = new System.Drawing.Point(1551, 12);
             this.btnHighlight.Name = "btnHighlight";
             this.btnHighlight.Size = new System.Drawing.Size(66, 23);
             this.btnHighlight.TabIndex = 23;
@@ -344,7 +308,7 @@
             this.lblIndustry.AutoSize = true;
             this.lblIndustry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIndustry.ForeColor = System.Drawing.Color.White;
-            this.lblIndustry.Location = new System.Drawing.Point(1040, 19);
+            this.lblIndustry.Location = new System.Drawing.Point(1260, 18);
             this.lblIndustry.Name = "lblIndustry";
             this.lblIndustry.Size = new System.Drawing.Size(56, 13);
             this.lblIndustry.TabIndex = 22;
@@ -367,56 +331,22 @@
             "Materials",
             "Telecommunication Services",
             "Utilities"});
-            this.ddlIndustry.Location = new System.Drawing.Point(1102, 14);
+            this.ddlIndustry.Location = new System.Drawing.Point(1322, 13);
             this.ddlIndustry.Name = "ddlIndustry";
             this.ddlIndustry.Size = new System.Drawing.Size(223, 21);
             this.ddlIndustry.TabIndex = 21;
             // 
-            // btnDividendPrice
-            // 
-            this.btnDividendPrice.ForeColor = System.Drawing.Color.Black;
-            this.btnDividendPrice.Location = new System.Drawing.Point(1484, 13);
-            this.btnDividendPrice.Name = "btnDividendPrice";
-            this.btnDividendPrice.Size = new System.Drawing.Size(133, 23);
-            this.btnDividendPrice.TabIndex = 20;
-            this.btnDividendPrice.TabStop = false;
-            this.btnDividendPrice.Text = "Get Dividend Price";
-            this.btnDividendPrice.UseVisualStyleBackColor = true;
-            this.btnDividendPrice.Click += new System.EventHandler(this.btnDividendPrice_Click);
-            // 
-            // btnGetSharePrice
-            // 
-            this.btnGetSharePrice.ForeColor = System.Drawing.Color.Black;
-            this.btnGetSharePrice.Location = new System.Drawing.Point(1403, 13);
-            this.btnGetSharePrice.Name = "btnGetSharePrice";
-            this.btnGetSharePrice.Size = new System.Drawing.Size(75, 23);
-            this.btnGetSharePrice.TabIndex = 19;
-            this.btnGetSharePrice.TabStop = false;
-            this.btnGetSharePrice.Text = "Get Price";
-            this.btnGetSharePrice.UseVisualStyleBackColor = true;
-            this.btnGetSharePrice.Click += new System.EventHandler(this.btnGetSharePrice_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Yellow;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(6, 18);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(10, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Not In Portfolio:";
-            // 
-            // btnCalculate
-            // 
-            this.btnCalculate.ForeColor = System.Drawing.Color.Black;
-            this.btnCalculate.Location = new System.Drawing.Point(1499, 333);
-            this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(118, 23);
-            this.btnCalculate.TabIndex = 5;
-            this.btnCalculate.Text = "Calculate Results";
-            this.btnCalculate.UseVisualStyleBackColor = true;
-            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // btnRemove
             // 
@@ -465,6 +395,68 @@
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
             // 
+            // portfolioOptionsToolStripMenuItem
+            // 
+            this.portfolioOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getCostToolStripMenuItem,
+            this.getDividendsToolStripMenuItem,
+            this.showSectorPercentagesToolStripMenuItem,
+            this.calculateResultsToolStripMenuItem});
+            this.portfolioOptionsToolStripMenuItem.Name = "portfolioOptionsToolStripMenuItem";
+            this.portfolioOptionsToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
+            this.portfolioOptionsToolStripMenuItem.Text = "Portfolio Options";
+            // 
+            // nonPortfolioOptionsToolStripMenuItem
+            // 
+            this.nonPortfolioOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.highlightNextPurchasesToolStripMenuItem,
+            this.showPercentagesToolStripMenuItem});
+            this.nonPortfolioOptionsToolStripMenuItem.Name = "nonPortfolioOptionsToolStripMenuItem";
+            this.nonPortfolioOptionsToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.nonPortfolioOptionsToolStripMenuItem.Text = "Non Portfolio Options";
+            // 
+            // getCostToolStripMenuItem
+            // 
+            this.getCostToolStripMenuItem.Name = "getCostToolStripMenuItem";
+            this.getCostToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.getCostToolStripMenuItem.Text = "Get Cost(s)";
+            this.getCostToolStripMenuItem.Click += new System.EventHandler(this.getCostToolStripMenuItem_Click);
+            // 
+            // getDividendsToolStripMenuItem
+            // 
+            this.getDividendsToolStripMenuItem.Name = "getDividendsToolStripMenuItem";
+            this.getDividendsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.getDividendsToolStripMenuItem.Text = "Get Dividend(s)";
+            this.getDividendsToolStripMenuItem.Click += new System.EventHandler(this.getDividendsToolStripMenuItem_Click);
+            // 
+            // showSectorPercentagesToolStripMenuItem
+            // 
+            this.showSectorPercentagesToolStripMenuItem.Name = "showSectorPercentagesToolStripMenuItem";
+            this.showSectorPercentagesToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.showSectorPercentagesToolStripMenuItem.Text = "Show Sector Percentages";
+            this.showSectorPercentagesToolStripMenuItem.Click += new System.EventHandler(this.showSectorPercentagesToolStripMenuItem_Click);
+            // 
+            // calculateResultsToolStripMenuItem
+            // 
+            this.calculateResultsToolStripMenuItem.Name = "calculateResultsToolStripMenuItem";
+            this.calculateResultsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.calculateResultsToolStripMenuItem.Text = "Calculate Results";
+            this.calculateResultsToolStripMenuItem.Click += new System.EventHandler(this.calculateResultsToolStripMenuItem_Click);
+            // 
+            // highlightNextPurchasesToolStripMenuItem
+            // 
+            this.highlightNextPurchasesToolStripMenuItem.Name = "highlightNextPurchasesToolStripMenuItem";
+            this.highlightNextPurchasesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.highlightNextPurchasesToolStripMenuItem.Text = "Highlight Next Purchases";
+            this.highlightNextPurchasesToolStripMenuItem.Click += new System.EventHandler(this.highlightNextPurchasesToolStripMenuItem_Click);
+            // 
+            // showPercentagesToolStripMenuItem
+            // 
+            this.showPercentagesToolStripMenuItem.Name = "showPercentagesToolStripMenuItem";
+            this.showPercentagesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.showPercentagesToolStripMenuItem.Text = "Show Percentages";
+            this.showPercentagesToolStripMenuItem.Click += new System.EventHandler(this.showPercentagesToolStripMenuItem_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,23 +491,17 @@
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnCalculate;
-        private System.Windows.Forms.Button btnDividendPrice;
-        private System.Windows.Forms.Button btnGetSharePrice;
         private System.Windows.Forms.ComboBox ddlIndustry;
         private System.Windows.Forms.Button btnHighlight;
         private System.Windows.Forms.Label lblIndustry;
         private System.Windows.Forms.Button btnHighlightAll;
         private System.Windows.Forms.Label lblIndustryAll;
         private System.Windows.Forms.ComboBox ddlIndustryAll;
-        private System.Windows.Forms.Button btnCurrentIndustryPercentage;
-        private System.Windows.Forms.Button btnAllIndustryPercentages;
         private System.Windows.Forms.TextBox txtSearchSymbol;
         private System.Windows.Forms.Label lblSearchAllSymbol;
         private System.Windows.Forms.TextBox txtSearchAllSymbol;
         private System.Windows.Forms.Label lblSearchSymbol;
         private System.Windows.Forms.CheckBox chkNextBuy;
-        private System.Windows.Forms.Button btnNextPurchase;
         private System.Windows.Forms.Button btnPayDate;
         private System.Windows.Forms.Label lblPayDate;
         private System.Windows.Forms.DateTimePicker dtpPayDate;
@@ -526,6 +512,14 @@
         public System.Windows.Forms.ListView lvAllDividends;
         private System.Windows.Forms.Label lblMyPortfolio;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem portfolioOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getCostToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getDividendsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nonPortfolioOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showSectorPercentagesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem calculateResultsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem highlightNextPurchasesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showPercentagesToolStripMenuItem;
     }
 }
 

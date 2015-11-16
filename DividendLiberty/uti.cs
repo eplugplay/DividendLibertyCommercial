@@ -75,7 +75,7 @@ namespace DividendLiberty
             return lst;
         }
 
-        public static void ClearListViewColors(ListView lv, List<int> lstID)
+        public static void ClearListViewColors(ListView lv)
         {
             for (int i = 0; i < lv.Items.Count; i++)
             {
