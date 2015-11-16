@@ -108,6 +108,9 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
+            uti.ClearListViewColors(lvAllDividends, lstID);
+            uti.ClearListViewColors(lvCurrentDividends, lstID);
+            lstID.Clear();
             decimal TotalDividendCount = 0;
             decimal TotalDividendStockValue = 0;
             decimal YearDiv = 0;
@@ -481,6 +484,7 @@ namespace DividendLiberty
 
         public void GetDividendPrice()
         {
+            uti.ClearListViewColors(lvAllDividends, lstID);
             decimal TotalDividendPrice = 0;
             decimal QuarterlyDividendPrice = 0;
             decimal MonthlyDividendPrice = 0;
@@ -490,6 +494,7 @@ namespace DividendLiberty
 
         public void GetSharePrice()
         {
+            uti.ClearListViewColors(lvAllDividends, lstID);
             decimal totalPrice = 0;
             DividendStocks.GetTotalSharePrice(lstID, out totalPrice);
             MessageBox.Show("$" + Math.Round(totalPrice, 2).ToString());
@@ -513,8 +518,8 @@ namespace DividendLiberty
         public void SearchSymbol(TextBox tb, ListView lv)
         {
             lv.SelectedItems.Clear();
-            lstID.Clear();
             uti.ClearListViewColors(lv, lstID);
+            lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 if (lv.Items[i].SubItems[1].Text == tb.Text.ToUpper())
@@ -535,6 +540,7 @@ namespace DividendLiberty
             decimal count = 0;
             decimal percentage = Convert.ToDecimal(lv.Items.Count);
             lv.SelectedItems.Clear();
+            uti.ClearListViewColors(lvAllDividends, lstID);
             lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
@@ -542,8 +548,6 @@ namespace DividendLiberty
                 {
                     count++;
                     lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
-                    //lv.SelectedIndices.Add(i);
-                    //lv.Select();
                     lv.Items[i].BackColor = uti.GetHighlightColor();
                 }
                 else
@@ -576,6 +580,7 @@ namespace DividendLiberty
                 chkNextBuy.Checked = true;
                 chkNextBuy.CheckedChanged += chkNextBuy_CheckedChanged;
                 DataTable dt = uti.GetXMLData();
+                uti.ClearListViewColors(lv, lstID);
                 for (int i = 0; i < lv.Items.Count; i++)
                 {
                     for (int a = 0; a < dt.Rows.Count; a++)
@@ -585,8 +590,8 @@ namespace DividendLiberty
                             if (Convert.ToInt32(lv.Items[i].Tag) == Convert.ToInt32(dt.Rows[a]["id"]))
                             {
                                 lv.Items[i].BackColor = uti.GetHighlightColor();
+                                lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                                 cnt++;
-                                //lv.SelectedIndices.Add(i);
                             }
                         }
                     }
@@ -706,7 +711,6 @@ namespace DividendLiberty
             decimal div = 0;
             lv.SelectedItems.Clear();
             uti.ClearListViewColors(lv, lstID);
-            lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 string date = lv.Items[i].SubItems[7].Text;

@@ -199,7 +199,7 @@
             // btnNextPurchase
             // 
             this.btnNextPurchase.ForeColor = System.Drawing.Color.Black;
-            this.btnNextPurchase.Location = new System.Drawing.Point(236, 333);
+            this.btnNextPurchase.Location = new System.Drawing.Point(242, 11);
             this.btnNextPurchase.Name = "btnNextPurchase";
             this.btnNextPurchase.Size = new System.Drawing.Size(167, 23);
             this.btnNextPurchase.TabIndex = 34;
@@ -212,7 +212,7 @@
             // 
             this.chkNextBuy.AutoSize = true;
             this.chkNextBuy.ForeColor = System.Drawing.Color.White;
-            this.chkNextBuy.Location = new System.Drawing.Point(107, 338);
+            this.chkNextBuy.Location = new System.Drawing.Point(113, 16);
             this.chkNextBuy.Name = "chkNextBuy";
             this.chkNextBuy.Size = new System.Drawing.Size(123, 17);
             this.chkNextBuy.TabIndex = 33;
@@ -224,7 +224,7 @@
             // 
             this.lblSearchAllSymbol.AutoSize = true;
             this.lblSearchAllSymbol.ForeColor = System.Drawing.Color.White;
-            this.lblSearchAllSymbol.Location = new System.Drawing.Point(501, 338);
+            this.lblSearchAllSymbol.Location = new System.Drawing.Point(515, 338);
             this.lblSearchAllSymbol.Name = "lblSearchAllSymbol";
             this.lblSearchAllSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchAllSymbol.TabIndex = 32;
@@ -234,9 +234,9 @@
             // 
             this.txtSearchAllSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchAllSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchAllSymbol.Location = new System.Drawing.Point(602, 335);
+            this.txtSearchAllSymbol.Location = new System.Drawing.Point(616, 335);
             this.txtSearchAllSymbol.Name = "txtSearchAllSymbol";
-            this.txtSearchAllSymbol.Size = new System.Drawing.Size(71, 20);
+            this.txtSearchAllSymbol.Size = new System.Drawing.Size(57, 20);
             this.txtSearchAllSymbol.TabIndex = 31;
             this.txtSearchAllSymbol.TextChanged += new System.EventHandler(this.txtSearchAllSymbol_TextChanged);
             // 
@@ -244,7 +244,7 @@
             // 
             this.lblSearchSymbol.AutoSize = true;
             this.lblSearchSymbol.ForeColor = System.Drawing.Color.White;
-            this.lblSearchSymbol.Location = new System.Drawing.Point(1190, 338);
+            this.lblSearchSymbol.Location = new System.Drawing.Point(1204, 338);
             this.lblSearchSymbol.Name = "lblSearchSymbol";
             this.lblSearchSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchSymbol.TabIndex = 30;
@@ -254,7 +254,7 @@
             // 
             this.txtSearchSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchSymbol.Location = new System.Drawing.Point(1291, 335);
+            this.txtSearchSymbol.Location = new System.Drawing.Point(1305, 335);
             this.txtSearchSymbol.Name = "txtSearchSymbol";
             this.txtSearchSymbol.Size = new System.Drawing.Size(59, 20);
             this.txtSearchSymbol.TabIndex = 29;
@@ -274,7 +274,7 @@
             // btnCurrentIndustryPercentage
             // 
             this.btnCurrentIndustryPercentage.ForeColor = System.Drawing.Color.Black;
-            this.btnCurrentIndustryPercentage.Location = new System.Drawing.Point(1356, 333);
+            this.btnCurrentIndustryPercentage.Location = new System.Drawing.Point(1370, 333);
             this.btnCurrentIndustryPercentage.Name = "btnCurrentIndustryPercentage";
             this.btnCurrentIndustryPercentage.Size = new System.Drawing.Size(122, 23);
             this.btnCurrentIndustryPercentage.TabIndex = 27;
@@ -410,9 +410,9 @@
             // btnCalculate
             // 
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
-            this.btnCalculate.Location = new System.Drawing.Point(1484, 333);
+            this.btnCalculate.Location = new System.Drawing.Point(1499, 333);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(133, 23);
+            this.btnCalculate.Size = new System.Drawing.Size(118, 23);
             this.btnCalculate.TabIndex = 5;
             this.btnCalculate.Text = "Calculate Results";
             this.btnCalculate.UseVisualStyleBackColor = true;

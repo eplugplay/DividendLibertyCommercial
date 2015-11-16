@@ -77,10 +77,9 @@ namespace DividendLiberty
 
         public static void ClearListViewColors(ListView lv, List<int> lstID)
         {
-            lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
-                lv.Items[i].BackColor = Color.White;
+                lv.InvokeEx(x => x.Items[i].BackColor = Color.White);
             }
         }
 
