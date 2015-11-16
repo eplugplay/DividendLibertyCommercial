@@ -211,7 +211,7 @@ namespace DividendLiberty
             string[] payDate = uti.SplitStockData(payDates);
             if (count > 0)
             {
-                MessageBox.Show("Error! " + StockDataType + " could not be loaded." + LvNames + " and cannot connect to Yahoo, please try again later.");
+                MessageBox.Show("Error! " + StockDataType + " in " + LvNames + " could not be loaded and cannot connect to Yahoo, please try again later.");
             }
             DividendStocks.LoadDividends(lv, names, payDate, exDiv, active, dtXml);
         }
