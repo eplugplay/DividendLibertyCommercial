@@ -535,6 +535,9 @@ namespace DividendLiberty
                     count++;
                     lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                     lv.Items[i].BackColor = uti.GetHighlightColor();
+                    lv.Items[i].Selected = true;
+                    lv.Items[i].Focused = true;
+                    lv.TopItem = lv.Items[i];
                 }
                 else
                 {
@@ -565,6 +568,9 @@ namespace DividendLiberty
                             if (Convert.ToInt32(lv.Items[i].Tag) == Convert.ToInt32(dt.Rows[a]["id"]))
                             {
                                 lv.Items[i].BackColor = uti.GetHighlightColor();
+                                lv.Items[i].Selected = true;
+                                lv.Items[i].Focused = true;
+                                lv.TopItem = lv.Items[i];
                                 lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                                 cnt++;
                             }
@@ -731,8 +737,19 @@ namespace DividendLiberty
                     if (monthYear == dtpMonthYear)
                     {
                         lv.Items[i].BackColor = uti.GetHighlightColor();
+                        lv.Items[i].Selected = true;
+                        lv.Items[i].Focused = true;
+                        lv.TopItem = lv.Items[i];
                         string symbol = lv.Items[i].SubItems[1].Text.ToString();
-                        div = Convert.ToDecimal(YahooFinance.GetValues(symbol, "d", false));
+                        try
+                        {
+                            div = Convert.ToDecimal(YahooFinance.GetValues(symbol, "d", false));
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Could not highlight, yahoo connection was lost. Please try again later.");
+                            return;
+                        }
                         decimal divReceived = uti.GetDivPrice(Convert.ToDecimal(lv.Items[i].SubItems[4].Text.ToString()), div);
                         totalDiv += divReceived;
                         individualDivData += symbol + ": $" + Math.Round(divReceived/4, 2) + " (Pay Date: " + lv.Items[i].SubItems[7].Text.ToString() + ")\n\n";

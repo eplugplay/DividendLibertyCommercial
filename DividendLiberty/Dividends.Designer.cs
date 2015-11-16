@@ -76,6 +76,7 @@
             // txtSymbol
             // 
             this.txtSymbol.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSymbol.ForeColor = System.Drawing.Color.Black;
             this.txtSymbol.Location = new System.Drawing.Point(123, 21);
             this.txtSymbol.Name = "txtSymbol";
@@ -105,6 +106,7 @@
             // txtStockName
             // 
             this.txtStockName.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtStockName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStockName.ForeColor = System.Drawing.Color.Black;
             this.txtStockName.Location = new System.Drawing.Point(458, 25);
             this.txtStockName.Name = "txtStockName";
@@ -125,6 +127,7 @@
             // 
             // txtCost
             // 
+            this.txtCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCost.ForeColor = System.Drawing.Color.Black;
             this.txtCost.Location = new System.Drawing.Point(127, 119);
             this.txtCost.Name = "txtCost";
@@ -153,6 +156,7 @@
             // 
             // txtNumberOfShares
             // 
+            this.txtNumberOfShares.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumberOfShares.ForeColor = System.Drawing.Color.Black;
             this.txtNumberOfShares.Location = new System.Drawing.Point(127, 93);
             this.txtNumberOfShares.Name = "txtNumberOfShares";
@@ -172,6 +176,7 @@
             // txtAnnualDividend
             // 
             this.txtAnnualDividend.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtAnnualDividend.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnnualDividend.ForeColor = System.Drawing.Color.Black;
             this.txtAnnualDividend.Location = new System.Drawing.Point(123, 128);
             this.txtAnnualDividend.Name = "txtAnnualDividend";
@@ -193,6 +198,7 @@
             // txtDividendPercent
             // 
             this.txtDividendPercent.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtDividendPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDividendPercent.ForeColor = System.Drawing.Color.Black;
             this.txtDividendPercent.Location = new System.Drawing.Point(123, 101);
             this.txtDividendPercent.Name = "txtDividendPercent";
@@ -203,7 +209,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.Location = new System.Drawing.Point(946, 243);
             this.btnSave.Name = "btnSave";
@@ -216,7 +222,7 @@
             // 
             // gpDividendInfo
             // 
-            this.gpDividendInfo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.gpDividendInfo.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.gpDividendInfo.Controls.Add(this.ddlDividendInterval);
             this.gpDividendInfo.Controls.Add(this.label3);
             this.gpDividendInfo.Controls.Add(this.label2);
@@ -247,8 +253,8 @@
             this.gpDividendInfo.Controls.Add(this.lblAnnualDividend);
             this.gpDividendInfo.Controls.Add(this.lblIndustry);
             this.gpDividendInfo.Controls.Add(this.txtAnnualDividend);
-            this.gpDividendInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpDividendInfo.ForeColor = System.Drawing.Color.White;
+            this.gpDividendInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpDividendInfo.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.gpDividendInfo.Location = new System.Drawing.Point(5, 5);
             this.gpDividendInfo.Name = "gpDividendInfo";
             this.gpDividendInfo.Size = new System.Drawing.Size(681, 275);
@@ -260,6 +266,7 @@
             // 
             this.ddlDividendInterval.BackColor = System.Drawing.Color.AliceBlue;
             this.ddlDividendInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlDividendInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlDividendInterval.ForeColor = System.Drawing.Color.Black;
             this.ddlDividendInterval.FormattingEnabled = true;
             this.ddlDividendInterval.Items.AddRange(new object[] {
@@ -294,6 +301,7 @@
             // txtCurrentPrice
             // 
             this.txtCurrentPrice.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtCurrentPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCurrentPrice.ForeColor = System.Drawing.Color.Black;
             this.txtCurrentPrice.Location = new System.Drawing.Point(458, 131);
             this.txtCurrentPrice.Name = "txtCurrentPrice";
@@ -305,6 +313,7 @@
             // txtExDividend
             // 
             this.txtExDividend.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtExDividend.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtExDividend.ForeColor = System.Drawing.Color.Black;
             this.txtExDividend.Location = new System.Drawing.Point(123, 154);
             this.txtExDividend.Name = "txtExDividend";
@@ -316,6 +325,7 @@
             // txtPayDate
             // 
             this.txtPayDate.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPayDate.ForeColor = System.Drawing.Color.Black;
             this.txtPayDate.Location = new System.Drawing.Point(123, 180);
             this.txtPayDate.Name = "txtPayDate";
@@ -337,6 +347,7 @@
             // txtOpenPrice
             // 
             this.txtOpenPrice.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtOpenPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOpenPrice.ForeColor = System.Drawing.Color.Black;
             this.txtOpenPrice.Location = new System.Drawing.Point(458, 105);
             this.txtOpenPrice.Name = "txtOpenPrice";
@@ -348,6 +359,7 @@
             // txtMarketCap
             // 
             this.txtMarketCap.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtMarketCap.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMarketCap.ForeColor = System.Drawing.Color.Black;
             this.txtMarketCap.Location = new System.Drawing.Point(458, 51);
             this.txtMarketCap.Name = "txtMarketCap";
@@ -369,6 +381,7 @@
             // txtDayRange
             // 
             this.txtDayRange.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtDayRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDayRange.ForeColor = System.Drawing.Color.Black;
             this.txtDayRange.Location = new System.Drawing.Point(458, 181);
             this.txtDayRange.Name = "txtDayRange";
@@ -390,6 +403,7 @@
             // txt52WeekHigh
             // 
             this.txt52WeekHigh.BackColor = System.Drawing.Color.AliceBlue;
+            this.txt52WeekHigh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt52WeekHigh.ForeColor = System.Drawing.Color.Black;
             this.txt52WeekHigh.Location = new System.Drawing.Point(579, 157);
             this.txt52WeekHigh.Name = "txt52WeekHigh";
@@ -411,6 +425,7 @@
             // txt52WeekLow
             // 
             this.txt52WeekLow.BackColor = System.Drawing.Color.AliceBlue;
+            this.txt52WeekLow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt52WeekLow.Location = new System.Drawing.Point(458, 157);
             this.txt52WeekLow.Name = "txt52WeekLow";
             this.txt52WeekLow.ReadOnly = true;
@@ -431,6 +446,7 @@
             // txtPERatio
             // 
             this.txtPERatio.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtPERatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPERatio.ForeColor = System.Drawing.Color.Black;
             this.txtPERatio.Location = new System.Drawing.Point(458, 78);
             this.txtPERatio.Name = "txtPERatio";
@@ -463,6 +479,7 @@
             // 
             this.ddlIndustry.BackColor = System.Drawing.Color.AliceBlue;
             this.ddlIndustry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIndustry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlIndustry.ForeColor = System.Drawing.Color.Black;
             this.ddlIndustry.FormattingEnabled = true;
             this.ddlIndustry.Items.AddRange(new object[] {
@@ -495,7 +512,7 @@
             // 
             // btnDividendPrice
             // 
-            this.btnDividendPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDividendPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDividendPrice.ForeColor = System.Drawing.Color.Black;
             this.btnDividendPrice.Location = new System.Drawing.Point(208, 33);
             this.btnDividendPrice.Name = "btnDividendPrice";
@@ -508,7 +525,7 @@
             // 
             // btnGetSharePrice
             // 
-            this.btnGetSharePrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGetSharePrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGetSharePrice.ForeColor = System.Drawing.Color.Black;
             this.btnGetSharePrice.Location = new System.Drawing.Point(127, 33);
             this.btnGetSharePrice.Name = "btnGetSharePrice";
@@ -531,7 +548,7 @@
             // 
             // gpSharesOptions
             // 
-            this.gpSharesOptions.BackColor = System.Drawing.Color.MidnightBlue;
+            this.gpSharesOptions.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.gpSharesOptions.Controls.Add(this.dtpPurchaseDate);
             this.gpSharesOptions.Controls.Add(this.btnDividendPrice);
             this.gpSharesOptions.Controls.Add(this.btnGetSharePrice);
@@ -541,7 +558,7 @@
             this.gpSharesOptions.Controls.Add(this.lblSharePurchaseDate);
             this.gpSharesOptions.Controls.Add(this.lblCost);
             this.gpSharesOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpSharesOptions.ForeColor = System.Drawing.Color.White;
+            this.gpSharesOptions.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.gpSharesOptions.Location = new System.Drawing.Point(692, 51);
             this.gpSharesOptions.Name = "gpSharesOptions";
             this.gpSharesOptions.Size = new System.Drawing.Size(351, 151);
@@ -552,6 +569,7 @@
             // dtpPurchaseDate
             // 
             this.dtpPurchaseDate.CalendarMonthBackground = System.Drawing.Color.AliceBlue;
+            this.dtpPurchaseDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPurchaseDate.Location = new System.Drawing.Point(127, 67);
             this.dtpPurchaseDate.Name = "dtpPurchaseDate";
             this.dtpPurchaseDate.Size = new System.Drawing.Size(210, 20);
@@ -561,7 +579,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.ClientSize = new System.Drawing.Size(1047, 292);
             this.Controls.Add(this.gpSharesOptions);
             this.Controls.Add(this.gpDividendInfo);

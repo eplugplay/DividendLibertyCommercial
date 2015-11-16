@@ -124,7 +124,7 @@ namespace DividendLiberty
 
         public static Color GetHighlightColor()
         {
-            return Color.SkyBlue;
+            return Color.BurlyWood;
         }
 
         public static decimal GetTotalSectorCount(List<decimal> lst)

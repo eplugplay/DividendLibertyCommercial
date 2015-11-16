@@ -55,8 +55,17 @@ namespace DividendLiberty
                     {
                         if (Convert.ToInt32(lv.Items[i].Tag) == lstID[b])
                         {
+                            string yieldTemp = "";
                             numShares = lv.Items[i].SubItems[4].Text == "" ? 0 : Convert.ToDecimal(lv.Items[i].SubItems[4].Text);
-                            string yieldTemp = YahooFinance.GetValues(lv.Items[i].SubItems[1].Text, "d", false);
+                            try
+                            {
+                                yieldTemp = YahooFinance.GetValues(lv.Items[i].SubItems[1].Text, "d", false);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Could not connect to Yahoo!, please try again later.");
+                                return;
+                            }
                             yield = Convert.ToDecimal(yieldTemp == "" ? "0" : yieldTemp);
                             totalDividendPrice += (numShares * yield);
                         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +97,7 @@
             // 
             // gpDividendStocks
             // 
-            this.gpDividendStocks.BackColor = System.Drawing.Color.MidnightBlue;
+            this.gpDividendStocks.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.gpDividendStocks.Controls.Add(this.lblMyPortfolio);
             this.gpDividendStocks.Controls.Add(this.lvAllDividends);
             this.gpDividendStocks.Controls.Add(this.lvCurrentDividends);
@@ -166,6 +167,7 @@
             // dtpPayDate
             // 
             this.dtpPayDate.CalendarMonthBackground = System.Drawing.Color.AliceBlue;
+            this.dtpPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPayDate.Location = new System.Drawing.Point(932, 330);
             this.dtpPayDate.Name = "dtpPayDate";
             this.dtpPayDate.Size = new System.Drawing.Size(149, 20);
@@ -173,6 +175,7 @@
             // 
             // btnPayDate
             // 
+            this.btnPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayDate.ForeColor = System.Drawing.Color.Black;
             this.btnPayDate.Location = new System.Drawing.Point(1087, 329);
             this.btnPayDate.Name = "btnPayDate";
@@ -187,7 +190,7 @@
             // 
             this.lblPayDate.AutoSize = true;
             this.lblPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPayDate.ForeColor = System.Drawing.Color.White;
+            this.lblPayDate.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblPayDate.Location = new System.Drawing.Point(863, 334);
             this.lblPayDate.Name = "lblPayDate";
             this.lblPayDate.Size = new System.Drawing.Size(63, 13);
@@ -197,7 +200,7 @@
             // chkNextBuy
             // 
             this.chkNextBuy.AutoSize = true;
-            this.chkNextBuy.ForeColor = System.Drawing.Color.White;
+            this.chkNextBuy.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.chkNextBuy.Location = new System.Drawing.Point(113, 18);
             this.chkNextBuy.Name = "chkNextBuy";
             this.chkNextBuy.Size = new System.Drawing.Size(123, 17);
@@ -209,7 +212,7 @@
             // lblSearchAllSymbol
             // 
             this.lblSearchAllSymbol.AutoSize = true;
-            this.lblSearchAllSymbol.ForeColor = System.Drawing.Color.White;
+            this.lblSearchAllSymbol.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblSearchAllSymbol.Location = new System.Drawing.Point(651, 334);
             this.lblSearchAllSymbol.Name = "lblSearchAllSymbol";
             this.lblSearchAllSymbol.Size = new System.Drawing.Size(95, 13);
@@ -219,6 +222,7 @@
             // txtSearchAllSymbol
             // 
             this.txtSearchAllSymbol.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtSearchAllSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchAllSymbol.ForeColor = System.Drawing.Color.Black;
             this.txtSearchAllSymbol.Location = new System.Drawing.Point(752, 331);
             this.txtSearchAllSymbol.Name = "txtSearchAllSymbol";
@@ -229,7 +233,7 @@
             // lblSearchSymbol
             // 
             this.lblSearchSymbol.AutoSize = true;
-            this.lblSearchSymbol.ForeColor = System.Drawing.Color.White;
+            this.lblSearchSymbol.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblSearchSymbol.Location = new System.Drawing.Point(1457, 334);
             this.lblSearchSymbol.Name = "lblSearchSymbol";
             this.lblSearchSymbol.Size = new System.Drawing.Size(95, 13);
@@ -239,6 +243,7 @@
             // txtSearchSymbol
             // 
             this.txtSearchSymbol.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtSearchSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchSymbol.ForeColor = System.Drawing.Color.Black;
             this.txtSearchSymbol.Location = new System.Drawing.Point(1558, 331);
             this.txtSearchSymbol.Name = "txtSearchSymbol";
@@ -248,6 +253,7 @@
             // 
             // btnHighlightAll
             // 
+            this.btnHighlightAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHighlightAll.ForeColor = System.Drawing.Color.Black;
             this.btnHighlightAll.Location = new System.Drawing.Point(744, 12);
             this.btnHighlightAll.Name = "btnHighlightAll";
@@ -262,7 +268,7 @@
             // 
             this.lblIndustryAll.AutoSize = true;
             this.lblIndustryAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIndustryAll.ForeColor = System.Drawing.Color.White;
+            this.lblIndustryAll.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblIndustryAll.Location = new System.Drawing.Point(478, 17);
             this.lblIndustryAll.Name = "lblIndustryAll";
             this.lblIndustryAll.Size = new System.Drawing.Size(56, 13);
@@ -273,6 +279,7 @@
             // 
             this.ddlIndustryAll.BackColor = System.Drawing.Color.AliceBlue;
             this.ddlIndustryAll.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIndustryAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlIndustryAll.ForeColor = System.Drawing.Color.Black;
             this.ddlIndustryAll.FormattingEnabled = true;
             this.ddlIndustryAll.Items.AddRange(new object[] {
@@ -293,6 +300,7 @@
             // 
             // btnHighlight
             // 
+            this.btnHighlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHighlight.ForeColor = System.Drawing.Color.Black;
             this.btnHighlight.Location = new System.Drawing.Point(1551, 12);
             this.btnHighlight.Name = "btnHighlight";
@@ -307,7 +315,7 @@
             // 
             this.lblIndustry.AutoSize = true;
             this.lblIndustry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIndustry.ForeColor = System.Drawing.Color.White;
+            this.lblIndustry.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblIndustry.Location = new System.Drawing.Point(1260, 18);
             this.lblIndustry.Name = "lblIndustry";
             this.lblIndustry.Size = new System.Drawing.Size(56, 13);
@@ -318,6 +326,7 @@
             // 
             this.ddlIndustry.BackColor = System.Drawing.Color.AliceBlue;
             this.ddlIndustry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIndustry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlIndustry.ForeColor = System.Drawing.Color.Black;
             this.ddlIndustry.FormattingEnabled = true;
             this.ddlIndustry.Items.AddRange(new object[] {
@@ -418,14 +427,14 @@
             // getCostToolStripMenuItem
             // 
             this.getCostToolStripMenuItem.Name = "getCostToolStripMenuItem";
-            this.getCostToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.getCostToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.getCostToolStripMenuItem.Text = "Get Cost(s)";
             this.getCostToolStripMenuItem.Click += new System.EventHandler(this.getCostToolStripMenuItem_Click);
             // 
             // getDividendsToolStripMenuItem
             // 
             this.getDividendsToolStripMenuItem.Name = "getDividendsToolStripMenuItem";
-            this.getDividendsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.getDividendsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.getDividendsToolStripMenuItem.Text = "Get Dividend(s)";
             this.getDividendsToolStripMenuItem.Click += new System.EventHandler(this.getDividendsToolStripMenuItem_Click);
             // 
@@ -461,13 +470,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.ClientSize = new System.Drawing.Size(1647, 406);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.gpDividendStocks);
             this.Controls.Add(this.pbStatus);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainMenu";
