@@ -514,13 +514,16 @@ namespace DividendLiberty
         {
             lv.SelectedItems.Clear();
             lstID.Clear();
+            uti.ClearListViewColors(lv, lstID);
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 if (lv.Items[i].SubItems[1].Text == tb.Text.ToUpper())
                 {
                     lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                     lv.Items[i].BackColor = uti.GetHighlightColor();
-                    //lv.Items[i].Selected = true;
+                    lv.Items[i].Selected = true;
+                    lv.Items[i].Focused = true;
+                    lv.TopItem = lv.Items[i];
                     //lv.Select();
                 }
             }
