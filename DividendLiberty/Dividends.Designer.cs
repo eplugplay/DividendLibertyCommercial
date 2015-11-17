@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dividends));
             this.txtSymbol = new System.Windows.Forms.TextBox();
             this.lblSymbol = new System.Windows.Forms.Label();
             this.lblStockName = new System.Windows.Forms.Label();
@@ -69,6 +70,10 @@
             this.lblSharePurchaseDate = new System.Windows.Forms.Label();
             this.gpSharesOptions = new System.Windows.Forms.GroupBox();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblReq1 = new System.Windows.Forms.Label();
+            this.lblReq2 = new System.Windows.Forms.Label();
+            this.lblReq3 = new System.Windows.Forms.Label();
             this.gpDividendInfo.SuspendLayout();
             this.gpSharesOptions.SuspendLayout();
             this.SuspendLayout();
@@ -223,6 +228,10 @@
             // gpDividendInfo
             // 
             this.gpDividendInfo.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.gpDividendInfo.Controls.Add(this.lblReq3);
+            this.gpDividendInfo.Controls.Add(this.lblReq2);
+            this.gpDividendInfo.Controls.Add(this.lblReq1);
+            this.gpDividendInfo.Controls.Add(this.label4);
             this.gpDividendInfo.Controls.Add(this.ddlDividendInterval);
             this.gpDividendInfo.Controls.Add(this.label3);
             this.gpDividendInfo.Controls.Add(this.label2);
@@ -575,6 +584,54 @@
             this.dtpPurchaseDate.Size = new System.Drawing.Size(210, 20);
             this.dtpPurchaseDate.TabIndex = 3;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(36, 250);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 53;
+            this.label4.Text = "*Required";
+            // 
+            // lblReq1
+            // 
+            this.lblReq1.AutoSize = true;
+            this.lblReq1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReq1.ForeColor = System.Drawing.Color.Red;
+            this.lblReq1.Location = new System.Drawing.Point(105, 28);
+            this.lblReq1.Name = "lblReq1";
+            this.lblReq1.Size = new System.Drawing.Size(12, 13);
+            this.lblReq1.TabIndex = 54;
+            this.lblReq1.Text = "*";
+            this.lblReq1.Visible = false;
+            // 
+            // lblReq2
+            // 
+            this.lblReq2.AutoSize = true;
+            this.lblReq2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReq2.ForeColor = System.Drawing.Color.Red;
+            this.lblReq2.Location = new System.Drawing.Point(105, 51);
+            this.lblReq2.Name = "lblReq2";
+            this.lblReq2.Size = new System.Drawing.Size(12, 13);
+            this.lblReq2.TabIndex = 55;
+            this.lblReq2.Text = "*";
+            this.lblReq2.Visible = false;
+            // 
+            // lblReq3
+            // 
+            this.lblReq3.AutoSize = true;
+            this.lblReq3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReq3.ForeColor = System.Drawing.Color.Red;
+            this.lblReq3.Location = new System.Drawing.Point(105, 78);
+            this.lblReq3.Name = "lblReq3";
+            this.lblReq3.Size = new System.Drawing.Size(12, 13);
+            this.lblReq3.TabIndex = 56;
+            this.lblReq3.Text = "*";
+            this.lblReq3.Visible = false;
+            // 
             // Dividends
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -585,6 +642,7 @@
             this.Controls.Add(this.gpDividendInfo);
             this.Controls.Add(this.btnSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Dividends";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -641,5 +699,9 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox txtSymbol;
         private System.Windows.Forms.DateTimePicker dtpPurchaseDate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblReq3;
+        private System.Windows.Forms.Label lblReq2;
+        private System.Windows.Forms.Label lblReq1;
     }
 }

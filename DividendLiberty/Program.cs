@@ -12,6 +12,7 @@ namespace DividendLiberty
         /// </summary>
         /// 
         public static MainMenu MainMenu;
+        public static PleaseWait PleaseWait;
         [STAThread]
         static void Main()
         {
@@ -25,13 +26,12 @@ namespace DividendLiberty
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            PleaseWait pw = new PleaseWait();
-            pw.lblMsg.Text = "Connecting to yahoo for stock data..";
-            pw.lblMsg.Visible = true;
-            pw.Show();
+            PleaseWait = new DividendLiberty.PleaseWait();
+            PleaseWait.lblMsg.Text = "Connecting to yahoo for stock data..";
+            PleaseWait.lblMsg.Visible = true;
+            PleaseWait.Show();
             Application.DoEvents();
             Application.Run(MainMenu = new MainMenu());
-            pw.Close();
         }
     }
 }

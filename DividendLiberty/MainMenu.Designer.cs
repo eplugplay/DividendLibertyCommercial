@@ -32,6 +32,14 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nonPortfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highlightNextPurchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.portfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getDividendsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSectorPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.calculateResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpDividendStocks = new System.Windows.Forms.GroupBox();
             this.lblMyPortfolio = new System.Windows.Forms.Label();
             this.lvAllDividends = new System.Windows.Forms.ListView();
@@ -56,14 +64,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.portfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nonPortfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getDividendsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showSectorPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.calculateResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.highlightNextPurchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +94,68 @@
             this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // nonPortfolioOptionsToolStripMenuItem
+            // 
+            this.nonPortfolioOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.highlightNextPurchasesToolStripMenuItem,
+            this.showPercentagesToolStripMenuItem});
+            this.nonPortfolioOptionsToolStripMenuItem.Name = "nonPortfolioOptionsToolStripMenuItem";
+            this.nonPortfolioOptionsToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.nonPortfolioOptionsToolStripMenuItem.Text = "Non Portfolio Options";
+            // 
+            // highlightNextPurchasesToolStripMenuItem
+            // 
+            this.highlightNextPurchasesToolStripMenuItem.Name = "highlightNextPurchasesToolStripMenuItem";
+            this.highlightNextPurchasesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.highlightNextPurchasesToolStripMenuItem.Text = "Highlight Next Purchases";
+            this.highlightNextPurchasesToolStripMenuItem.Click += new System.EventHandler(this.highlightNextPurchasesToolStripMenuItem_Click);
+            // 
+            // showPercentagesToolStripMenuItem
+            // 
+            this.showPercentagesToolStripMenuItem.Name = "showPercentagesToolStripMenuItem";
+            this.showPercentagesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.showPercentagesToolStripMenuItem.Text = "Show Percentages";
+            this.showPercentagesToolStripMenuItem.Click += new System.EventHandler(this.showPercentagesToolStripMenuItem_Click);
+            // 
+            // portfolioOptionsToolStripMenuItem
+            // 
+            this.portfolioOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getCostToolStripMenuItem,
+            this.getDividendsToolStripMenuItem,
+            this.showSectorPercentagesToolStripMenuItem,
+            this.calculateResultsToolStripMenuItem});
+            this.portfolioOptionsToolStripMenuItem.Name = "portfolioOptionsToolStripMenuItem";
+            this.portfolioOptionsToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
+            this.portfolioOptionsToolStripMenuItem.Text = "Portfolio Options";
+            // 
+            // getCostToolStripMenuItem
+            // 
+            this.getCostToolStripMenuItem.Name = "getCostToolStripMenuItem";
+            this.getCostToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.getCostToolStripMenuItem.Text = "Get Cost(s)";
+            this.getCostToolStripMenuItem.Click += new System.EventHandler(this.getCostToolStripMenuItem_Click);
+            // 
+            // getDividendsToolStripMenuItem
+            // 
+            this.getDividendsToolStripMenuItem.Name = "getDividendsToolStripMenuItem";
+            this.getDividendsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.getDividendsToolStripMenuItem.Text = "Get Dividend(s)";
+            this.getDividendsToolStripMenuItem.Click += new System.EventHandler(this.getDividendsToolStripMenuItem_Click);
+            // 
+            // showSectorPercentagesToolStripMenuItem
+            // 
+            this.showSectorPercentagesToolStripMenuItem.Name = "showSectorPercentagesToolStripMenuItem";
+            this.showSectorPercentagesToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.showSectorPercentagesToolStripMenuItem.Text = "Show Sector Percentages";
+            this.showSectorPercentagesToolStripMenuItem.Click += new System.EventHandler(this.showSectorPercentagesToolStripMenuItem_Click);
+            // 
+            // calculateResultsToolStripMenuItem
+            // 
+            this.calculateResultsToolStripMenuItem.Name = "calculateResultsToolStripMenuItem";
+            this.calculateResultsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.calculateResultsToolStripMenuItem.Text = "Calculate Results";
+            this.calculateResultsToolStripMenuItem.Click += new System.EventHandler(this.calculateResultsToolStripMenuItem_Click);
             // 
             // gpDividendStocks
             // 
@@ -403,68 +465,6 @@
             this.lblStatus.TabIndex = 40;
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
-            // 
-            // portfolioOptionsToolStripMenuItem
-            // 
-            this.portfolioOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.getCostToolStripMenuItem,
-            this.getDividendsToolStripMenuItem,
-            this.showSectorPercentagesToolStripMenuItem,
-            this.calculateResultsToolStripMenuItem});
-            this.portfolioOptionsToolStripMenuItem.Name = "portfolioOptionsToolStripMenuItem";
-            this.portfolioOptionsToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
-            this.portfolioOptionsToolStripMenuItem.Text = "Portfolio Options";
-            // 
-            // nonPortfolioOptionsToolStripMenuItem
-            // 
-            this.nonPortfolioOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.highlightNextPurchasesToolStripMenuItem,
-            this.showPercentagesToolStripMenuItem});
-            this.nonPortfolioOptionsToolStripMenuItem.Name = "nonPortfolioOptionsToolStripMenuItem";
-            this.nonPortfolioOptionsToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
-            this.nonPortfolioOptionsToolStripMenuItem.Text = "Non Portfolio Options";
-            // 
-            // getCostToolStripMenuItem
-            // 
-            this.getCostToolStripMenuItem.Name = "getCostToolStripMenuItem";
-            this.getCostToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.getCostToolStripMenuItem.Text = "Get Cost(s)";
-            this.getCostToolStripMenuItem.Click += new System.EventHandler(this.getCostToolStripMenuItem_Click);
-            // 
-            // getDividendsToolStripMenuItem
-            // 
-            this.getDividendsToolStripMenuItem.Name = "getDividendsToolStripMenuItem";
-            this.getDividendsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.getDividendsToolStripMenuItem.Text = "Get Dividend(s)";
-            this.getDividendsToolStripMenuItem.Click += new System.EventHandler(this.getDividendsToolStripMenuItem_Click);
-            // 
-            // showSectorPercentagesToolStripMenuItem
-            // 
-            this.showSectorPercentagesToolStripMenuItem.Name = "showSectorPercentagesToolStripMenuItem";
-            this.showSectorPercentagesToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.showSectorPercentagesToolStripMenuItem.Text = "Show Sector Percentages";
-            this.showSectorPercentagesToolStripMenuItem.Click += new System.EventHandler(this.showSectorPercentagesToolStripMenuItem_Click);
-            // 
-            // calculateResultsToolStripMenuItem
-            // 
-            this.calculateResultsToolStripMenuItem.Name = "calculateResultsToolStripMenuItem";
-            this.calculateResultsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.calculateResultsToolStripMenuItem.Text = "Calculate Results";
-            this.calculateResultsToolStripMenuItem.Click += new System.EventHandler(this.calculateResultsToolStripMenuItem_Click);
-            // 
-            // highlightNextPurchasesToolStripMenuItem
-            // 
-            this.highlightNextPurchasesToolStripMenuItem.Name = "highlightNextPurchasesToolStripMenuItem";
-            this.highlightNextPurchasesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.highlightNextPurchasesToolStripMenuItem.Text = "Highlight Next Purchases";
-            this.highlightNextPurchasesToolStripMenuItem.Click += new System.EventHandler(this.highlightNextPurchasesToolStripMenuItem_Click);
-            // 
-            // showPercentagesToolStripMenuItem
-            // 
-            this.showPercentagesToolStripMenuItem.Name = "showPercentagesToolStripMenuItem";
-            this.showPercentagesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.showPercentagesToolStripMenuItem.Text = "Show Percentages";
-            this.showPercentagesToolStripMenuItem.Click += new System.EventHandler(this.showPercentagesToolStripMenuItem_Click);
             // 
             // MainMenu
             // 

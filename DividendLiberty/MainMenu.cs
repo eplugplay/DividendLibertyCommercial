@@ -216,6 +216,7 @@ namespace DividendLiberty
                 MessageBox.Show("Error! " + StockDataType + " in " + LvNames + " could not be loaded and cannot connect to Yahoo, please try again later.");
             }
             DividendStocks.LoadDividends(lv, names, payDate, exDiv, active, dtXml);
+            Program.PleaseWait.Close();
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
@@ -338,11 +339,10 @@ namespace DividendLiberty
             return tempList;
         }
 
-        public void HighlightMultipleColor(ListView lv)
+        public void HighlightMultipleControlColor(ListView lv)
         {
             int index = lv.SelectedItems[0].Index;
             int tag = Convert.ToInt32(lv.Items[index].Tag);
-            string color = lv.Items[index].BackColor.Name;
             lstID.Add(tag);
 
             if (GetTagCount(lstID, tag) == 2)
@@ -350,6 +350,27 @@ namespace DividendLiberty
                 lstID = RemoveTags(lstID, tag);
             }
 
+            lv.SelectedItems.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
+                {
+                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                }
+                if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
+                {
+                    lv.Items[i].BackColor = Color.White;
+                }
+            }
+        }
+
+        public void HighlightMultipleShiftColor(ListView lv)
+        {
+            lstID.Clear();
+            for (int i = 0; i < lv.SelectedItems.Count; i++)
+            {
+                lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
+            }
             lv.SelectedItems.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
@@ -400,7 +421,7 @@ namespace DividendLiberty
             if (Control.ModifierKeys == Keys.Control)
             {
                 uti.SetStockIndexSymbol(lvCurrentDividends);
-                HighlightMultipleColor(lvCurrentDividends);
+                HighlightMultipleControlColor(lvCurrentDividends);
             }
             CurrentDiv = true;
         }
@@ -420,14 +441,9 @@ namespace DividendLiberty
             //}
         }
 
-        private void lvAllDividends_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void lvAllDividends_MouseClick(object sender, MouseEventArgs e)
         {
-            if (Control.ModifierKeys != Keys.Control)
+            if (Control.ModifierKeys != Keys.Control && Control.ModifierKeys != Keys.Shift)
             {
                 uti.ClearListViewColors(lvCurrentDividends);
                 lstID.Clear();
@@ -446,7 +462,11 @@ namespace DividendLiberty
                 if (Control.ModifierKeys == Keys.Control)
                 {
                     uti.SetStockIndexSymbol(lvAllDividends);
-                    HighlightMultipleColor(lvAllDividends);
+                    HighlightMultipleControlColor(lvAllDividends);
+                }
+                else if(Control.ModifierKeys == Keys.Shift)
+                {
+                    HighlightMultipleShiftColor(lvAllDividends);
                 }
             }
             catch

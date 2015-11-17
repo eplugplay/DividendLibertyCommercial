@@ -95,6 +95,9 @@ namespace DividendLiberty
                 //gpSharesOptions.Enabled = false;
                 btnSave.Text = "Save";
                 ddlDividendInterval.SelectedIndex = 1;
+                lblReq1.Show();
+                lblReq2.Show();
+                lblReq3.Show();
             }
         }
 
