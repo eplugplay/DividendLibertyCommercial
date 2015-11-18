@@ -207,9 +207,9 @@
       <industry>Equity Precious Metals</industry>
       <active>true</active>
       <interval>Quarterly</interval>
-      <cost>7.307</cost>
+      <cost>21.921</cost>
       <purchasedate>08-13-2015</purchasedate>
-      <shares>342</shares>
+      <shares>114</shares>
     </dividendstock>
     <dividendstock ID="22">
       <id>22</id>

@@ -38,6 +38,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="NPOI, Version=1.2.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -58,6 +62,12 @@
       <DependentUpon>Dividends.cs</DependentUpon>
     </Compile>
     <Compile Include="DividendStocks.cs" />
+    <Compile Include="Excel\ExcelBase.cs" />
+    <Compile Include="Excel\ExcelNPOIWriter.cs" />
+    <Compile Include="Excel\ExcelStyle.cs" />
+    <Compile Include="Excel\ExcelWriter.cs" />
+    <Compile Include="Excel\ExcelWriterException.cs" />
+    <Compile Include="Excel\RoundingNPOIWriter.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +105,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.config" />
+    <None Include="Excel\.svn\all-wcprops" />
+    <None Include="Excel\.svn\entries" />
+    <None Include="Excel\.svn\text-base\ExcelBase.cs.svn-base" />
+    <None Include="Excel\.svn\text-base\ExcelNPOIWriter.cs.svn-base" />
+    <None Include="Excel\.svn\text-base\ExcelStyle.cs.svn-base" />
+    <None Include="Excel\.svn\text-base\ExcelWriter.cs.svn-base" />
+    <None Include="Excel\.svn\text-base\ExcelWriterException.cs.svn-base" />
+    <None Include="Excel\.svn\text-base\RoundingNPOIWriter.cs.svn-base" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -112,6 +130,13 @@
     </Content>
     <Content Include="Dividend.xml" />
     <Content Include="images\DividendLiberty.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Excel\.svn\prop-base\" />
+    <Folder Include="Excel\.svn\props\" />
+    <Folder Include="Excel\.svn\tmp\prop-base\" />
+    <Folder Include="Excel\.svn\tmp\props\" />
+    <Folder Include="Excel\.svn\tmp\text-base\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
