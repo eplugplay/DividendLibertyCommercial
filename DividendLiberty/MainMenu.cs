@@ -10,6 +10,9 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 using System.Net;
+using DividendLiberty.Excel;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
 
 namespace DividendLiberty
 {
@@ -183,10 +186,7 @@ namespace DividendLiberty
             {
                 LvNames = "Non Portfolio Data";
             }
-            DataTable dt = uti.GetXMLData();
-            DataView view = dt.DefaultView;
-            view.Sort = "symbol asc";
-            DataTable dtXml = view.ToTable();
+            DataTable dtXml = uti.SortDataTable(uti.GetXMLData(), "asc");
             string symbols = uti.GetStockSymbols(dtXml);
             string stockNames = YahooFinance.GetValues(symbols, "n", true);
             int count = 0;
@@ -852,6 +852,81 @@ namespace DividendLiberty
         private void showPercentagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowIndustryPercentages(lvAllDividends);
+        }
+
+        private void generateExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GeneratePortfolioExcel();
+            }
+            catch
+            {
+                MessageBox.Show("Please close excel file and try again.");
+            }
+        }
+
+        public void GeneratePortfolioExcel()
+        {
+            DataTable dt = uti.SortDataTable(uti.GetXMLData(), "asc");
+            string stocks = uti.GetStockSymbols(dt);
+            string[] annualDiv = uti.SplitStockData(YahooFinance.GetValues(stocks, "d", true));
+            string[] yields = uti.SplitStockData(YahooFinance.GetValues(stocks, "y", true));
+            string[] companies = uti.SplitStockData(YahooFinance.GetValues(stocks, "n", true));
+            string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "MyDividendStocks" + ".xls");
+            ExcelNPOIWriter excelObj = new ExcelNPOIWriter();
+            excelObj.CreateWorksheet("My Dividends");
+            DataTable dtFinal = uti.ConvertExcelData(dt, yields, annualDiv, companies);
+            excelObj.WriteData(dtFinal, "My Dividends", true);
+            excelObj.createStyle("headers");
+            excelObj.setFont("headers", true);
+            for (int i = 0; i < dtFinal.Columns.Count; i++)
+            {
+                excelObj.getCell(0, i, "My Dividends").CellStyle = excelObj.getStyle("headers");
+            }
+            int count = dtFinal.Rows.Count;
+
+            HSSFCell AvgYield = excelObj.getCell(count, 6, "My Dividends");
+            AvgYield.SetCellType(CellType.FORMULA);
+            AvgYield.CellFormula = string.Format("ROUND(SUM(F{0}:F{1})/{2}, 2)", 2, count, count - 1);
+
+            //HSSFCell AnnualDiv = excelObj.getCell(count, 6, "My Dividends");
+            //AnnualDiv.SetCellType(CellType.FORMULA);
+            //AnnualDiv.CellFormula = string.Format("ROUND(SUM(G{0}:G{1})/{2}, 2)", 2, count, count - 1);
+
+            HSSFCell MonthlyDiv = excelObj.getCell(count, 7, "My Dividends");
+            MonthlyDiv.SetCellType(CellType.FORMULA);
+            MonthlyDiv.CellFormula = string.Format("ROUND(SUM(H{0}:H{1}), 2)", 2, count);
+
+            HSSFCell QuarterlyDiv = excelObj.getCell(count, 8, "My Dividends");
+            QuarterlyDiv.SetCellType(CellType.FORMULA);
+            QuarterlyDiv.CellFormula = string.Format("ROUND(SUM(I{0}:I{1}), 2)", 2, count);
+
+            HSSFCell YearlyDiv = excelObj.getCell(count, 9, "My Dividends");
+            YearlyDiv.SetCellType(CellType.FORMULA);
+            YearlyDiv.CellFormula = string.Format("ROUND(SUM(J{0}:J{1}), 2)", 2, count);
+
+            HSSFCell TotalCostBasis = excelObj.getCell(count, 10, "My Dividends");
+            TotalCostBasis.SetCellType(CellType.FORMULA);
+            TotalCostBasis.CellFormula = string.Format("SUM(K{0}:K{1})", 2, count);
+
+            for (int i = 6; i < 11; i++)
+            {
+                excelObj.getCell(count, i, "My Dividends").CellStyle = excelObj.getStyle("headers");
+            }
+
+            AutoSizeColumns(excelObj, dtFinal, "My Dividends");
+            excelObj.Save(savePath);
+            excelObj.Dispose();
+            System.Diagnostics.Process.Start(savePath);
+        }
+
+        private static void AutoSizeColumns(Excel.ExcelNPOIWriter exObj, DataTable tbl, string sheetName)
+        {
+            for (int i = 0; i <= tbl.Columns.Count; i++)
+            {
+                exObj.AutoSizeColumn(i, sheetName);
+            }
         }
     }
 }

@@ -64,6 +64,9 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelFileSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +75,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
             this.nonPortfolioOptionsToolStripMenuItem,
             this.portfolioOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -91,7 +95,7 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -124,6 +128,7 @@
             this.getCostToolStripMenuItem,
             this.getDividendsToolStripMenuItem,
             this.showSectorPercentagesToolStripMenuItem,
+            this.generateExcelToolStripMenuItem,
             this.calculateResultsToolStripMenuItem});
             this.portfolioOptionsToolStripMenuItem.Name = "portfolioOptionsToolStripMenuItem";
             this.portfolioOptionsToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
@@ -466,6 +471,27 @@
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
             // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.excelFileSettingsToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // excelFileSettingsToolStripMenuItem
+            // 
+            this.excelFileSettingsToolStripMenuItem.Name = "excelFileSettingsToolStripMenuItem";
+            this.excelFileSettingsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.excelFileSettingsToolStripMenuItem.Text = "Excel File Settings";
+            // 
+            // generateExcelToolStripMenuItem
+            // 
+            this.generateExcelToolStripMenuItem.Name = "generateExcelToolStripMenuItem";
+            this.generateExcelToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.generateExcelToolStripMenuItem.Text = "Generate Excel";
+            this.generateExcelToolStripMenuItem.Click += new System.EventHandler(this.generateExcelToolStripMenuItem_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -530,6 +556,9 @@
         private System.Windows.Forms.ToolStripMenuItem calculateResultsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem highlightNextPurchasesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showPercentagesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem excelFileSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generateExcelToolStripMenuItem;
     }
 }
 
