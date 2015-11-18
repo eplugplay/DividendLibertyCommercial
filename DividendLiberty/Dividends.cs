@@ -98,6 +98,7 @@ namespace DividendLiberty
                 lblReq1.Show();
                 lblReq2.Show();
                 lblReq3.Show();
+                lblRequired.Show();
             }
         }
 

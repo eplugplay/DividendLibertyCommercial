@@ -70,7 +70,7 @@
             this.lblSharePurchaseDate = new System.Windows.Forms.Label();
             this.gpSharesOptions = new System.Windows.Forms.GroupBox();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblRequired = new System.Windows.Forms.Label();
             this.lblReq1 = new System.Windows.Forms.Label();
             this.lblReq2 = new System.Windows.Forms.Label();
             this.lblReq3 = new System.Windows.Forms.Label();
@@ -231,7 +231,7 @@
             this.gpDividendInfo.Controls.Add(this.lblReq3);
             this.gpDividendInfo.Controls.Add(this.lblReq2);
             this.gpDividendInfo.Controls.Add(this.lblReq1);
-            this.gpDividendInfo.Controls.Add(this.label4);
+            this.gpDividendInfo.Controls.Add(this.lblRequired);
             this.gpDividendInfo.Controls.Add(this.ddlDividendInterval);
             this.gpDividendInfo.Controls.Add(this.label3);
             this.gpDividendInfo.Controls.Add(this.label2);
@@ -584,17 +584,18 @@
             this.dtpPurchaseDate.Size = new System.Drawing.Size(210, 20);
             this.dtpPurchaseDate.TabIndex = 3;
             // 
-            // label4
+            // lblRequired
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(36, 250);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 53;
-            this.label4.Text = "*Required";
+            this.lblRequired.AutoSize = true;
+            this.lblRequired.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequired.ForeColor = System.Drawing.Color.Red;
+            this.lblRequired.Location = new System.Drawing.Point(36, 250);
+            this.lblRequired.Name = "lblRequired";
+            this.lblRequired.Size = new System.Drawing.Size(63, 13);
+            this.lblRequired.TabIndex = 53;
+            this.lblRequired.Text = "*Required";
+            this.lblRequired.Visible = false;
             // 
             // lblReq1
             // 
@@ -699,7 +700,7 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox txtSymbol;
         private System.Windows.Forms.DateTimePicker dtpPurchaseDate;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblRequired;
         private System.Windows.Forms.Label lblReq3;
         private System.Windows.Forms.Label lblReq2;
         private System.Windows.Forms.Label lblReq1;
