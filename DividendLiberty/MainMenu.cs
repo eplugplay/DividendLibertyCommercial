@@ -778,6 +778,7 @@ namespace DividendLiberty
                     }
                 }
             }
+            lv.SelectedItems.Clear();
             quarterlyDiv = totalDiv / 4;
             pw.Close();
             if (cnt != 0)
