@@ -523,12 +523,12 @@
             // 
             this.btnDividendPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDividendPrice.ForeColor = System.Drawing.Color.Black;
-            this.btnDividendPrice.Location = new System.Drawing.Point(208, 33);
+            this.btnDividendPrice.Location = new System.Drawing.Point(254, 33);
             this.btnDividendPrice.Name = "btnDividendPrice";
-            this.btnDividendPrice.Size = new System.Drawing.Size(129, 23);
+            this.btnDividendPrice.Size = new System.Drawing.Size(83, 23);
             this.btnDividendPrice.TabIndex = 18;
             this.btnDividendPrice.TabStop = false;
-            this.btnDividendPrice.Text = "Get Dividend Price";
+            this.btnDividendPrice.Text = "Get Dividend";
             this.btnDividendPrice.UseVisualStyleBackColor = true;
             this.btnDividendPrice.Click += new System.EventHandler(this.btnDividendPrice_Click);
             // 
@@ -536,12 +536,12 @@
             // 
             this.btnGetSharePrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGetSharePrice.ForeColor = System.Drawing.Color.Black;
-            this.btnGetSharePrice.Location = new System.Drawing.Point(127, 33);
+            this.btnGetSharePrice.Location = new System.Drawing.Point(173, 33);
             this.btnGetSharePrice.Name = "btnGetSharePrice";
             this.btnGetSharePrice.Size = new System.Drawing.Size(75, 23);
             this.btnGetSharePrice.TabIndex = 15;
             this.btnGetSharePrice.TabStop = false;
-            this.btnGetSharePrice.Text = "Get Price";
+            this.btnGetSharePrice.Text = "Get Cost";
             this.btnGetSharePrice.UseVisualStyleBackColor = true;
             this.btnGetSharePrice.Click += new System.EventHandler(this.btnGetSharePrice_Click);
             // 

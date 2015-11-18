@@ -187,9 +187,9 @@
       <industry>Materials</industry>
       <active>true</active>
       <interval>Quarterly</interval>
-      <cost>7.095</cost>
+      <cost>7.093725</cost>
       <purchasedate>10-06-2015</purchasedate>
-      <shares>150</shares>
+      <shares>153</shares>
     </dividendstock>
     <dividendstock ID="20">
       <id>20</id>
