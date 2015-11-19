@@ -12,21 +12,54 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using System.IO;
 
 namespace DividendLiberty
 {
     public static class uti
     {
-        public static string GetXMLPath()
+        //public FileTypes filetypes { get; set; }
+        public static string GetFilePath(FileTypes type)
         {
-            string xmlPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/DividendStocksData.xml";
+            string xmlPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/" + GetFileName(type);
             return xmlPath;
+        }
+
+        public static string GetLocalFilePath(FileTypes type)
+        {
+            string localPath = Path.Combine(Directory.GetCurrentDirectory(), GetFileName(type));
+            return localPath;
+        }
+
+        public static string GetFileName(FileTypes type)
+        {
+            string returnType = "";
+            switch (type)
+            {
+                case FileTypes.xml: returnType = "DividendLibertyStocks.xml"; break;
+                case FileTypes.ini: returnType = "DividendLibertyConfig.ini"; break;
+                case FileTypes.excel: returnType = "DividendLiberty.xls"; break;
+                default: break;
+            }
+            return returnType;
+        }
+
+        public static void SaveIniFile(string section, string key, string keyValue)
+        {
+            INIFile iniFile = new INIFile(GetFilePath(FileTypes.ini));
+            iniFile.Write(section, key, keyValue);
+        }
+
+        public static string ReadIniFile(string section, string key)
+        {
+            INIFile iniFile = new INIFile(GetFileName(FileTypes.ini));
+            return iniFile.Read(section, key);
         }
 
         public static DataTable GetXMLData()
         {
             DataSet dtXML = new DataSet();
-            dtXML.ReadXml(uti.GetXMLPath());
+            dtXML.ReadXml(uti.GetFilePath(FileTypes.xml));
             DataTable dt = dtXML.Tables[1];
             return dt;
         }
@@ -200,6 +233,13 @@ namespace DividendLiberty
             DataTable dtXml = view.ToTable();
             return dtXml;
         }
+    }
+
+    public enum FileTypes
+    {
+        xml,
+        ini,
+        excel,
     }
 
     public static class ISynchronizeInvokeExtensions

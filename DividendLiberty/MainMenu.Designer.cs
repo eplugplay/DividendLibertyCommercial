@@ -32,6 +32,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelFileSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nonPortfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.highlightNextPurchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +41,9 @@
             this.getCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getDividendsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showSectorPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpDividendStocks = new System.Windows.Forms.GroupBox();
             this.lblMyPortfolio = new System.Windows.Forms.Label();
             this.lvAllDividends = new System.Windows.Forms.ListView();
@@ -64,9 +68,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelFileSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideShowColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editColumnNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -77,7 +80,8 @@
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.nonPortfolioOptionsToolStripMenuItem,
-            this.portfolioOptionsToolStripMenuItem});
+            this.portfolioOptionsToolStripMenuItem,
+            this.excelOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1647, 24);
@@ -95,9 +99,23 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.excelFileSettingsToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // excelFileSettingsToolStripMenuItem
+            // 
+            this.excelFileSettingsToolStripMenuItem.Name = "excelFileSettingsToolStripMenuItem";
+            this.excelFileSettingsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.excelFileSettingsToolStripMenuItem.Text = "Excel File Settings";
             // 
             // nonPortfolioOptionsToolStripMenuItem
             // 
@@ -155,12 +173,29 @@
             this.showSectorPercentagesToolStripMenuItem.Text = "Show Sector Percentages";
             this.showSectorPercentagesToolStripMenuItem.Click += new System.EventHandler(this.showSectorPercentagesToolStripMenuItem_Click);
             // 
+            // generateExcelToolStripMenuItem
+            // 
+            this.generateExcelToolStripMenuItem.Name = "generateExcelToolStripMenuItem";
+            this.generateExcelToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.generateExcelToolStripMenuItem.Text = "Generate Excel";
+            this.generateExcelToolStripMenuItem.Click += new System.EventHandler(this.generateExcelToolStripMenuItem_Click);
+            // 
             // calculateResultsToolStripMenuItem
             // 
             this.calculateResultsToolStripMenuItem.Name = "calculateResultsToolStripMenuItem";
             this.calculateResultsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.calculateResultsToolStripMenuItem.Text = "Calculate Results";
             this.calculateResultsToolStripMenuItem.Click += new System.EventHandler(this.calculateResultsToolStripMenuItem_Click);
+            // 
+            // excelOptionsToolStripMenuItem
+            // 
+            this.excelOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editColumnNamesToolStripMenuItem,
+            this.hideShowColumnsToolStripMenuItem});
+            this.excelOptionsToolStripMenuItem.Name = "excelOptionsToolStripMenuItem";
+            this.excelOptionsToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.excelOptionsToolStripMenuItem.Text = "Excel Options";
+            this.excelOptionsToolStripMenuItem.Visible = false;
             // 
             // gpDividendStocks
             // 
@@ -471,26 +506,18 @@
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
             // 
-            // editToolStripMenuItem
+            // hideShowColumnsToolStripMenuItem
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.excelFileSettingsToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.hideShowColumnsToolStripMenuItem.Name = "hideShowColumnsToolStripMenuItem";
+            this.hideShowColumnsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.hideShowColumnsToolStripMenuItem.Text = "Hide/Show Columns";
+            this.hideShowColumnsToolStripMenuItem.Click += new System.EventHandler(this.hideShowColumnsToolStripMenuItem_Click);
             // 
-            // excelFileSettingsToolStripMenuItem
+            // editColumnNamesToolStripMenuItem
             // 
-            this.excelFileSettingsToolStripMenuItem.Name = "excelFileSettingsToolStripMenuItem";
-            this.excelFileSettingsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.excelFileSettingsToolStripMenuItem.Text = "Excel File Settings";
-            // 
-            // generateExcelToolStripMenuItem
-            // 
-            this.generateExcelToolStripMenuItem.Name = "generateExcelToolStripMenuItem";
-            this.generateExcelToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.generateExcelToolStripMenuItem.Text = "Generate Excel";
-            this.generateExcelToolStripMenuItem.Click += new System.EventHandler(this.generateExcelToolStripMenuItem_Click);
+            this.editColumnNamesToolStripMenuItem.Name = "editColumnNamesToolStripMenuItem";
+            this.editColumnNamesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.editColumnNamesToolStripMenuItem.Text = "Edit Column Names";
             // 
             // MainMenu
             // 
@@ -559,6 +586,9 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelFileSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem excelOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideShowColumnsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editColumnNamesToolStripMenuItem;
     }
 }
 

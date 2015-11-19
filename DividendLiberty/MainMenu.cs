@@ -10,6 +10,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 using System.Net;
+using System.Runtime.InteropServices;
 using DividendLiberty.Excel;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
@@ -18,6 +19,7 @@ namespace DividendLiberty
 {
     public partial class MainMenu : Form
     {
+        public static HideShowColumns _HideShowColumns;
         public static Dividends _Dividends;
         public bool CurrentDiv { get; set; }
         public int ID { get; set; }
@@ -36,7 +38,7 @@ namespace DividendLiberty
 
         public void OpenDividends(bool edit, bool currentDiv)
         {
-            List<StockInfo> lstStockInfo = new List<StockInfo>(); ;
+            List<StockInfo> lstStockInfo = new List<StockInfo>();
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
@@ -169,15 +171,17 @@ namespace DividendLiberty
         {
             string LvNames = "";
             string StockDataType = "";
-            if (!File.Exists(uti.GetXMLPath()))
+            if (!File.Exists(uti.GetFilePath(FileTypes.xml)))
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "DividendStocksData.xml");
-                File.Copy(path, uti.GetXMLPath(), true);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.xml));
+                File.Copy(path, uti.GetFilePath(FileTypes.xml), true);
             }
-            else
-            {
 
+            if (!File.Exists(uti.GetFilePath(FileTypes.ini)))
+            {
+                File.Copy(uti.GetLocalFilePath(FileTypes.ini), uti.GetFilePath(FileTypes.ini), true);
             }
+            HideExcelColumns();
             if (lv.Name == "lvCurrentDividends")
             {
                 LvNames = "Portfolio Data";
@@ -193,7 +197,7 @@ namespace DividendLiberty
             if (stockNames == "")
             {
                 count++;
-                StockDataType += "stock names,";
+                StockDataType += " Stock names,";
             }
             string[] names = uti.SplitStockData(stockNames);
 
@@ -201,14 +205,14 @@ namespace DividendLiberty
             if (exDividend == "")
             {
                 count++;
-                StockDataType += "dividend dates,";
+                StockDataType += " Dividend dates,";
             }
             string[] exDiv = uti.SplitStockData(exDividend);
             string payDates = YahooFinance.GetValues(symbols, "q", true);
             if (payDates == "")
             {
                 count++;
-                StockDataType += "pay dates,";
+                StockDataType += " Pay dates,";
             }
             string[] payDate = uti.SplitStockData(payDates);
             if (count > 0)
@@ -217,6 +221,23 @@ namespace DividendLiberty
             }
             DividendStocks.LoadDividends(lv, names, payDate, exDiv, active, dtXml);
             Program.PleaseWait.Close();
+        }
+
+        public void HideExcelColumns()
+        {
+            string[] values = new string[11];
+            values[0] = "true";
+            values[1] = "true";
+            values[2] = "true";
+            values[3] = "true";
+            values[4] = "true";
+            values[5] = "true";
+            values[6] = "true";
+            values[7] = "true";
+            values[8] = "true";
+            values[9] = "true";
+            values[10] = "true";
+            PortfolioExcel.HideExcelColumns(INIFileOptions.SetINIValues(values));
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
@@ -235,6 +256,11 @@ namespace DividendLiberty
             {
                 MessageBox.Show(result);
             }
+        }
+
+        public void SaveExcelFileSettings()
+        {
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -858,7 +884,7 @@ namespace DividendLiberty
         {
             try
             {
-                GeneratePortfolioExcel();
+                PortfolioExcel.GeneratePortfolioExcel();
             }
             catch
             {
@@ -866,66 +892,23 @@ namespace DividendLiberty
             }
         }
 
-        public void GeneratePortfolioExcel()
+        private void hideShowColumnsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataTable dt = uti.SortDataTable(uti.GetXMLData(), "asc");
-            string stocks = uti.GetStockSymbols(dt);
-            string[] annualDiv = uti.SplitStockData(YahooFinance.GetValues(stocks, "d", true));
-            string[] yields = uti.SplitStockData(YahooFinance.GetValues(stocks, "y", true));
-            string[] companies = uti.SplitStockData(YahooFinance.GetValues(stocks, "n", true));
-            string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "MyDividendStocks" + ".xls");
-            ExcelNPOIWriter excelObj = new ExcelNPOIWriter();
-            excelObj.CreateWorksheet("My Dividends");
-            DataTable dtFinal = uti.ConvertExcelData(dt, yields, annualDiv, companies);
-            excelObj.WriteData(dtFinal, "My Dividends", true);
-            excelObj.createStyle("headers");
-            excelObj.setFont("headers", true);
-            for (int i = 0; i < dtFinal.Columns.Count; i++)
+            if (_HideShowColumns == null || _HideShowColumns.IsDisposed)
             {
-                excelObj.getCell(0, i, "My Dividends").CellStyle = excelObj.getStyle("headers");
+                _HideShowColumns = new HideShowColumns();
+                _HideShowColumns.Show();
             }
-            int count = dtFinal.Rows.Count;
-
-            HSSFCell AvgYield = excelObj.getCell(count, 6, "My Dividends");
-            AvgYield.SetCellType(CellType.FORMULA);
-            AvgYield.CellFormula = string.Format("ROUND(SUM(F{0}:F{1})/{2}, 2)", 2, count, count - 1);
-
-            //HSSFCell AnnualDiv = excelObj.getCell(count, 6, "My Dividends");
-            //AnnualDiv.SetCellType(CellType.FORMULA);
-            //AnnualDiv.CellFormula = string.Format("ROUND(SUM(G{0}:G{1})/{2}, 2)", 2, count, count - 1);
-
-            HSSFCell MonthlyDiv = excelObj.getCell(count, 7, "My Dividends");
-            MonthlyDiv.SetCellType(CellType.FORMULA);
-            MonthlyDiv.CellFormula = string.Format("ROUND(SUM(H{0}:H{1}), 2)", 2, count);
-
-            HSSFCell QuarterlyDiv = excelObj.getCell(count, 8, "My Dividends");
-            QuarterlyDiv.SetCellType(CellType.FORMULA);
-            QuarterlyDiv.CellFormula = string.Format("ROUND(SUM(I{0}:I{1}), 2)", 2, count);
-
-            HSSFCell YearlyDiv = excelObj.getCell(count, 9, "My Dividends");
-            YearlyDiv.SetCellType(CellType.FORMULA);
-            YearlyDiv.CellFormula = string.Format("ROUND(SUM(J{0}:J{1}), 2)", 2, count);
-
-            HSSFCell TotalCostBasis = excelObj.getCell(count, 10, "My Dividends");
-            TotalCostBasis.SetCellType(CellType.FORMULA);
-            TotalCostBasis.CellFormula = string.Format("SUM(K{0}:K{1})", 2, count);
-
-            for (int i = 6; i < 11; i++)
+            else
             {
-                excelObj.getCell(count, i, "My Dividends").CellStyle = excelObj.getStyle("headers");
-            }
-
-            AutoSizeColumns(excelObj, dtFinal, "My Dividends");
-            excelObj.Save(savePath);
-            excelObj.Dispose();
-            System.Diagnostics.Process.Start(savePath);
-        }
-
-        private static void AutoSizeColumns(Excel.ExcelNPOIWriter exObj, DataTable tbl, string sheetName)
-        {
-            for (int i = 0; i <= tbl.Columns.Count; i++)
-            {
-                exObj.AutoSizeColumn(i, sheetName);
+                if (_HideShowColumns.WindowState == FormWindowState.Minimized)
+                {
+                    _HideShowColumns.WindowState = FormWindowState.Normal;
+                }
+                else
+                {
+                    _HideShowColumns.BringToFront();
+                }
             }
         }
     }

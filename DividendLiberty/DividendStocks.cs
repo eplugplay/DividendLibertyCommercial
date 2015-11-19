@@ -139,7 +139,7 @@ namespace DividendLiberty
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(uti.GetXMLPath());
+                doc.Load(uti.GetFilePath(FileTypes.xml));
                 string strNamespace = doc.DocumentElement.NamespaceURI;
                 XmlNode node = doc.CreateNode(XmlNodeType.Element, string.Format("dividendstock"), strNamespace);
                 XmlAttribute idAttr = doc.CreateAttribute("ID");
@@ -181,7 +181,7 @@ namespace DividendLiberty
                 node.AppendChild(nodeNextToBuy);
 
                 doc.DocumentElement["dividendstocks"].AppendChild(node);
-                doc.Save(uti.GetXMLPath());
+                doc.Save(uti.GetFilePath(FileTypes.xml));
             }
             catch (Exception e)
             {
@@ -195,12 +195,12 @@ namespace DividendLiberty
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(uti.GetXMLPath());
+                doc.Load(uti.GetFilePath(FileTypes.xml));
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
                 if (elements[0]["symbol"].InnerText.ToString() == origSymbol)
                 {
                     elements[0]["active"].InnerText = active;
-                    doc.Save(uti.GetXMLPath());
+                    doc.Save(uti.GetFilePath(FileTypes.xml));
                 }
             }
             catch (Exception e)
@@ -214,14 +214,14 @@ namespace DividendLiberty
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(uti.GetXMLPath());
+                doc.Load(uti.GetFilePath(FileTypes.xml));
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
                 if (elements[0]["symbol"].InnerText.ToString() == origSymbol)
                 {
                     elements[0]["symbol"].InnerText = symbol.ToUpper();
                     elements[0]["industry"].InnerText = industry;
                     elements[0]["interval"].InnerText = interval;
-                    doc.Save(uti.GetXMLPath());
+                    doc.Save(uti.GetFilePath(FileTypes.xml));
                 }
             }
             catch (Exception e)
@@ -235,14 +235,14 @@ namespace DividendLiberty
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(uti.GetXMLPath());
+                doc.Load(uti.GetFilePath(FileTypes.xml));
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
                 if (elements[0]["symbol"].InnerText.ToString() == origSymbol)
                 {
                     elements[0]["cost"].InnerText = cost;
                     elements[0]["shares"].InnerText = shares;
                     elements[0]["purchasedate"].InnerText = purchasedate;
-                    doc.Save(uti.GetXMLPath());
+                    doc.Save(uti.GetFilePath(FileTypes.xml));
                 }
             }
             catch (Exception e)
@@ -269,13 +269,14 @@ namespace DividendLiberty
         {
             try
             {
+                string filePath = uti.GetFilePath(FileTypes.xml);
                 XmlDocument doc = new XmlDocument();
-                doc.Load(uti.GetXMLPath());
+                doc.Load(filePath);
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
                 if (elements[0]["symbol"].InnerText.ToString() == symbol)
                 {
                     elements[0]["nexttobuy"].InnerText = nexttobuy;
-                    doc.Save(uti.GetXMLPath());
+                    doc.Save(filePath);
                 }
             }
             catch
