@@ -172,60 +172,6 @@ namespace DividendLiberty
             return sectorCount;
         }
 
-        public static DataTable ConvertExcelData(DataTable dt, string[] yields, string[] annualDiv, string[] company)
-        {
-            decimal totalCost = 0;
-            decimal yearlyDividends = 0;
-            DataTable dtFinal = new DataTable();
-            dtFinal.Columns.Add("Symbol", typeof(string));
-            dtFinal.Columns.Add("Company", typeof(string));
-            dtFinal.Columns.Add("Industry", typeof(string));
-            dtFinal.Columns.Add("Shares", typeof(double));
-            dtFinal.Columns.Add("Price", typeof(double));
-            dtFinal.Columns.Add("Annual Dividend", typeof(double));
-            dtFinal.Columns.Add("Yield", typeof(double));
-            dtFinal.Columns.Add("Monthly Dividends", typeof(double));
-            dtFinal.Columns.Add("Quarterly Dividends", typeof(double));
-            dtFinal.Columns.Add("Yearly Dividends", typeof(double));
-            dtFinal.Columns.Add("Cost Basis", typeof(double));
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (dt.Rows[i]["active"].ToString() == "true")
-                {
-                    DataRow dr = dtFinal.NewRow();
-                    decimal shares = Convert.ToDecimal(dt.Rows[i]["shares"]);
-                    decimal cost = Convert.ToDecimal(dt.Rows[i]["cost"]);
-                    decimal annDiv = annualDiv[i] == "N/A" ? 0 : Convert.ToDecimal(annualDiv[i]);
-                    decimal yearlyDiv = Math.Round(shares * annDiv, 2);
-                    dr["Symbol"] = dt.Rows[i]["symbol"].ToString();
-                    dr["Company"] = company[i].Length == 0 ? "" : company[i].ToString();
-                    dr["Industry"] = dt.Rows[i]["industry"].ToString();
-                    dr["Shares"] = Convert.ToDouble(shares);
-                    dr["Price"] = Convert.ToDouble(cost);
-                    dr["Annual Dividend"] = Convert.ToDouble(annDiv);
-                    dr["Yield"] = yields[i] == "N/A" ? 0 : Convert.ToDouble(yields[i]);
-                    dr["Monthly Dividends"] = Convert.ToDouble(Math.Round(yearlyDiv / 12, 2));
-                    dr["Quarterly Dividends"] = Convert.ToDouble(Math.Round(yearlyDiv / 4, 2));
-                    dr["Yearly Dividends"] = Convert.ToDouble(yearlyDiv);
-                    dr["Cost Basis"] = Math.Round(Convert.ToDouble(shares * cost), 2);
-                    yearlyDividends += Convert.ToDecimal(yearlyDiv);
-                    totalCost += Math.Round(Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(dt.Rows[i]["cost"]), 2);
-                    dtFinal.Rows.Add(dr);
-                }
-            }
-
-            DataRow drEmpty = dtFinal.NewRow();
-            drEmpty["Yield"] = 0;
-            //drEmpty["Annual Dividend"] = 0;
-            drEmpty["Monthly Dividends"] = 0;
-            drEmpty["Quarterly Dividends"] = 0;
-            drEmpty["Yearly Dividends"] = 0;
-            drEmpty["Cost Basis"] = 0;
-            dtFinal.Rows.Add(drEmpty);
-
-            return dtFinal;
-        }
-
         public static DataTable SortDataTable(DataTable dt, string order)
         {
             DataView view = dt.DefaultView;
