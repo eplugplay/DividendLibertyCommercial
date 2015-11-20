@@ -62,17 +62,11 @@
       <DependentUpon>Dividends.cs</DependentUpon>
     </Compile>
     <Compile Include="DividendStocks.cs" />
-    <Compile Include="ExcelOptions\EditColumnNames.cs">
+    <Compile Include="ExcelOptions\EditColumns.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExcelOptions\EditColumnNames.Designer.cs">
-      <DependentUpon>EditColumnNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExcelOptions\HideShowColumns.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ExcelOptions\HideShowColumns.Designer.cs">
-      <DependentUpon>HideShowColumns.cs</DependentUpon>
+    <Compile Include="ExcelOptions\EditColumns.Designer.cs">
+      <DependentUpon>EditColumns.cs</DependentUpon>
     </Compile>
     <Compile Include="Excel\ExcelBase.cs" />
     <Compile Include="Excel\ExcelNPOIWriter.cs" />
@@ -103,11 +97,8 @@
     <EmbeddedResource Include="Dividends.resx">
       <DependentUpon>Dividends.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExcelOptions\EditColumnNames.resx">
-      <DependentUpon>EditColumnNames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ExcelOptions\HideShowColumns.resx">
-      <DependentUpon>HideShowColumns.cs</DependentUpon>
+    <EmbeddedResource Include="ExcelOptions\EditColumns.resx">
+      <DependentUpon>EditColumns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

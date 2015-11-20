@@ -124,17 +124,17 @@ namespace DividendLiberty
             txtStockName.Text = LstStockInfo[0].Name;
             ddlIndustry.SelectedIndex = ddlIndustry.FindString(LstStockInfo[0].Industry);
             ddlDividendInterval.SelectedIndex = ddlDividendInterval.FindString(LstStockInfo[0].Interval);
-            txtAnnualDividend.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "d", false);
-            txtDividendPercent.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "y", false);
-            txtMarketCap.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "j1", false);
-            txtExDividend.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "q", false);
-            txtPayDate.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "r1", false);
-            txtPERatio.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "r", false);
-            txtDayRange.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "m", false);
-            txt52WeekLow.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "j", false);
-            txt52WeekHigh.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "k", false);
-            txtCurrentPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "a", false);
-            txtOpenPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, "o", false);
+            txtAnnualDividend.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.annualDividend), false);
+            txtDividendPercent.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.dividendYield), false);
+            txtMarketCap.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.marketCap), false);
+            txtExDividend.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.exDividend), false);
+            txtPayDate.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.payDate), false);
+            txtPERatio.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.peRatio), false);
+            txtDayRange.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.dayRange), false);
+            txt52WeekLow.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.fiftyTwoWeekLow), false);
+            txt52WeekHigh.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.fiftyTwoWeekHigh), false);
+            txtCurrentPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.currentPrice), false);
+            txtOpenPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.openPrice), false);
         }
 
         public void LoadPurchaseInfo()

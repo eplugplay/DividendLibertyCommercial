@@ -62,5 +62,43 @@ namespace DividendLiberty
 
         //    var r = e.Result;
         //}
+
+        public static string GetCodes(YahooCodes codes)
+        {
+            string code = "";
+            switch (codes)
+            {
+                case YahooCodes.stockname: code = "n"; break;
+                case YahooCodes.annualDividend: code = "d"; break;
+                case YahooCodes.dividendYield: code = "y"; break;
+                case YahooCodes.marketCap: code = "j1"; break;
+                case YahooCodes.exDividend: code = "q"; break;
+                case YahooCodes.payDate: code = "r1"; break;
+                case YahooCodes.peRatio: code = "r"; break;
+                case YahooCodes.dayRange: code = "m"; break;
+                case YahooCodes.fiftyTwoWeekLow: code = "j"; break;
+                case YahooCodes.fiftyTwoWeekHigh: code = "k"; break;
+                case YahooCodes.currentPrice: code = "a"; break;
+                case YahooCodes.openPrice: code = "o"; break;
+                default: break;
+            }
+            return code;
+        }
     }
 }
+
+    public enum YahooCodes
+    {
+        stockname,
+        annualDividend,
+        dividendYield,
+        marketCap,
+        exDividend,
+        payDate,
+        peRatio,
+        dayRange,
+        fiftyTwoWeekLow,
+        fiftyTwoWeekHigh,
+        currentPrice,
+        openPrice
+    }

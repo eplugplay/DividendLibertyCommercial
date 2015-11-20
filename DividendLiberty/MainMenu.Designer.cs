@@ -68,8 +68,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.hideShowColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editColumnNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -190,12 +189,10 @@
             // excelOptionsToolStripMenuItem
             // 
             this.excelOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editColumnNamesToolStripMenuItem,
-            this.hideShowColumnsToolStripMenuItem});
+            this.editColumnsToolStripMenuItem});
             this.excelOptionsToolStripMenuItem.Name = "excelOptionsToolStripMenuItem";
             this.excelOptionsToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.excelOptionsToolStripMenuItem.Text = "Excel Options";
-            this.excelOptionsToolStripMenuItem.Visible = false;
             // 
             // gpDividendStocks
             // 
@@ -506,18 +503,12 @@
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
             // 
-            // hideShowColumnsToolStripMenuItem
+            // editColumnsToolStripMenuItem
             // 
-            this.hideShowColumnsToolStripMenuItem.Name = "hideShowColumnsToolStripMenuItem";
-            this.hideShowColumnsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.hideShowColumnsToolStripMenuItem.Text = "Hide/Show Columns";
-            this.hideShowColumnsToolStripMenuItem.Click += new System.EventHandler(this.hideShowColumnsToolStripMenuItem_Click);
-            // 
-            // editColumnNamesToolStripMenuItem
-            // 
-            this.editColumnNamesToolStripMenuItem.Name = "editColumnNamesToolStripMenuItem";
-            this.editColumnNamesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.editColumnNamesToolStripMenuItem.Text = "Edit Column Names";
+            this.editColumnsToolStripMenuItem.Name = "editColumnsToolStripMenuItem";
+            this.editColumnsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editColumnsToolStripMenuItem.Text = "Edit Columns";
+            this.editColumnsToolStripMenuItem.Click += new System.EventHandler(this.editColumnsToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -587,8 +578,7 @@
         private System.Windows.Forms.ToolStripMenuItem excelFileSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelOptionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hideShowColumnsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editColumnNamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editColumnsToolStripMenuItem;
     }
 }
 

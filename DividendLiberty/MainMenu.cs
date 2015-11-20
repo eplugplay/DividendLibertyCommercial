@@ -19,7 +19,7 @@ namespace DividendLiberty
 {
     public partial class MainMenu : Form
     {
-        public static HideShowColumns _HideShowColumns;
+        public static EditColumns _EditColumns;
         public static Dividends _Dividends;
         public bool CurrentDiv { get; set; }
         public int ID { get; set; }
@@ -125,10 +125,10 @@ namespace DividendLiberty
             DataTable dt = uti.GetXMLData();
             decimal Purchaseprice = 0;
             string symbols = uti.GetStockSymbols(dt);
-            string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(symbols, "d", true));
-            string[] DivYield = uti.SplitStockData(YahooFinance.GetValues(symbols, "y", true));
+            string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
+            string[] DivYield = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
             // l1 is last trade price, c1 change in price, b is bid price, a is ask price; Ask price is current price as you're asking for a price when selling therefore that is the price of your portfolio
-            string[] CurrentStockPrice = uti.SplitStockData(YahooFinance.GetValues(symbols, "a", true));
+            string[] CurrentStockPrice = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.currentPrice), true));
             //decimal val = dt.Rows.Count;
             //decimal StatusVal = 0;
             //val = Math.Round(90 / val, 0);
@@ -181,7 +181,7 @@ namespace DividendLiberty
             {
                 File.Copy(uti.GetLocalFilePath(FileTypes.ini), uti.GetFilePath(FileTypes.ini), true);
             }
-            HideExcelColumns();
+            //HideExcelColumns();
             if (lv.Name == "lvCurrentDividends")
             {
                 LvNames = "Portfolio Data";
@@ -192,7 +192,7 @@ namespace DividendLiberty
             }
             DataTable dtXml = uti.SortDataTable(uti.GetXMLData(), "asc");
             string symbols = uti.GetStockSymbols(dtXml);
-            string stockNames = YahooFinance.GetValues(symbols, "n", true);
+            string stockNames = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.stockname), true);
             int count = 0;
             if (stockNames == "")
             {
@@ -201,14 +201,14 @@ namespace DividendLiberty
             }
             string[] names = uti.SplitStockData(stockNames);
 
-            string exDividend = YahooFinance.GetValues(symbols, "r1", true);
+            string exDividend = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.exDividend), true);
             if (exDividend == "")
             {
                 count++;
                 StockDataType += " Dividend dates,";
             }
             string[] exDiv = uti.SplitStockData(exDividend);
-            string payDates = YahooFinance.GetValues(symbols, "q", true);
+            string payDates = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.payDate), true);
             if (payDates == "")
             {
                 count++;
@@ -223,22 +223,22 @@ namespace DividendLiberty
             Program.PleaseWait.Close();
         }
 
-        public void HideExcelColumns()
-        {
-            string[] values = new string[11];
-            values[0] = "true";
-            values[1] = "true";
-            values[2] = "true";
-            values[3] = "true";
-            values[4] = "true";
-            values[5] = "true";
-            values[6] = "true";
-            values[7] = "true";
-            values[8] = "true";
-            values[9] = "true";
-            values[10] = "true";
-            PortfolioExcel.HideExcelColumns(INIFileOptions.SetINIValues(values));
-        }
+        //public void SaveHideExcelColumns()
+        //{
+        //    string[] values = new string[11];
+        //    values[0] = "true";
+        //    values[1] = "true";
+        //    values[2] = "true";
+        //    values[3] = "true";
+        //    values[4] = "true";
+        //    values[5] = "true";
+        //    values[6] = "true";
+        //    values[7] = "true";
+        //    values[8] = "true";
+        //    values[9] = "true";
+        //    values[10] = "true";
+        //    PortfolioExcel.HideExcelColumns(INIFileOptions.SetINIValues(values));
+        //}
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
@@ -789,7 +789,7 @@ namespace DividendLiberty
                         string symbol = lv.Items[i].SubItems[1].Text.ToString();
                         try
                         {
-                            div = Convert.ToDecimal(YahooFinance.GetValues(symbol, "d", false));
+                            div = Convert.ToDecimal(YahooFinance.GetValues(symbol, YahooFinance.GetCodes(YahooCodes.annualDividend), false));
                         }
                         catch
                         {
@@ -892,22 +892,22 @@ namespace DividendLiberty
             }
         }
 
-        private void hideShowColumnsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void editColumnsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_HideShowColumns == null || _HideShowColumns.IsDisposed)
+            if (_EditColumns == null || _EditColumns.IsDisposed)
             {
-                _HideShowColumns = new HideShowColumns();
-                _HideShowColumns.Show();
+                _EditColumns = new EditColumns();
+                _EditColumns.Show();
             }
             else
             {
-                if (_HideShowColumns.WindowState == FormWindowState.Minimized)
+                if (_EditColumns.WindowState == FormWindowState.Minimized)
                 {
-                    _HideShowColumns.WindowState = FormWindowState.Normal;
+                    _EditColumns.WindowState = FormWindowState.Normal;
                 }
                 else
                 {
-                    _HideShowColumns.BringToFront();
+                    _EditColumns.BringToFront();
                 }
             }
         }

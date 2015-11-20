@@ -50,49 +50,96 @@ namespace DividendLiberty
 
     public static class INIFileOptions
     {
-        public static string[,] GetINISectionKeys()
+        public static string[] ReadINIKeyValues(KeyPartition keyPartition)
         {
-            string[,] sectionKeys = new string[2, 11];
-            sectionKeys[0, 0] = "Column1";
-            sectionKeys[0, 1] = "Column2";
-            sectionKeys[0, 2] = "Column3";
-            sectionKeys[0, 3] = "Column4";
-            sectionKeys[0, 4] = "Column5";
-            sectionKeys[0, 5] = "Column6";
-            sectionKeys[0, 6] = "Column7";
-            sectionKeys[0, 7] = "Column8";
-            sectionKeys[0, 8] = "Column9";
-            sectionKeys[0, 9] = "Column10";
-            sectionKeys[0, 10] = "Column11";
-
-            sectionKeys[1, 0] = "Symbols";
-            sectionKeys[1, 2] = "Industry";
-            sectionKeys[1, 3] = "Shares";
-            sectionKeys[1, 4] = "Price";
-            sectionKeys[1, 5] = "Annual Dividend";
-            sectionKeys[1, 6] = "Yield";
-            sectionKeys[1, 7] = "Monthly Dividends";
-            sectionKeys[1, 8] = "Quarterly Dividends";
-            sectionKeys[1, 9] = "Yearly Dividends";
-            sectionKeys[1, 10] = "Cost Basis";
-            return sectionKeys;
+            string[] toReturn = new string[11];
+            string[] keyValues = INIFileOptions.GetINISectionKeyValues();
+            for (int i = 0; i < keyValues.Length; i++)
+            {
+                toReturn[i] = INIFileOptions.GetKeyValueSplit(keyValues[i], keyPartition).Trim();
+            }
+            return toReturn;
         }
 
-        public static string[] SetINIValues(string[] Newalues)
+
+        public static string[] GetINISectionKeyValues()
         {
-            string[] values = new string[11];
-            values[0] = Newalues[0];
-            values[1] = Newalues[1];
-            values[2] = Newalues[2];
-            values[3] = Newalues[3];
-            values[4] = Newalues[4];
-            values[5] = Newalues[5];
-            values[6] = Newalues[6];
-            values[7] = Newalues[7];
-            values[8] = Newalues[8];
-            values[9] = Newalues[9];
-            values[10] = Newalues[10];
-            return values;
+            string[] keyValues = new string[11];
+            INIFile ini = new INIFile(uti.GetFilePath(FileTypes.ini));
+            string[] sections = GetINISection();
+            string[] keys = GetINIKeys();
+            int a = 0;
+            for (int i = 0; i < sections.Length; i++)
+            {
+                keyValues[i] = ini.Read(sections[i], keys[i]);
+            }
+            return keyValues;
         }
+
+        public static string GetKeyValueSplit(string key, KeyPartition keyPartition)
+        {
+            string[] keyTemp = key.Split(';');
+            return key = keyTemp[GetKeyPartition(keyPartition)];
+        }
+
+        public static int GetKeyPartition(KeyPartition KeyPartition)
+        {
+            int partition = 0;
+            switch (KeyPartition)
+            {
+                case KeyPartition.visible: partition = 0; break;
+                case KeyPartition.columnName: partition = 1; break;
+                default: break;
+            }
+            return partition;
+        }
+
+        public static string[] GetINISection()
+        {
+            string[] section = new string[11];
+            section[0] = "Column1";
+            section[1] = "Column2";
+            section[2] = "Column3";
+            section[3] = "Column4";
+            section[4] = "Column5";
+            section[5] = "Column6";
+            section[6] = "Column7";
+            section[7] = "Column8";
+            section[8] = "Column9";
+            section[9] = "Column10";
+            section[10] = "Column11";
+            return section;
+        }
+
+        public static string[] GetINIKeys()
+        {
+            string[] Keys = new string[11];
+            Keys[0] = "Symbols";
+            Keys[1] = "Company";
+            Keys[2] = "Industry";
+            Keys[3] = "Shares";
+            Keys[4] = "Price";
+            Keys[5] = "Annual Dividend";
+            Keys[6] = "Yield";
+            Keys[7] = "Monthly Dividends";
+            Keys[8] = "Quarterly Dividends";
+            Keys[9] = "Yearly Dividends";
+            Keys[10] = "Cost Basis";
+            return Keys;
+        }
+
+        public static void SaveExcelSettings(string[] sections, string[] keys, string[] values)
+        {
+            for (int i = 0; i < sections.Length; i++)
+            {
+                uti.SaveIniFile(sections[i], keys[i], values[i]);
+            }
+        }
+    }
+
+    public enum KeyPartition
+    {
+        visible,
+        columnName
     }
 }

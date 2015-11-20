@@ -17,9 +17,10 @@ namespace DividendLiberty
         {
             DataTable dt = uti.SortDataTable(uti.GetXMLData(), "asc");
             string stocks = uti.GetStockSymbols(dt);
-            string[] annualDiv = uti.SplitStockData(YahooFinance.GetValues(stocks, "d", true));
-            string[] yields = uti.SplitStockData(YahooFinance.GetValues(stocks, "y", true));
-            string[] companies = uti.SplitStockData(YahooFinance.GetValues(stocks, "n", true));
+            string[] annualDiv = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
+            string[] yields = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
+            string[] companies = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.stockname), true));
+
             string savePath = uti.GetFilePath(FileTypes.excel);
             ExcelNPOIWriter excelObj = new ExcelNPOIWriter();
             excelObj.CreateWorksheet("My Dividends");
@@ -69,11 +70,14 @@ namespace DividendLiberty
             System.Diagnostics.Process.Start(savePath);
         }
 
+
         public static DataTable ConvertExcelData(DataTable dt, string[] yields, string[] annualDiv, string[] company)
         {
-            decimal totalCost = 0;
-            decimal yearlyDividends = 0;
+            //decimal totalCost = 0;
+            //decimal yearlyDividends = 0;
             DataTable dtFinal = GetFinalTables();
+            string[] col = INIFileOptions.ReadINIKeyValues(KeyPartition.columnName);
+            string[] visible = INIFileOptions.ReadINIKeyValues(KeyPartition.visible);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (dt.Rows[i]["active"].ToString() == "true")
@@ -83,68 +87,107 @@ namespace DividendLiberty
                     decimal cost = Convert.ToDecimal(dt.Rows[i]["cost"]);
                     decimal annDiv = annualDiv[i] == "N/A" ? 0 : Convert.ToDecimal(annualDiv[i]);
                     decimal yearlyDiv = Math.Round(shares * annDiv, 2);
-                    dr["Symbol"] = dt.Rows[i]["symbol"].ToString();
-                    dr["Company"] = company[i].Length == 0 ? "" : company[i].ToString();
-                    dr["Industry"] = dt.Rows[i]["industry"].ToString();
-                    dr["Shares"] = Convert.ToDouble(shares);
-                    dr["Price"] = Convert.ToDouble(cost);
-                    dr["Annual Dividend"] = Convert.ToDouble(annDiv);
-                    dr["Yield"] = yields[i] == "N/A" ? 0 : Convert.ToDouble(yields[i]);
-                    dr["Monthly Dividends"] = Convert.ToDouble(Math.Round(yearlyDiv / 12, 2));
-                    dr["Quarterly Dividends"] = Convert.ToDouble(Math.Round(yearlyDiv / 4, 2));
-                    dr["Yearly Dividends"] = Convert.ToDouble(yearlyDiv);
-                    dr["Cost Basis"] = Math.Round(Convert.ToDouble(shares * cost), 2);
-                    yearlyDividends += Convert.ToDecimal(yearlyDiv);
-                    totalCost += Math.Round(Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(dt.Rows[i]["cost"]), 2);
+                    INIFile ini = new INIFile(uti.GetFilePath(FileTypes.ini));
+                    int visCnt = 0;
+                    int cnt = 0;
+                    if (visible[visCnt++] == "true")
+                    {
+                        dr[col[cnt++]] = dt.Rows[i]["symbol"].ToString();
+                    }
+                    if (visible[visCnt++] == "true")
+                    {
+                        dr[col[cnt++]] = company[i].Length == 0 ? "" : company[i].ToString();
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = dt.Rows[i]["industry"].ToString();
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = Convert.ToDouble(shares);
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = Convert.ToDouble(cost);
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = Convert.ToDouble(annDiv);
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = yields[i] == "N/A" ? 0 : Convert.ToDouble(yields[i]);
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = Convert.ToDouble(Math.Round(yearlyDiv / 12, 2));
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = Convert.ToDouble(Math.Round(yearlyDiv / 4, 2));
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = Convert.ToDouble(yearlyDiv);
+                    }
+                    if (visible[visCnt] == "true")
+                    {
+                        dr[col[cnt]] = Math.Round(Convert.ToDouble(shares * cost), 2);
+                    }
+                    visCnt++;
+                    //if (visible[cnt] == "true")
+                    //{
+                    //    yearlyDividends += Convert.ToDecimal(yearlyDiv);
+                    //}
+                    //totalCost += Math.Round(Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(dt.Rows[i]["cost"]), 2);
                     dtFinal.Rows.Add(dr);
                 }
             }
 
             DataRow drEmpty = dtFinal.NewRow();
-            drEmpty["Yield"] = 0;
+            drEmpty[col[6]] = 0;
             //drEmpty["Annual Dividend"] = 0;
-            drEmpty["Monthly Dividends"] = 0;
-            drEmpty["Quarterly Dividends"] = 0;
-            drEmpty["Yearly Dividends"] = 0;
-            drEmpty["Cost Basis"] = 0;
+            drEmpty[col[7]] = 0;
+            drEmpty[col[8]] = 0;
+            drEmpty[col[9]] = 0;
+            drEmpty[col[10]] = 0;
             dtFinal.Rows.Add(drEmpty);
-            return dtFinal;
-        }
-
-        public static DataTable GetFinalTables(string[,] keySections, string[] values)
-        {
-            DataTable dtFinal = new DataTable();
-            for (int i = 0; i < values.Length; i++)
-            {
-                dtFinal.Columns.Add(keySections[1, 0], typeof(string));
-                dtFinal.Columns.Add(keySections[1, 1], typeof(string));
-                dtFinal.Columns.Add(keySections[1, 2], typeof(string));
-                dtFinal.Columns.Add(keySections[1, 3], typeof(double));
-                dtFinal.Columns.Add(keySections[1, 4], typeof(double));
-                dtFinal.Columns.Add(keySections[1, 5], typeof(double));
-                dtFinal.Columns.Add(keySections[1, 6], typeof(double));
-                dtFinal.Columns.Add(keySections[1, 7], typeof(double));
-                dtFinal.Columns.Add(keySections[1, 8], typeof(double));
-                dtFinal.Columns.Add(keySections[1, 9], typeof(double));
-                dtFinal.Columns.Add(keySections[1, 10], typeof(double));
-            }
             return dtFinal;
         }
 
         public static DataTable GetFinalTables()
         {
             DataTable dtFinal = new DataTable();
-            dtFinal.Columns.Add("Symbol", typeof(string));
-            dtFinal.Columns.Add("Company", typeof(string));
-            dtFinal.Columns.Add("Industry", typeof(string));
-            dtFinal.Columns.Add("Shares", typeof(double));
-            dtFinal.Columns.Add("Price", typeof(double));
-            dtFinal.Columns.Add("Annual Dividend", typeof(double));
-            dtFinal.Columns.Add("Yield", typeof(double));
-            dtFinal.Columns.Add("Monthly Dividends", typeof(double));
-            dtFinal.Columns.Add("Quarterly Dividends", typeof(double));
-            dtFinal.Columns.Add("Yearly Dividends", typeof(double));
-            dtFinal.Columns.Add("Cost Basis", typeof(double));
+            string[] col = INIFileOptions.ReadINIKeyValues(KeyPartition.columnName);
+            string[] visible = INIFileOptions.ReadINIKeyValues(KeyPartition.visible);
+            for (int i = 0; i < visible.Length; i++)
+            {
+                if (i <= 2)
+                {
+                    if (visible[i] == "true")
+                    {
+                        dtFinal.Columns.Add(col[i], typeof(string));
+                    }
+                }
+                else
+                {
+                    if (visible[i] == "true")
+                    {
+                        dtFinal.Columns.Add(col[i], typeof(double));
+                    }
+                }
+            }
+          
+            //dtFinal.Columns.Add(col[1], typeof(string));
+            //dtFinal.Columns.Add(col[2], typeof(string));
+            //dtFinal.Columns.Add(col[3], typeof(double));
+            //dtFinal.Columns.Add(col[4], typeof(double));
+            //dtFinal.Columns.Add(col[5], typeof(double));
+            //dtFinal.Columns.Add(col[6], typeof(double));
+            //dtFinal.Columns.Add(col[7], typeof(double));
+            //dtFinal.Columns.Add(col[8], typeof(double));
+            //dtFinal.Columns.Add(col[9], typeof(double));
+            //dtFinal.Columns.Add(col[10], typeof(double));
             return dtFinal;
         }
 
@@ -154,29 +197,6 @@ namespace DividendLiberty
             {
                 exObj.AutoSizeColumn(i, sheetName);
             }
-        }
-
-        public static void SaveExcelSettings(string[,] keys, string[] values)
-        {
-            uti.SaveIniFile(keys[0, 0], keys[1, 0], values[0]);
-            uti.SaveIniFile(keys[0, 1], keys[1, 1], values[1]);
-            uti.SaveIniFile(keys[0, 2], keys[1, 2], values[2]);
-            uti.SaveIniFile(keys[0, 3], keys[1, 3], values[3]);
-            uti.SaveIniFile(keys[0, 4], keys[1, 4], values[4]);
-            uti.SaveIniFile(keys[0, 5], keys[1, 5], values[5]);
-            uti.SaveIniFile(keys[0, 6], keys[1, 6], values[6]);
-            uti.SaveIniFile(keys[0, 7], keys[1, 7], values[7]);
-            uti.SaveIniFile(keys[0, 8], keys[1, 8], values[8]);
-            uti.SaveIniFile(keys[0, 9], keys[1, 9], values[9]);
-            uti.SaveIniFile(keys[0, 10], keys[1, 10], values[10]);
-        }
-
-        public static void HideExcelColumns(string [] Newvalues)
-        {
-            string[,] sectionKeys = INIFileOptions.GetINISectionKeys();
-            string[] values = INIFileOptions.SetINIValues(Newvalues);
-
-            PortfolioExcel.SaveExcelSettings(sectionKeys, values);
         }
     }
 }
