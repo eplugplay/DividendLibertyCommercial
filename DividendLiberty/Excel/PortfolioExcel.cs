@@ -92,49 +92,59 @@ namespace DividendLiberty
                     int cnt = 0;
                     if (visible[visCnt++] == "true")
                     {
-                        dr[col[cnt++]] = dt.Rows[i]["symbol"].ToString();
+                        dr[col[cnt]] = dt.Rows[i]["symbol"].ToString();
                     }
+                    cnt++;
                     if (visible[visCnt++] == "true")
                     {
-                        dr[col[cnt++]] = company[i].Length == 0 ? "" : company[i].ToString();
+                        dr[col[cnt]] = company[i].Length == 0 ? "" : company[i].ToString();
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = dt.Rows[i]["industry"].ToString();
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(shares);
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(cost);
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(annDiv);
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = yields[i] == "N/A" ? 0 : Convert.ToDouble(yields[i]);
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(Math.Round(yearlyDiv / 12, 2));
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(Math.Round(yearlyDiv / 4, 2));
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(yearlyDiv);
                     }
-                    if (visible[visCnt] == "true")
+                    cnt++;
+                    if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Math.Round(Convert.ToDouble(shares * cost), 2);
                     }
-                    visCnt++;
+                    cnt = 0;
                     //if (visible[cnt] == "true")
                     //{
                     //    yearlyDividends += Convert.ToDecimal(yearlyDiv);
