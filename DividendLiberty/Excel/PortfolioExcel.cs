@@ -43,6 +43,7 @@ namespace DividendLiberty
                     HSSFCell AvgYield = excelObj.getCell(count, a, "My Dividends");
                     AvgYield.SetCellType(CellType.FORMULA);
                     AvgYield.CellFormula = string.Format("ROUND(SUM({0}{1}:{0}{2})/{3}, 2)", uti.GetExcelColLetter(a), 2, count, count - 1);
+                    excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
                 }
 
                 if (lstForumaCol[a] == 7)
@@ -50,6 +51,7 @@ namespace DividendLiberty
                     HSSFCell MonthlyDiv = excelObj.getCell(count, a, "My Dividends");
                     MonthlyDiv.SetCellType(CellType.FORMULA);
                     MonthlyDiv.CellFormula = string.Format("ROUND(SUM({0}{1}:{0}{2}), 2)", uti.GetExcelColLetter(a), 2, count);
+                    excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
                 }
 
                 if (lstForumaCol[a] == 8)
@@ -57,6 +59,7 @@ namespace DividendLiberty
                     HSSFCell QuarterlyDiv = excelObj.getCell(count, a, "My Dividends");
                     QuarterlyDiv.SetCellType(CellType.FORMULA);
                     QuarterlyDiv.CellFormula = string.Format("ROUND(SUM({0}{1}:{0}{2}), 2)", uti.GetExcelColLetter(a), 2, count);
+                    excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
                 }
 
                 if (lstForumaCol[a] == 9)
@@ -64,18 +67,15 @@ namespace DividendLiberty
                     HSSFCell YearlyDiv = excelObj.getCell(count, a, "My Dividends");
                     YearlyDiv.SetCellType(CellType.FORMULA);
                     YearlyDiv.CellFormula = string.Format("ROUND(SUM({0}{1}:{0}{2}), 2)", uti.GetExcelColLetter(a), 2, count);
+                    excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
                 }
                 if (lstForumaCol[a] == 10)
                 {
                     HSSFCell TotalCostBasis = excelObj.getCell(count, a, "My Dividends");
                     TotalCostBasis.SetCellType(CellType.FORMULA);
                     TotalCostBasis.CellFormula = string.Format("SUM({0}{1}:{0}{2})", uti.GetExcelColLetter(a), 2, count);
+                    excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
                 }
-            }
-
-            for (int i = lstForumaCol.Count; i < dtFinal.Columns.Count; i++)
-            {
-                excelObj.getCell(count, i, "My Dividends").CellStyle = excelObj.getStyle("headers");
             }
 
             AutoSizeColumns(excelObj, dtFinal, "My Dividends");
