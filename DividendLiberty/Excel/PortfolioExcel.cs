@@ -26,8 +26,7 @@ namespace DividendLiberty
             ExcelNPOIWriter excelObj = new ExcelNPOIWriter();
             excelObj.CreateWorksheet("My Dividends");
             List<int> lstForumaCol = new List<int>();
-            int totalColCount = 0;
-            DataTable dtFinal = ConvertExcelData(dt, yields, annualDiv, companies, out lstForumaCol, out totalColCount);
+            DataTable dtFinal = ConvertExcelData(dt, yields, annualDiv, companies, out lstForumaCol);
             excelObj.WriteData(dtFinal, "My Dividends", true);
             excelObj.createStyle("headers");
             excelObj.setFont("headers", true);
@@ -45,10 +44,6 @@ namespace DividendLiberty
                     AvgYield.SetCellType(CellType.FORMULA);
                     AvgYield.CellFormula = string.Format("ROUND(SUM({0}{1}:{0}{2})/{3}, 2)", uti.GetExcelColLetter(a), 2, count, count - 1);
                 }
-
-                //HSSFCell AnnualDiv = excelObj.getCell(count, 6, "My Dividends");
-                //AnnualDiv.SetCellType(CellType.FORMULA);
-                //AnnualDiv.CellFormula = string.Format("ROUND(SUM(G{0}:G{1})/{2}, 2)", 2, count, count - 1);
 
                 if (lstForumaCol[a] == 7)
                 {
@@ -90,15 +85,12 @@ namespace DividendLiberty
         }
 
 
-        public static DataTable ConvertExcelData(DataTable dt, string[] yields, string[] annualDiv, string[] company, out List<int> lstForumaCol, out int totalColCount)
+        public static DataTable ConvertExcelData(DataTable dt, string[] yields, string[] annualDiv, string[] company, out List<int> lstForumaCol)
         {
-            //decimal totalCost = 0;
-            //decimal yearlyDividends = 0;
             DataTable dtFinal = GetFinalTables();
             string[] col = INIFileOptions.ReadINIKeyValues(KeyPartition.columnName);
             string[] visible = INIFileOptions.ReadINIKeyValues(KeyPartition.visible);
             lstForumaCol = new List<int>();
-            totalColCount = GetTotalColCount(visible);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (dt.Rows[i]["active"].ToString() == "true")
@@ -144,46 +136,27 @@ namespace DividendLiberty
                     if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = yields[i] == "N/A" ? 0 : Convert.ToDouble(yields[i]);
-                        //if (!lstForumaCol.Contains(cnt))
-                        //{
-                        //    lstForumaCol.Add(cnt);
-                        //}
                     }
                     cnt++;
                     if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(Math.Round(yearlyDiv / 12, 2));
-                        //if (!lstForumaCol.Contains(cnt))
-                        //{
-                        //    lstForumaCol.Add(cnt);
-                        //}
                     }
                     cnt++;
                     if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(Math.Round(yearlyDiv / 4, 2));
-                        //if (!lstForumaCol.Contains(cnt))
-                        //{
-                        //    lstForumaCol.Add(cnt);
-                        //}
+
                     }
                     cnt++;
                     if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Convert.ToDouble(yearlyDiv);
-                        //if (!lstForumaCol.Contains(cnt))
-                        //{
-                        //    lstForumaCol.Add(cnt);
-                        //}
                     }
                     cnt++;
                     if (visible[visCnt++] == "true")
                     {
                         dr[col[cnt]] = Math.Round(Convert.ToDouble(shares * cost), 2);
-                        //if (!lstForumaCol.Contains(cnt))
-                        //{
-                        //    lstForumaCol.Add(cnt);
-                        //}
                     }
                     cnt = 0;
                     visCnt = 0;
@@ -200,10 +173,7 @@ namespace DividendLiberty
             {
                 if (visible[a] == "true")
                 {
-                    //if (a == 6 || a == 7 || a == 8 || a == 9 || a == 10)
-                    //{
-                        lstForumaCol.Add(a);
-                    //}
+                    lstForumaCol.Add(a);
                 }
             }
 
@@ -234,19 +204,6 @@ namespace DividendLiberty
             return dtFinal;
         }
 
-        public static int GetTotalColCount(string[] visible)
-        {
-            int count = 0;
-            for (int i = 0; i < visible.Length; i++)
-            {
-                if (visible[i] == "true")
-                {
-                    count++;
-                }
-            }
-            return count;
-        }
-
         public static DataTable GetFinalTables()
         {
             DataTable dtFinal = new DataTable();
@@ -269,17 +226,6 @@ namespace DividendLiberty
                     }
                 }
             }
-          
-            //dtFinal.Columns.Add(col[1], typeof(string));
-            //dtFinal.Columns.Add(col[2], typeof(string));
-            //dtFinal.Columns.Add(col[3], typeof(double));
-            //dtFinal.Columns.Add(col[4], typeof(double));
-            //dtFinal.Columns.Add(col[5], typeof(double));
-            //dtFinal.Columns.Add(col[6], typeof(double));
-            //dtFinal.Columns.Add(col[7], typeof(double));
-            //dtFinal.Columns.Add(col[8], typeof(double));
-            //dtFinal.Columns.Add(col[9], typeof(double));
-            //dtFinal.Columns.Add(col[10], typeof(double));
             return dtFinal;
         }
 

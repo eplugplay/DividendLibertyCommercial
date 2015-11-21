@@ -33,6 +33,7 @@ namespace DividendLiberty
             string[] keys = INIFileOptions.GetINIKeys();
             string[] values = CombineValues(GetVisibles(), GetColumnNames());
             INIFileOptions.SaveExcelSettings(section, keys, values);
+            MessageBox.Show("Updated!");
         }
 
         public string[] CombineValues(string[] colVisible, string[] colNames)
