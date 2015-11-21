@@ -179,6 +179,27 @@ namespace DividendLiberty
             DataTable dtXml = view.ToTable();
             return dtXml;
         }
+
+        public static string GetExcelColLetter(int col)
+        {
+            string colLetter ="";
+            switch(col)
+            {
+                case 0: colLetter = "A"; break;
+                case 1: colLetter = "B"; break;
+                case 2: colLetter = "C"; break;
+                case 3: colLetter = "D"; break;
+                case 4: colLetter = "E"; break;
+                case 5: colLetter = "F"; break;
+                case 6: colLetter = "G"; break;
+                case 7: colLetter = "H"; break;
+                case 8: colLetter = "I"; break;
+                case 9: colLetter = "J"; break;
+                case 10: colLetter = "K"; break;
+                default: break;
+            }
+            return colLetter;
+        }
     }
 
     public enum FileTypes
