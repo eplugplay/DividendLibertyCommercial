@@ -26,6 +26,8 @@ namespace DividendLiberty
         public int SelectedIndex { get; set; }
         public List<int> lstID = new List<int>();
         public string Symbol { get; set; }
+        public bool UpArrowKeyPressed { get; set; }
+        public bool DownArrowKeyPressed { get; set; }
         public MainMenu()
         {
             InitializeComponent();
@@ -151,7 +153,7 @@ namespace DividendLiberty
                     //    DividendTotalPercentage -= Convert.ToDecimal(DivYield[i]);
                     //    DividendTotalPercentage += (decimal).80;
                     //}
-                    MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(CurrentStockPrice[i]));
+                    MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["shares"]) * (CurrentStockPrice[i].ToString() == "N/A" ? 0 : Convert.ToDecimal(CurrentStockPrice[i])));
                     //StatusVal += val;
                     //if (StatusVal < 88)
                     //    pbStatus.InvokeEx(x => x.Value = Convert.ToInt32(StatusVal));
@@ -396,6 +398,47 @@ namespace DividendLiberty
             for (int i = 0; i < lv.SelectedItems.Count; i++)
             {
                 lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
+            }
+            lv.SelectedItems.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
+                {
+                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                }
+                if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
+                {
+                    lv.Items[i].BackColor = Color.White;
+                }
+            }
+        }
+
+        public void HighlightMultipleShiftArrowColor(ListView lv)
+        {
+            //lstID.Clear();
+            if (UpArrowKeyPressed == true && DownArrowKeyPressed == false || UpArrowKeyPressed == false && DownArrowKeyPressed == true)
+            {
+                for (int i = 0; i < lv.SelectedItems.Count; i++)
+                {
+                    if (!lstID.Contains(Convert.ToInt32(lv.SelectedItems[i].Tag)))
+                    {
+                        lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
+                    }
+                }
+            }
+            else if (UpArrowKeyPressed == true && DownArrowKeyPressed == true)
+            {
+                for (int i = 0; i < lv.SelectedItems.Count; i++)
+                {
+                    if (lstID.Contains(Convert.ToInt32(lv.SelectedItems[i].Tag)))
+                    {
+                        lstID.Remove(Convert.ToInt32(lv.SelectedItems[i].Tag));
+                    }
+                    if (lstID.Count == 0)
+                    {
+                        //lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
+                    }
+                }
             }
             lv.SelectedItems.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
@@ -912,5 +955,55 @@ namespace DividendLiberty
                 }
             }
         }
+
+        private void lvAllDividends_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
+            {
+                uti.ClearListViewColors(lvAllDividends);
+                uti.SetStockIndexSymbol(lvAllDividends);
+                HighlightSingleColor(lvAllDividends);
+                UpArrowKeyPressed = false;
+                DownArrowKeyPressed = false;
+            }
+            else if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift)
+            {
+                UpArrowKeyPressed = true;
+                if (DownArrowKeyPressed == true)
+                {
+                    UpArrowKeyPressed = true;
+                }
+                uti.ClearListViewColors(lvAllDividends);
+                HighlightMultipleShiftArrowColor(lvAllDividends);
+                lvCurrentDividends.SelectedItems.Clear();
+            }
+            else if (e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift)
+            {
+                DownArrowKeyPressed = true;
+                if (UpArrowKeyPressed == true)
+                {
+                    DownArrowKeyPressed = true;
+                }
+                uti.ClearListViewColors(lvAllDividends);
+                HighlightMultipleShiftArrowColor(lvAllDividends);
+                lvCurrentDividends.SelectedItems.Clear();
+            }
+        }
+
+        private void lvCurrentDividends_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
+            {
+                uti.ClearListViewColors(lvCurrentDividends);
+                uti.SetStockIndexSymbol(lvCurrentDividends);
+                HighlightSingleColor(lvCurrentDividends);
+            }
+            else if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift)
+            {
+                //lvCurrentDividends.SelectedItems.Clear();
+                HighlightMultipleShiftArrowColor(lvCurrentDividends);
+            }
+        }
+
     }
 }

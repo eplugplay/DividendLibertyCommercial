@@ -44,6 +44,7 @@
             this.generateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpDividendStocks = new System.Windows.Forms.GroupBox();
             this.lblMyPortfolio = new System.Windows.Forms.Label();
             this.lvAllDividends = new System.Windows.Forms.ListView();
@@ -68,7 +69,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.editColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -194,6 +194,13 @@
             this.excelOptionsToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.excelOptionsToolStripMenuItem.Text = "Excel Options";
             // 
+            // editColumnsToolStripMenuItem
+            // 
+            this.editColumnsToolStripMenuItem.Name = "editColumnsToolStripMenuItem";
+            this.editColumnsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.editColumnsToolStripMenuItem.Text = "Edit Columns";
+            this.editColumnsToolStripMenuItem.Click += new System.EventHandler(this.editColumnsToolStripMenuItem_Click);
+            // 
             // gpDividendStocks
             // 
             this.gpDividendStocks.BackColor = System.Drawing.Color.DarkGoldenrod;
@@ -246,6 +253,7 @@
             this.lvAllDividends.TabIndex = 40;
             this.lvAllDividends.UseCompatibleStateImageBehavior = false;
             this.lvAllDividends.SelectedIndexChanged += new System.EventHandler(this.lvAllDividends_SelectedIndexChanged);
+            this.lvAllDividends.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvAllDividends_KeyUp);
             this.lvAllDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseClick);
             this.lvAllDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDoubleClick);
             this.lvAllDividends.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseUp);
@@ -258,6 +266,7 @@
             this.lvCurrentDividends.Size = new System.Drawing.Size(754, 287);
             this.lvCurrentDividends.TabIndex = 39;
             this.lvCurrentDividends.UseCompatibleStateImageBehavior = false;
+            this.lvCurrentDividends.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvCurrentDividends_KeyUp);
             this.lvCurrentDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseClick);
             this.lvCurrentDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseDoubleClick);
             this.lvCurrentDividends.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseDown);
@@ -502,13 +511,6 @@
             this.lblStatus.TabIndex = 40;
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
-            // 
-            // editColumnsToolStripMenuItem
-            // 
-            this.editColumnsToolStripMenuItem.Name = "editColumnsToolStripMenuItem";
-            this.editColumnsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editColumnsToolStripMenuItem.Text = "Edit Columns";
-            this.editColumnsToolStripMenuItem.Click += new System.EventHandler(this.editColumnsToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
