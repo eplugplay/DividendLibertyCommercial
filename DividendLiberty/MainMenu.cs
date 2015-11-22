@@ -26,8 +26,6 @@ namespace DividendLiberty
         public int SelectedIndex { get; set; }
         public List<int> lstID = new List<int>();
         public string Symbol { get; set; }
-        public bool UpArrowKeyPressed { get; set; }
-        public bool DownArrowKeyPressed { get; set; }
         public MainMenu()
         {
             InitializeComponent();
@@ -252,6 +250,7 @@ namespace DividendLiberty
             dtpPayDate.ShowUpDown = true;
             lvAllDividends.FullRowSelect = true;
             lvCurrentDividends.FullRowSelect = true;
+            //lvCurrentDividends.HideSelection = false;
             LoadDividends(lvCurrentDividends, "true");
             LoadDividends(lvAllDividends, "false");
             if (result != "")
@@ -413,46 +412,48 @@ namespace DividendLiberty
             }
         }
 
-        public void HighlightMultipleShiftArrowColor(ListView lv)
-        {
-            //lstID.Clear();
-            if (UpArrowKeyPressed == true && DownArrowKeyPressed == false || UpArrowKeyPressed == false && DownArrowKeyPressed == true)
-            {
-                for (int i = 0; i < lv.SelectedItems.Count; i++)
-                {
-                    if (!lstID.Contains(Convert.ToInt32(lv.SelectedItems[i].Tag)))
-                    {
-                        lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
-                    }
-                }
-            }
-            else if (UpArrowKeyPressed == true && DownArrowKeyPressed == true)
-            {
-                for (int i = 0; i < lv.SelectedItems.Count; i++)
-                {
-                    if (lstID.Contains(Convert.ToInt32(lv.SelectedItems[i].Tag)))
-                    {
-                        lstID.Remove(Convert.ToInt32(lv.SelectedItems[i].Tag));
-                    }
-                    if (lstID.Count == 0)
-                    {
-                        //lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
-                    }
-                }
-            }
-            lv.SelectedItems.Clear();
-            for (int i = 0; i < lv.Items.Count; i++)
-            {
-                if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
-                {
-                    lv.Items[i].BackColor = uti.GetHighlightColor();
-                }
-                if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
-                {
-                    lv.Items[i].BackColor = Color.White;
-                }
-            }
-        }
+        //public void HighlightMultipleShiftArrowColor(ListView lv)
+        //{
+        //    //lstID.Clear();
+        //    if (UpArrowKeyPressed == true && DownArrowKeyPressed == false || UpArrowKeyPressed == false && DownArrowKeyPressed == true)
+        //    {
+        //        for (int i = 0; i < lv.SelectedItems.Count; i++)
+        //        {
+        //            if (!lstID.Contains(Convert.ToInt32(lv.SelectedItems[i].Tag)))
+        //            {
+        //                lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
+        //            }
+        //        }
+        //    }
+        //    else if (UpArrowKeyPressed == true && DownArrowKeyPressed == true)
+        //    {
+        //        lstID.Clear();
+        //        for (int i = 0; i < lv.SelectedItems.Count; i++)
+        //        {
+        //            if (!lstID.Contains(Convert.ToInt32(lv.SelectedItems[i].Tag)))
+        //            {
+        //                lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
+        //            }
+        //            if (lstID.Count == 0)
+        //            {
+        //                UpArrowKeyPressed = false;
+        //                //lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
+        //            }
+        //        }
+        //    }
+        //    lv.SelectedItems.Clear();
+        //    for (int i = 0; i < lv.Items.Count; i++)
+        //    {
+        //        if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
+        //        {
+        //            lv.Items[i].BackColor = uti.GetHighlightColor();
+        //        }
+        //        if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
+        //        {
+        //            lv.Items[i].BackColor = Color.White;
+        //        }
+        //    }
+        //}
 
         public void HighlightSingleColor(ListView lv)
         {
@@ -966,27 +967,11 @@ namespace DividendLiberty
                 UpArrowKeyPressed = false;
                 DownArrowKeyPressed = false;
             }
-            else if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift)
+            else if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift)
             {
-                UpArrowKeyPressed = true;
-                if (DownArrowKeyPressed == true)
-                {
-                    UpArrowKeyPressed = true;
-                }
                 uti.ClearListViewColors(lvAllDividends);
-                HighlightMultipleShiftArrowColor(lvAllDividends);
-                lvCurrentDividends.SelectedItems.Clear();
-            }
-            else if (e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift)
-            {
-                DownArrowKeyPressed = true;
-                if (UpArrowKeyPressed == true)
-                {
-                    DownArrowKeyPressed = true;
-                }
-                uti.ClearListViewColors(lvAllDividends);
-                HighlightMultipleShiftArrowColor(lvAllDividends);
-                lvCurrentDividends.SelectedItems.Clear();
+                //HighlightMultipleShiftArrowColor(lvAllDividends);
+                lvAllDividends.SelectedItems.Clear();
             }
         }
 
@@ -1000,8 +985,10 @@ namespace DividendLiberty
             }
             else if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift)
             {
+                uti.ClearListViewColors(lvCurrentDividends);
+                lvCurrentDividends.SelectedItems.Clear();
                 //lvCurrentDividends.SelectedItems.Clear();
-                HighlightMultipleShiftArrowColor(lvCurrentDividends);
+                //HighlightMultipleShiftArrowColor(lvCurrentDividends);
             }
         }
 
