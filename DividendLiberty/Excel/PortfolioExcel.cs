@@ -103,60 +103,60 @@ namespace DividendLiberty
                     INIFile ini = new INIFile(uti.GetFilePath(FileTypes.ini));
                     int visCnt = 0;
                     int cnt = 0;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = dt.Rows[i]["symbol"].ToString();
+                        dr[col[cnt].ToLower()] = dt.Rows[i]["symbol"].ToString();
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = company[i].Length == 0 ? "" : company[i].ToString();
+                        dr[col[cnt].ToLower()] = company[i].Length == 0 ? "" : company[i].ToString();
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = dt.Rows[i]["industry"].ToString();
+                        dr[col[cnt].ToLower()] = dt.Rows[i]["industry"].ToString();
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = Convert.ToDouble(shares);
+                        dr[col[cnt].ToLower()] = Convert.ToDouble(shares);
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = Convert.ToDouble(cost);
+                        dr[col[cnt].ToLower()] = Convert.ToDouble(cost);
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = Convert.ToDouble(annDiv);
+                        dr[col[cnt].ToLower()] = Convert.ToDouble(annDiv);
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = yields[i] == "N/A" ? 0 : Convert.ToDouble(yields[i]);
+                        dr[col[cnt].ToLower()] = yields[i] == "N/A" ? 0 : Convert.ToDouble(yields[i]);
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = Convert.ToDouble(Math.Round(yearlyDiv / 12, 2));
+                        dr[col[cnt].ToLower()] = Convert.ToDouble(Math.Round(yearlyDiv / 12, 2));
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = Convert.ToDouble(Math.Round(yearlyDiv / 4, 2));
+                        dr[col[cnt].ToLower()] = Convert.ToDouble(Math.Round(yearlyDiv / 4, 2));
 
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = Convert.ToDouble(yearlyDiv);
+                        dr[col[cnt].ToLower()] = Convert.ToDouble(yearlyDiv);
                     }
                     cnt++;
-                    if (visible[visCnt++] == "true")
+                    if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt]] = Math.Round(Convert.ToDouble(shares * cost), 2);
+                        dr[col[cnt].ToLower()] = Math.Round(Convert.ToDouble(shares * cost), 2);
                     }
                     cnt = 0;
                     visCnt = 0;
@@ -171,34 +171,34 @@ namespace DividendLiberty
 
             for (int a = 0; a < visible.Length; a++)
             {
-                if (visible[a] == "true")
+                if (visible[a] == "True")
                 {
                     lstForumaCol.Add(a);
                 }
             }
 
             DataRow drEmpty = dtFinal.NewRow();
-            if (visible[6] == "true")
+            if (visible[6] == "True")
             {
                 //industry
-                drEmpty[col[6]] = 0;
+                drEmpty[col[6].ToLower()] = 0;
             }
             //drEmpty["Annual Dividend"] = 0;
-            if (visible[7] == "true")
+            if (visible[7] == "True")
             {
-                drEmpty[col[7]] = 0;
+                drEmpty[col[7].ToLower()] = 0;
             }
-            if (visible[8] == "true")
+            if (visible[8] == "True")
             {
-                drEmpty[col[8]] = 0;
+                drEmpty[col[8].ToLower()] = 0;
             }
-            if (visible[9] == "true")
+            if (visible[9] == "True")
             {
-                drEmpty[col[9]] = 0;
+                drEmpty[col[9].ToLower()] = 0;
             }
-            if (visible[10] == "true")
+            if (visible[10] == "True")
             {
-                drEmpty[col[10]] = 0;
+                drEmpty[col[10].ToLower()] = 0;
             }
             dtFinal.Rows.Add(drEmpty);
             return dtFinal;
@@ -213,14 +213,14 @@ namespace DividendLiberty
             {
                 if (i <= 2)
                 {
-                    if (visible[i] == "true")
+                    if (visible[i] == "True")
                     {
                         dtFinal.Columns.Add(col[i], typeof(string));
                     }
                 }
                 else
                 {
-                    if (visible[i] == "true")
+                    if (visible[i] == "True")
                     {
                         dtFinal.Columns.Add(col[i], typeof(double));
                     }

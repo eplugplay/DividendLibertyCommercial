@@ -23,6 +23,7 @@ namespace DividendLiberty
 
         private void EditColumnNames_Load(object sender, EventArgs e)
         {
+            toolTip1.AutoPopDelay = 10000;
             LoadColumnNames();
             LoadVisible();
         }
@@ -81,7 +82,7 @@ namespace DividendLiberty
             {
                 if (ctrl is CheckBox)
                 {
-                    ctrl.Checked = colVisible[i--] == "true" ? ctrl.Checked = true : ctrl.Checked = false;
+                    ctrl.Checked = colVisible[i--] == "True" ? ctrl.Checked = true : ctrl.Checked = false;
                 }
             }
         }

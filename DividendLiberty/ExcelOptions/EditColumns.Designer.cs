@@ -28,11 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditColumns));
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txtCol1 = new System.Windows.Forms.TextBox();
             this.lblCol1 = new System.Windows.Forms.Label();
             this.gbColumn = new System.Windows.Forms.GroupBox();
+            this.chkVisible11 = new System.Windows.Forms.CheckBox();
+            this.chkVisible10 = new System.Windows.Forms.CheckBox();
+            this.chkVisible9 = new System.Windows.Forms.CheckBox();
+            this.chkVisible8 = new System.Windows.Forms.CheckBox();
+            this.chkVisible7 = new System.Windows.Forms.CheckBox();
+            this.chkVisible6 = new System.Windows.Forms.CheckBox();
+            this.chkVisible5 = new System.Windows.Forms.CheckBox();
+            this.chkVisible4 = new System.Windows.Forms.CheckBox();
+            this.chkVisible3 = new System.Windows.Forms.CheckBox();
+            this.chkVisible2 = new System.Windows.Forms.CheckBox();
+            this.chkVisible1 = new System.Windows.Forms.CheckBox();
             this.txtCol11 = new System.Windows.Forms.TextBox();
             this.lblCol11 = new System.Windows.Forms.Label();
             this.txtCol10 = new System.Windows.Forms.TextBox();
@@ -53,17 +65,7 @@
             this.lblCol3 = new System.Windows.Forms.Label();
             this.txtCol2 = new System.Windows.Forms.TextBox();
             this.lblCol2 = new System.Windows.Forms.Label();
-            this.chkVisible1 = new System.Windows.Forms.CheckBox();
-            this.chkVisible2 = new System.Windows.Forms.CheckBox();
-            this.chkVisible3 = new System.Windows.Forms.CheckBox();
-            this.chkVisible4 = new System.Windows.Forms.CheckBox();
-            this.chkVisible5 = new System.Windows.Forms.CheckBox();
-            this.chkVisible6 = new System.Windows.Forms.CheckBox();
-            this.chkVisible7 = new System.Windows.Forms.CheckBox();
-            this.chkVisible8 = new System.Windows.Forms.CheckBox();
-            this.chkVisible9 = new System.Windows.Forms.CheckBox();
-            this.chkVisible10 = new System.Windows.Forms.CheckBox();
-            this.chkVisible11 = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gbColumn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +86,7 @@
             this.txtCol1.Name = "txtCol1";
             this.txtCol1.Size = new System.Drawing.Size(100, 20);
             this.txtCol1.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.txtCol1, "Symbol");
             // 
             // lblCol1
             // 
@@ -137,12 +140,123 @@
             this.gbColumn.TabIndex = 3;
             this.gbColumn.TabStop = false;
             // 
+            // chkVisible11
+            // 
+            this.chkVisible11.AutoSize = true;
+            this.chkVisible11.Location = new System.Drawing.Point(422, 159);
+            this.chkVisible11.Name = "chkVisible11";
+            this.chkVisible11.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible11.TabIndex = 33;
+            this.chkVisible11.Text = "Use";
+            this.chkVisible11.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible10
+            // 
+            this.chkVisible10.AutoSize = true;
+            this.chkVisible10.Location = new System.Drawing.Point(187, 159);
+            this.chkVisible10.Name = "chkVisible10";
+            this.chkVisible10.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible10.TabIndex = 32;
+            this.chkVisible10.Text = "Use";
+            this.chkVisible10.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible9
+            // 
+            this.chkVisible9.AutoSize = true;
+            this.chkVisible9.Location = new System.Drawing.Point(653, 118);
+            this.chkVisible9.Name = "chkVisible9";
+            this.chkVisible9.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible9.TabIndex = 31;
+            this.chkVisible9.Text = "Use";
+            this.chkVisible9.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible8
+            // 
+            this.chkVisible8.AutoSize = true;
+            this.chkVisible8.Location = new System.Drawing.Point(422, 118);
+            this.chkVisible8.Name = "chkVisible8";
+            this.chkVisible8.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible8.TabIndex = 30;
+            this.chkVisible8.Text = "Use";
+            this.chkVisible8.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible7
+            // 
+            this.chkVisible7.AutoSize = true;
+            this.chkVisible7.Location = new System.Drawing.Point(187, 118);
+            this.chkVisible7.Name = "chkVisible7";
+            this.chkVisible7.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible7.TabIndex = 29;
+            this.chkVisible7.Text = "Use";
+            this.chkVisible7.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible6
+            // 
+            this.chkVisible6.AutoSize = true;
+            this.chkVisible6.Location = new System.Drawing.Point(653, 75);
+            this.chkVisible6.Name = "chkVisible6";
+            this.chkVisible6.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible6.TabIndex = 28;
+            this.chkVisible6.Text = "Use";
+            this.chkVisible6.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible5
+            // 
+            this.chkVisible5.AutoSize = true;
+            this.chkVisible5.Location = new System.Drawing.Point(422, 75);
+            this.chkVisible5.Name = "chkVisible5";
+            this.chkVisible5.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible5.TabIndex = 27;
+            this.chkVisible5.Text = "Use";
+            this.chkVisible5.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible4
+            // 
+            this.chkVisible4.AutoSize = true;
+            this.chkVisible4.Location = new System.Drawing.Point(187, 75);
+            this.chkVisible4.Name = "chkVisible4";
+            this.chkVisible4.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible4.TabIndex = 26;
+            this.chkVisible4.Text = "Use";
+            this.chkVisible4.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible3
+            // 
+            this.chkVisible3.AutoSize = true;
+            this.chkVisible3.Location = new System.Drawing.Point(653, 32);
+            this.chkVisible3.Name = "chkVisible3";
+            this.chkVisible3.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible3.TabIndex = 25;
+            this.chkVisible3.Text = "Use";
+            this.chkVisible3.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible2
+            // 
+            this.chkVisible2.AutoSize = true;
+            this.chkVisible2.Location = new System.Drawing.Point(422, 32);
+            this.chkVisible2.Name = "chkVisible2";
+            this.chkVisible2.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible2.TabIndex = 24;
+            this.chkVisible2.Text = "Use";
+            this.chkVisible2.UseVisualStyleBackColor = true;
+            // 
+            // chkVisible1
+            // 
+            this.chkVisible1.AutoSize = true;
+            this.chkVisible1.Location = new System.Drawing.Point(187, 32);
+            this.chkVisible1.Name = "chkVisible1";
+            this.chkVisible1.Size = new System.Drawing.Size(45, 17);
+            this.chkVisible1.TabIndex = 23;
+            this.chkVisible1.Text = "Use";
+            this.chkVisible1.UseVisualStyleBackColor = true;
+            // 
             // txtCol11
             // 
             this.txtCol11.Location = new System.Drawing.Point(316, 157);
             this.txtCol11.Name = "txtCol11";
             this.txtCol11.Size = new System.Drawing.Size(100, 20);
             this.txtCol11.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.txtCol11, "Cost Basis");
             // 
             // lblCol11
             // 
@@ -160,6 +274,7 @@
             this.txtCol10.Name = "txtCol10";
             this.txtCol10.Size = new System.Drawing.Size(100, 20);
             this.txtCol10.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.txtCol10, "Yearly Dividend");
             // 
             // lblCol10
             // 
@@ -177,6 +292,7 @@
             this.txtCol9.Name = "txtCol9";
             this.txtCol9.Size = new System.Drawing.Size(100, 20);
             this.txtCol9.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.txtCol9, "Quarterly Dividend");
             // 
             // lblCol9
             // 
@@ -194,6 +310,7 @@
             this.txtCol8.Name = "txtCol8";
             this.txtCol8.Size = new System.Drawing.Size(100, 20);
             this.txtCol8.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.txtCol8, "Monthly Dividend");
             // 
             // lblCol8
             // 
@@ -211,6 +328,7 @@
             this.txtCol7.Name = "txtCol7";
             this.txtCol7.Size = new System.Drawing.Size(100, 20);
             this.txtCol7.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.txtCol7, "Dividend Yield");
             // 
             // lblCol7
             // 
@@ -228,6 +346,7 @@
             this.txtCol6.Name = "txtCol6";
             this.txtCol6.Size = new System.Drawing.Size(100, 20);
             this.txtCol6.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.txtCol6, "Annual Dividend");
             // 
             // lblCol6
             // 
@@ -245,6 +364,7 @@
             this.txtCol5.Name = "txtCol5";
             this.txtCol5.Size = new System.Drawing.Size(100, 20);
             this.txtCol5.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.txtCol5, "Price");
             // 
             // lblCol5
             // 
@@ -262,6 +382,7 @@
             this.txtCol4.Name = "txtCol4";
             this.txtCol4.Size = new System.Drawing.Size(100, 20);
             this.txtCol4.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.txtCol4, "Shares");
             // 
             // lblCol4
             // 
@@ -279,6 +400,7 @@
             this.txtCol3.Name = "txtCol3";
             this.txtCol3.Size = new System.Drawing.Size(100, 20);
             this.txtCol3.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.txtCol3, "Industry");
             // 
             // lblCol3
             // 
@@ -296,6 +418,7 @@
             this.txtCol2.Name = "txtCol2";
             this.txtCol2.Size = new System.Drawing.Size(100, 20);
             this.txtCol2.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.txtCol2, "Company Name");
             // 
             // lblCol2
             // 
@@ -306,116 +429,6 @@
             this.lblCol2.Size = new System.Drawing.Size(54, 13);
             this.lblCol2.TabIndex = 4;
             this.lblCol2.Text = "Column 2:";
-            // 
-            // chkVisible1
-            // 
-            this.chkVisible1.AutoSize = true;
-            this.chkVisible1.Location = new System.Drawing.Point(187, 32);
-            this.chkVisible1.Name = "chkVisible1";
-            this.chkVisible1.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible1.TabIndex = 23;
-            this.chkVisible1.Text = "Use";
-            this.chkVisible1.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible2
-            // 
-            this.chkVisible2.AutoSize = true;
-            this.chkVisible2.Location = new System.Drawing.Point(422, 32);
-            this.chkVisible2.Name = "chkVisible2";
-            this.chkVisible2.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible2.TabIndex = 24;
-            this.chkVisible2.Text = "Use";
-            this.chkVisible2.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible3
-            // 
-            this.chkVisible3.AutoSize = true;
-            this.chkVisible3.Location = new System.Drawing.Point(653, 32);
-            this.chkVisible3.Name = "chkVisible3";
-            this.chkVisible3.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible3.TabIndex = 25;
-            this.chkVisible3.Text = "Use";
-            this.chkVisible3.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible4
-            // 
-            this.chkVisible4.AutoSize = true;
-            this.chkVisible4.Location = new System.Drawing.Point(187, 75);
-            this.chkVisible4.Name = "chkVisible4";
-            this.chkVisible4.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible4.TabIndex = 26;
-            this.chkVisible4.Text = "Use";
-            this.chkVisible4.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible5
-            // 
-            this.chkVisible5.AutoSize = true;
-            this.chkVisible5.Location = new System.Drawing.Point(422, 75);
-            this.chkVisible5.Name = "chkVisible5";
-            this.chkVisible5.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible5.TabIndex = 27;
-            this.chkVisible5.Text = "Use";
-            this.chkVisible5.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible6
-            // 
-            this.chkVisible6.AutoSize = true;
-            this.chkVisible6.Location = new System.Drawing.Point(653, 75);
-            this.chkVisible6.Name = "chkVisible6";
-            this.chkVisible6.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible6.TabIndex = 28;
-            this.chkVisible6.Text = "Use";
-            this.chkVisible6.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible7
-            // 
-            this.chkVisible7.AutoSize = true;
-            this.chkVisible7.Location = new System.Drawing.Point(187, 118);
-            this.chkVisible7.Name = "chkVisible7";
-            this.chkVisible7.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible7.TabIndex = 29;
-            this.chkVisible7.Text = "Use";
-            this.chkVisible7.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible8
-            // 
-            this.chkVisible8.AutoSize = true;
-            this.chkVisible8.Location = new System.Drawing.Point(422, 118);
-            this.chkVisible8.Name = "chkVisible8";
-            this.chkVisible8.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible8.TabIndex = 30;
-            this.chkVisible8.Text = "Use";
-            this.chkVisible8.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible9
-            // 
-            this.chkVisible9.AutoSize = true;
-            this.chkVisible9.Location = new System.Drawing.Point(653, 118);
-            this.chkVisible9.Name = "chkVisible9";
-            this.chkVisible9.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible9.TabIndex = 31;
-            this.chkVisible9.Text = "Use";
-            this.chkVisible9.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible10
-            // 
-            this.chkVisible10.AutoSize = true;
-            this.chkVisible10.Location = new System.Drawing.Point(187, 159);
-            this.chkVisible10.Name = "chkVisible10";
-            this.chkVisible10.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible10.TabIndex = 32;
-            this.chkVisible10.Text = "Use";
-            this.chkVisible10.UseVisualStyleBackColor = true;
-            // 
-            // chkVisible11
-            // 
-            this.chkVisible11.AutoSize = true;
-            this.chkVisible11.Location = new System.Drawing.Point(422, 159);
-            this.chkVisible11.Name = "chkVisible11";
-            this.chkVisible11.Size = new System.Drawing.Size(45, 17);
-            this.chkVisible11.TabIndex = 33;
-            this.chkVisible11.Text = "Use";
-            this.chkVisible11.UseVisualStyleBackColor = true;
             // 
             // EditColumns
             // 
@@ -475,5 +488,6 @@
         private System.Windows.Forms.CheckBox chkVisible3;
         private System.Windows.Forms.CheckBox chkVisible2;
         private System.Windows.Forms.CheckBox chkVisible1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

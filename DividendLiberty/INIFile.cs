@@ -31,7 +31,7 @@ namespace DividendLiberty
 
         public void Write(string section, string key, string value)
         {
-            WritePrivateProfileString(section, key, value.ToLower(), this.filePath);
+            WritePrivateProfileString(section, key, value, this.filePath);
         }
 
         public string Read(string section, string key)

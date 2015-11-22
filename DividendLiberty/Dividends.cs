@@ -94,6 +94,8 @@ namespace DividendLiberty
                 HideTextBoxes();
                 //gpSharesOptions.Enabled = false;
                 btnSave.Text = "Save";
+                txtNumberOfShares.Text = "0";
+                txtCost.Text = "0";
                 ddlDividendInterval.SelectedIndex = 1;
                 lblReq1.Show();
                 lblReq2.Show();
@@ -161,11 +163,11 @@ namespace DividendLiberty
                 MessageBox.Show("Please enter symbol.");
                 return false;
             }
-            if(!uti.IsLettersOnly(txtSymbol.Text))
-            {
-                MessageBox.Show("Please enter letters only for symbol.");
-                return false;
-            }
+            //if(!uti.IsLettersOnly(txtSymbol.Text))
+            //{
+            //    MessageBox.Show("Please enter letters only for symbol.");
+            //    return false;
+            //}
             if (ddlIndustry.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select Industry.");
