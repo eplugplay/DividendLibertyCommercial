@@ -964,8 +964,6 @@ namespace DividendLiberty
                 uti.ClearListViewColors(lvAllDividends);
                 uti.SetStockIndexSymbol(lvAllDividends);
                 HighlightSingleColor(lvAllDividends);
-                UpArrowKeyPressed = false;
-                DownArrowKeyPressed = false;
             }
             else if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift)
             {
