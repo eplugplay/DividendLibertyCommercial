@@ -1006,8 +1006,8 @@ namespace DividendLiberty
         private void importStocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             uti.ImportXML(GetImportPath());
-            LoadDividends(lvCurrentDividends, "true");
             LoadDividends(lvAllDividends, "false");
+            LoadDividends(lvCurrentDividends, "true");
         }
 
         private void reloadYahooStockInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1015,8 +1015,8 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
-            LoadDividends(lvCurrentDividends, "true");
             LoadDividends(lvAllDividends, "false");
+            LoadDividends(lvCurrentDividends, "true");
             pw.Close();
         }
     }
