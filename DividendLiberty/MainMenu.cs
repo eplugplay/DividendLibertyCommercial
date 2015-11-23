@@ -916,7 +916,7 @@ namespace DividendLiberty
 
         private void lvAllDividends_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
+            if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Control || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Control)
             {
                 return;
             }
@@ -930,7 +930,7 @@ namespace DividendLiberty
 
         private void lvCurrentDividends_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
+            if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Control || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Control)
             {
                 return;
             }
