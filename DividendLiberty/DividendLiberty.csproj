@@ -144,7 +144,6 @@
     <Content Include="DividendLibertyStocks.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Dividend.xml" />
     <Content Include="images\DividendLiberty.ico" />
   </ItemGroup>
   <ItemGroup>
