@@ -768,7 +768,7 @@ namespace DividendLiberty
             string dtpMonthYear = "";
             string individualDivData = "";
             decimal div = 0;
-            lv.SelectedItems.Clear();
+            //lv.SelectedItems.Clear();
             uti.ClearListViewColors(lv);
             lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
@@ -962,6 +962,62 @@ namespace DividendLiberty
             {
                 e.Handled = true;
             }
+        }
+
+        private void exportStocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uti.ExportXML(GetExportPath());
+        }
+
+        private string GetExportPath()
+        {
+            string ToBeReturned;
+            this.saveFileDialog1.DefaultExt = "*.xml";
+            this.saveFileDialog1.Filter = "Excel File (*.xml)|*.xml|All files (*.*)|*.*";
+            this.saveFileDialog1.FileName = uti.GetFileName(FileTypes.xml);
+            if (this.saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ToBeReturned = this.saveFileDialog1.FileName;
+            }
+            else
+            {
+                ToBeReturned = string.Empty;
+            }
+            return ToBeReturned;
+        }
+
+        private string GetImportPath()
+        {
+            string ToBeReturned;
+            this.openFileDialog1.DefaultExt = "*.xml";
+            this.openFileDialog1.Filter = "Excel File (*.xml)|*.xml|All files (*.*)|*.*";
+            this.openFileDialog1.FileName = uti.GetFileName(FileTypes.xml);
+            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ToBeReturned = this.openFileDialog1.FileName;
+            }
+            else
+            {
+                ToBeReturned = string.Empty;
+            }
+            return ToBeReturned;
+        }
+
+        private void importStocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uti.ImportXML(GetImportPath());
+            LoadDividends(lvCurrentDividends, "true");
+            LoadDividends(lvAllDividends, "false");
+        }
+
+        private void reloadYahooStockInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PleaseWait pw = new PleaseWait();
+            pw.Show();
+            Application.DoEvents();
+            LoadDividends(lvCurrentDividends, "true");
+            LoadDividends(lvAllDividends, "false");
+            pw.Close();
         }
     }
 }

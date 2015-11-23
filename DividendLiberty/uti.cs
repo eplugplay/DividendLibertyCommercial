@@ -21,14 +21,20 @@ namespace DividendLiberty
         //public FileTypes filetypes { get; set; }
         public static string GetFilePath(FileTypes type)
         {
-            string xmlPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/" + GetFileName(type);
-            return xmlPath;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/" + GetFileName(type);
+            return path;
+        }
+
+        public static string GetDesktopfilePath(FileTypes type)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/" + GetFileName(type);
+            return path;
         }
 
         public static string GetLocalFilePath(FileTypes type)
         {
-            string localPath = Path.Combine(Directory.GetCurrentDirectory(), GetFileName(type));
-            return localPath;
+            string path = Path.Combine(Directory.GetCurrentDirectory(), GetFileName(type));
+            return path;
         }
 
         public static string GetFileName(FileTypes type)
@@ -199,6 +205,44 @@ namespace DividendLiberty
                 default: break;
             }
             return colLetter;
+        }
+
+        public static void ExportXML(string path)
+        {
+            DataTable xmlData = uti.GetXMLData();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            sb.AppendLine("<DocumentElement>");
+            sb.AppendLine("<dividendstocks>");
+            for (int i = 0; i < xmlData.Rows.Count; i++)
+            {
+                sb.AppendLine(string.Format("<dividendstock ID=\"{0}\">", xmlData.Rows[i]["id"].ToString()));
+                sb.AppendLine(string.Format("<id>{0}</id>", xmlData.Rows[i]["id"].ToString()));
+                sb.AppendLine(string.Format("<symbol>{0}</symbol>", xmlData.Rows[i]["symbol"].ToString()));
+                sb.AppendLine(string.Format("<industry>{0}</industry>", xmlData.Rows[i]["industry"].ToString()));
+                sb.AppendLine(string.Format("<active>{0}</active>", xmlData.Rows[i]["active"].ToString()));
+                sb.AppendLine(string.Format("<interval>{0}</interval>", xmlData.Rows[i]["interval"].ToString()));
+                sb.AppendLine(string.Format("<cost>{0}</cost>", xmlData.Rows[i]["cost"].ToString()));
+                sb.AppendLine(string.Format("<purchasedate>{0}</purchasedate>", xmlData.Rows[i]["purchasedate"].ToString()));
+                sb.AppendLine(string.Format("<shares>{0}</shares>", xmlData.Rows[i]["shares"].ToString()));
+                sb.AppendLine(string.Format("<nexttobuy>{0}</nexttobuy>", xmlData.Rows[i]["nexttobuy"].ToString()));
+                sb.AppendLine("</dividendstock>");
+            }
+            sb.AppendLine("</dividendstocks>");
+            sb.AppendLine("</DocumentElement>");
+            File.WriteAllText(path, sb.ToString());
+        }
+
+        public static void ImportXML(string newXMLPath)
+        {
+            try
+            {
+                File.Copy(newXMLPath, uti.GetFilePath(FileTypes.xml), true);
+            }
+            catch
+            {
+
+            }
         }
     }
 

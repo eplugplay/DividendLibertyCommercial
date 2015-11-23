@@ -69,6 +69,11 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.exportStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.reloadYahooStockInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +95,10 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem});
+            this.newToolStripMenuItem,
+            this.importStocksToolStripMenuItem,
+            this.exportStocksToolStripMenuItem,
+            this.reloadYahooStockInfoToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -98,7 +106,7 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -197,7 +205,7 @@
             // editColumnsToolStripMenuItem
             // 
             this.editColumnsToolStripMenuItem.Name = "editColumnsToolStripMenuItem";
-            this.editColumnsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.editColumnsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editColumnsToolStripMenuItem.Text = "Edit Columns";
             this.editColumnsToolStripMenuItem.Click += new System.EventHandler(this.editColumnsToolStripMenuItem_Click);
             // 
@@ -514,6 +522,31 @@
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
             // 
+            // exportStocksToolStripMenuItem
+            // 
+            this.exportStocksToolStripMenuItem.Name = "exportStocksToolStripMenuItem";
+            this.exportStocksToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.exportStocksToolStripMenuItem.Text = "Export Dividends";
+            this.exportStocksToolStripMenuItem.Click += new System.EventHandler(this.exportStocksToolStripMenuItem_Click);
+            // 
+            // importStocksToolStripMenuItem
+            // 
+            this.importStocksToolStripMenuItem.Name = "importStocksToolStripMenuItem";
+            this.importStocksToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.importStocksToolStripMenuItem.Text = "Import Dividends";
+            this.importStocksToolStripMenuItem.Click += new System.EventHandler(this.importStocksToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // reloadYahooStockInfoToolStripMenuItem
+            // 
+            this.reloadYahooStockInfoToolStripMenuItem.Name = "reloadYahooStockInfoToolStripMenuItem";
+            this.reloadYahooStockInfoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.reloadYahooStockInfoToolStripMenuItem.Text = "Refresh Yahoo Stock Info";
+            this.reloadYahooStockInfoToolStripMenuItem.Click += new System.EventHandler(this.reloadYahooStockInfoToolStripMenuItem_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,6 +616,11 @@
         private System.Windows.Forms.ToolStripMenuItem generateExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editColumnsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importStocksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportStocksToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem reloadYahooStockInfoToolStripMenuItem;
     }
 }
 
