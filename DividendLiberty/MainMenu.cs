@@ -749,6 +749,10 @@ namespace DividendLiberty
 
         private void btnPayDate_Click(object sender, EventArgs e)
         {
+            if (lvCurrentDividends.Items[0].SubItems[7].ToString() == "")
+            {
+                return;
+            }
             HighlightPayDate(lvCurrentDividends);
         }
 
