@@ -412,49 +412,6 @@ namespace DividendLiberty
             }
         }
 
-        //public void HighlightMultipleShiftArrowColor(ListView lv)
-        //{
-        //    //lstID.Clear();
-        //    if (UpArrowKeyPressed == true && DownArrowKeyPressed == false || UpArrowKeyPressed == false && DownArrowKeyPressed == true)
-        //    {
-        //        for (int i = 0; i < lv.SelectedItems.Count; i++)
-        //        {
-        //            if (!lstID.Contains(Convert.ToInt32(lv.SelectedItems[i].Tag)))
-        //            {
-        //                lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
-        //            }
-        //        }
-        //    }
-        //    else if (UpArrowKeyPressed == true && DownArrowKeyPressed == true)
-        //    {
-        //        lstID.Clear();
-        //        for (int i = 0; i < lv.SelectedItems.Count; i++)
-        //        {
-        //            if (!lstID.Contains(Convert.ToInt32(lv.SelectedItems[i].Tag)))
-        //            {
-        //                lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
-        //            }
-        //            if (lstID.Count == 0)
-        //            {
-        //                UpArrowKeyPressed = false;
-        //                //lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
-        //            }
-        //        }
-        //    }
-        //    lv.SelectedItems.Clear();
-        //    for (int i = 0; i < lv.Items.Count; i++)
-        //    {
-        //        if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
-        //        {
-        //            lv.Items[i].BackColor = uti.GetHighlightColor();
-        //        }
-        //        if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
-        //        {
-        //            lv.Items[i].BackColor = Color.White;
-        //        }
-        //    }
-        //}
-
         public void HighlightSingleColor(ListView lv)
         {
             int index = lv.SelectedItems[0].Index;
@@ -961,15 +918,13 @@ namespace DividendLiberty
         {
             if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
             {
+                return;
+            }
+            if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
+            {
                 uti.ClearListViewColors(lvAllDividends);
                 uti.SetStockIndexSymbol(lvAllDividends);
                 HighlightSingleColor(lvAllDividends);
-            }
-            else if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift)
-            {
-                uti.ClearListViewColors(lvAllDividends);
-                //HighlightMultipleShiftArrowColor(lvAllDividends);
-                lvAllDividends.SelectedItems.Clear();
             }
         }
 
@@ -977,18 +932,32 @@ namespace DividendLiberty
         {
             if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
             {
+                return;
+            }
+            if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
+            {
                 uti.ClearListViewColors(lvCurrentDividends);
                 uti.SetStockIndexSymbol(lvCurrentDividends);
                 HighlightSingleColor(lvCurrentDividends);
             }
-            else if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift)
+        }
+
+        private void lvAllDividends_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift
+                || e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Control || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Control)
             {
-                uti.ClearListViewColors(lvCurrentDividends);
-                lvCurrentDividends.SelectedItems.Clear();
-                //lvCurrentDividends.SelectedItems.Clear();
-                //HighlightMultipleShiftArrowColor(lvCurrentDividends);
+                e.Handled = true;
             }
         }
 
+        private void lvCurrentDividends_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Shift
+                || e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Control || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Control)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

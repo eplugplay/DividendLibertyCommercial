@@ -253,6 +253,7 @@
             this.lvAllDividends.TabIndex = 40;
             this.lvAllDividends.UseCompatibleStateImageBehavior = false;
             this.lvAllDividends.SelectedIndexChanged += new System.EventHandler(this.lvAllDividends_SelectedIndexChanged);
+            this.lvAllDividends.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvAllDividends_KeyDown);
             this.lvAllDividends.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvAllDividends_KeyUp);
             this.lvAllDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseClick);
             this.lvAllDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDoubleClick);
@@ -266,6 +267,7 @@
             this.lvCurrentDividends.Size = new System.Drawing.Size(754, 287);
             this.lvCurrentDividends.TabIndex = 39;
             this.lvCurrentDividends.UseCompatibleStateImageBehavior = false;
+            this.lvCurrentDividends.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvCurrentDividends_KeyDown);
             this.lvCurrentDividends.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvCurrentDividends_KeyUp);
             this.lvCurrentDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseClick);
             this.lvCurrentDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvCurrentDividends_MouseDoubleClick);
