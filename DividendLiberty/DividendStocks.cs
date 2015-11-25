@@ -15,8 +15,9 @@ namespace DividendLiberty
 {
     public static class DividendStocks
     {
-        public static void GetTotalSharePrice(List<int> lstID, out decimal totalPrice)
+        public static void GetTotalSharePrice(List<int> lstID, out decimal totalPrice, out string msg)
         {
+            msg = "";
             DataTable dt = uti.GetXMLData();
             totalPrice = 0;
             try
@@ -30,9 +31,11 @@ namespace DividendLiberty
                             decimal numShares = Convert.ToDecimal(dt.Rows[i]["shares"]);
                             decimal price = Convert.ToDecimal(dt.Rows[i]["cost"]);
                             totalPrice += ((decimal)numShares * price);
+                            msg += dt.Rows[i]["symbol"].ToString() + ": $" + Math.Round(((decimal)numShares * price), 2) + "\n\n";
                         }
                     }
                 }
+                msg += "---------------------------\n\n";
             }
             catch (Exception e)
             {
@@ -40,9 +43,9 @@ namespace DividendLiberty
             }
         }
 
-        public static void GetDividendPrice(ListView lv, List<int> lstID, out decimal totalDividendPrice, out decimal quarterlyDividendPrice, out decimal monthlyDividendPrice)
+        public static void GetDividendPrice(ListView lv, List<int> lstID, out decimal totalDividendPrice, out decimal quarterlyDividendPrice, out decimal monthlyDividendPrice, out string msg)
         {
-            //DataTable dt = uti.GetXMLData();
+            msg = "";
             totalDividendPrice = 0;
             quarterlyDividendPrice = 0;
             monthlyDividendPrice = 0;
@@ -64,12 +67,20 @@ namespace DividendLiberty
                             }
                             catch
                             {
-                                MessageBox.Show("Could not connect to Yahoo!, please try again later.");
+                                MessageBox.Show("Could not connect to Yahoo to complete the results!, please try again later.");
                                 return;
                             }
                             yield = Convert.ToDecimal(yieldTemp == "" ? "0" : yieldTemp);
                             totalDividendPrice += (numShares * yield);
+                            msg += lv.Items[i].SubItems[1].Text + ":\n";
+                            msg += "Yearly: $" + Math.Round((numShares * yield), 2) + "\n";
+                            msg += "Quarterly: $" + Math.Round((numShares * yield/4), 2) + "\n";
+                            msg += "Monthly: $" + Math.Round((numShares * yield/12), 2) + "\n\n";
                         }
+                    }
+                    if (b == lstID.Count - 1)
+                    {
+                        msg += "-------------------------------------\n\n";
                     }
                 }
                 quarterlyDividendPrice = totalDividendPrice / 4;

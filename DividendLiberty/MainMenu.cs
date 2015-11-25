@@ -492,16 +492,18 @@ namespace DividendLiberty
             decimal TotalDividendPrice = 0;
             decimal QuarterlyDividendPrice = 0;
             decimal MonthlyDividendPrice = 0;
-            DividendStocks.GetDividendPrice(lvCurrentDividends, lstID, out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice);
-            MessageBox.Show("Yearly: $" + Math.Round(TotalDividendPrice, 2).ToString() + "\n\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\n\nMonthly: $" + Math.Round(MonthlyDividendPrice, 2));
+            string msg = "";
+            DividendStocks.GetDividendPrice(lvCurrentDividends, lstID, out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice, out msg);
+            MessageBox.Show(msg + "Yearly: $" + Math.Round(TotalDividendPrice, 2).ToString() + "\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\nMonthly: $" + Math.Round(MonthlyDividendPrice, 2));
         }
 
         public void GetSharePrice()
         {
             uti.ClearListViewColors(lvAllDividends);
             decimal totalPrice = 0;
-            DividendStocks.GetTotalSharePrice(lstID, out totalPrice);
-            MessageBox.Show("$" + Math.Round(totalPrice, 2).ToString());
+            string msg = "";
+            DividendStocks.GetTotalSharePrice(lstID, out totalPrice, out msg);
+            MessageBox.Show(msg + "Total: $" + Math.Round(totalPrice, 2).ToString());
         }
 
         private void btnHighlight_Click(object sender, EventArgs e)
@@ -600,20 +602,25 @@ namespace DividendLiberty
 
         private void lvAllDividends_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Control.ModifierKeys != Keys.Control)
-            {
-        
-            }
+
         }
 
         private void getCostToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            PleaseWait pw = new PleaseWait();
+            pw.Show();
+            Application.DoEvents();
             GetSharePrice();
+            pw.Close();
         }
 
         private void getDividendsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            PleaseWait pw = new PleaseWait();
+            pw.Show();
+            Application.DoEvents();
             GetDividendPrice();
+            pw.Close();
         }
 
         private void showSectorPercentagesToolStripMenuItem_Click(object sender, EventArgs e)
