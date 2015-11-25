@@ -244,6 +244,40 @@ namespace DividendLiberty
 
             }
         }
+
+        public static string GetExportPath()
+        {
+            string ToBeReturned;
+            Program.MainMenu.saveFileDialog1.DefaultExt = "*.xml";
+            Program.MainMenu.saveFileDialog1.Filter = "Excel File (*.xml)|*.xml|All files (*.*)|*.*";
+            Program.MainMenu.saveFileDialog1.FileName = uti.GetFileName(FileTypes.xml);
+            if (Program.MainMenu.saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ToBeReturned = Program.MainMenu.saveFileDialog1.FileName;
+            }
+            else
+            {
+                ToBeReturned = string.Empty;
+            }
+            return ToBeReturned;
+        }
+
+        public static string GetImportPath()
+        {
+            string ToBeReturned;
+            Program.MainMenu.openFileDialog1.DefaultExt = "*.xml";
+            Program.MainMenu.openFileDialog1.Filter = "Excel File (*.xml)|*.xml|All files (*.*)|*.*";
+            Program.MainMenu.openFileDialog1.FileName = uti.GetFileName(FileTypes.xml);
+            if (Program.MainMenu.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ToBeReturned = Program.MainMenu.openFileDialog1.FileName;
+            }
+            else
+            {
+                ToBeReturned = string.Empty;
+            }
+            return ToBeReturned;
+        }
     }
 
     public enum FileTypes

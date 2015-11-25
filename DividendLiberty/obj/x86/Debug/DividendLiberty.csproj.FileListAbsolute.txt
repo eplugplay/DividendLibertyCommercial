@@ -43,7 +43,6 @@ C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.pdb
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendLibertyStocks.xml
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendLibertyConfig.ini
-C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.csprojResolveAssemblyReference.cache
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.EditColumns.resources
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendLibertyStocks.xml
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendLibertyConfig.ini

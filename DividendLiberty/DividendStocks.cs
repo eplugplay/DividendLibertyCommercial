@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Collections;
 using System.Xml;
 using System.Xml.Linq;
+using System.Drawing;
 
 namespace DividendLiberty
 {
@@ -282,6 +283,193 @@ namespace DividendLiberty
             catch
             {
 
+            }
+        }
+
+        public static void HighlightPayDate(ListView lv)
+        {
+            PleaseWait pw = new PleaseWait();
+            pw.Show();
+            Application.DoEvents();
+            decimal totalDiv = 0;
+            decimal quarterlyDiv = 0;
+            int cnt = 0;
+            string monthYear = "";
+            string dtpMonthYear = "";
+            string individualDivData = "";
+            decimal div = 0;
+            //lv.SelectedItems.Clear();
+            uti.ClearListViewColors(lv);
+            Program.MainMenu.lstID.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                string date = lv.Items[i].SubItems[7].Text;
+                string[] dateSplit = date.Split('/');
+                if (date != "N/A")
+                {
+                    monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
+                    dtpMonthYear = Program.MainMenu.dtpPayDate.Value.ToString("M/yyyy");
+                    string dividendInterval = lv.Items[i].SubItems[8].Text.ToString();
+                    //if (dividendInterval == "Monthly")
+                    //{
+                    //    lv.SelectedIndices.Add(i);
+                    //    totalDiv += 
+                    //    individualDivData += symbol + ": $" + Math.Round((GetDiv(Convert.ToInt32(drv["id"]), dt) / 4), 2) + "\n\n";
+                    //}
+                    if (monthYear == dtpMonthYear)
+                    {
+                        lv.Items[i].BackColor = uti.GetHighlightColor();
+                        lv.Items[i].Selected = true;
+                        lv.Items[i].Focused = true;
+                        lv.TopItem = lv.Items[i];
+                        string symbol = lv.Items[i].SubItems[1].Text.ToString();
+                        try
+                        {
+                            div = Convert.ToDecimal(YahooFinance.GetValues(symbol, YahooFinance.GetCodes(YahooCodes.annualDividend), false));
+                        }
+                        catch
+                        {
+                            pw.Close();
+                            MessageBox.Show("Could not highlight, yahoo connection was lost. Please try again later.");
+                            return;
+                        }
+                        decimal divReceived = uti.GetDivPrice(Convert.ToDecimal(lv.Items[i].SubItems[4].Text.ToString()), div);
+                        totalDiv += divReceived;
+                        individualDivData += symbol + ": $" + Math.Round(divReceived / 4, 2) + " (Pay Date: " + lv.Items[i].SubItems[7].Text.ToString() + ")\n\n";
+                        Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
+                        cnt++;
+                    }
+                }
+            }
+            lv.SelectedItems.Clear();
+            quarterlyDiv = totalDiv / 4;
+            pw.Close();
+            if (cnt != 0)
+            {
+                MessageBox.Show(string.Format("{0} results\n\n" + "{1} \n\n" + individualDivData + "Total: ${2}\n\n", cnt, "Dividends for " + dtpMonthYear + "", Math.Round(quarterlyDiv, 2)));
+            }
+            else
+            {
+                MessageBox.Show(string.Format("No Results for {0}", dtpMonthYear));
+            }
+        }
+
+        public static void ShowIndustryPercentages(ListView lv)
+        {
+            decimal portfolioCnt = Convert.ToDecimal(lv.Items.Count);
+            decimal percentage = 0;
+            List<string> lstIndustries = new List<string>() {"Consumer Discretionary", "Consumer Staples", "Energy", "Financials", "Health Care", "Industrials", "Information Technology", 
+                                                            "Materials", "Telecommunication Services", "Utilities", "Equity Precious Metals" };
+            List<decimal> percentages = new List<decimal>();
+            List<decimal> sectorCount = new List<decimal>();
+            decimal cnt = 0;
+            for (int i = 0; i < lstIndustries.Count; i++)
+            {
+                for (int a = 0; a < lv.Items.Count; a++)
+                {
+                    if (lv.Items[a].SubItems[3].Text == lstIndustries[i].ToString())
+                    {
+                        cnt++;
+                    }
+                }
+                percentage = cnt == 0 ? 0 : (cnt / portfolioCnt) * 100;
+                percentages.Add(percentage);
+                sectorCount.Add(cnt);
+                cnt = 0;
+            }
+            decimal totalSectors = uti.GetTotalSectorCount(sectorCount);
+            string msg = "";
+            for (int i = 0; i < lstIndustries.Count; i++)
+            {
+                msg += sectorCount[i] + " - " + lstIndustries[i] + ": " + Math.Round(percentages[i], 2) + "%" + "\n\n";
+            }
+            msg = msg.Substring(0, msg.Length - 2);
+            msg += "\n\nTotal Sectors: " + totalSectors;
+            MessageBox.Show(msg);
+        }
+
+        public static void HighlightAllNextToBuy(ListView lv)
+        {
+            int cnt = 0;
+            try
+            {
+                lv.SelectedItems.Clear();
+                DataTable dt = uti.GetXMLData();
+                uti.ClearListViewColors(lv);
+                for (int i = 0; i < lv.Items.Count; i++)
+                {
+                    for (int a = 0; a < dt.Rows.Count; a++)
+                    {
+                        if (dt.Rows[a]["nexttobuy"].ToString() == "yes" && dt.Rows[a]["active"].ToString().Trim() == "false")
+                        {
+                            if (Convert.ToInt32(lv.Items[i].Tag) == Convert.ToInt32(dt.Rows[a]["id"]))
+                            {
+                                lv.Items[i].BackColor = uti.GetHighlightColor();
+                                lv.Items[i].Selected = true;
+                                lv.Items[i].Focused = true;
+                                lv.TopItem = lv.Items[i];
+                                Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
+                                cnt++;
+                            }
+                        }
+                    }
+                }
+                lv.SelectedItems.Clear();
+            }
+            catch
+            {
+
+            }
+            MessageBox.Show(string.Format("{0} results.", cnt));
+        }
+
+        public static void Highlight(ListView lv, ComboBox ddl, bool showMsg)
+        {
+            decimal count = 0;
+            decimal percentage = Convert.ToDecimal(lv.Items.Count);
+            lv.SelectedItems.Clear();
+            uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
+            Program.MainMenu.lstID.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                if (lv.Items[i].SubItems[3].Text == ddl.Text)
+                {
+                    count++;
+                    Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
+                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                    lv.Items[i].Selected = true;
+                    lv.Items[i].Focused = true;
+                    lv.TopItem = lv.Items[i];
+                }
+                else
+                {
+                    lv.Items[i].BackColor = Color.White;
+                }
+            }
+            lv.SelectedItems.Clear();
+            percentage = (count / percentage) * 100;
+            if (showMsg)
+            {
+                MessageBox.Show(count + " " + ddl.Text + ": " + Math.Round(percentage, 2) + "%");
+            }
+        }
+
+        public static void SearchSymbol(TextBox tb, ListView lv)
+        {
+            lv.SelectedItems.Clear();
+            uti.ClearListViewColors(lv);
+            Program.MainMenu.lstID.Clear();
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                if (lv.Items[i].SubItems[1].Text == tb.Text.ToUpper())
+                {
+                    Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
+                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                    lv.Items[i].Selected = true;
+                    lv.Items[i].Focused = true;
+                    lv.TopItem = lv.Items[i];
+                    //lv.Select();
+                }
             }
         }
     }

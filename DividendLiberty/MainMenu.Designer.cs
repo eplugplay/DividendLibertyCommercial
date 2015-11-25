@@ -32,6 +32,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadYahooStockInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelFileSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nonPortfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,11 +72,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.exportStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.reloadYahooStockInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -109,6 +109,27 @@
             this.newToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // importStocksToolStripMenuItem
+            // 
+            this.importStocksToolStripMenuItem.Name = "importStocksToolStripMenuItem";
+            this.importStocksToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.importStocksToolStripMenuItem.Text = "Import Dividends";
+            this.importStocksToolStripMenuItem.Click += new System.EventHandler(this.importStocksToolStripMenuItem_Click);
+            // 
+            // exportStocksToolStripMenuItem
+            // 
+            this.exportStocksToolStripMenuItem.Name = "exportStocksToolStripMenuItem";
+            this.exportStocksToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.exportStocksToolStripMenuItem.Text = "Export Dividends";
+            this.exportStocksToolStripMenuItem.Click += new System.EventHandler(this.exportStocksToolStripMenuItem_Click);
+            // 
+            // reloadYahooStockInfoToolStripMenuItem
+            // 
+            this.reloadYahooStockInfoToolStripMenuItem.Name = "reloadYahooStockInfoToolStripMenuItem";
+            this.reloadYahooStockInfoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.reloadYahooStockInfoToolStripMenuItem.Text = "Refresh Yahoo Stock Info";
+            this.reloadYahooStockInfoToolStripMenuItem.Click += new System.EventHandler(this.reloadYahooStockInfoToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -205,7 +226,7 @@
             // editColumnsToolStripMenuItem
             // 
             this.editColumnsToolStripMenuItem.Name = "editColumnsToolStripMenuItem";
-            this.editColumnsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editColumnsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.editColumnsToolStripMenuItem.Text = "Edit Columns";
             this.editColumnsToolStripMenuItem.Click += new System.EventHandler(this.editColumnsToolStripMenuItem_Click);
             // 
@@ -265,6 +286,7 @@
             this.lvAllDividends.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvAllDividends_KeyUp);
             this.lvAllDividends.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseClick);
             this.lvAllDividends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDoubleClick);
+            this.lvAllDividends.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseDown);
             this.lvAllDividends.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvAllDividends_MouseUp);
             // 
             // lvCurrentDividends
@@ -522,30 +544,9 @@
             this.lblStatus.Text = "Please Wait..";
             this.lblStatus.Visible = false;
             // 
-            // exportStocksToolStripMenuItem
-            // 
-            this.exportStocksToolStripMenuItem.Name = "exportStocksToolStripMenuItem";
-            this.exportStocksToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.exportStocksToolStripMenuItem.Text = "Export Dividends";
-            this.exportStocksToolStripMenuItem.Click += new System.EventHandler(this.exportStocksToolStripMenuItem_Click);
-            // 
-            // importStocksToolStripMenuItem
-            // 
-            this.importStocksToolStripMenuItem.Name = "importStocksToolStripMenuItem";
-            this.importStocksToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.importStocksToolStripMenuItem.Text = "Import Dividends";
-            this.importStocksToolStripMenuItem.Click += new System.EventHandler(this.importStocksToolStripMenuItem_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // reloadYahooStockInfoToolStripMenuItem
-            // 
-            this.reloadYahooStockInfoToolStripMenuItem.Name = "reloadYahooStockInfoToolStripMenuItem";
-            this.reloadYahooStockInfoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.reloadYahooStockInfoToolStripMenuItem.Text = "Refresh Yahoo Stock Info";
-            this.reloadYahooStockInfoToolStripMenuItem.Click += new System.EventHandler(this.reloadYahooStockInfoToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -595,7 +596,6 @@
         private System.Windows.Forms.CheckBox chkNextBuy;
         private System.Windows.Forms.Button btnPayDate;
         private System.Windows.Forms.Label lblPayDate;
-        private System.Windows.Forms.DateTimePicker dtpPayDate;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ProgressBar pbStatus;
@@ -618,9 +618,10 @@
         private System.Windows.Forms.ToolStripMenuItem editColumnsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importStocksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportStocksToolStripMenuItem;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem reloadYahooStockInfoToolStripMenuItem;
+        public System.Windows.Forms.DateTimePicker dtpPayDate;
+        public System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        public System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
