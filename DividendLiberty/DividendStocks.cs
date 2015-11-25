@@ -73,14 +73,14 @@ namespace DividendLiberty
                             yield = Convert.ToDecimal(yieldTemp == "" ? "0" : yieldTemp);
                             totalDividendPrice += (numShares * yield);
                             msg += lv.Items[i].SubItems[1].Text + ":\n";
-                            msg += "Yearly: $" + Math.Round((numShares * yield), 2) + "\n";
-                            msg += "Quarterly: $" + Math.Round((numShares * yield/4), 2) + "\n";
-                            msg += "Monthly: $" + Math.Round((numShares * yield/12), 2) + "\n\n";
+                            msg += "Monthly: $" + Math.Round((numShares * yield / 12), 2) + "\n";
+                            msg += "Quarterly: $" + Math.Round((numShares * yield / 4), 2) + "\n";
+                            msg += "Yearly: $" + Math.Round((numShares * yield), 2) + "\n\n";
                         }
                     }
                     if (b == lstID.Count - 1)
                     {
-                        msg += "-------------------------------------\n\n";
+                        msg += "--------------------------------------\n\n";
                     }
                 }
                 quarterlyDividendPrice = totalDividendPrice / 4;

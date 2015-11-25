@@ -503,7 +503,7 @@ namespace DividendLiberty
             return lst;
         }
 
-        public void GetDividendPrice()
+        public void GetDividendPrice(PleaseWait pw)
         {
             uti.ClearListViewColors(lvAllDividends);
             decimal TotalDividendPrice = 0;
@@ -511,15 +511,17 @@ namespace DividendLiberty
             decimal MonthlyDividendPrice = 0;
             string msg = "";
             DividendStocks.GetDividendPrice(lvCurrentDividends, lstID, out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice, out msg);
-            MessageBox.Show(msg + "Yearly: $" + Math.Round(TotalDividendPrice, 2).ToString() + "\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\nMonthly: $" + Math.Round(MonthlyDividendPrice, 2));
+            pw.Close();
+            MessageBox.Show(msg + "Monthly: $" + Math.Round(MonthlyDividendPrice, 2).ToString() + "\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\nYearly: $" + Math.Round(TotalDividendPrice, 2));
         }
 
-        public void GetSharePrice()
+        public void GetSharePrice(PleaseWait pw)
         {
             uti.ClearListViewColors(lvAllDividends);
             decimal totalPrice = 0;
             string msg = "";
             DividendStocks.GetTotalSharePrice(lstID, out totalPrice, out msg);
+            pw.Close();
             MessageBox.Show(msg + "Total: $" + Math.Round(totalPrice, 2).ToString());
         }
 
@@ -627,8 +629,7 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
-            GetSharePrice();
-            pw.Close();
+            GetSharePrice(pw);
         }
 
         private void getDividendsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -636,8 +637,7 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
-            GetDividendPrice();
-            pw.Close();
+            GetDividendPrice(pw);
         }
 
         private void showSectorPercentagesToolStripMenuItem_Click(object sender, EventArgs e)
