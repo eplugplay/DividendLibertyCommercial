@@ -135,7 +135,11 @@ namespace DividendLiberty
 
         public static void SetStockIndexSymbol(ListView lv)
         {
-            Program.MainMenu.SelectedIndex = lv.SelectedItems[0].Index;
+            for (int i = 0; i < lv.SelectedItems.Count; i++)
+            {
+                Program.MainMenu.SelectedIndex = lv.SelectedItems[i].Index;
+            }
+            //Program.MainMenu.SelectedIndex = lv.SelectedItems[0].Index;
             Program.MainMenu.Symbol = lv.Items[Program.MainMenu.SelectedIndex].SubItems[1].Text;
         }
 

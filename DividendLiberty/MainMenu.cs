@@ -96,10 +96,7 @@ namespace DividendLiberty
         #region backgroundworkers
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            //pbStatus.InvokeEx(x => x.Value = 10);
-            //pbStatus.InvokeEx(x => x.Visible = true);
-            //lblStatus.InvokeEx(x => x.Visible = true);
-            CalculateResults();
+            DividendStocks.CalculateResults();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -107,66 +104,6 @@ namespace DividendLiberty
 
         }
         #endregion
-
-        public void CalculateResults()
-        {
-            PleaseWait pw = new PleaseWait();
-            pw.Show();
-            Application.DoEvents();
-            uti.ClearListViewColors(lvAllDividends);
-            uti.ClearListViewColors(lvCurrentDividends);
-            lstID.Clear();
-            decimal TotalDividendCount = 0;
-            decimal TotalDividendStockValue = 0;
-            decimal YearDiv = 0;
-            decimal QuarterDiv = 0;
-            decimal MonthlyDiv = 0;
-            decimal DividendTotalPercentage = 0;
-            decimal MarketTotalPrice = 0;
-            DataTable dt = uti.GetXMLData();
-            decimal Purchaseprice = 0;
-            string symbols = uti.GetStockSymbols(dt);
-            string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
-            string[] DivYield = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
-            // l1 is last trade price, c1 change in price, b is bid price, a is ask price; Ask price is current price as you're asking for a price when selling therefore that is the price of your portfolio
-            string[] CurrentStockPrice = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.currentPrice), true));
-            //decimal val = dt.Rows.Count;
-            //decimal StatusVal = 0;
-            //val = Math.Round(90 / val, 0);
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (dt.Rows[i]["active"].ToString() == "true")
-                {
-                    string id = dt.Rows[i]["id"].ToString();
-                    Purchaseprice = Convert.ToDecimal(dt.Rows[i]["cost"]);
-                    YearDiv += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(AnnualDiv[i]));
-                    TotalDividendStockValue += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Purchaseprice);
-                    TotalDividendCount++;
-                    DividendTotalPercentage += DivYield[i] == "N/A" ? 0 : Convert.ToDecimal(DivYield[i]);
-                    if (dt.Rows[i]["symbol"].ToString() == "SIL")
-                    {
-                        DividendTotalPercentage += (decimal).09;
-                    }
-                    //if (dt.Rows[i]["symbol"].ToString() == "GDX")
-                    //{
-                    //    DividendTotalPercentage -= Convert.ToDecimal(DivYield[i]);
-                    //    DividendTotalPercentage += (decimal).80;
-                    //}
-                    MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["shares"]) * (CurrentStockPrice[i].ToString() == "N/A" ? 0 : Convert.ToDecimal(CurrentStockPrice[i])));
-                    //StatusVal += val;
-                    //if (StatusVal < 88)
-                    //    pbStatus.InvokeEx(x => x.Value = Convert.ToInt32(StatusVal));
-                }
-            }
-            DividendTotalPercentage = DividendTotalPercentage / TotalDividendCount;
-            QuarterDiv = (YearDiv / 4);
-            MonthlyDiv = (YearDiv / 12);
-            //pbStatus.InvokeEx(x => x.Value = 100);
-            //pbStatus.InvokeEx(x => x.Visible = false);
-            //lblStatus.InvokeEx(x => x.Visible = false);
-            pw.Close();
-            MessageBox.Show("Cost Basis: $" + Math.Round(TotalDividendStockValue, 2) + "\n\nMarket Value: $" + Math.Round(MarketTotalPrice, 2) + "\n\nAnnual Dividend: $" + Math.Round(YearDiv, 2) + "\n\n" + "Quarterly Dividend: $" + Math.Round(QuarterDiv, 2) + "\n\nMonthly Dividend: $" + Math.Round(MonthlyDiv, 2) + "\n\nPortfolio Dividend Yield: " + Math.Round(DividendTotalPercentage, 2) + "%");
-        }
 
         public void LoadDividends(ListView lv, string active)
         {
@@ -182,7 +119,6 @@ namespace DividendLiberty
             {
                 File.Copy(uti.GetLocalFilePath(FileTypes.ini), uti.GetFilePath(FileTypes.ini), true);
             }
-            //HideExcelColumns();
             if (lv.Name == "lvCurrentDividends")
             {
                 LvNames = "Portfolio Data";
@@ -223,23 +159,6 @@ namespace DividendLiberty
             DividendStocks.LoadDividends(lv, names, exDiv, payDate, active, dtXml);
             Program.PleaseWait.Close();
         }
-
-        //public void SaveHideExcelColumns()
-        //{
-        //    string[] values = new string[11];
-        //    values[0] = "true";
-        //    values[1] = "true";
-        //    values[2] = "true";
-        //    values[3] = "true";
-        //    values[4] = "true";
-        //    values[5] = "true";
-        //    values[6] = "true";
-        //    values[7] = "true";
-        //    values[8] = "true";
-        //    values[9] = "true";
-        //    values[10] = "true";
-        //    PortfolioExcel.HideExcelColumns(INIFileOptions.SetINIValues(values));
-        //}
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
@@ -416,9 +335,7 @@ namespace DividendLiberty
 
         public void HighlightSingleColor(ListView lv)
         {
-            int index = lv.SelectedItems[0].Index;
-            int tag = Convert.ToInt32(lv.Items[index].Tag);
-            string color = lv.Items[index].BackColor.Name;
+            int tag = Convert.ToInt32(lv.Items[SelectedIndex].Tag);
             lstID.Clear();
             lstID.Add(tag);
             lv.SelectedItems.Clear();
