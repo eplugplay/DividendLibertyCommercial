@@ -105,6 +105,23 @@ namespace DividendLiberty
         }
         #endregion
 
+        private void calculateResultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (backgroundWorker1.IsBusy)
+                {
+                    MessageBox.Show("Please wait until data is processed.");
+                    return;
+                }
+                backgroundWorker1.RunWorkerAsync();
+            }
+            catch
+            {
+
+            }
+        }
+
         public void LoadDividends(ListView lv, string active)
         {
             string LvNames = "";
@@ -626,23 +643,6 @@ namespace DividendLiberty
         private void showSectorPercentagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
            DividendStocks.ShowIndustryPercentages(lvCurrentDividends);
-        }
-
-        private void calculateResultsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (backgroundWorker1.IsBusy)
-                {
-                    MessageBox.Show("Please wait until data is processed.");
-                    return;
-                }
-                backgroundWorker1.RunWorkerAsync();
-            }
-            catch
-            {
-
-            }
         }
 
         private void highlightNextPurchasesToolStripMenuItem_Click(object sender, EventArgs e)
