@@ -799,6 +799,7 @@ namespace DividendLiberty
                         }
                         catch
                         {
+                            pw.Close();
                             MessageBox.Show("Could not highlight, yahoo connection was lost. Please try again later.");
                             return;
                         }

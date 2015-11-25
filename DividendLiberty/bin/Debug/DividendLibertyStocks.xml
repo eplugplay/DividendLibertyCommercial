@@ -10,7 +10,8 @@
       <cost>45.32</cost>
       <purchasedate>09-18-2015</purchasedate>
       <shares>22</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="2">
       <id>2</id>
@@ -21,7 +22,8 @@
       <cost>94.58</cost>
       <purchasedate>09-21-2015</purchasedate>
       <shares>11</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="3">
       <id>3</id>
@@ -32,7 +34,8 @@
       <cost>70.029131</cost>
       <purchasedate>09-18-2015</purchasedate>
       <shares>14.123</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="4">
       <id>4</id>
@@ -40,10 +43,11 @@
       <industry>Industrials</industry>
       <active>true</active>
       <interval>Quarterly</interval>
-      <cost>64.18</cost>
-      <purchasedate>09-28-2015</purchasedate>
-      <shares>16</shares>
-      <nexttobuy>no</nexttobuy>
+      <cost>64.257143</cost>
+      <purchasedate>11-12-2015</purchasedate>
+      <shares>16.173</shares>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="5">
       <id>5</id>
@@ -52,9 +56,10 @@
       <active>true</active>
       <interval>Quarterly</interval>
       <cost>76.60</cost>
-      <purchasedate>09-28-2015</purchasedate>
+      <purchasedate>11-12-2015</purchasedate>
       <shares>14</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="6">
       <id>6</id>
@@ -63,9 +68,10 @@
       <active>true</active>
       <interval>Quarterly</interval>
       <cost>42.47</cost>
-      <purchasedate>09-25-2015</purchasedate>
+      <purchasedate>09-29-2015</purchasedate>
       <shares>24</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="7">
       <id>7</id>
@@ -76,7 +82,8 @@
       <cost>65.77</cost>
       <purchasedate>10-01-2015</purchasedate>
       <shares>14</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="8">
       <id>8</id>
@@ -87,7 +94,8 @@
       <cost>32.551131</cost>
       <purchasedate>09-18-2015</purchasedate>
       <shares>30.302</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="9">
       <id>9</id>
@@ -98,7 +106,8 @@
       <cost>43.7499</cost>
       <purchasedate>11-12-2015</purchasedate>
       <shares>22</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="10">
       <id>10</id>
@@ -109,7 +118,8 @@
       <cost>39.269</cost>
       <purchasedate>09-21-2015</purchasedate>
       <shares>22</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="11">
       <id>11</id>
@@ -120,7 +130,8 @@
       <cost>82.468667</cost>
       <purchasedate>09-25-2015</purchasedate>
       <shares>12.055</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="12">
       <id>12</id>
@@ -131,7 +142,8 @@
       <cost>57.06093</cost>
       <purchasedate>09-28-2015</purchasedate>
       <shares>18.1</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="13">
       <id>13</id>
@@ -142,7 +154,8 @@
       <cost>20.064174</cost>
       <purchasedate>09-28-2015</purchasedate>
       <shares>40.433</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="14">
       <id>14</id>
@@ -153,7 +166,8 @@
       <cost>139.7799</cost>
       <purchasedate>10-01-2015</purchasedate>
       <shares>7</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="15">
       <id>15</id>
@@ -164,7 +178,8 @@
       <cost>72.3525</cost>
       <purchasedate>10-01-2015</purchasedate>
       <shares>14</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="16">
       <id>16</id>
@@ -175,7 +190,8 @@
       <cost>62.586663</cost>
       <purchasedate>10-01-2015</purchasedate>
       <shares>30</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="17">
       <id>17</id>
@@ -186,7 +202,8 @@
       <cost>63.353551</cost>
       <purchasedate>10-01-2015</purchasedate>
       <shares>16.093</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="18">
       <id>18</id>
@@ -197,7 +214,8 @@
       <cost>13.601255</cost>
       <purchasedate>10-06-2015</purchasedate>
       <shares>77.062</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="19">
       <id>19</id>
@@ -208,7 +226,8 @@
       <cost>7.093725</cost>
       <purchasedate>10-06-2015</purchasedate>
       <shares>153</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="20">
       <id>20</id>
@@ -219,7 +238,8 @@
       <cost>14.85</cost>
       <purchasedate>08-13-2015</purchasedate>
       <shares>167</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="21">
       <id>21</id>
@@ -230,7 +250,8 @@
       <cost>21.921</cost>
       <purchasedate>08-13-2015</purchasedate>
       <shares>114</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="22">
       <id>22</id>
@@ -241,7 +262,8 @@
       <cost>73.1198</cost>
       <purchasedate>09-21-2015</purchasedate>
       <shares>14</shares>
-      <nexttobuy>no</nexttobuy>
+      <nexttobuy>
+      </nexttobuy>
     </dividendstock>
     <dividendstock ID="23">
       <id>23</id>
@@ -249,9 +271,9 @@
       <industry>Consumer Staples</industry>
       <active>false</active>
       <interval>Quarterly</interval>
-      <cost>0</cost>
+      <cost>102.15</cost>
       <purchasedate>11-12-2015</purchasedate>
-      <shares>0</shares>
+      <shares>10</shares>
       <nexttobuy>yes</nexttobuy>
     </dividendstock>
     <dividendstock ID="24">
@@ -260,9 +282,9 @@
       <industry>Telecommunication Services</industry>
       <active>false</active>
       <interval>Quarterly</interval>
-      <cost>0</cost>
+      <cost>45.99</cost>
       <purchasedate>11-12-2015</purchasedate>
-      <shares>0</shares>
+      <shares>22</shares>
       <nexttobuy>yes</nexttobuy>
     </dividendstock>
     <dividendstock ID="25">
@@ -271,9 +293,9 @@
       <industry>Consumer Staples</industry>
       <active>false</active>
       <interval>Quarterly</interval>
-      <cost>0</cost>
+      <cost>41.69</cost>
       <purchasedate>11-12-2015</purchasedate>
-      <shares>0</shares>
+      <shares>25</shares>
       <nexttobuy>yes</nexttobuy>
     </dividendstock>
     <dividendstock ID="26">
