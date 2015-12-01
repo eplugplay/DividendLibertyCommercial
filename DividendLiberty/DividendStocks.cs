@@ -498,7 +498,7 @@ namespace DividendLiberty
             decimal QuarterDiv = 0;
             decimal MonthlyDiv = 0;
             decimal DividendTotalPercentage = 0;
-            decimal MarketTotalPrice = 0;
+            //decimal MarketTotalPrice = 0;
             DataTable dt = uti.GetXMLData();
             decimal Purchaseprice = 0;
             string symbols = uti.GetStockSymbols(dt);
@@ -528,7 +528,7 @@ namespace DividendLiberty
                     //    DividendTotalPercentage -= Convert.ToDecimal(DivYield[i]);
                     //    DividendTotalPercentage += (decimal).80;
                     //}
-                    MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["shares"]) * (CurrentStockPrice[i].ToString() == "N/A" ? 0 : Convert.ToDecimal(CurrentStockPrice[i])));
+                    //MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["shares"]) * (CurrentStockPrice[i].ToString() == "N/A" ? 0 : Convert.ToDecimal(CurrentStockPrice[i])));
                     //StatusVal += val;
                     //if (StatusVal < 88)
                     //    pbStatus.InvokeEx(x => x.Value = Convert.ToInt32(StatusVal));
@@ -541,7 +541,7 @@ namespace DividendLiberty
             //pbStatus.InvokeEx(x => x.Visible = false);
             //lblStatus.InvokeEx(x => x.Visible = false);
             pw.Close();
-            MessageBox.Show("Cost Basis: $" + Math.Round(TotalDividendStockValue, 2) + "\n\nMarket Value: $" + Math.Round(MarketTotalPrice, 2) + "\n\nAnnual Dividend: $" + Math.Round(YearDiv, 2) + "\n\n" + "Quarterly Dividend: $" + Math.Round(QuarterDiv, 2) + "\n\nMonthly Dividend: $" + Math.Round(MonthlyDiv, 2) + "\n\nPortfolio Dividend Yield: " + Math.Round(DividendTotalPercentage, 2) + "%");
+            MessageBox.Show("Cost Basis: $" + Math.Round(TotalDividendStockValue, 2) + "\n\nAnnual Dividend: $" + Math.Round(YearDiv, 2) + "\n\n" + "Quarterly Dividend: $" + Math.Round(QuarterDiv, 2) + "\n\nMonthly Dividend: $" + Math.Round(MonthlyDiv, 2) + "\n\nPortfolio Dividend Yield: " + Math.Round(DividendTotalPercentage, 2) + "%");
         }
     }
 
