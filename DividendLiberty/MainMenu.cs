@@ -735,16 +735,24 @@ namespace DividendLiberty
 
         private void exportStocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            uti.ExportXML(uti.GetExportPath());
+            string path = uti.GetExportPath();
+            if (path != "")
+            {
+                uti.ExportXML(path);
+            }
         }
 
 
 
         private void importStocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            uti.ImportXML(uti.GetImportPath());
-            LoadDividends(lvAllDividends, "false");
-            LoadDividends(lvCurrentDividends, "true");
+            string path = uti.GetImportPath();
+            if (path != "")
+            {
+                uti.ImportXML(path);
+                LoadDividends(lvAllDividends, "false");
+                LoadDividends(lvCurrentDividends, "true");
+            }
         }
 
         private void reloadYahooStockInfoToolStripMenuItem_Click(object sender, EventArgs e)
