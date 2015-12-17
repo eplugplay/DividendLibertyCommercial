@@ -739,6 +739,7 @@ namespace DividendLiberty
             if (path != "")
             {
                 uti.ExportXML(path);
+                MessageBox.Show("Successfully Exported!");
             }
         }
 
@@ -752,6 +753,7 @@ namespace DividendLiberty
                 uti.ImportXML(path);
                 LoadDividends(lvAllDividends, "false");
                 LoadDividends(lvCurrentDividends, "true");
+                MessageBox.Show("Successfully Imported!");
             }
         }
 

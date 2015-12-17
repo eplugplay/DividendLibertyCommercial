@@ -47,3 +47,4 @@ C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendLibertyStocks.xml
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\DividendLibertyConfig.ini
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.EditColumns.resources
+C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.csprojResolveAssemblyReference.cache
