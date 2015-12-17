@@ -297,6 +297,28 @@ namespace DividendLiberty
             }
         }
 
+        public static string GetHighlightSymbols(ListView lv)
+        {
+            string symbol = "";
+            string monthYear = "";
+            string dtpMonthYear = "";
+            for (int i = 0; i < lv.Items.Count; i++)
+            {
+                string date = lv.Items[i].SubItems[7].Text;
+                string[] dateSplit = date.Split('/');
+                if (date != "N/A")
+                {
+                    monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
+                    dtpMonthYear = Program.MainMenu.dtpPayDate.Value.ToString("M/yyyy");
+                    if (monthYear == dtpMonthYear)
+                    {
+                        symbol += lv.Items[i].SubItems[1].Text.ToString() + ",";
+                    }
+                }
+            }
+            return symbol = symbol.Length == 0 ? "" : symbol.Substring(0, symbol.Length -1);
+        }
+
         public static void HighlightPayDate(ListView lv)
         {
             PleaseWait pw = new PleaseWait();
@@ -312,6 +334,9 @@ namespace DividendLiberty
             //lv.SelectedItems.Clear();
             uti.ClearListViewColors(lv);
             Program.MainMenu.lstID.Clear();
+            string stockSymbols = GetHighlightSymbols(lv);
+            string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(stockSymbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
+            int annDivCnt = 0;
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 string date = lv.Items[i].SubItems[7].Text;
@@ -336,7 +361,7 @@ namespace DividendLiberty
                         string symbol = lv.Items[i].SubItems[1].Text.ToString();
                         try
                         {
-                            div = Convert.ToDecimal(YahooFinance.GetValues(symbol, YahooFinance.GetCodes(YahooCodes.annualDividend), false));
+                            div = Convert.ToDecimal(AnnualDiv[annDivCnt++]);
                         }
                         catch
                         {
