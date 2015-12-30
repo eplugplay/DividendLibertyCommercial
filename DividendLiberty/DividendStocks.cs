@@ -540,7 +540,7 @@ namespace DividendLiberty
                 {
                     string id = dt.Rows[i]["id"].ToString();
                     Purchaseprice = Convert.ToDecimal(dt.Rows[i]["cost"]);
-                    YearDiv += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(AnnualDiv[i]));
+                    YearDiv += AnnualDiv[i] == "N/A" ? 0 : (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(AnnualDiv[i]));
                     TotalDividendStockValue += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Purchaseprice);
                     TotalDividendCount++;
                     DividendTotalPercentage += DivYield[i] == "N/A" ? 0 : Convert.ToDecimal(DivYield[i]);
