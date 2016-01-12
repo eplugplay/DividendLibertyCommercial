@@ -117,9 +117,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>82.468667</cost>
+<cost>82.485242</cost>
 <purchasedate>09-25-2015</purchasedate>
-<shares>12.055</shares>
+<shares>12.133</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="12">
@@ -227,9 +227,9 @@
 <industry>Equity Precious Metals</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>21.921</cost>
+<cost>21.90867</cost>
 <purchasedate>08-13-2015</purchasedate>
-<shares>114</shares>
+<shares>114.43</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="22">
