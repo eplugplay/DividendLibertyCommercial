@@ -16,24 +16,12 @@
         "Entry"
         {
         "MsmKey" = "8:_02091302C028CDE653766DF8314C5BEC"
-        "OwnerKey" = "8:_34E085BCDE4F46538F086B9FAE309AEA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_02091302C028CDE653766DF8314C5BEC"
         "OwnerKey" = "8:_E72DE3D150144FE2A40830D612981365"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_0B7C7DDC141FB8F66013EC578F8E6B02"
-        "OwnerKey" = "8:_34E085BCDE4F46538F086B9FAE309AEA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_34E085BCDE4F46538F086B9FAE309AEA"
+        "MsmKey" = "8:_B19DA41203F74FCCB7AF0820E690380B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -52,12 +40,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_34E085BCDE4F46538F086B9FAE309AEA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E72DE3D150144FE2A40830D612981365"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -65,12 +47,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_02091302C028CDE653766DF8314C5BEC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0B7C7DDC141FB8F66013EC578F8E6B02"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -209,21 +185,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0B7C7DDC141FB8F66013EC578F8E6B02"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B19DA41203F74FCCB7AF0820E690380B"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_0B7C7DDC141FB8F66013EC578F8E6B02"
-                    {
-                    "Name" = "8:MySql.Data.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MySql.Data.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\DividendLiberty\\DividendLibertyConfig.ini"
+            "TargetName" = "8:DividendLibertyConfig.ini"
             "Tag" = "8:"
             "Folder" = "8:_351DB1E34C4A4440942BA5D796EB0F00"
             "Condition" = "8:"
@@ -237,7 +202,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C78F2C8AEC2748F7BDD06BF0EE4E1150"
@@ -348,7 +313,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Dividend Liberty"
         "ProductCode" = "8:{38E7B3CB-5118-4658-99A7-CC8D3FE48C35}"
-        "PackageCode" = "8:{A40EB440-FFFD-4FB9-AC29-6E66A2E19649}"
+        "PackageCode" = "8:{21712678-C671-4A8E-A032-12BAAB3485F7}"
         "UpgradeCode" = "8:{E79930E0-2618-475F-9F1D-E599E77A3DA8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -881,34 +846,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_34E085BCDE4F46538F086B9FAE309AEA"
-            {
-            "SourcePath" = "8:..\\DividendLiberty\\obj\\x86\\Debug\\DividendLiberty.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_351DB1E34C4A4440942BA5D796EB0F00"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{DF7896A9-F98A-46D0-B2FD-941A478BDE7F}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_820F9B706BB04E4482116CA54A49B22F"
             {
             "SourcePath" = "8:"

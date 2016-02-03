@@ -23,9 +23,16 @@ namespace DividendLiberty
 
         private void EditColumnNames_Load(object sender, EventArgs e)
         {
-            toolTip1.AutoPopDelay = 10000;
-            LoadColumnNames();
-            LoadVisible();
+            try
+            {
+                toolTip1.AutoPopDelay = 10000;
+                LoadColumnNames();
+                LoadVisible();
+            }
+            catch
+            {
+
+            }
         }
 
         public void UpdateColumnNames()
