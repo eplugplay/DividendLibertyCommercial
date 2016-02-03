@@ -655,14 +655,7 @@ namespace DividendLiberty
 
         private void generateExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
                 PortfolioExcel.GeneratePortfolioExcel();
-            }
-            catch
-            {
-                MessageBox.Show("Please close excel file and try again.");
-            }
         }
 
         private void editColumnsToolStripMenuItem_Click(object sender, EventArgs e)

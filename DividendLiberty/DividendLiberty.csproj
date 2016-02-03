@@ -68,12 +68,24 @@
     <Compile Include="ExcelOptions\EditColumns.Designer.cs">
       <DependentUpon>EditColumns.cs</DependentUpon>
     </Compile>
-    <Compile Include="Excel\ExcelBase.cs" />
-    <Compile Include="Excel\ExcelNPOIWriter.cs" />
-    <Compile Include="Excel\ExcelStyle.cs" />
-    <Compile Include="Excel\ExcelWriter.cs" />
-    <Compile Include="Excel\ExcelWriterException.cs" />
-    <Compile Include="Excel\RoundingNPOIWriter.cs" />
+    <Compile Include="Excel\ExcelBase.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Excel\ExcelNPOIWriter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Excel\ExcelStyle.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Excel\ExcelWriter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Excel\ExcelWriterException.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Excel\RoundingNPOIWriter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="INIFile.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
@@ -87,7 +99,9 @@
     <Compile Include="PleaseWait.Designer.cs">
       <DependentUpon>PleaseWait.cs</DependentUpon>
     </Compile>
-    <Compile Include="Excel\PortfolioExcel.cs" />
+    <Compile Include="Excel\PortfolioExcel.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="uti.cs" />

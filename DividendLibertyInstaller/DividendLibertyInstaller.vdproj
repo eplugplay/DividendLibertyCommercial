@@ -163,11 +163,11 @@
                 {
                     "_02091302C028CDE653766DF8314C5BEC"
                     {
-                    "Name" = "8:NPOI.dll"
+                    "Name" = "8:NPOI.DLL"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:NPOI.dll"
+            "SourcePath" = "8:NPOI.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_351DB1E34C4A4440942BA5D796EB0F00"
@@ -313,7 +313,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Dividend Liberty"
         "ProductCode" = "8:{38E7B3CB-5118-4658-99A7-CC8D3FE48C35}"
-        "PackageCode" = "8:{21712678-C671-4A8E-A032-12BAAB3485F7}"
+        "PackageCode" = "8:{5F7299EF-7BC2-4106-9A18-AEC6AF00B3D9}"
         "UpgradeCode" = "8:{E79930E0-2618-475F-9F1D-E599E77A3DA8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -896,6 +896,34 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Symbols"
+            "OutputProjectGuid" = "8:{DF7896A9-F98A-46D0-B2FD-941A478BDE7F}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A94AD4DEC0BC49BCA03CE7B6F9491D4B"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_351DB1E34C4A4440942BA5D796EB0F00"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:SourceFiles"
             "OutputProjectGuid" = "8:{DF7896A9-F98A-46D0-B2FD-941A478BDE7F}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
