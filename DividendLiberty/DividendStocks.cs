@@ -19,6 +19,9 @@ namespace DividendLiberty
         {
             msg = "";
             DataTable dt = uti.GetXMLData();
+            DataView dv = dt.DefaultView;
+            dv.Sort = "symbol asc";
+            dt = dv.ToTable();
             totalPrice = 0;
             try
             {

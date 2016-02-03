@@ -329,24 +329,18 @@ namespace DividendLiberty
             }
         }
 
-        public void HighlightMultipleShiftColor(ListView lv)
+        public void HighlightAllColor(ListView lv)
         {
             lstID.Clear();
-            for (int i = 0; i < lv.SelectedItems.Count; i++)
+            for (int i = 0; i < lv.Items.Count; i++)
             {
+                lv.Items[i].Selected = true;
                 lstID.Add(Convert.ToInt32(lv.SelectedItems[i].Tag));
             }
             lv.SelectedItems.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
-                if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
-                {
-                    lv.Items[i].BackColor = uti.GetHighlightColor();
-                }
-                if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
-                {
-                    lv.Items[i].BackColor = Color.White;
-                }
+                lv.Items[i].BackColor = uti.GetHighlightColor();
             }
         }
 
@@ -492,6 +486,10 @@ namespace DividendLiberty
             OpenDividends(true, CurrentDiv);
         }
 
+        private void lvCurrentDividends_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
 
         public List<StockInfo> GetStockInfoList(ListView lv)
         {
@@ -730,6 +728,10 @@ namespace DividendLiberty
                 || e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Control || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Control)
             {
                 e.Handled = true;
+            }
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                HighlightAllColor(lvCurrentDividends);
             }
         }
 
