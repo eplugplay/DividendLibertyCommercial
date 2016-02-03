@@ -73,7 +73,7 @@ namespace DividendLiberty
                                 MessageBox.Show("Could not connect to Yahoo to complete the results!, please try again later.");
                                 return;
                             }
-                            yield = Convert.ToDecimal(yieldTemp == "" ? "0" : yieldTemp);
+                            yield = Convert.ToDecimal(yieldTemp == "" || yieldTemp == "N/A" ? 0 : Convert.ToDecimal(yieldTemp));
                             totalDividendPrice += (numShares * yield);
                             msg += lv.Items[i].SubItems[1].Text + ":\n";
                             msg += "Monthly: $" + Math.Round((numShares * yield / 12), 2) + "\n";

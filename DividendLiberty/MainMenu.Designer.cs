@@ -156,7 +156,7 @@
             // 
             this.showPercentagesToolStripMenuItem.Name = "showPercentagesToolStripMenuItem";
             this.showPercentagesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.showPercentagesToolStripMenuItem.Text = "Show Percentages";
+            this.showPercentagesToolStripMenuItem.Text = "Show Sector Percentages";
             this.showPercentagesToolStripMenuItem.Click += new System.EventHandler(this.showPercentagesToolStripMenuItem_Click);
             // 
             // portfolioOptionsToolStripMenuItem

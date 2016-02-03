@@ -58,7 +58,7 @@ namespace DividendLiberty
                     MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
                     return;
                 }
-                string newID = DividendStocks.NewDividendStock(txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text);
+                string newID = DividendStocks.NewDividendStock(txtSymbol.Text.ToUpper(), ddlIndustry.Text, ddlDividendInterval.Text);
                 DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
                 ReloadMainDividends();
             }
@@ -117,6 +117,7 @@ namespace DividendLiberty
             txt52WeekLow.Enabled = false;
             txtCurrentPrice.Enabled = false;
             txtDayRange.Enabled = false;
+            txtStockName.Enabled = false;
         }
 
         public void LoadDividendStock()
