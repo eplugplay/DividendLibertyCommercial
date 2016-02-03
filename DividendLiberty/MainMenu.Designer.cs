@@ -36,7 +36,6 @@
             this.exportStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadYahooStockInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelFileSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nonPortfolioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.highlightNextPurchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showPercentagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,17 +132,9 @@
             // 
             // editToolStripMenuItem
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.excelFileSettingsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // excelFileSettingsToolStripMenuItem
-            // 
-            this.excelFileSettingsToolStripMenuItem.Name = "excelFileSettingsToolStripMenuItem";
-            this.excelFileSettingsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.excelFileSettingsToolStripMenuItem.Text = "Excel File Settings";
             // 
             // nonPortfolioOptionsToolStripMenuItem
             // 
@@ -612,7 +603,6 @@
         private System.Windows.Forms.ToolStripMenuItem highlightNextPurchasesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showPercentagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem excelFileSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editColumnsToolStripMenuItem;
