@@ -205,7 +205,10 @@ namespace DividendLiberty
         {
             if (lstID.Count != 0)
             {
-                AddRemoveDividends(lvAllDividends, "true");
+                if (!CurrentDiv)
+                {
+                    AddRemoveDividends(lvAllDividends, "true");
+                }
             }
         }
 
@@ -213,8 +216,11 @@ namespace DividendLiberty
         {
             if (lstID.Count != 0)
             {
-                AddRemoveDividends(lvCurrentDividends, "false");
-                HighlightNextBuy();
+                if (CurrentDiv)
+                {
+                    AddRemoveDividends(lvCurrentDividends, "false");
+                    HighlightNextBuy();
+                }
             }
         }
 
@@ -507,20 +513,72 @@ namespace DividendLiberty
             decimal TotalDividendPrice = 0;
             decimal QuarterlyDividendPrice = 0;
             decimal MonthlyDividendPrice = 0;
-            string msg = "";
-            DividendStocks.GetDividendPrice(lvCurrentDividends, lstID, out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice, out msg);
+            string[] msg = new string[9999];
+            int divider = DividendStocks.GetDividendPrice(lvCurrentDividends, lstID, out TotalDividendPrice, out QuarterlyDividendPrice, out MonthlyDividendPrice, out msg);
             pw.Close();
-            MessageBox.Show(msg + "Monthly: $" + Math.Round(MonthlyDividendPrice, 2).ToString() + "\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\nYearly: $" + Math.Round(TotalDividendPrice, 2));
+            string msgShow = "";
+            int cnt = 1;
+            if (divider > 10)
+            {
+                for (int i = 0; i < divider; i++)
+                {
+                    msgShow += msg[i];
+                    if (cnt % 10 == 0)
+                    {
+                        MessageBox.Show(msgShow);
+                        msgShow = "";
+                    }
+                    if (i == divider - 1)
+                    {
+                        if (i % 10 == 0)
+                        {
+                            MessageBox.Show(msgShow);
+                        }
+                        MessageBox.Show(msg[cnt] + "Monthly: $" + Math.Round(MonthlyDividendPrice, 2).ToString() + "\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\nYearly: $" + Math.Round(TotalDividendPrice, 2));
+                    }
+                    cnt++;
+                }
+            }
+            else
+            {
+                MessageBox.Show(uti.GenerateFullResultMsg(msg, divider) + "Monthly: $" + Math.Round(MonthlyDividendPrice, 2).ToString() + "\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\nYearly: $" + Math.Round(TotalDividendPrice, 2));
+            }
         }
 
         public void GetSharePrice(PleaseWait pw)
         {
             uti.ClearListViewColors(lvAllDividends);
             decimal totalPrice = 0;
-            string msg = "";
-            DividendStocks.GetTotalSharePrice(lstID, out totalPrice, out msg);
+            string[] msg = new string[9999];
+            string msgShow = "";
+            int cnt = 1;
+            int divider = DividendStocks.GetTotalSharePrice(lstID, out totalPrice, out msg);
             pw.Close();
-            MessageBox.Show(msg + "Total: $" + Math.Round(totalPrice, 2).ToString());
+            if (divider > 20)
+            {
+                for (int i = 0; i < divider; i++)
+                {
+                    msgShow += msg[i];
+                    if (cnt % 10 == 0)
+                    {
+                        MessageBox.Show(msgShow);
+                        msgShow = "";
+                    }
+                    if (i == divider - 1)
+                    {
+                        if (i % 10 == 0)
+                        {
+                            MessageBox.Show(msgShow);
+                        }
+                        MessageBox.Show("Total: $" + Math.Round(totalPrice, 2).ToString());
+                    }
+                    cnt++;
+                }
+            }
+            else
+            {
+                MessageBox.Show(uti.GenerateFullResultMsg(msg, divider) + "Total: $" + Math.Round(totalPrice, 2).ToString());
+            }
         }
 
         private void btnHighlight_Click(object sender, EventArgs e)

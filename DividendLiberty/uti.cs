@@ -282,6 +282,20 @@ namespace DividendLiberty
             }
             return ToBeReturned;
         }
+
+        public static string GenerateFullResultMsg(string[] msg, int divider)
+        {
+            string finalMsg = "";
+            for (int i = 0; i < divider; i++)
+            {
+                finalMsg += msg[i];
+                if(i == divider - 1)
+                {
+                    finalMsg += msg[i + 1];
+                }
+            }
+            return finalMsg;
+        }
     }
 
     public enum FileTypes
