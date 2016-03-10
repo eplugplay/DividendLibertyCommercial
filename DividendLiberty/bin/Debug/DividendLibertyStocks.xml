@@ -18,9 +18,9 @@
 <industry>Health Care</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>94.637382 	</cost>
+<cost>94.719903</cost>
 <purchasedate>09-21-2015</purchasedate>
-<shares>11.08</shares>
+<shares>11.158</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="3">
@@ -62,9 +62,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>42.413976</cost>
+<cost>42.362331</cost>
 <purchasedate>09-25-2015</purchasedate>
-<shares>24.19</shares>
+<shares>24.391</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="7">
@@ -95,9 +95,9 @@
 <industry>Utilities</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>43.763633</cost>
+<cost>43.822018</cost>
 <purchasedate>11-12-2015</purchasedate>
-<shares>22.266</shares>
+<shares>22.512</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="10">
