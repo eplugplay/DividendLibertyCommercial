@@ -55,3 +55,10 @@ C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.exe
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.pdb
 C:\Users\stevey\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.csprojResolveAssemblyReference.cache
+C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\Excel\ExcelBase.cs
+C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\Excel\ExcelNPOIWriter.cs
+C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\Excel\ExcelStyle.cs
+C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\Excel\ExcelWriter.cs
+C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\Excel\ExcelWriterException.cs
+C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\Excel\RoundingNPOIWriter.cs
+C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\bin\Debug\Excel\PortfolioExcel.cs

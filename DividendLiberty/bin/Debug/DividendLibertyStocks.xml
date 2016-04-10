@@ -7,9 +7,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>45.328062</cost>
+<cost>45.381818</cost>
 <purchasedate>09-18-2015</purchasedate>
-<shares>22.227</shares>
+<shares>22.433</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="2">
@@ -51,9 +51,9 @@
 <industry>Energy</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>76.725384</cost>
+<cost>76.924289</cost>
 <purchasedate>09-28-2015</purchasedate>
-<shares>14.172</shares>
+<shares>14.332</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="6">
@@ -73,9 +73,9 @@
 <industry>Utilities</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>65.751962</cost>
+<cost>65.949072</cost>
 <purchasedate>10-01-2015</purchasedate>
-<shares>14.142</shares>
+<shares>14.272</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="8">
@@ -150,9 +150,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>139.846016</cost>
+<cost>139.994156</cost>
 <purchasedate>10-01-2015</purchasedate>
-<shares>7.048</shares>
+<shares>7.096</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="15">
@@ -205,9 +205,9 @@
 <industry>Materials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>7.094793</cost>
+<cost>7.103134</cost>
 <purchasedate>10-06-2015</purchasedate>
-<shares>153.343</shares>
+<shares>153.531</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="20">
@@ -238,9 +238,9 @@
 <industry>Energy</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>73.136702</cost>
+<cost>73.218193</cost>
 <purchasedate>09-21-2015</purchasedate>
-<shares>14.136</shares>
+<shares>14.261</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="23">
