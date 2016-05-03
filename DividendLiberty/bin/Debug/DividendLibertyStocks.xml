@@ -7,9 +7,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>45.381818</cost>
+<cost>45.328062</cost>
 <purchasedate>09-18-2015</purchasedate>
-<shares>22.433</shares>
+<shares>22.227</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="2">
@@ -18,9 +18,9 @@
 <industry>Health Care</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>94.719903</cost>
+<cost>94.637382 	</cost>
 <purchasedate>09-21-2015</purchasedate>
-<shares>11.158</shares>
+<shares>11.08</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="3">
@@ -51,9 +51,9 @@
 <industry>Energy</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>76.924289</cost>
+<cost>76.725384</cost>
 <purchasedate>09-28-2015</purchasedate>
-<shares>14.332</shares>
+<shares>14.172</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="6">
@@ -62,9 +62,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>42.362331</cost>
+<cost>42.413976</cost>
 <purchasedate>09-25-2015</purchasedate>
-<shares>24.391</shares>
+<shares>24.19</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="7">
@@ -73,9 +73,9 @@
 <industry>Utilities</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>65.949072</cost>
+<cost>65.751962</cost>
 <purchasedate>10-01-2015</purchasedate>
-<shares>14.272</shares>
+<shares>14.142</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="8">
@@ -95,9 +95,9 @@
 <industry>Utilities</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>43.822018</cost>
+<cost>43.763633</cost>
 <purchasedate>11-12-2015</purchasedate>
-<shares>22.512</shares>
+<shares>22.266</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="10">
@@ -137,7 +137,7 @@
 <id>13</id>
 <symbol>POT</symbol>
 <industry>Materials</industry>
-<active>true</active>
+<active>false</active>
 <interval>Quarterly</interval>
 <cost>20.000243</cost>
 <purchasedate>09-28-2015</purchasedate>
@@ -150,9 +150,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>139.994156</cost>
+<cost>139.846016</cost>
 <purchasedate>10-01-2015</purchasedate>
-<shares>7.096</shares>
+<shares>7.048</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="15">
@@ -194,9 +194,9 @@
 <industry>Materials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>13.592024</cost>
+<cost>13.59445</cost>
 <purchasedate>10-06-2015</purchasedate>
-<shares>77.5</shares>
+<shares>77.583</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="19">
@@ -205,9 +205,9 @@
 <industry>Materials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>7.103134</cost>
+<cost>7.094793</cost>
 <purchasedate>10-06-2015</purchasedate>
-<shares>153.531</shares>
+<shares>153.343</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="20">
@@ -238,31 +238,31 @@
 <industry>Energy</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>73.218193</cost>
+<cost>73.136702</cost>
 <purchasedate>09-21-2015</purchasedate>
-<shares>14.261</shares>
+<shares>14.136</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="23">
 <id>23</id>
 <symbol>PEP</symbol>
 <industry>Consumer Staples</industry>
-<active>false</active>
+<active>true</active>
 <interval>Quarterly</interval>
-<cost>0</cost>
-<purchasedate>11-12-2015</purchasedate>
-<shares>0</shares>
+<cost>103.3794</cost>
+<purchasedate>05-02-2016</purchasedate>
+<shares>4</shares>
 <nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="24">
 <id>24</id>
 <symbol>VZ</symbol>
 <industry>Telecommunication Services</industry>
-<active>false</active>
+<active>true</active>
 <interval>Quarterly</interval>
-<cost>0</cost>
-<purchasedate>11-12-2015</purchasedate>
-<shares>0</shares>
+<cost>51.162</cost>
+<purchasedate>05-02-2016</purchasedate>
+<shares>15</shares>
 <nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="25">
