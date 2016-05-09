@@ -211,9 +211,26 @@ namespace DividendLiberty
         {
             if (txtNumberOfShares.Text != "" && txtCost.Text != "")
             {
+                try
+                {
+                    decimal.Parse(txtNumberOfShares.Text);
+                    decimal.Parse(txtCost.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Please enter numbers only.");
+                    return;
+                }
                 decimal TotalSharePrice = 0;
-                TotalSharePrice = Convert.ToDecimal(txtNumberOfShares.Text) * Convert.ToDecimal(txtCost.Text);
-                MessageBox.Show("$" + Math.Round(TotalSharePrice, 2).ToString());
+                try
+                {
+                    TotalSharePrice = Convert.ToDecimal(txtNumberOfShares.Text.Trim()) * Convert.ToDecimal(txtCost.Text.Trim());
+                    MessageBox.Show("$" + Math.Round(TotalSharePrice, 2).ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error in calculating. Please try again.");
+                }
             }
         }
 
@@ -221,10 +238,27 @@ namespace DividendLiberty
         {
             if (txtNumberOfShares.Text != "" && txtCost.Text != "")
             {
-                decimal TotalDividendPrice = Convert.ToDecimal(txtAnnualDividend.Text) * Convert.ToDecimal(txtNumberOfShares.Text);
-                decimal QuarterlyDividendPrice = TotalDividendPrice / 4;
-                decimal MonthlyDividendPrice = TotalDividendPrice / 12;
-                MessageBox.Show("Yearly: $" + Math.Round(TotalDividendPrice, 2).ToString() + "\n\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\n\nMonthly: $" + Math.Round(MonthlyDividendPrice, 2));
+                try
+                {
+                    decimal.Parse(txtNumberOfShares.Text);
+                    decimal.Parse(txtCost.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Please enter numbers only.");
+                    return;
+                }
+                try
+                {
+                    decimal TotalDividendPrice = Convert.ToDecimal(txtAnnualDividend.Text.Trim()) * Convert.ToDecimal(txtNumberOfShares.Text.Trim());
+                    decimal QuarterlyDividendPrice = TotalDividendPrice / 4;
+                    decimal MonthlyDividendPrice = TotalDividendPrice / 12;
+                    MessageBox.Show("Yearly: $" + Math.Round(TotalDividendPrice, 2).ToString() + "\n\nQuarterly: $" + Math.Round(QuarterlyDividendPrice, 2) + "\n\nMonthly: $" + Math.Round(MonthlyDividendPrice, 2));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error in calculating. Please try again.");
+                }
             }
         }
     }

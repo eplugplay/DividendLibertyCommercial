@@ -685,7 +685,14 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
-            GetSharePrice(pw);
+            try
+            {
+                GetSharePrice(pw);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error in calculating. Please try again.");
+            }
         }
 
         private void getDividendsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -693,7 +700,14 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
-            GetDividendPrice(pw);
+            try
+            {
+                GetDividendPrice(pw);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error in calculating. Please try again.");
+            }
         }
 
         private void showSectorPercentagesToolStripMenuItem_Click(object sender, EventArgs e)
