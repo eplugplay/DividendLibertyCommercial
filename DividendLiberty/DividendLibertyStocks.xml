@@ -192,7 +192,7 @@
 <id>18</id>
 <symbol>GG</symbol>
 <industry>Materials</industry>
-<active>true</active>
+<active>false</active>
 <interval>Quarterly</interval>
 <cost>13.59445</cost>
 <purchasedate>10-06-2015</purchasedate>
@@ -687,11 +687,11 @@
 <id>63</id>
 <symbol>AAPL</symbol>
 <industry>Information Technology</industry>
-<active>false</active>
+<active>true</active>
 <interval>Quarterly</interval>
-<cost>0</cost>
-<purchasedate>11-22-2015</purchasedate>
-<shares>0</shares>
+<cost>92.9801</cost>
+<purchasedate>05-11-2016</purchasedate>
+<shares>15</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="64">
