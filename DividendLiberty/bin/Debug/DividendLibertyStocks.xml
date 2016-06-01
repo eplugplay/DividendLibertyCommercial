@@ -40,9 +40,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>64.278618</cost>
+<cost>64.346707</cost>
 <purchasedate>09-28-2015</purchasedate>
-<shares>16.361</shares>
+<shares>16.539</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="5">
@@ -689,9 +689,9 @@
 <industry>Information Technology</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>92.9801</cost>
+<cost>94.257974</cost>
 <purchasedate>05-11-2016</purchasedate>
-<shares>15</shares>
+<shares>19</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="64">
