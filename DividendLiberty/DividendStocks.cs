@@ -556,7 +556,7 @@ namespace DividendLiberty
                     YearDiv += AnnualDiv[i] == "N/A" ? 0 : (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(AnnualDiv[i]));
                     TotalDividendStockValue += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Purchaseprice);
                     TotalDividendCount++;
-                    DividendTotalPercentage += DivYield[i] == "N/A" ? 0 : Convert.ToDecimal(DivYield[i]);
+                    DividendTotalPercentage += DivYield[i] == "N/A" ? 0 : DivYield[i].ToString() == "" ? 0 : Convert.ToDecimal(DivYield[i]);
                     if (dt.Rows[i]["symbol"].ToString() == "SIL")
                     {
                         DividendTotalPercentage += (decimal).09;
