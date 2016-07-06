@@ -64,6 +64,35 @@ namespace DividendLiberty
 
                 if (lstForumaCol[a] == 9)
                 {
+                    int yearlyIndex = 0;
+                    int sharesIndex = 0;
+                    int yearlySharesCnt = 0;
+                    for (int b = 0; b < lstForumaCol.Count; b++)
+                    {
+                        if (lstForumaCol[b] == 5)
+                        {
+                            yearlyIndex = b;
+                            yearlySharesCnt++;
+                        }
+
+                        if (lstForumaCol[b] == 3)
+                        {
+                            sharesIndex = b;
+                            yearlySharesCnt++;
+                        }
+                    }
+
+                    if (yearlySharesCnt == 2)
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            HSSFCell YearlyDividendCol = excelObj.getCell(i + 1, a, "My Dividends");
+                            YearlyDividendCol.SetCellType(CellType.FORMULA);
+                            YearlyDividendCol.CellFormula = string.Format("ROUND({0}{1}*{2}{3}, 2)", uti.GetExcelColLetter(sharesIndex), i + 2, uti.GetExcelColLetter(yearlyIndex), i + 2);
+                            //excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
+                        }
+                    }
+
                     HSSFCell YearlyDiv = excelObj.getCell(count, a, "My Dividends");
                     YearlyDiv.SetCellType(CellType.FORMULA);
                     YearlyDiv.CellFormula = string.Format("ROUND(SUM({0}{1}:{0}{2}), 2)", uti.GetExcelColLetter(a), 2, count);
@@ -71,6 +100,33 @@ namespace DividendLiberty
                 }
                 if (lstForumaCol[a] == 10)
                 {
+                    int priceIndex = 0;
+                    int sharesIndex = 0;
+                    int priceSharesCount = 0;
+                    for (int b = 0; b < lstForumaCol.Count; b++)
+                    {
+                        if (lstForumaCol[b] == 3)
+                        {
+                            priceIndex = b;
+                            priceSharesCount++;
+                        }
+                        if (lstForumaCol[b] == 4)
+                        {
+                            sharesIndex = b;
+                            priceSharesCount++;
+                        }
+                    }
+
+                    if (priceSharesCount == 2)
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            HSSFCell TotalCostBasisCol = excelObj.getCell(i + 1, a, "My Dividends");
+                            TotalCostBasisCol.SetCellType(CellType.FORMULA);
+                            TotalCostBasisCol.CellFormula = string.Format("ROUND({0}{1}*{2}{3}, 2)", uti.GetExcelColLetter(priceIndex), i + 2, uti.GetExcelColLetter(sharesIndex), i + 2);
+                            //excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
+                        }
+                    }
                     HSSFCell TotalCostBasis = excelObj.getCell(count, a, "My Dividends");
                     TotalCostBasis.SetCellType(CellType.FORMULA);
                     TotalCostBasis.CellFormula = string.Format("SUM({0}{1}:{0}{2})", uti.GetExcelColLetter(a), 2, count);
@@ -135,7 +191,7 @@ namespace DividendLiberty
                     cnt++;
                     if (visible[visCnt++] == "True")
                     {
-                        dr[col[cnt].ToLower()] = yields[i] == "N/A" ? 0 : Convert.ToDouble(yields[i]);
+                        dr[col[cnt].ToLower()] = yields[i] == "N/A" ? 0 : yields[i] == "" ? 0 : Convert.ToDouble(yields[i]);
                     }
                     cnt++;
                     if (visible[visCnt++] == "True")
