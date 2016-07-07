@@ -547,39 +547,47 @@ namespace DividendLiberty
             //decimal val = dt.Rows.Count;
             //decimal StatusVal = 0;
             //val = Math.Round(90 / val, 0);
-            for (int i = 0; i < dt.Rows.Count; i++)
+            if (uti.hasAllAnnualDiv(AnnualDiv) != false)
             {
-                if (dt.Rows[i]["active"].ToString() == "true")
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    string id = dt.Rows[i]["id"].ToString();
-                    Purchaseprice = Convert.ToDecimal(dt.Rows[i]["cost"]);
-                    YearDiv += AnnualDiv[i] == "N/A" ? 0 : AnnualDiv[i] == "" ? 0 : (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(AnnualDiv[i]));
-                    TotalDividendStockValue += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Purchaseprice);
-                    TotalDividendCount++;
-                    DividendTotalPercentage += DivYield[i] == "N/A" ? 0 : DivYield[i].ToString() == "" ? 0 : Convert.ToDecimal(DivYield[i]);
-                    if (dt.Rows[i]["symbol"].ToString() == "SIL")
+                    if (dt.Rows[i]["active"].ToString() == "true")
                     {
-                        DividendTotalPercentage += (decimal).09;
+                        string id = dt.Rows[i]["id"].ToString();
+                        Purchaseprice = Convert.ToDecimal(dt.Rows[i]["cost"]);
+                        YearDiv += AnnualDiv[i] == "N/A" ? 0 : AnnualDiv[i] == "" ? 0 : (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(AnnualDiv[i]));
+                        TotalDividendStockValue += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Purchaseprice);
+                        TotalDividendCount++;
+                        DividendTotalPercentage += DivYield[i] == "N/A" ? 0 : DivYield[i].ToString() == "" ? 0 : Convert.ToDecimal(DivYield[i]);
+                        if (dt.Rows[i]["symbol"].ToString() == "SIL")
+                        {
+                            DividendTotalPercentage += (decimal).09;
+                        }
+                        //if (dt.Rows[i]["symbol"].ToString() == "GDX")
+                        //{
+                        //    DividendTotalPercentage -= Convert.ToDecimal(DivYield[i]);
+                        //    DividendTotalPercentage += (decimal).80;
+                        //}
+                        //MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["shares"]) * (CurrentStockPrice[i].ToString() == "N/A" ? 0 : Convert.ToDecimal(CurrentStockPrice[i])));
+                        //StatusVal += val;
+                        //if (StatusVal < 88)
+                        //    pbStatus.InvokeEx(x => x.Value = Convert.ToInt32(StatusVal));
                     }
-                    //if (dt.Rows[i]["symbol"].ToString() == "GDX")
-                    //{
-                    //    DividendTotalPercentage -= Convert.ToDecimal(DivYield[i]);
-                    //    DividendTotalPercentage += (decimal).80;
-                    //}
-                    //MarketTotalPrice += (Convert.ToDecimal(dt.Rows[i]["shares"]) * (CurrentStockPrice[i].ToString() == "N/A" ? 0 : Convert.ToDecimal(CurrentStockPrice[i])));
-                    //StatusVal += val;
-                    //if (StatusVal < 88)
-                    //    pbStatus.InvokeEx(x => x.Value = Convert.ToInt32(StatusVal));
                 }
+                DividendTotalPercentage = DividendTotalPercentage / TotalDividendCount;
+                QuarterDiv = (YearDiv / 4);
+                MonthlyDiv = (YearDiv / 12);
+                //pbStatus.InvokeEx(x => x.Value = 100);
+                //pbStatus.InvokeEx(x => x.Visible = false);
+                //lblStatus.InvokeEx(x => x.Visible = false);
+                pw.Close();
+                MessageBox.Show("Cost Basis: $" + Math.Round(TotalDividendStockValue, 2) + "\n\nAnnual Dividend: $" + Math.Round(YearDiv, 2) + "\n\n" + "Quarterly Dividend: $" + Math.Round(QuarterDiv, 2) + "\n\nMonthly Dividend: $" + Math.Round(MonthlyDiv, 2) + "\n\nPortfolio Dividend Yield: " + Math.Round(DividendTotalPercentage, 2) + "%");
             }
-            DividendTotalPercentage = DividendTotalPercentage / TotalDividendCount;
-            QuarterDiv = (YearDiv / 4);
-            MonthlyDiv = (YearDiv / 12);
-            //pbStatus.InvokeEx(x => x.Value = 100);
-            //pbStatus.InvokeEx(x => x.Visible = false);
-            //lblStatus.InvokeEx(x => x.Visible = false);
-            pw.Close();
-            MessageBox.Show("Cost Basis: $" + Math.Round(TotalDividendStockValue, 2) + "\n\nAnnual Dividend: $" + Math.Round(YearDiv, 2) + "\n\n" + "Quarterly Dividend: $" + Math.Round(QuarterDiv, 2) + "\n\nMonthly Dividend: $" + Math.Round(MonthlyDiv, 2) + "\n\nPortfolio Dividend Yield: " + Math.Round(DividendTotalPercentage, 2) + "%");
+            else
+            {
+                pw.Close();
+                MessageBox.Show("Yahoo could not retrieve all stock's annual dividends for the total calculation. Please try again later.");
+            }
         }
     }
 
