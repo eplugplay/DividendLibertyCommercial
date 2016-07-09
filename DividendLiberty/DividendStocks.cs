@@ -105,7 +105,7 @@ namespace DividendLiberty
             return array;
         }
 
-        public static void LoadDividends(ListView lv, string[] names, string[] exDiv, string[] payDate, string active, DataTable dtXml)
+        public static void LoadDividends(ListView lv, string[] names, string[] exDiv, string[] payDate, string[] eps, string[] annualDiv, string active, DataTable dtXml)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace DividendLiberty
                 lv.Columns.Add("Ex-Dividend");
                 lv.Columns.Add("Pay Date");
                 lv.Columns.Add("Pay Interval");
-                lv.Columns.Add("");
+                lv.Columns.Add("Payout Ratio");
                 int count = 1;
                 for (int i = 0; i < dtXml.Rows.Count; i++)
                 {
@@ -136,7 +136,13 @@ namespace DividendLiberty
                         lvItem.SubItems.Add(dtXml.Rows[i]["cost"].ToString());
                         lvItem.SubItems.Add(exDiv.Length == 1 ? "" : exDiv[i]);
                         lvItem.SubItems.Add(payDate.Length == 1 ? "" : payDate[i]);
+                        decimal payoutRatio = 0;
+                        if (eps[i].ToString() != "" && eps[i].ToString() != "N/A" && annualDiv[i].ToString() != "" && annualDiv[i].ToString() != "N.A")
+                        {
+                            payoutRatio = Math.Round(Convert.ToDecimal(annualDiv[i]) / Convert.ToDecimal(eps[i]) * 100, 2); 
+                        }
                         lvItem.SubItems.Add(dtXml.Rows[i]["interval"].ToString());
+                        lvItem.SubItems.Add(eps.Length == 1 ? "" : payoutRatio.ToString() + "%");
                         lv.Items.Add(lvItem);
                     }
                     else
@@ -145,7 +151,7 @@ namespace DividendLiberty
                     }
                 }
 
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < lv.Columns.Count; i++)
                 {
                     lv.Columns[i].TextAlign = HorizontalAlignment.Center;
                 }

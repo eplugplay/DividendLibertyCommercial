@@ -80,6 +80,7 @@ namespace DividendLiberty
                 case YahooCodes.fiftyTwoWeekHigh: code = "k"; break;
                 case YahooCodes.currentPrice: code = "a"; break;
                 case YahooCodes.openPrice: code = "o"; break;
+                case YahooCodes.eps : code = "e"; break;
                 default: break;
             }
             return code;
@@ -100,5 +101,6 @@ namespace DividendLiberty
         fiftyTwoWeekLow,
         fiftyTwoWeekHigh,
         currentPrice,
-        openPrice
+        openPrice,
+        eps
     }

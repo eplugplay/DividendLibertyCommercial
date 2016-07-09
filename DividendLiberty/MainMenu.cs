@@ -153,27 +153,37 @@ namespace DividendLiberty
                 count++;
                 StockDataType += " Stock names,";
             }
-            string[] names = uti.SplitStockData(stockNames);
-
             string exDividend = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.exDividend), true);
             if (exDividend == "")
             {
                 count++;
                 StockDataType += " Dividend dates,";
             }
-            string[] exDiv = uti.SplitStockData(exDividend);
             string payDates = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.payDate), true);
             if (payDates == "")
             {
                 count++;
                 StockDataType += " Pay dates,";
             }
-            string[] payDate = uti.SplitStockData(payDates);
+            string eps = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.eps), true);
+            if (eps == "")
+            {
+                count++;
+                StockDataType += " EPS";
+            }
+
+            string annualDiv = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true);
+            if (annualDiv == "")
+            {
+                count++;
+                StockDataType += "Annual Dividend";
+            }
+
             if (count > 0)
             {
                 MessageBox.Show("Error! " + StockDataType + " in " + LvNames + " could not be loaded and cannot connect to Yahoo, please try again later.");
             }
-            DividendStocks.LoadDividends(lv, names, exDiv, payDate, active, dtXml);
+            DividendStocks.LoadDividends(lv, uti.SplitStockData(stockNames), uti.SplitStockData(exDividend), uti.SplitStockData(payDates), uti.SplitStockData(eps), uti.SplitStockData(annualDiv), active, dtXml);
             Program.PleaseWait.Close();
         }
 
