@@ -296,18 +296,6 @@ namespace DividendLiberty
             }
             return finalMsg;
         }
-
-        public static bool hasAllAnnualDiv(string[] annualDivs)
-        {
-            for (int i = 0; i < annualDivs.Length; i++)
-            {
-                if (annualDivs[i].ToString() == "" || annualDivs[i].ToString() == "0.00")
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
     }
 
     public enum FileTypes
