@@ -137,7 +137,7 @@ namespace DividendLiberty
                         lvItem.SubItems.Add(exDiv.Length == 1 ? "" : exDiv[i]);
                         lvItem.SubItems.Add(payDate.Length == 1 ? "" : payDate[i]);
                         decimal payoutRatio = 0;
-                        if (eps[i].ToString() != "" && eps[i].ToString() != "N/A" && annualDiv[i].ToString() != "" && annualDiv[i].ToString() != "N.A")
+                        if (eps[i].ToString() != "" && eps[i].ToString() != "N/A" && annualDiv[i].ToString() != "" && annualDiv[i].ToString() != "N/A")
                         {
                             payoutRatio = Math.Round(Convert.ToDecimal(annualDiv[i]) / Convert.ToDecimal(eps[i]) * 100, 2); 
                         }
