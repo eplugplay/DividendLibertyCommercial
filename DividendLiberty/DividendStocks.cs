@@ -17,7 +17,7 @@ namespace DividendLiberty
     {
         public static int GetTotalSharePrice(List<int> lstID, out decimal totalPrice, out string[] msg)
         {
-            DataTable dt = uti.GetXMLData();
+            DataTable dt = uti.GetXMLData(FileTypes.xml);
             DataView dv = dt.DefaultView;
             dv.Sort = "symbol asc";
             dt = dv.ToTable();
@@ -105,7 +105,7 @@ namespace DividendLiberty
             return array;
         }
 
-        public static void LoadDividends(ListView lv, string[] names, string[] exDiv, string[] payDate, string[] eps, string[] annualDiv, string active, DataTable dtXml)
+        public static void LoadDividends(ListView lv, string active, DataTable dtXmlCache, DataTable dtXml)
         {
             try
             {
@@ -130,19 +130,19 @@ namespace DividendLiberty
                         ListViewItem lvItem = new ListViewItem(count++.ToString());
                         lvItem.SubItems.Add(symbol);
                         lvItem.Tag = dtXml.Rows[i]["id"].ToString();
-                        lvItem.SubItems.Add(names.Length == 1 ? "" : names[i]);
+                        lvItem.SubItems.Add(dtXmlCache.Rows[i]["stockname"].ToString().Length == 1 ? "" : dtXmlCache.Rows[i]["stockname"].ToString());
                         lvItem.SubItems.Add(dtXml.Rows[i]["industry"].ToString());
                         lvItem.SubItems.Add(dtXml.Rows[i]["shares"].ToString());
                         lvItem.SubItems.Add(dtXml.Rows[i]["cost"].ToString());
-                        lvItem.SubItems.Add(exDiv.Length == 1 ? "" : exDiv[i]);
-                        lvItem.SubItems.Add(payDate.Length == 1 ? "" : payDate[i]);
+                        lvItem.SubItems.Add(dtXmlCache.Rows[i]["exDividend"].ToString().Length == 1 ? "" : dtXmlCache.Rows[i]["exDividend"].ToString());
+                        lvItem.SubItems.Add(dtXmlCache.Rows[i]["payDates"].ToString().Length == 1 ? "" : dtXmlCache.Rows[i]["payDates"].ToString());
                         decimal payoutRatio = 0;
-                        if (eps[i].ToString() != "" && eps[i].ToString() != "N/A" && annualDiv[i].ToString() != "" && annualDiv[i].ToString() != "N/A")
+                        if (dtXmlCache.Rows[i]["eps"].ToString() != "" && dtXmlCache.Rows[i]["eps"].ToString() != "N/A" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A")
                         {
-                            payoutRatio = Math.Round(Convert.ToDecimal(annualDiv[i]) / Convert.ToDecimal(eps[i]) * 100, 2); 
+                            payoutRatio = Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"].ToString()) / Convert.ToDecimal(dtXmlCache.Rows[i]["eps"].ToString()) * 100, 2); 
                         }
                         lvItem.SubItems.Add(dtXml.Rows[i]["interval"].ToString());
-                        lvItem.SubItems.Add(eps.Length == 1 ? "" : payoutRatio.ToString() + "%");
+                        lvItem.SubItems.Add(dtXmlCache.Rows[i]["eps"].ToString().Length == 1 ? "" : payoutRatio.ToString() + "%");
                         lv.Items.Add(lvItem);
                     }
                     else
@@ -166,7 +166,7 @@ namespace DividendLiberty
 
         public static string NewDividendStock(string symbol, string industry, string interval)
         {
-            string newID = uti.IncrementStockID();
+            int newID = uti.IncrementStockID(FileTypes.xml);
             try
             {
                 XmlDocument doc = new XmlDocument();
@@ -174,10 +174,10 @@ namespace DividendLiberty
                 string strNamespace = doc.DocumentElement.NamespaceURI;
                 XmlNode node = doc.CreateNode(XmlNodeType.Element, string.Format("dividendstock"), strNamespace);
                 XmlAttribute idAttr = doc.CreateAttribute("ID");
-                idAttr.Value = newID;
+                idAttr.Value = newID.ToString();
                 node.Attributes.Append(idAttr);
                 XmlNode nodeID = doc.CreateElement("id");
-                nodeID.InnerText = newID;
+                nodeID.InnerText = newID.ToString();
                 node.AppendChild(nodeID);
                 XmlNode nodeSymbol = doc.CreateElement("symbol");
                 nodeSymbol.InnerText = symbol;
@@ -218,7 +218,7 @@ namespace DividendLiberty
             {
 
             }
-            return newID;
+            return newID.ToString();
         }
 
         public static void MoveStock(string id, string origSymbol, string active)
@@ -268,7 +268,7 @@ namespace DividendLiberty
                 XmlDocument doc = new XmlDocument();
                 doc.Load(uti.GetFilePath(FileTypes.xml));
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
-                if (elements[0]["symbol"].InnerText.ToString() == origSymbol)
+                if (elements[0]["symbol"].InnerText.ToString() == origSymbol.ToUpper())
                 {
                     elements[0]["cost"].InnerText = cost;
                     elements[0]["shares"].InnerText = shares;
@@ -285,7 +285,7 @@ namespace DividendLiberty
         public static string LoadNextPurchase(string symbol)
         {
             string nextToBuy = "";
-            DataTable dt = uti.GetXMLData();
+            DataTable dt = uti.GetXMLData(FileTypes.xml);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (dt.Rows[i]["symbol"].ToString() == symbol)
@@ -449,7 +449,7 @@ namespace DividendLiberty
             try
             {
                 lv.SelectedItems.Clear();
-                DataTable dt = uti.GetXMLData();
+                DataTable dt = uti.GetXMLData(FileTypes.xml);
                 uti.ClearListViewColors(lv);
                 for (int i = 0; i < lv.Items.Count; i++)
                 {
@@ -543,9 +543,9 @@ namespace DividendLiberty
             decimal MonthlyDiv = 0;
             decimal DividendTotalPercentage = 0;
             //decimal MarketTotalPrice = 0;
-            DataTable dt = uti.GetXMLData();
+            DataTable dt = uti.GetXMLData(FileTypes.xml);
             decimal Purchaseprice = 0;
-            string symbols = uti.GetStockSymbols(dt);
+            string symbols = uti.GetStockSymbols(dt, "+");
             string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
             string[] DivYield = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
             // l1 is last trade price, c1 change in price, b is bid price, a is ask price; Ask price is current price as you're asking for a price when selling therefore that is the price of your portfolio

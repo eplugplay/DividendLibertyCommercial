@@ -61,6 +61,7 @@
     <Compile Include="Dividends.Designer.cs">
       <DependentUpon>Dividends.cs</DependentUpon>
     </Compile>
+    <Compile Include="DividendsCache.cs" />
     <Compile Include="DividendStocks.cs" />
     <Compile Include="ExcelOptions\EditColumns.cs">
       <SubType>Form</SubType>

@@ -62,7 +62,7 @@ namespace DividendLiberty
                 DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
                 ReloadMainDividends();
             }
-
+            Program.MainMenu.LoadCacheDividends();
             pw.Close();
             this.Close();
         }
@@ -123,28 +123,29 @@ namespace DividendLiberty
         public void LoadDividendStock()
         {
             //DataTable dt = DividendStocks.GetDividend(ID);
+            DataTable dt = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache),  LstStockInfo[0].Symbol);
             txtSymbol.Text = LstStockInfo[0].Symbol;
             txtStockName.Text = LstStockInfo[0].Name;
             ddlIndustry.SelectedIndex = ddlIndustry.FindString(LstStockInfo[0].Industry);
             ddlDividendInterval.SelectedIndex = ddlDividendInterval.FindString(LstStockInfo[0].Interval);
-            txtAnnualDividend.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.annualDividend), false);
-            txtDividendPercent.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.dividendYield), false);
-            txtMarketCap.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.marketCap), false);
-            txtExDividend.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.exDividend), false);
-            txtPayDate.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.payDate), false);
-            txtPERatio.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.peRatio), false);
-            txtDayRange.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.dayRange), false);
-            txt52WeekLow.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.fiftyTwoWeekLow), false);
-            txt52WeekHigh.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.fiftyTwoWeekHigh), false);
-            txtCurrentPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.currentPrice), false);
-            txtOpenPrice.Text = YahooFinance.GetValues(LstStockInfo[0].Symbol, YahooFinance.GetCodes(YahooCodes.openPrice), false);
+            txtAnnualDividend.Text = dt.Rows[0]["annualDiv"].ToString();
+            txtDividendPercent.Text = dt.Rows[0]["divPercent"].ToString();
+            txtMarketCap.Text = dt.Rows[0]["marketCap"].ToString();
+            txtExDividend.Text = dt.Rows[0]["exDividend"].ToString();
+            txtPayDate.Text = dt.Rows[0]["payDates"].ToString();
+            txtPERatio.Text = dt.Rows[0]["peRatio"].ToString();
+            txtDayRange.Text = dt.Rows[0]["daysRange"].ToString();
+            txt52WeekLow.Text = dt.Rows[0]["fiftyTwoWeekLow"].ToString();
+            txt52WeekHigh.Text = dt.Rows[0]["fiftyTwoWeekHigh"].ToString();
+            txtCurrentPrice.Text = dt.Rows[0]["currentPrice"].ToString();
+            txtOpenPrice.Text = dt.Rows[0]["openPrice"].ToString();
         }
 
         public void LoadPurchaseInfo()
         {
             txtCost.Clear();
             txtNumberOfShares.Clear();
-            DataTable dt = uti.GetXMLData();
+            DataTable dt = uti.GetXMLData(FileTypes.xml);
             DataTable dtFinal = dt.Copy();
             for (int i = dt.Rows.Count -1; i >= 0; i--)
             {

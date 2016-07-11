@@ -124,67 +124,62 @@ namespace DividendLiberty
 
         public void LoadDividends(ListView lv, string active)
         {
-            string LvNames = "";
-            string StockDataType = "";
             if (!File.Exists(uti.GetFilePath(FileTypes.xml)))
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.xml));
                 File.Copy(path, uti.GetFilePath(FileTypes.xml), true);
             }
 
+            if (!File.Exists(uti.GetFilePath(FileTypes.cache)))
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.cache));
+                File.Copy(path, uti.GetFilePath(FileTypes.cache), true);
+            }
+
             if (!File.Exists(uti.GetFilePath(FileTypes.ini)))
             {
                 File.Copy(uti.GetLocalFilePath(FileTypes.ini), uti.GetFilePath(FileTypes.ini), true);
             }
-            if (lv.Name == "lvCurrentDividends")
-            {
-                LvNames = "Portfolio Data";
-            }
-            else
-            {
-                LvNames = "Non Portfolio Data";
-            }
-            DataTable dtXml = uti.SortDataTable(uti.GetXMLData(), "asc");
-            string symbols = uti.GetStockSymbols(dtXml);
-            string stockNames = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.stockname), true);
-            int count = 0;
-            if (stockNames == "")
-            {
-                count++;
-                StockDataType += " Stock names,";
-            }
-            string exDividend = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.exDividend), true);
-            if (exDividend == "")
-            {
-                count++;
-                StockDataType += " Dividend dates,";
-            }
-            string payDates = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.payDate), true);
-            if (payDates == "")
-            {
-                count++;
-                StockDataType += " Pay dates,";
-            }
-            string eps = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.eps), true);
-            if (eps == "")
-            {
-                count++;
-                StockDataType += " EPS";
-            }
-
-            string annualDiv = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true);
-            if (annualDiv == "")
-            {
-                count++;
-                StockDataType += "Annual Dividend";
-            }
-
-            if (count > 0)
-            {
-                MessageBox.Show("Error! " + StockDataType + " in " + LvNames + " could not be loaded and cannot connect to Yahoo (servers must be down), please try again later.");
-            }
-            DividendStocks.LoadDividends(lv, uti.SplitStockData(stockNames), uti.SplitStockData(exDividend), uti.SplitStockData(payDates), uti.SplitStockData(eps), uti.SplitStockData(annualDiv), active, dtXml);
+            DataTable dtXmlCache = uti.SortDataTable(uti.GetXMLData(FileTypes.cache), "symbol", "asc");
+            DataTable dtXml = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
+            //string symbols = uti.GetStockSymbols(dtXml, "+");
+            //string stockNames = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.stockname), true);
+            //string exDividend = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.exDividend), true);
+            //string annualDiv = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true);
+            //string payDates = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.payDate), true);
+            //string eps = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.eps), true);
+            DividendStocks.LoadDividends(lv, active, dtXmlCache, dtXml);
             Program.PleaseWait.Close();
+        }
+
+        public void LoadCacheDividends()
+        {
+            DataTable dtXmlCache = uti.GetXMLData(FileTypes.cache);
+            DataTable dtxml = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
+            if(dtXmlCache.Rows.Count > 0)
+            {
+                dtXmlCache = uti.SortDataTable(dtXmlCache, "symbol", "asc");
+            }
+            string symbolsCache = uti.GetStockSymbols(dtxml, ",");
+            string ids = uti.GetIds(dtxml);
+            string stockNames = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.stockname), true);
+            string exDividend = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.exDividend), true);
+            string annualDiv = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.annualDividend), true);
+            string payDates = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.payDate), true);
+            string eps = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.eps), true);
+
+            string divPercent = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.dividendYield), true);
+            string marketCap = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.marketCap), true);
+            string peRatio = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.peRatio), true);
+            string dayRange = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.dayRange), true);
+            string fiftyTwoWeekLow = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.fiftyTwoWeekLow), true);
+            string fiftyTwoWeekHigh = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.fiftyTwoWeekHigh), true);
+            string currentPrice= YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.currentPrice), true);
+            string openPrice = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.openPrice), true);
+
+
+            DividendsCache.LoadInitialDividendCache(uti.SplitCommaDelStockData(ids), uti.SplitCommaDelStockData(symbolsCache), uti.SplitStockData(exDividend), uti.SplitStockData(annualDiv), uti.SplitStockData(payDates), uti.SplitStockData(divPercent), uti.SplitStockData(eps),
+                uti.SplitStockData(stockNames), uti.SplitStockData(marketCap), uti.SplitStockData(peRatio), uti.SplitStockData(openPrice), uti.SplitStockData(currentPrice), uti.SplitStockData(fiftyTwoWeekLow), uti.SplitStockData(fiftyTwoWeekHigh), uti.SplitStockData(dayRange), dtXmlCache);
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
@@ -198,6 +193,7 @@ namespace DividendLiberty
             lvAllDividends.FullRowSelect = true;
             lvCurrentDividends.FullRowSelect = true;
             //lvCurrentDividends.HideSelection = false;
+            LoadCacheDividends();
             LoadDividends(lvCurrentDividends, "true");
             LoadDividends(lvAllDividends, "false");
             if (result != "")

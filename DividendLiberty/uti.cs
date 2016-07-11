@@ -43,6 +43,7 @@ namespace DividendLiberty
             switch (type)
             {
                 case FileTypes.xml: returnType = "DividendLibertyStocks.xml"; break;
+                case FileTypes.cache: returnType = "DividendLibertyCache.xml"; break;
                 case FileTypes.ini: returnType = "DividendLibertyConfig.ini"; break;
                 case FileTypes.excel: returnType = "DividendLiberty.xls"; break;
                 default: break;
@@ -62,24 +63,28 @@ namespace DividendLiberty
             return iniFile.Read(section, key);
         }
 
-        public static DataTable GetXMLData()
+        public static DataTable GetXMLData(FileTypes fileType)
         {
             DataSet dtXML = new DataSet();
-            dtXML.ReadXml(uti.GetFilePath(FileTypes.xml));
-            DataTable dt = dtXML.Tables[1];
+            dtXML.ReadXml(uti.GetFilePath(fileType));
+            DataTable dt = new DataTable();
+            if (dtXML.Tables.Count > 1)
+            {
+                dt = dtXML.Tables[1];
+            }
             return dt;
         }
 
-        public static string IncrementStockID()
+        public static int IncrementStockID(FileTypes fileType)
         {
-            DataTable dt = uti.GetXMLData();
+            DataTable dt = uti.GetXMLData(fileType);
             int count = dt.Rows.Count + 1;
-            return count.ToString();
+            return count;
         }
 
         public static bool ValidateStock(string symbol)
         {
-            DataTable dt = uti.GetXMLData();
+            DataTable dt = uti.GetXMLData(FileTypes.xml);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (dt.Rows[i]["symbol"].ToString() == symbol.ToUpper())
@@ -155,16 +160,32 @@ namespace DividendLiberty
             return split;
         }
 
-        public static string GetStockSymbols(DataTable dt)
+        public static string[] SplitCommaDelStockData(string val)
+        {
+            string[] split = val.Split(',');
+            return split;
+        }
+
+        public static string GetStockSymbols(DataTable dt, string delimited)
         {
             string symbols = "";
             int count = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                symbols += dt.Rows[i]["symbol"].ToString() + "+";
+                symbols += dt.Rows[i]["symbol"].ToString() + delimited;
                 count++;
             }
             return symbols = symbols.Substring(0, symbols.Length - 1);
+        }
+
+        public static string GetIds(DataTable dt)
+        {
+            string ids = "";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                ids += dt.Rows[i]["id"].ToString() + ",";
+            }
+            return ids = ids.Substring(0, ids.Length - 1);
         }
 
         public static Color GetHighlightColor()
@@ -182,12 +203,31 @@ namespace DividendLiberty
             return sectorCount;
         }
 
-        public static DataTable SortDataTable(DataTable dt, string order)
+        public static DataTable SortDataTable(DataTable dt, string col, string order)
         {
             DataView view = dt.DefaultView;
-            view.Sort = "symbol " + order;
+            view.Sort = col + " " + order;
             DataTable dtXml = view.ToTable();
             return dtXml;
+        }
+
+        public static DataTable FilterDataTable(DataTable dt, string symbol)
+        {
+            DataTable dtToReturn = new DataTable();
+            dtToReturn = dt.Clone();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i]["symbol"].ToString() == symbol)
+                {
+                    DataRow dr = dtToReturn.NewRow();
+                    dr.ItemArray = dt.Rows[i].ItemArray;
+                    dtToReturn.Rows.Add(dr);
+                }
+            }
+            //DataView view = dt.DefaultView;
+            //view.RowFilter = string.Format("symbol = {0}", symbol);
+            //DataTable dtXml = view.ToTable();
+            return dtToReturn;
         }
 
         public static string GetExcelColLetter(int col)
@@ -213,7 +253,7 @@ namespace DividendLiberty
 
         public static void ExportXML(string path)
         {
-            DataTable xmlData = uti.GetXMLData();
+            DataTable xmlData = uti.GetXMLData(FileTypes.xml);
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             sb.AppendLine("<DocumentElement>");
@@ -301,6 +341,7 @@ namespace DividendLiberty
     public enum FileTypes
     {
         xml,
+        cache,
         ini,
         excel,
     }

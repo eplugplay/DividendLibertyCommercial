@@ -16,8 +16,8 @@ namespace DividendLiberty
     {
         public static void GeneratePortfolioExcel()
         {
-            DataTable dt = uti.SortDataTable(uti.GetXMLData(), "asc");
-            string stocks = uti.GetStockSymbols(dt);
+            DataTable dt = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
+            string stocks = uti.GetStockSymbols(dt, "+");
             string[] annualDiv = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
             string[] yields = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
             string[] companies = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.stockname), true));
