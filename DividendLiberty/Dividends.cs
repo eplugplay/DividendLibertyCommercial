@@ -35,14 +35,19 @@ namespace DividendLiberty
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            PleaseWait pw = new PleaseWait();
+            pw.Show();
+            Application.DoEvents();
             if (!ValidateAll())
             {
                 return;
             }
-
-            PleaseWait pw = new PleaseWait();
-            pw.Show();
-            Application.DoEvents();
+            if (uti.ValidateStock(txtSymbol.Text.Trim()))
+            {
+                pw.Close();
+                MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
+                return;
+            }
 
             if (Edit)
             {
@@ -52,19 +57,35 @@ namespace DividendLiberty
             }
             else
             {
-                if (uti.ValidateStock(txtSymbol.Text))
-                {
-                    pw.Close();
-                    MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
-                    return;
-                }
                 string newID = DividendStocks.NewDividendStock(txtSymbol.Text.ToUpper(), ddlIndustry.Text, ddlDividendInterval.Text);
                 DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
+                AddCache(newID);
             }
             Program.MainMenu.LoadCacheDividends();
             ReloadMainDividends();
             pw.Close();
             this.Close();
+        }
+
+        public void AddCache(string newID)
+        {
+            string symbolsCache = txtSymbol.Text.Trim();
+            string stockNames = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.stockname), true);
+            string exDividend = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.exDividend), true);
+            string annualDiv = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.annualDividend), true);
+            string payDates = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.payDate), true);
+            string eps = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.eps), true);
+
+            string divPercent = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.dividendYield), true);
+            string marketCap = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.marketCap), true);
+            string peRatio = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.peRatio), true);
+            string dayRange = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.dayRange), true);
+            string fiftyTwoWeekLow = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.fiftyTwoWeekLow), true);
+            string fiftyTwoWeekHigh = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.fiftyTwoWeekHigh), true);
+            string currentPrice = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.currentPrice), true);
+            string openPrice = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.openPrice), true);
+            DividendsCache.AddDividendStock(newID, uti.SplitCommaDelStockData(symbolsCache), uti.SplitStockData(exDividend), uti.SplitStockData(annualDiv), uti.SplitStockData(payDates), uti.SplitStockData(eps), uti.SplitStockData(divPercent),
+                uti.SplitStockData(stockNames), uti.SplitStockData(marketCap), uti.SplitStockData(peRatio), uti.SplitStockData(openPrice), uti.SplitStockData(currentPrice), uti.SplitStockData(fiftyTwoWeekLow), uti.SplitStockData(fiftyTwoWeekHigh), uti.SplitStockData(dayRange));
         }
 
         public void ReloadMainDividends()

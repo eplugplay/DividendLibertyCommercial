@@ -179,7 +179,7 @@ namespace DividendLiberty
 
 
             DividendsCache.LoadInitialDividendCache(uti.SplitCommaDelStockData(ids), uti.SplitCommaDelStockData(symbolsCache), uti.SplitStockData(exDividend), uti.SplitStockData(annualDiv), uti.SplitStockData(payDates), uti.SplitStockData(eps), uti.SplitStockData(divPercent),
-                uti.SplitStockData(stockNames), uti.SplitStockData(marketCap), uti.SplitStockData(peRatio), uti.SplitStockData(openPrice), uti.SplitStockData(currentPrice), uti.SplitStockData(fiftyTwoWeekLow), uti.SplitStockData(fiftyTwoWeekHigh), uti.SplitStockData(dayRange), dtXmlCache);
+                uti.SplitStockData(stockNames), uti.SplitStockData(marketCap), uti.SplitStockData(peRatio), uti.SplitStockData(openPrice), uti.SplitStockData(currentPrice), uti.SplitStockData(fiftyTwoWeekLow), uti.SplitStockData(fiftyTwoWeekHigh), uti.SplitStockData(dayRange), dtXmlCache, dtxml);
         }
 
         private void MainMenu_Load(object sender, EventArgs e)

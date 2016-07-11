@@ -265,6 +265,7 @@ namespace DividendLiberty
             }
         }
 
+
         public static void UpdateShare(string id, string origSymbol, string cost, string shares, string purchasedate)
         {
             try
