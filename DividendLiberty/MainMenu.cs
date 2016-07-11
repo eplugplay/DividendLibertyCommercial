@@ -826,6 +826,12 @@ namespace DividendLiberty
                 uti.ImportXML(path);
                 LoadDividends(lvAllDividends, "false");
                 LoadDividends(lvCurrentDividends, "true");
+                if (File.Exists(uti.GetFilePath(FileTypes.cache)))
+                {
+                    string pathCache = uti.GetFilePath(FileTypes.cache);
+                    File.Delete(pathCache);
+                    LoadCacheDividends();
+                }
                 MessageBox.Show("Successfully Imported!");
             }
         }

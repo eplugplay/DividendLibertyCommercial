@@ -22,11 +22,11 @@ namespace DividendLiberty
             //DataTable dt = uti.GetXMLData(FileTypes.cache);
             try
             {
-                bool isPass = dt.Rows.Count == ids.Length && dt.Rows.Count == symbols.Length && dt.Rows.Count == exDividend.Length && dt.Rows.Count == annualDiv.Length && dt.Rows.Count == payDates.Length && dt.Rows.Count == eps.Length && dt.Rows.Count == divPercent.Length
-                    && dt.Rows.Count == stockname.Length && dt.Rows.Count == marketCap.Length && dt.Rows.Count == peRatio.Length && dt.Rows.Count == openPrice.Length && dt.Rows.Count == currentPrice.Length &&
-                    dt.Rows.Count == fiftyTwoWeekLow.Length && dt.Rows.Count == fiftyTwoWeekHigh.Length && dt.Rows.Count == daysRange.Length;
-                if (isPass)
-                {
+                //bool isPass = dt.Rows.Count == ids.Length && dt.Rows.Count == symbols.Length && dt.Rows.Count == exDividend.Length && dt.Rows.Count == annualDiv.Length && dt.Rows.Count == payDates.Length && dt.Rows.Count == eps.Length && dt.Rows.Count == divPercent.Length
+                //    && dt.Rows.Count == stockname.Length && dt.Rows.Count == marketCap.Length && dt.Rows.Count == peRatio.Length && dt.Rows.Count == openPrice.Length && dt.Rows.Count == currentPrice.Length &&
+                //    dt.Rows.Count == fiftyTwoWeekLow.Length && dt.Rows.Count == fiftyTwoWeekHigh.Length && dt.Rows.Count == daysRange.Length;
+                //if (isPass)
+                //{
                     XmlDocument doc = new XmlDocument();
                     doc.Load(uti.GetFilePath(FileTypes.cache));
                     int cnt = 0;
@@ -245,9 +245,9 @@ namespace DividendLiberty
                                     doc.Save(uti.GetFilePath(FileTypes.cache));
                                     dt = uti.GetXMLData(FileTypes.cache);
                                 }
-                            }
+                            //}
                         }
-                        cnt++;
+                            cnt++;
                     }
                 }
             }
