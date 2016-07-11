@@ -46,9 +46,9 @@ namespace DividendLiberty
 
             if (Edit)
             {
-                DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text);
+                DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.xml);
+                DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.cache);
                 DividendStocks.UpdateShare(LstStockInfo[0].ID, Symbol, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
-                ReloadMainDividends();
             }
             else
             {
@@ -60,9 +60,9 @@ namespace DividendLiberty
                 }
                 string newID = DividendStocks.NewDividendStock(txtSymbol.Text.ToUpper(), ddlIndustry.Text, ddlDividendInterval.Text);
                 DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
-                ReloadMainDividends();
             }
             Program.MainMenu.LoadCacheDividends();
+            ReloadMainDividends();
             pw.Close();
             this.Close();
         }
@@ -122,23 +122,22 @@ namespace DividendLiberty
 
         public void LoadDividendStock()
         {
-            //DataTable dt = DividendStocks.GetDividend(ID);
             DataTable dt = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache),  LstStockInfo[0].Symbol);
             txtSymbol.Text = LstStockInfo[0].Symbol;
             txtStockName.Text = LstStockInfo[0].Name;
             ddlIndustry.SelectedIndex = ddlIndustry.FindString(LstStockInfo[0].Industry);
             ddlDividendInterval.SelectedIndex = ddlDividendInterval.FindString(LstStockInfo[0].Interval);
-            txtAnnualDividend.Text = dt.Rows[0]["annualDiv"].ToString();
-            txtDividendPercent.Text = dt.Rows[0]["divPercent"].ToString();
-            txtMarketCap.Text = dt.Rows[0]["marketCap"].ToString();
-            txtExDividend.Text = dt.Rows[0]["exDividend"].ToString();
-            txtPayDate.Text = dt.Rows[0]["payDates"].ToString();
-            txtPERatio.Text = dt.Rows[0]["peRatio"].ToString();
-            txtDayRange.Text = dt.Rows[0]["daysRange"].ToString();
-            txt52WeekLow.Text = dt.Rows[0]["fiftyTwoWeekLow"].ToString();
-            txt52WeekHigh.Text = dt.Rows[0]["fiftyTwoWeekHigh"].ToString();
-            txtCurrentPrice.Text = dt.Rows[0]["currentPrice"].ToString();
-            txtOpenPrice.Text = dt.Rows[0]["openPrice"].ToString();
+            txtAnnualDividend.Text = dt.Rows[0][DivCacheCodes.annualDiv.ToString()].ToString();
+            txtDividendPercent.Text = dt.Rows[0][DivCacheCodes.divPercent.ToString()].ToString();
+            txtMarketCap.Text = dt.Rows[0][DivCacheCodes.marketCap.ToString()].ToString();
+            txtExDividend.Text = dt.Rows[0][DivCacheCodes.exDividend.ToString()].ToString();
+            txtPayDate.Text = dt.Rows[0][DivCacheCodes.payDates.ToString()].ToString();
+            txtPERatio.Text = dt.Rows[0][DivCacheCodes.peRatio.ToString()].ToString();
+            txtDayRange.Text = dt.Rows[0][DivCacheCodes.daysRange.ToString()].ToString();
+            txt52WeekLow.Text = dt.Rows[0][DivCacheCodes.fiftyTwoWeekLow.ToString()].ToString();
+            txt52WeekHigh.Text = dt.Rows[0][DivCacheCodes.fiftyTwoWeekHigh.ToString()].ToString();
+            txtCurrentPrice.Text = dt.Rows[0][DivCacheCodes.currentPrice.ToString()].ToString();
+            txtOpenPrice.Text = dt.Rows[0][DivCacheCodes.openPrice.ToString()].ToString();
         }
 
         public void LoadPurchaseInfo()

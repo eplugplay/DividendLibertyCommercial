@@ -130,12 +130,6 @@ namespace DividendLiberty
                 File.Copy(path, uti.GetFilePath(FileTypes.xml), true);
             }
 
-            if (!File.Exists(uti.GetFilePath(FileTypes.cache)))
-            {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.cache));
-                File.Copy(path, uti.GetFilePath(FileTypes.cache), true);
-            }
-
             if (!File.Exists(uti.GetFilePath(FileTypes.ini)))
             {
                 File.Copy(uti.GetLocalFilePath(FileTypes.ini), uti.GetFilePath(FileTypes.ini), true);
@@ -154,6 +148,12 @@ namespace DividendLiberty
 
         public void LoadCacheDividends()
         {
+            if (!File.Exists(uti.GetFilePath(FileTypes.cache)))
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.cache));
+                File.Copy(path, uti.GetFilePath(FileTypes.cache), true);
+            }
+
             DataTable dtXmlCache = uti.GetXMLData(FileTypes.cache);
             DataTable dtxml = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
             if(dtXmlCache.Rows.Count > 0)
@@ -178,7 +178,7 @@ namespace DividendLiberty
             string openPrice = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.openPrice), true);
 
 
-            DividendsCache.LoadInitialDividendCache(uti.SplitCommaDelStockData(ids), uti.SplitCommaDelStockData(symbolsCache), uti.SplitStockData(exDividend), uti.SplitStockData(annualDiv), uti.SplitStockData(payDates), uti.SplitStockData(divPercent), uti.SplitStockData(eps),
+            DividendsCache.LoadInitialDividendCache(uti.SplitCommaDelStockData(ids), uti.SplitCommaDelStockData(symbolsCache), uti.SplitStockData(exDividend), uti.SplitStockData(annualDiv), uti.SplitStockData(payDates), uti.SplitStockData(eps), uti.SplitStockData(divPercent),
                 uti.SplitStockData(stockNames), uti.SplitStockData(marketCap), uti.SplitStockData(peRatio), uti.SplitStockData(openPrice), uti.SplitStockData(currentPrice), uti.SplitStockData(fiftyTwoWeekLow), uti.SplitStockData(fiftyTwoWeekHigh), uti.SplitStockData(dayRange), dtXmlCache);
         }
 
@@ -835,6 +835,7 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
+            LoadCacheDividends();
             LoadDividends(lvAllDividends, "false");
             LoadDividends(lvCurrentDividends, "true");
             pw.Close();

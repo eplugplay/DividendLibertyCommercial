@@ -70,7 +70,8 @@ namespace DividendLiberty
                             numShares = lv.Items[i].SubItems[4].Text == "" ? 0 : Convert.ToDecimal(lv.Items[i].SubItems[4].Text);
                             try
                             {
-                                yieldTemp = YahooFinance.GetValues(lv.Items[i].SubItems[1].Text, "d", false);
+                                DataTable dt = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache),  lv.Items[i].SubItems[1].Text);
+                                yieldTemp = dt.Rows[0]["annualDiv"].ToString();
                             }
                             catch
                             {
@@ -240,19 +241,22 @@ namespace DividendLiberty
             }
         }
 
-        public static void UpdateDividendStock(string id, string origSymbol, string symbol, string industry, string interval)
+        public static void UpdateDividendStock(string id, string origSymbol, string symbol, string industry, string interval, FileTypes fileType)
         {
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(uti.GetFilePath(FileTypes.xml));
+                doc.Load(uti.GetFilePath(fileType));
                 XmlNodeList elements = doc.SelectNodes(string.Format("//dividendstock[@ID='{0}']", id));
                 if (elements[0]["symbol"].InnerText.ToString() == origSymbol)
                 {
                     elements[0]["symbol"].InnerText = symbol.ToUpper();
-                    elements[0]["industry"].InnerText = industry;
-                    elements[0]["interval"].InnerText = interval;
-                    doc.Save(uti.GetFilePath(FileTypes.xml));
+                    if (fileType.ToString() == "xml")
+                    {
+                        elements[0]["industry"].InnerText = industry;
+                        elements[0]["interval"].InnerText = interval;
+                    }
+                    doc.Save(uti.GetFilePath(fileType));
                 }
             }
             catch (Exception e)
@@ -354,7 +358,9 @@ namespace DividendLiberty
             uti.ClearListViewColors(lv);
             Program.MainMenu.lstID.Clear();
             string stockSymbols = GetHighlightSymbols(lv);
-            string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(stockSymbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
+            DataTable dt = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache), stockSymbols);
+            string[] annualDiv = uti.GetColValues(dt, DivCacheCodes.annualDiv.ToString());
+            //string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(stockSymbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
             int annDivCnt = 0;
             for (int i = 0; i < lv.Items.Count; i++)
             {
@@ -380,7 +386,7 @@ namespace DividendLiberty
                         string symbol = lv.Items[i].SubItems[1].Text.ToString();
                         try
                         {
-                            div = Convert.ToDecimal(AnnualDiv[annDivCnt++]);
+                            div = Convert.ToDecimal(annualDiv[annDivCnt++]);
                         }
                         catch
                         {
@@ -545,11 +551,16 @@ namespace DividendLiberty
             //decimal MarketTotalPrice = 0;
             DataTable dt = uti.GetXMLData(FileTypes.xml);
             decimal Purchaseprice = 0;
-            string symbols = uti.GetStockSymbols(dt, "+");
-            string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
-            string[] DivYield = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
+            string symbols = uti.GetStockSymbols(dt, ",");
+            DataTable dtCache = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache), symbols);
+            string[] AnnualDiv = uti.GetColValues(dtCache, DivCacheCodes.annualDiv.ToString());
+            string[] DivYield = uti.GetColValues(dtCache, DivCacheCodes.divPercent.ToString());
+            //string[] AnnualDiv = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
+            //string[] DivYield = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
+
             // l1 is last trade price, c1 change in price, b is bid price, a is ask price; Ask price is current price as you're asking for a price when selling therefore that is the price of your portfolio
-            string[] CurrentStockPrice = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.currentPrice), true));
+            string[] CurrentStockPrice = uti.GetColValues(dtCache, DivCacheCodes.currentPrice.ToString());
+            //string[] CurrentStockPrice = uti.SplitStockData(YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.currentPrice), true));
             //decimal val = dt.Rows.Count;
             //decimal StatusVal = 0;
             //val = Math.Round(90 / val, 0);
@@ -603,5 +614,24 @@ namespace DividendLiberty
         public string ExDiv { get; set; }
         public string PayDate { get; set; }
         public string Interval { get; set; }
+    }
+
+    public enum DivCacheCodes
+    {
+        id,
+        symbol,
+        stockname,
+        annualDiv,
+        marketCap,
+        exDividend,
+        divPercent,
+        payDates,
+        peRatio,
+        daysRange,
+        fiftyTwoWeekLow,
+        fiftyTwoWeekHigh,
+        currentPrice,
+        openPrice,
+        eps
     }
 }

@@ -87,7 +87,7 @@
             this.excelOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1822, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(910, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -248,7 +248,7 @@
             this.gpDividendStocks.ForeColor = System.Drawing.Color.White;
             this.gpDividendStocks.Location = new System.Drawing.Point(12, 37);
             this.gpDividendStocks.Name = "gpDividendStocks";
-            this.gpDividendStocks.Size = new System.Drawing.Size(1799, 366);
+            this.gpDividendStocks.Size = new System.Drawing.Size(881, 722);
             this.gpDividendStocks.TabIndex = 3;
             this.gpDividendStocks.TabStop = false;
             // 
@@ -258,7 +258,7 @@
             this.lblMyPortfolio.BackColor = System.Drawing.Color.Yellow;
             this.lblMyPortfolio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMyPortfolio.ForeColor = System.Drawing.Color.Black;
-            this.lblMyPortfolio.Location = new System.Drawing.Point(929, 24);
+            this.lblMyPortfolio.Location = new System.Drawing.Point(14, 377);
             this.lblMyPortfolio.Name = "lblMyPortfolio";
             this.lblMyPortfolio.Size = new System.Drawing.Size(78, 13);
             this.lblMyPortfolio.TabIndex = 41;
@@ -283,7 +283,7 @@
             // lvCurrentDividends
             // 
             this.lvCurrentDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvCurrentDividends.Location = new System.Drawing.Point(932, 44);
+            this.lvCurrentDividends.Location = new System.Drawing.Point(13, 394);
             this.lvCurrentDividends.Name = "lvCurrentDividends";
             this.lvCurrentDividends.Size = new System.Drawing.Size(853, 287);
             this.lvCurrentDividends.TabIndex = 39;
@@ -299,7 +299,7 @@
             // 
             this.dtpPayDate.CalendarMonthBackground = System.Drawing.Color.AliceBlue;
             this.dtpPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpPayDate.Location = new System.Drawing.Point(998, 334);
+            this.dtpPayDate.Location = new System.Drawing.Point(88, 686);
             this.dtpPayDate.Name = "dtpPayDate";
             this.dtpPayDate.Size = new System.Drawing.Size(149, 20);
             this.dtpPayDate.TabIndex = 38;
@@ -308,7 +308,7 @@
             // 
             this.btnPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayDate.ForeColor = System.Drawing.Color.Black;
-            this.btnPayDate.Location = new System.Drawing.Point(1153, 333);
+            this.btnPayDate.Location = new System.Drawing.Point(243, 685);
             this.btnPayDate.Name = "btnPayDate";
             this.btnPayDate.Size = new System.Drawing.Size(76, 23);
             this.btnPayDate.TabIndex = 37;
@@ -322,7 +322,7 @@
             this.lblPayDate.AutoSize = true;
             this.lblPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPayDate.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblPayDate.Location = new System.Drawing.Point(929, 338);
+            this.lblPayDate.Location = new System.Drawing.Point(19, 690);
             this.lblPayDate.Name = "lblPayDate";
             this.lblPayDate.Size = new System.Drawing.Size(63, 13);
             this.lblPayDate.TabIndex = 36;
@@ -365,7 +365,7 @@
             // 
             this.lblSearchSymbol.AutoSize = true;
             this.lblSearchSymbol.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSearchSymbol.Location = new System.Drawing.Point(1625, 334);
+            this.lblSearchSymbol.Location = new System.Drawing.Point(706, 688);
             this.lblSearchSymbol.Name = "lblSearchSymbol";
             this.lblSearchSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchSymbol.TabIndex = 30;
@@ -376,7 +376,7 @@
             this.txtSearchSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchSymbol.Location = new System.Drawing.Point(1726, 331);
+            this.txtSearchSymbol.Location = new System.Drawing.Point(807, 685);
             this.txtSearchSymbol.Name = "txtSearchSymbol";
             this.txtSearchSymbol.Size = new System.Drawing.Size(59, 20);
             this.txtSearchSymbol.TabIndex = 29;
@@ -447,7 +447,7 @@
             this.lblIndustry.AutoSize = true;
             this.lblIndustry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIndustry.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblIndustry.Location = new System.Drawing.Point(1428, 20);
+            this.lblIndustry.Location = new System.Drawing.Point(581, 375);
             this.lblIndustry.Name = "lblIndustry";
             this.lblIndustry.Size = new System.Drawing.Size(56, 13);
             this.lblIndustry.TabIndex = 22;
@@ -471,7 +471,7 @@
             "Materials",
             "Telecommunication Services",
             "Utilities"});
-            this.ddlIndustry.Location = new System.Drawing.Point(1490, 15);
+            this.ddlIndustry.Location = new System.Drawing.Point(643, 370);
             this.ddlIndustry.Name = "ddlIndustry";
             this.ddlIndustry.Size = new System.Drawing.Size(223, 21);
             this.ddlIndustry.TabIndex = 21;
@@ -482,7 +482,7 @@
             this.label2.BackColor = System.Drawing.Color.Yellow;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(10, 24);
+            this.label2.Location = new System.Drawing.Point(14, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 7;
@@ -491,22 +491,22 @@
             // btnRemove
             // 
             this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(880, 236);
+            this.btnRemove.Location = new System.Drawing.Point(501, 343);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(42, 34);
             this.btnRemove.TabIndex = 4;
-            this.btnRemove.Text = "←";
+            this.btnRemove.Text = "↑";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(880, 91);
+            this.btnAdd.Location = new System.Drawing.Point(342, 343);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(42, 34);
             this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "→";
+            this.btnAdd.Text = "↓";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -544,7 +544,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.ClientSize = new System.Drawing.Size(1822, 406);
+            this.ClientSize = new System.Drawing.Size(910, 770);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.gpDividendStocks);
             this.Controls.Add(this.pbStatus);

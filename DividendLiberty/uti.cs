@@ -215,19 +215,30 @@ namespace DividendLiberty
         {
             DataTable dtToReturn = new DataTable();
             dtToReturn = dt.Clone();
-            for (int i = 0; i < dt.Rows.Count; i++)
+            string[] symbols = symbol.Split(',');
+            for (int a = 0; a < symbols.Length; a++)
             {
-                if (dt.Rows[i]["symbol"].ToString() == symbol)
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    DataRow dr = dtToReturn.NewRow();
-                    dr.ItemArray = dt.Rows[i].ItemArray;
-                    dtToReturn.Rows.Add(dr);
+                    if (dt.Rows[i]["symbol"].ToString() == symbols[a])
+                    {
+                        DataRow dr = dtToReturn.NewRow();
+                        dr.ItemArray = dt.Rows[i].ItemArray;
+                        dtToReturn.Rows.Add(dr);
+                    }
                 }
             }
-            //DataView view = dt.DefaultView;
-            //view.RowFilter = string.Format("symbol = {0}", symbol);
-            //DataTable dtXml = view.ToTable();
             return dtToReturn;
+        }
+
+        public static string[] GetColValues(DataTable dt, string col)
+        {
+            string[] arr = new string[dt.Rows.Count];
+            for (int a = 0; a < dt.Rows.Count; a++)
+            {
+                arr[a] = dt.Rows[a][col].ToString();
+            }
+            return arr;
         }
 
         public static string GetExcelColLetter(int col)
