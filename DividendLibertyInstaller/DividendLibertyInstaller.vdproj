@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_02091302C028CDE653766DF8314C5BEC"
+        "MsmKey" = "8:_4F96683BD2937F5E2982F1B14CA62460"
         "OwnerKey" = "8:_E72DE3D150144FE2A40830D612981365"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -46,7 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_02091302C028CDE653766DF8314C5BEC"
+        "OwnerKey" = "8:_4F96683BD2937F5E2982F1B14CA62460"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -154,14 +154,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_02091302C028CDE653766DF8314C5BEC"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4F96683BD2937F5E2982F1B14CA62460"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:NPOI, Version=1.2.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_02091302C028CDE653766DF8314C5BEC"
+                    "_4F96683BD2937F5E2982F1B14CA62460"
                     {
                     "Name" = "8:NPOI.DLL"
                     "Attributes" = "3:512"
@@ -313,7 +313,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Dividend Liberty"
         "ProductCode" = "8:{38E7B3CB-5118-4658-99A7-CC8D3FE48C35}"
-        "PackageCode" = "8:{5F7299EF-7BC2-4106-9A18-AEC6AF00B3D9}"
+        "PackageCode" = "8:{A72288C2-460E-4B2F-80DB-7338C1745192}"
         "UpgradeCode" = "8:{E79930E0-2618-475F-9F1D-E599E77A3DA8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

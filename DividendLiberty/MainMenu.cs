@@ -124,16 +124,6 @@ namespace DividendLiberty
 
         public void LoadDividends(ListView lv, string active)
         {
-            if (!File.Exists(uti.GetFilePath(FileTypes.xml)))
-            {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.xml));
-                File.Copy(path, uti.GetFilePath(FileTypes.xml), true);
-            }
-
-            if (!File.Exists(uti.GetFilePath(FileTypes.ini)))
-            {
-                File.Copy(uti.GetLocalFilePath(FileTypes.ini), uti.GetFilePath(FileTypes.ini), true);
-            }
             DataTable dtXmlCache = uti.SortDataTable(uti.GetXMLData(FileTypes.cache), "symbol", "asc");
             DataTable dtXml = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
             //string symbols = uti.GetStockSymbols(dtXml, "+");
@@ -193,6 +183,16 @@ namespace DividendLiberty
             lvAllDividends.FullRowSelect = true;
             lvCurrentDividends.FullRowSelect = true;
             //lvCurrentDividends.HideSelection = false;
+            if (!File.Exists(uti.GetFilePath(FileTypes.xml)))
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.xml));
+                File.Copy(path, uti.GetFilePath(FileTypes.xml), true);
+            }
+
+            if (!File.Exists(uti.GetFilePath(FileTypes.ini)))
+            {
+                File.Copy(uti.GetLocalFilePath(FileTypes.ini), uti.GetFilePath(FileTypes.ini), true);
+            }
             LoadCacheDividends();
             LoadDividends(lvCurrentDividends, "true");
             LoadDividends(lvAllDividends, "false");
