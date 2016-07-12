@@ -1052,9 +1052,9 @@
 <industry>Consumer Discretionary</industry>
 <active>false</active>
 <interval>Quarterly</interval>
-<cost>0</cost>
+<cost>72.54</cost>
 <purchasedate>11-22-2015</purchasedate>
-<shares>0</shares>
+<shares>14</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="97">
@@ -1120,6 +1120,72 @@
 <interval>Quarterly</interval>
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
+<shares>0</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="103">
+<id>103</id>
+<symbol>KR</symbol>
+<industry>Consumer Staples</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-11-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="104">
+<id>104</id>
+<symbol>BF-B</symbol>
+<industry>Consumer Discretionary</industry>
+<active>true</active>
+<interval>Quarterly</interval>
+<cost>98.11</cost>
+<purchasedate>07-11-2016</purchasedate>
+<shares>5</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="105">
+<id>105</id>
+<symbol>KMI</symbol>
+<industry>Energy</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>33</cost>
+<purchasedate>07-11-2016</purchasedate>
+<shares>10</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="106">
+<id>106</id>
+<symbol>BDX</symbol>
+<industry>Health Care</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-11-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="107">
+<id>107</id>
+<symbol>CB</symbol>
+<industry>Financials</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-11-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="108">
+<id>108</id>
+<symbol>MSFT</symbol>
+<industry>Consumer Discretionary</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-11-2016</purchasedate>
 <shares>0</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>

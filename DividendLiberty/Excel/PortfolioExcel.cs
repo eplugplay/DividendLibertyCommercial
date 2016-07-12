@@ -17,10 +17,15 @@ namespace DividendLiberty
         public static void GeneratePortfolioExcel()
         {
             DataTable dt = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
-            string stocks = uti.GetStockSymbols(dt, "+");
-            string[] annualDiv = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
-            string[] yields = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
-            string[] companies = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.stockname), true));
+            string stocks = uti.GetStockSymbols(dt, ",");
+            DataTable dtCache = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache), stocks);
+            string[] annualDiv = uti.GetColValues(dtCache, DivCacheCodes.annualDiv.ToString());
+            string[] yields = uti.GetColValues(dtCache, DivCacheCodes.divPercent.ToString());
+            string[] companies = uti.GetColValues(dtCache, DivCacheCodes.stockname.ToString());
+
+            //string[] annualDiv = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.annualDividend), true));
+            //string[] yields = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.dividendYield), true));
+            //string[] companies = uti.SplitStockData(YahooFinance.GetValues(stocks, YahooFinance.GetCodes(YahooCodes.stockname), true));
 
             string savePath = uti.GetFilePath(FileTypes.excel);
             ExcelNPOIWriter excelObj = new ExcelNPOIWriter();
