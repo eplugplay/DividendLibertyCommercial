@@ -35,20 +35,13 @@ namespace DividendLiberty
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            PleaseWait pw = new PleaseWait();
-            pw.Show();
-            Application.DoEvents();
             if (!ValidateAll())
             {
                 return;
             }
-            if (uti.ValidateStock(txtSymbol.Text.Trim()))
-            {
-                pw.Close();
-                MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
-                return;
-            }
-
+            PleaseWait pw = new PleaseWait();
+            pw.Show();
+            Application.DoEvents();
             if (Edit)
             {
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.xml);
@@ -57,6 +50,12 @@ namespace DividendLiberty
             }
             else
             {
+                if (uti.ValidateStock(txtSymbol.Text.Trim()))
+                {
+                    pw.Close();
+                    MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
+                    return;
+                }
                 string newID = DividendStocks.NewDividendStock(txtSymbol.Text.ToUpper(), ddlIndustry.Text, ddlDividendInterval.Text);
                 DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
                 AddCache(newID);

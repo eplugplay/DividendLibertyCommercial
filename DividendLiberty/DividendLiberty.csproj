@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DividendLiberty.ico" />
+    <Content Include="DividendLibertyCache.xml" />
     <Content Include="DividendLibertyStocks.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
