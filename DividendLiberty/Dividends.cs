@@ -44,6 +44,12 @@ namespace DividendLiberty
             Application.DoEvents();
             if (Edit)
             {
+                if (LstStockInfo[0].Symbol != txtSymbol.Text.Trim().ToUpper())
+                {
+                    pw.Close();
+                    MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
+                    return;
+                }
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.xml);
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.cache);
                 DividendStocks.UpdateShare(LstStockInfo[0].ID, Symbol, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
