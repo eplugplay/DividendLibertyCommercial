@@ -43,63 +43,103 @@ namespace DividendLiberty
 
                             string id = dtDivs.Rows[a]["id"].ToString();
 
-                            if (dtCache.Rows[a]["symbol"].ToString() != symbols[a])
+                            if (symbols.Length > 1)
                             {
-                                UpdateDividendCache(id, "symbol", symbols[a]);
+                                if (dtCache.Rows[a]["symbol"].ToString() != symbols[a])
+                                {
+                                    UpdateDividendCache(id, "symbol", symbols[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["exDividend"].ToString() != exDividend[a])
+                            if (exDividend.Length > 1)
                             {
-                                UpdateDividendCache(id, "exDividend", exDividend[a]);
+                                if (dtCache.Rows[a]["exDividend"].ToString() != exDividend[a])
+                                {
+                                    UpdateDividendCache(id, "exDividend", exDividend[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["annualDiv"].ToString() != annualDiv[a])
+                            if (annualDiv.Length > 1)
                             {
-                                UpdateDividendCache(id, "annualDiv", annualDiv[a]);
+                                if (dtCache.Rows[a]["annualDiv"].ToString() != annualDiv[a])
+                                {
+                                    UpdateDividendCache(id, "annualDiv", annualDiv[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["payDates"].ToString() != payDates[a])
+                            if (payDates.Length > 1)
                             {
-                                UpdateDividendCache(id, "payDates", payDates[a]);
+                                if (dtCache.Rows[a]["payDates"].ToString() != payDates[a])
+                                {
+                                    UpdateDividendCache(id, "payDates", payDates[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["eps"].ToString() != eps[a])
+                            if (eps.Length > 1)
                             {
-                                UpdateDividendCache(id, "eps", eps[a]);
+                                if (dtCache.Rows[a]["eps"].ToString() != eps[a])
+                                {
+                                    UpdateDividendCache(id, "eps", eps[a]);
+                                }
                             }
-
-                            if (dtCache.Rows[a]["divPercent"].ToString() != divPercent[a])
+                            if (divPercent.Length > 1)
                             {
-                                UpdateDividendCache(id, "divPercent", divPercent[a]);
+                                if (dtCache.Rows[a]["divPercent"].ToString() != divPercent[a])
+                                {
+                                    UpdateDividendCache(id, "divPercent", divPercent[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["stockname"].ToString() != stockname[a])
+                            if (stockname.Length > 1)
                             {
-                                UpdateDividendCache(id, "stockname", stockname[a]);
+                                if (dtCache.Rows[a]["stockname"].ToString() != stockname[a])
+                                {
+                                    UpdateDividendCache(id, "stockname", stockname[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["marketCap"].ToString() != marketCap[a])
+                            if (marketCap.Length > 1)
                             {
-                                UpdateDividendCache(id, "marketCap", marketCap[a]);
+                                if (dtCache.Rows[a]["marketCap"].ToString() != marketCap[a])
+                                {
+                                    UpdateDividendCache(id, "marketCap", marketCap[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["peRatio"].ToString() != peRatio[a])
+                            if (peRatio.Length > 1)
                             {
-                                UpdateDividendCache(id, "peRatio", peRatio[a]);
+                                if (dtCache.Rows[a]["peRatio"].ToString() != peRatio[a])
+                                {
+                                    UpdateDividendCache(id, "peRatio", peRatio[a]);
+                                }
                             }
-
-                            if (dtCache.Rows[a]["openPrice"].ToString() != openPrice[a])
+                            if (openPrice.Length > 1)
                             {
-                                UpdateDividendCache(id, "openPrice", openPrice[a]);
+                                if (dtCache.Rows[a]["openPrice"].ToString() != openPrice[a])
+                                {
+                                    UpdateDividendCache(id, "openPrice", openPrice[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["currentPrice"].ToString() != currentPrice[a])
+                            if (currentPrice.Length > 1)
                             {
-                                UpdateDividendCache(id, "currentPrice", currentPrice[a]);
+                                if (dtCache.Rows[a]["currentPrice"].ToString() != currentPrice[a])
+                                {
+                                    UpdateDividendCache(id, "currentPrice", currentPrice[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["fiftyTwoWeekLow"].ToString() != fiftyTwoWeekLow[a])
+                            if (fiftyTwoWeekLow.Length > 1)
                             {
-                                UpdateDividendCache(id, "fiftyTwoWeek", fiftyTwoWeekLow[a]);
+                                if (dtCache.Rows[a]["fiftyTwoWeekLow"].ToString() != fiftyTwoWeekLow[a])
+                                {
+                                    UpdateDividendCache(id, "fiftyTwoWeek", fiftyTwoWeekLow[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["fiftyTwoWeekHigh"].ToString() != fiftyTwoWeekHigh[a])
+                            if (fiftyTwoWeekHigh.Length > 1)
                             {
-                                UpdateDividendCache(id, "fiftyTwoWeek", fiftyTwoWeekHigh[a]);
+                                if (dtCache.Rows[a]["fiftyTwoWeekHigh"].ToString() != fiftyTwoWeekHigh[a])
+                                {
+                                    UpdateDividendCache(id, "fiftyTwoWeek", fiftyTwoWeekHigh[a]);
+                                }
                             }
-                            if (dtCache.Rows[a]["daysRange"].ToString() != daysRange[a])
+                            if (daysRange.Length > 1)
                             {
-                                UpdateDividendCache(id, "daysRange", daysRange[a]);
+                                if (dtCache.Rows[a]["daysRange"].ToString() != daysRange[a])
+                                {
+                                    UpdateDividendCache(id, "daysRange", daysRange[a]);
+                                }
                             }
                         }
                     else
