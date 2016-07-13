@@ -809,9 +809,13 @@ namespace DividendLiberty
         private void exportStocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = uti.GetExportPath();
+            PleaseWait pw = new PleaseWait();
+            pw.Show();
+            Application.DoEvents();
             if (path != "")
             {
                 uti.ExportXML(path);
+                pw.Close();
                 MessageBox.Show("Successfully Exported!");
             }
         }
@@ -821,18 +825,24 @@ namespace DividendLiberty
         private void importStocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = uti.GetImportPath();
+            PleaseWait pw = new PleaseWait();
+            pw.Show();
+            Application.DoEvents();
             if (path != "")
             {
                 uti.ImportXML(path);
-                LoadDividends(lvAllDividends, "false");
-                LoadDividends(lvCurrentDividends, "true");
-                if (File.Exists(uti.GetFilePath(FileTypes.cache)))
-                {
-                    string pathCache = uti.GetFilePath(FileTypes.cache);
-                    File.Delete(pathCache);
+                string cachePath = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.cache));
+                File.Copy(cachePath, uti.GetFilePath(FileTypes.cache), true);
+                //if (File.Exists(uti.GetFilePath(FileTypes.cache)))
+                //{
+                    //string pathCache = uti.GetFilePath(FileTypes.cache);
+                    //File.Delete(pathCache);
                     LoadCacheDividends();
-                }
-                MessageBox.Show("Successfully Imported!");
+                    LoadDividends(lvAllDividends, "false");
+                    LoadDividends(lvCurrentDividends, "true");
+                    pw.Close();
+                    MessageBox.Show("Successfully Imported!");
+                //}
             }
         }
 
