@@ -7,7 +7,7 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>45.442383</cost>
+<cost>45.442382</cost>
 <purchasedate>09-18-2015</purchasedate>
 <shares>22.638</shares>
 <nexttobuy>no</nexttobuy>
@@ -117,9 +117,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>82.598294</cost>
+<cost>82.731517</cost>
 <purchasedate>09-25-2015</purchasedate>
-<shares>12.197</shares>
+<shares>12.259</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="12">

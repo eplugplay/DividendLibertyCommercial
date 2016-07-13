@@ -313,7 +313,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Dividend Liberty"
         "ProductCode" = "8:{38E7B3CB-5118-4658-99A7-CC8D3FE48C35}"
-        "PackageCode" = "8:{A72288C2-460E-4B2F-80DB-7338C1745192}"
+        "PackageCode" = "8:{F373409C-6194-4FC8-B1A0-1C82EA3CE2A6}"
         "UpgradeCode" = "8:{E79930E0-2618-475F-9F1D-E599E77A3DA8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
