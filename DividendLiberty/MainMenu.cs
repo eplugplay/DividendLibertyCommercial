@@ -415,10 +415,13 @@ namespace DividendLiberty
             {
                 if (Control.ModifierKeys != Keys.Control && Control.ModifierKeys != Keys.Shift)
                 {
-                    uti.ClearListViewColors(lvAllDividends);
-                    uti.SetStockIndexSymbol(lvCurrentDividends);
-                    HighlightSingleColor(lvCurrentDividends);
-                    MouseUp = true;
+                    if (lstID.Count > 0)
+                    {
+                        uti.ClearListViewColors(lvAllDividends);
+                        uti.SetStockIndexSymbol(lvCurrentDividends);
+                        HighlightSingleColor(lvCurrentDividends);
+                        MouseUp = true;
+                    }
                 }
             }
             CurrentDiv = true;
@@ -477,12 +480,15 @@ namespace DividendLiberty
             {
                 if (Control.ModifierKeys != Keys.Control && Control.ModifierKeys != Keys.Shift)
                 {
-                    uti.ClearListViewColors(lvCurrentDividends);
-                    lstID.Clear();
-                    uti.SetStockIndexSymbol(lvAllDividends);
-                    HighlightSingleColor(lvAllDividends);
-                    HighlightNextBuy();
-                    MouseUp = true;
+                    if (lstID.Count > 0)
+                    {
+                        uti.ClearListViewColors(lvCurrentDividends);
+                        lstID.Clear();
+                        uti.SetStockIndexSymbol(lvAllDividends);
+                        HighlightSingleColor(lvAllDividends);
+                        HighlightNextBuy();
+                        MouseUp = true;
+                    }
                 }
             }
             CurrentDiv = false;
