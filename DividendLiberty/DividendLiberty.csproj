@@ -161,6 +161,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DividendLibertyStocks401k.xml" />
     <Content Include="images\DividendLiberty.ico" />
   </ItemGroup>
   <ItemGroup>
