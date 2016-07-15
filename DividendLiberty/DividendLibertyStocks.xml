@@ -301,7 +301,7 @@
 <dividendstock ID="28">
 <id>28</id>
 <symbol>BBL</symbol>
-<industry>Consumer Discretionary</industry>
+<industry>Materials</industry>
 <active>false</active>
 <interval>Quarterly</interval>
 <cost>0</cost>
@@ -1137,7 +1137,7 @@
 <dividendstock ID="104">
 <id>104</id>
 <symbol>BF-B</symbol>
-<industry>Consumer Discretionary</industry>
+<industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
 <cost>98.11</cost>
@@ -1186,6 +1186,50 @@
 <interval>Quarterly</interval>
 <cost>0</cost>
 <purchasedate>07-11-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="109">
+<id>109</id>
+<symbol>CSX</symbol>
+<industry>Consumer Discretionary</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-15-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="110">
+<id>110</id>
+<symbol>UNP</symbol>
+<industry>Consumer Discretionary</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-15-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="111">
+<id>111</id>
+<symbol>SBUX</symbol>
+<industry>Consumer Discretionary</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-15-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="112">
+<id>112</id>
+<symbol>CVS</symbol>
+<industry>Consumer Staples</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-15-2016</purchasedate>
 <shares>0</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
