@@ -51,22 +51,80 @@ namespace DividendLiberty
                     excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
                 }
 
+                //monthly avg dividends
                 if (lstForumaCol[a] == 7)
                 {
+                    int yearlyIndex = 0;
+                    int sharesIndex = 0;
+                    int yearlySharesCnt = 0;
+                    for (int b = 0; b < lstForumaCol.Count; b++)
+                    {
+                        if (lstForumaCol[b] == 5)
+                        {
+                            yearlyIndex = b;
+                            yearlySharesCnt++;
+                        }
+
+                        if (lstForumaCol[b] == 3)
+                        {
+                            sharesIndex = b;
+                            yearlySharesCnt++;
+                        }
+                    }
+
+                    if (yearlySharesCnt == 2)
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            HSSFCell YearlyDividendCol = excelObj.getCell(i + 1, a, "My Dividends");
+                            YearlyDividendCol.SetCellType(CellType.FORMULA);
+                            YearlyDividendCol.CellFormula = string.Format("ROUND({0}{1}*{2}{3}/12, 2)", uti.GetExcelColLetter(sharesIndex), i + 2, uti.GetExcelColLetter(yearlyIndex), i + 2);
+                            //excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
+                        }
+                    }
                     HSSFCell MonthlyDiv = excelObj.getCell(count, a, "My Dividends");
                     MonthlyDiv.SetCellType(CellType.FORMULA);
                     MonthlyDiv.CellFormula = string.Format("ROUND(SUM({0}{1}:{0}{2}), 2)", uti.GetExcelColLetter(a), 2, count);
                     excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
                 }
 
+                //quarterly avg dividend
                 if (lstForumaCol[a] == 8)
                 {
+                    int yearlyIndex = 0;
+                    int sharesIndex = 0;
+                    int yearlySharesCnt = 0;
+                    for (int b = 0; b < lstForumaCol.Count; b++)
+                    {
+                        if (lstForumaCol[b] == 5)
+                        {
+                            yearlyIndex = b;
+                            yearlySharesCnt++;
+                        }
+
+                        if (lstForumaCol[b] == 3)
+                        {
+                            sharesIndex = b;
+                            yearlySharesCnt++;
+                        }
+                    }
+
+                    if (yearlySharesCnt == 2)
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            HSSFCell YearlyDividendCol = excelObj.getCell(i + 1, a, "My Dividends");
+                            YearlyDividendCol.SetCellType(CellType.FORMULA);
+                            YearlyDividendCol.CellFormula = string.Format("ROUND({0}{1}*{2}{3}/4, 2)", uti.GetExcelColLetter(sharesIndex), i + 2, uti.GetExcelColLetter(yearlyIndex), i + 2);
+                            //excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
+                        }
+                    }
                     HSSFCell QuarterlyDiv = excelObj.getCell(count, a, "My Dividends");
                     QuarterlyDiv.SetCellType(CellType.FORMULA);
                     QuarterlyDiv.CellFormula = string.Format("ROUND(SUM({0}{1}:{0}{2}), 2)", uti.GetExcelColLetter(a), 2, count);
                     excelObj.getCell(count, a, "My Dividends").CellStyle = excelObj.getStyle("headers");
                 }
-
+                // yearly dividend
                 if (lstForumaCol[a] == 9)
                 {
                     int yearlyIndex = 0;
