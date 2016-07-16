@@ -14,13 +14,12 @@ namespace DividendLiberty
     {
         public bool Edit { get; set; }
         public string ID { get; set; }
-        bool CurrentDiv {get;set;}
         string Symbol { get; set; }
         List<StockInfo> LstStockInfo = new List<StockInfo>();
         public Dividends(bool edit, bool currentDiv, List<StockInfo> lstStockInfo)
         {
             Edit = edit;
-            CurrentDiv = currentDiv;
+            Program.MainMenu.CurrentDiv = currentDiv;
             LstStockInfo = lstStockInfo;
             Symbol = lstStockInfo[0].Symbol;
             InitializeComponent();
@@ -29,7 +28,7 @@ namespace DividendLiberty
         public Dividends(bool edit, bool currentDiv)
         {
             Edit = edit;
-            CurrentDiv = currentDiv;
+            Program.MainMenu.CurrentDiv = currentDiv;
             InitializeComponent();
         }
 
@@ -42,6 +41,8 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
+            uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
+            uti.ClearListViewColors(Program.MainMenu.lvCurrentDividends);
             if (Edit)
             {
                 if (LstStockInfo[0].Symbol != txtSymbol.Text.Trim().ToUpper())
@@ -56,6 +57,10 @@ namespace DividendLiberty
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.xml);
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.cache);
                 DividendStocks.UpdateShare(LstStockInfo[0].ID, Symbol, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
+                Program.MainMenu.LoadCacheDividends();
+                ReloadMainDividends();
+                Program.MainMenu.CurrentDiv = !Program.MainMenu.CurrentDiv;
+                Program.MainMenu.SelectStocks();
             }
             else
             {
@@ -68,9 +73,13 @@ namespace DividendLiberty
                 string newID = DividendStocks.NewDividendStock(txtSymbol.Text.ToUpper(), ddlIndustry.Text, ddlDividendInterval.Text);
                 DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
                 AddCache(newID);
+                Program.MainMenu.lstID.Clear();
+                Program.MainMenu.lstID.Add(Convert.ToInt32(newID));
+                Program.MainMenu.LoadCacheDividends();
+                ReloadMainDividends();
+                Program.MainMenu.CurrentDiv = true;
+                Program.MainMenu.SelectStocks();
             }
-            Program.MainMenu.LoadCacheDividends();
-            ReloadMainDividends();
             pw.Close();
             this.Close();
         }
@@ -98,7 +107,7 @@ namespace DividendLiberty
 
         public void ReloadMainDividends()
         {
-            if (CurrentDiv)
+            if (Program.MainMenu.CurrentDiv)
             {
                 Program.MainMenu.LoadDividends(Program.MainMenu.lvCurrentDividends, "true");
             }

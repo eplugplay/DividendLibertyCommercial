@@ -394,6 +394,11 @@ namespace DividendLiberty
                 int s = info.Item.Index;
                 if (Control.ModifierKeys == Keys.Control)
                 {
+                    if (CurrentDiv == false)
+                    {
+                        lstID.Clear();
+                    }
+                    uti.ClearListViewColors(lvAllDividends);
                     uti.SetStockIndexSymbol(lvCurrentDividends);
                     HighlightMultipleControlColor(lvCurrentDividends);
                     MouseUp = false;
@@ -459,6 +464,11 @@ namespace DividendLiberty
                 int s = info.Item.Index;
                 if (Control.ModifierKeys == Keys.Control)
                 {
+                    if (CurrentDiv == true)
+                    {
+                        lstID.Clear();
+                    }
+                    uti.ClearListViewColors(lvCurrentDividends);
                     uti.SetStockIndexSymbol(lvAllDividends);
                     HighlightMultipleControlColor(lvAllDividends);
                     MouseUp = false;
@@ -624,6 +634,10 @@ namespace DividendLiberty
         {
             if (txtSearchSymbol.Text != "")
             {
+                lstID.Clear();
+                CurrentDiv = true;
+                uti.ClearListViewColors(lvAllDividends);
+                uti.ClearListViewColors(lvCurrentDividends);
                 DividendStocks.SearchSymbol(txtSearchSymbol, lvCurrentDividends);
             }
             else
@@ -636,6 +650,10 @@ namespace DividendLiberty
         {
             if (txtSearchAllSymbol.Text != "")
             {
+                lstID.Clear();
+                CurrentDiv = false;
+                uti.ClearListViewColors(lvAllDividends);
+                uti.ClearListViewColors(lvCurrentDividends);
                 DividendStocks.SearchSymbol(txtSearchAllSymbol, lvAllDividends);
             }
             else
