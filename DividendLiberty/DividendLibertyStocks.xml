@@ -296,7 +296,7 @@
 <cost>0</cost>
 <purchasedate>11-21-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="28">
 <id>28</id>
@@ -472,7 +472,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="44">
 <id>44</id>
@@ -483,7 +483,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="45">
 <id>45</id>
@@ -527,7 +527,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="49">
 <id>49</id>
@@ -538,7 +538,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="50">
 <id>50</id>
@@ -582,7 +582,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="54">
 <id>54</id>
@@ -615,7 +615,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="57">
 <id>57</id>
@@ -659,7 +659,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="61">
 <id>61</id>
@@ -681,7 +681,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="63">
 <id>63</id>
@@ -692,7 +692,7 @@
 <cost>94.257974</cost>
 <purchasedate>05-11-2016</purchasedate>
 <shares>19</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="64">
 <id>64</id>
@@ -857,7 +857,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="79">
 <id>79</id>
@@ -901,7 +901,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="83">
 <id>83</id>
@@ -912,7 +912,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="84">
 <id>84</id>
@@ -934,7 +934,7 @@
 <cost>0</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="86">
 <id>86</id>
@@ -1055,7 +1055,7 @@
 <cost>72.54</cost>
 <purchasedate>11-22-2015</purchasedate>
 <shares>14</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="97">
 <id>97</id>
@@ -1132,7 +1132,7 @@
 <cost>0</cost>
 <purchasedate>07-11-2016</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="104">
 <id>104</id>
@@ -1187,7 +1187,7 @@
 <cost>0</cost>
 <purchasedate>07-11-2016</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="109">
 <id>109</id>
@@ -1220,7 +1220,7 @@
 <cost>0</cost>
 <purchasedate>07-15-2016</purchasedate>
 <shares>0</shares>
-<nexttobuy>no</nexttobuy>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="112">
 <id>112</id>
@@ -1231,7 +1231,51 @@
 <cost>0</cost>
 <purchasedate>07-15-2016</purchasedate>
 <shares>0</shares>
+<nexttobuy>yes</nexttobuy>
+</dividendstock>
+<dividendstock ID="113">
+<id>113</id>
+<symbol>COST</symbol>
+<industry>Consumer Discretionary</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-15-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>yes</nexttobuy>
+</dividendstock>
+<dividendstock ID="114">
+<id>114</id>
+<symbol>CHD</symbol>
+<industry>Consumer Discretionary</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-15-2016</purchasedate>
+<shares>0</shares>
 <nexttobuy>no</nexttobuy>
+</dividendstock>
+<dividendstock ID="115">
+<id>115</id>
+<symbol>RSG</symbol>
+<industry>Consumer Discretionary</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-15-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>yes</nexttobuy>
+</dividendstock>
+<dividendstock ID="116">
+<id>116</id>
+<symbol>MDLZ</symbol>
+<industry>Consumer Discretionary</industry>
+<active>false</active>
+<interval>Quarterly</interval>
+<cost>0</cost>
+<purchasedate>07-15-2016</purchasedate>
+<shares>0</shares>
+<nexttobuy>yes</nexttobuy>
 </dividendstock>
 </dividendstocks>
 </DocumentElement>
