@@ -44,6 +44,10 @@
             this.txtDividendPercent = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.gpDividendInfo = new System.Windows.Forms.GroupBox();
+            this.lblReq3 = new System.Windows.Forms.Label();
+            this.lblReq2 = new System.Windows.Forms.Label();
+            this.lblReq1 = new System.Windows.Forms.Label();
+            this.lblRequired = new System.Windows.Forms.Label();
             this.ddlDividendInterval = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -70,10 +74,6 @@
             this.lblSharePurchaseDate = new System.Windows.Forms.Label();
             this.gpSharesOptions = new System.Windows.Forms.GroupBox();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
-            this.lblRequired = new System.Windows.Forms.Label();
-            this.lblReq1 = new System.Windows.Forms.Label();
-            this.lblReq2 = new System.Windows.Forms.Label();
-            this.lblReq3 = new System.Windows.Forms.Label();
             this.gpDividendInfo.SuspendLayout();
             this.gpSharesOptions.SuspendLayout();
             this.SuspendLayout();
@@ -270,6 +270,55 @@
             this.gpDividendInfo.TabIndex = 15;
             this.gpDividendInfo.TabStop = false;
             this.gpDividendInfo.Text = "Shares Info:";
+            // 
+            // lblReq3
+            // 
+            this.lblReq3.AutoSize = true;
+            this.lblReq3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReq3.ForeColor = System.Drawing.Color.Red;
+            this.lblReq3.Location = new System.Drawing.Point(105, 78);
+            this.lblReq3.Name = "lblReq3";
+            this.lblReq3.Size = new System.Drawing.Size(12, 13);
+            this.lblReq3.TabIndex = 56;
+            this.lblReq3.Text = "*";
+            this.lblReq3.Visible = false;
+            // 
+            // lblReq2
+            // 
+            this.lblReq2.AutoSize = true;
+            this.lblReq2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReq2.ForeColor = System.Drawing.Color.Red;
+            this.lblReq2.Location = new System.Drawing.Point(105, 51);
+            this.lblReq2.Name = "lblReq2";
+            this.lblReq2.Size = new System.Drawing.Size(12, 13);
+            this.lblReq2.TabIndex = 55;
+            this.lblReq2.Text = "*";
+            this.lblReq2.Visible = false;
+            // 
+            // lblReq1
+            // 
+            this.lblReq1.AutoSize = true;
+            this.lblReq1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReq1.ForeColor = System.Drawing.Color.Red;
+            this.lblReq1.Location = new System.Drawing.Point(105, 28);
+            this.lblReq1.Name = "lblReq1";
+            this.lblReq1.Size = new System.Drawing.Size(12, 13);
+            this.lblReq1.TabIndex = 54;
+            this.lblReq1.Text = "*";
+            this.lblReq1.Visible = false;
+            // 
+            // lblRequired
+            // 
+            this.lblRequired.AutoSize = true;
+            this.lblRequired.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequired.ForeColor = System.Drawing.Color.Red;
+            this.lblRequired.Location = new System.Drawing.Point(36, 250);
+            this.lblRequired.Name = "lblRequired";
+            this.lblRequired.Size = new System.Drawing.Size(63, 13);
+            this.lblRequired.TabIndex = 53;
+            this.lblRequired.Text = "*Required";
+            this.lblRequired.Visible = false;
             // 
             // ddlDividendInterval
             // 
@@ -583,55 +632,6 @@
             this.dtpPurchaseDate.Name = "dtpPurchaseDate";
             this.dtpPurchaseDate.Size = new System.Drawing.Size(210, 20);
             this.dtpPurchaseDate.TabIndex = 3;
-            // 
-            // lblRequired
-            // 
-            this.lblRequired.AutoSize = true;
-            this.lblRequired.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequired.ForeColor = System.Drawing.Color.Red;
-            this.lblRequired.Location = new System.Drawing.Point(36, 250);
-            this.lblRequired.Name = "lblRequired";
-            this.lblRequired.Size = new System.Drawing.Size(63, 13);
-            this.lblRequired.TabIndex = 53;
-            this.lblRequired.Text = "*Required";
-            this.lblRequired.Visible = false;
-            // 
-            // lblReq1
-            // 
-            this.lblReq1.AutoSize = true;
-            this.lblReq1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReq1.ForeColor = System.Drawing.Color.Red;
-            this.lblReq1.Location = new System.Drawing.Point(105, 28);
-            this.lblReq1.Name = "lblReq1";
-            this.lblReq1.Size = new System.Drawing.Size(12, 13);
-            this.lblReq1.TabIndex = 54;
-            this.lblReq1.Text = "*";
-            this.lblReq1.Visible = false;
-            // 
-            // lblReq2
-            // 
-            this.lblReq2.AutoSize = true;
-            this.lblReq2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReq2.ForeColor = System.Drawing.Color.Red;
-            this.lblReq2.Location = new System.Drawing.Point(105, 51);
-            this.lblReq2.Name = "lblReq2";
-            this.lblReq2.Size = new System.Drawing.Size(12, 13);
-            this.lblReq2.TabIndex = 55;
-            this.lblReq2.Text = "*";
-            this.lblReq2.Visible = false;
-            // 
-            // lblReq3
-            // 
-            this.lblReq3.AutoSize = true;
-            this.lblReq3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReq3.ForeColor = System.Drawing.Color.Red;
-            this.lblReq3.Location = new System.Drawing.Point(105, 78);
-            this.lblReq3.Name = "lblReq3";
-            this.lblReq3.Size = new System.Drawing.Size(12, 13);
-            this.lblReq3.TabIndex = 56;
-            this.lblReq3.Text = "*";
-            this.lblReq3.Visible = false;
             // 
             // Dividends
             // 

@@ -20,7 +20,7 @@ namespace DividendLiberty
     {
         public static Color BackColor = Color.Black;
         public static Color HighlightBarColor = Color.Yellow;
-        public static Color ForeColor = Color.Black;
+        public static Color ForeColor = Color.DarkGreen;
         public static Color ForeColorUnSelected = Color.White;
         //public FileTypes filetypes { get; set; }
         public static string GetFilePath(FileTypes type)
