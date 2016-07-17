@@ -73,6 +73,9 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lblPortfolioTotal = new System.Windows.Forms.Label();
+            this.lblAnnualDividends = new System.Windows.Forms.Label();
+            this.lblAnnualDividendsTotal = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -87,7 +90,7 @@
             this.excelOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(910, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1237, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -224,6 +227,9 @@
             // gpDividendStocks
             // 
             this.gpDividendStocks.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.gpDividendStocks.Controls.Add(this.lblAnnualDividends);
+            this.gpDividendStocks.Controls.Add(this.lblAnnualDividendsTotal);
+            this.gpDividendStocks.Controls.Add(this.lblPortfolioTotal);
             this.gpDividendStocks.Controls.Add(this.lblMyPortfolio);
             this.gpDividendStocks.Controls.Add(this.lvAllDividends);
             this.gpDividendStocks.Controls.Add(this.lvCurrentDividends);
@@ -248,16 +254,16 @@
             this.gpDividendStocks.ForeColor = System.Drawing.Color.White;
             this.gpDividendStocks.Location = new System.Drawing.Point(12, 37);
             this.gpDividendStocks.Name = "gpDividendStocks";
-            this.gpDividendStocks.Size = new System.Drawing.Size(881, 722);
+            this.gpDividendStocks.Size = new System.Drawing.Size(1213, 722);
             this.gpDividendStocks.TabIndex = 3;
             this.gpDividendStocks.TabStop = false;
             // 
             // lblMyPortfolio
             // 
             this.lblMyPortfolio.AutoSize = true;
-            this.lblMyPortfolio.BackColor = System.Drawing.Color.Yellow;
+            this.lblMyPortfolio.BackColor = System.Drawing.Color.Transparent;
             this.lblMyPortfolio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMyPortfolio.ForeColor = System.Drawing.Color.Black;
+            this.lblMyPortfolio.ForeColor = System.Drawing.Color.White;
             this.lblMyPortfolio.Location = new System.Drawing.Point(14, 377);
             this.lblMyPortfolio.Name = "lblMyPortfolio";
             this.lblMyPortfolio.Size = new System.Drawing.Size(78, 13);
@@ -266,10 +272,12 @@
             // 
             // lvAllDividends
             // 
+            this.lvAllDividends.BackColor = System.Drawing.Color.LightGray;
             this.lvAllDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvAllDividends.ForeColor = System.Drawing.Color.White;
             this.lvAllDividends.Location = new System.Drawing.Point(13, 44);
             this.lvAllDividends.Name = "lvAllDividends";
-            this.lvAllDividends.Size = new System.Drawing.Size(853, 287);
+            this.lvAllDividends.Size = new System.Drawing.Size(1187, 287);
             this.lvAllDividends.TabIndex = 40;
             this.lvAllDividends.UseCompatibleStateImageBehavior = false;
             this.lvAllDividends.SelectedIndexChanged += new System.EventHandler(this.lvAllDividends_SelectedIndexChanged);
@@ -282,10 +290,12 @@
             // 
             // lvCurrentDividends
             // 
+            this.lvCurrentDividends.BackColor = System.Drawing.Color.LightGray;
             this.lvCurrentDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvCurrentDividends.ForeColor = System.Drawing.Color.White;
             this.lvCurrentDividends.Location = new System.Drawing.Point(13, 394);
             this.lvCurrentDividends.Name = "lvCurrentDividends";
-            this.lvCurrentDividends.Size = new System.Drawing.Size(853, 287);
+            this.lvCurrentDividends.Size = new System.Drawing.Size(1187, 287);
             this.lvCurrentDividends.TabIndex = 39;
             this.lvCurrentDividends.UseCompatibleStateImageBehavior = false;
             this.lvCurrentDividends.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvCurrentDividends_KeyDown);
@@ -332,7 +342,7 @@
             // 
             this.chkNextBuy.AutoSize = true;
             this.chkNextBuy.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.chkNextBuy.Location = new System.Drawing.Point(122, 23);
+            this.chkNextBuy.Location = new System.Drawing.Point(112, 25);
             this.chkNextBuy.Name = "chkNextBuy";
             this.chkNextBuy.Size = new System.Drawing.Size(123, 17);
             this.chkNextBuy.TabIndex = 33;
@@ -344,7 +354,7 @@
             // 
             this.lblSearchAllSymbol.AutoSize = true;
             this.lblSearchAllSymbol.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSearchAllSymbol.Location = new System.Drawing.Point(708, 337);
+            this.lblSearchAllSymbol.Location = new System.Drawing.Point(1042, 340);
             this.lblSearchAllSymbol.Name = "lblSearchAllSymbol";
             this.lblSearchAllSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchAllSymbol.TabIndex = 32;
@@ -355,7 +365,7 @@
             this.txtSearchAllSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchAllSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchAllSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchAllSymbol.Location = new System.Drawing.Point(809, 334);
+            this.txtSearchAllSymbol.Location = new System.Drawing.Point(1143, 337);
             this.txtSearchAllSymbol.Name = "txtSearchAllSymbol";
             this.txtSearchAllSymbol.Size = new System.Drawing.Size(57, 20);
             this.txtSearchAllSymbol.TabIndex = 31;
@@ -365,7 +375,7 @@
             // 
             this.lblSearchSymbol.AutoSize = true;
             this.lblSearchSymbol.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSearchSymbol.Location = new System.Drawing.Point(706, 688);
+            this.lblSearchSymbol.Location = new System.Drawing.Point(1040, 688);
             this.lblSearchSymbol.Name = "lblSearchSymbol";
             this.lblSearchSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchSymbol.TabIndex = 30;
@@ -376,7 +386,7 @@
             this.txtSearchSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchSymbol.Location = new System.Drawing.Point(807, 685);
+            this.txtSearchSymbol.Location = new System.Drawing.Point(1141, 685);
             this.txtSearchSymbol.Name = "txtSearchSymbol";
             this.txtSearchSymbol.Size = new System.Drawing.Size(59, 20);
             this.txtSearchSymbol.TabIndex = 29;
@@ -386,7 +396,7 @@
             // 
             this.btnHighlightAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHighlightAll.ForeColor = System.Drawing.Color.Black;
-            this.btnHighlightAll.Location = new System.Drawing.Point(801, 15);
+            this.btnHighlightAll.Location = new System.Drawing.Point(1135, 19);
             this.btnHighlightAll.Name = "btnHighlightAll";
             this.btnHighlightAll.Size = new System.Drawing.Size(65, 23);
             this.btnHighlightAll.TabIndex = 26;
@@ -400,7 +410,7 @@
             this.lblIndustryAll.AutoSize = true;
             this.lblIndustryAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIndustryAll.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblIndustryAll.Location = new System.Drawing.Point(535, 20);
+            this.lblIndustryAll.Location = new System.Drawing.Point(869, 24);
             this.lblIndustryAll.Name = "lblIndustryAll";
             this.lblIndustryAll.Size = new System.Drawing.Size(56, 13);
             this.lblIndustryAll.TabIndex = 25;
@@ -424,7 +434,7 @@
             "Materials",
             "Telecommunication Services",
             "Utilities"});
-            this.ddlIndustryAll.Location = new System.Drawing.Point(597, 16);
+            this.ddlIndustryAll.Location = new System.Drawing.Point(931, 20);
             this.ddlIndustryAll.Name = "ddlIndustryAll";
             this.ddlIndustryAll.Size = new System.Drawing.Size(199, 21);
             this.ddlIndustryAll.TabIndex = 24;
@@ -447,7 +457,7 @@
             this.lblIndustry.AutoSize = true;
             this.lblIndustry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIndustry.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblIndustry.Location = new System.Drawing.Point(581, 375);
+            this.lblIndustry.Location = new System.Drawing.Point(915, 375);
             this.lblIndustry.Name = "lblIndustry";
             this.lblIndustry.Size = new System.Drawing.Size(56, 13);
             this.lblIndustry.TabIndex = 22;
@@ -471,7 +481,7 @@
             "Materials",
             "Telecommunication Services",
             "Utilities"});
-            this.ddlIndustry.Location = new System.Drawing.Point(643, 370);
+            this.ddlIndustry.Location = new System.Drawing.Point(977, 370);
             this.ddlIndustry.Name = "ddlIndustry";
             this.ddlIndustry.Size = new System.Drawing.Size(223, 21);
             this.ddlIndustry.TabIndex = 21;
@@ -479,9 +489,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Yellow;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(14, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
@@ -491,7 +501,7 @@
             // btnRemove
             // 
             this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(501, 343);
+            this.btnRemove.Location = new System.Drawing.Point(654, 340);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(42, 34);
             this.btnRemove.TabIndex = 4;
@@ -502,7 +512,7 @@
             // btnAdd
             // 
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(342, 343);
+            this.btnAdd.Location = new System.Drawing.Point(495, 340);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(42, 34);
             this.btnAdd.TabIndex = 3;
@@ -539,12 +549,48 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // lblPortfolioTotal
+            // 
+            this.lblPortfolioTotal.AutoSize = true;
+            this.lblPortfolioTotal.BackColor = System.Drawing.Color.White;
+            this.lblPortfolioTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPortfolioTotal.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblPortfolioTotal.Location = new System.Drawing.Point(90, 376);
+            this.lblPortfolioTotal.Name = "lblPortfolioTotal";
+            this.lblPortfolioTotal.Size = new System.Drawing.Size(38, 16);
+            this.lblPortfolioTotal.TabIndex = 42;
+            this.lblPortfolioTotal.Text = "total";
+            // 
+            // lblAnnualDividends
+            // 
+            this.lblAnnualDividends.AutoSize = true;
+            this.lblAnnualDividends.BackColor = System.Drawing.Color.White;
+            this.lblAnnualDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnnualDividends.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblAnnualDividends.Location = new System.Drawing.Point(346, 375);
+            this.lblAnnualDividends.Name = "lblAnnualDividends";
+            this.lblAnnualDividends.Size = new System.Drawing.Size(38, 16);
+            this.lblAnnualDividends.TabIndex = 44;
+            this.lblAnnualDividends.Text = "total";
+            // 
+            // lblAnnualDividendsTotal
+            // 
+            this.lblAnnualDividendsTotal.AutoSize = true;
+            this.lblAnnualDividendsTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblAnnualDividendsTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnnualDividendsTotal.ForeColor = System.Drawing.Color.White;
+            this.lblAnnualDividendsTotal.Location = new System.Drawing.Point(240, 377);
+            this.lblAnnualDividendsTotal.Name = "lblAnnualDividendsTotal";
+            this.lblAnnualDividendsTotal.Size = new System.Drawing.Size(110, 13);
+            this.lblAnnualDividendsTotal.TabIndex = 43;
+            this.lblAnnualDividendsTotal.Text = "Annual Dividends:";
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.ClientSize = new System.Drawing.Size(910, 770);
+            this.ClientSize = new System.Drawing.Size(1237, 770);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.gpDividendStocks);
             this.Controls.Add(this.pbStatus);
@@ -612,6 +658,9 @@
         public System.Windows.Forms.DateTimePicker dtpPayDate;
         public System.Windows.Forms.SaveFileDialog saveFileDialog1;
         public System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label lblPortfolioTotal;
+        private System.Windows.Forms.Label lblAnnualDividends;
+        private System.Windows.Forms.Label lblAnnualDividendsTotal;
     }
 }
 

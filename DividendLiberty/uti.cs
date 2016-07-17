@@ -18,6 +18,10 @@ namespace DividendLiberty
 {
     public static class uti
     {
+        public static Color BackColor = Color.Black;
+        public static Color HighlightBarColor = Color.Yellow;
+        public static Color ForeColor = Color.Black;
+        public static Color ForeColorUnSelected = Color.White;
         //public FileTypes filetypes { get; set; }
         public static string GetFilePath(FileTypes type)
         {
@@ -125,7 +129,8 @@ namespace DividendLiberty
         {
             for (int i = 0; i < lv.Items.Count; i++)
             {
-                lv.InvokeEx(x => x.Items[i].BackColor = Color.White);
+                lv.InvokeEx(x => x.Items[i].BackColor = BackColor);
+                lv.InvokeEx(x => x.Items[i].ForeColor = ForeColorUnSelected);
             }
         }
 
@@ -166,13 +171,23 @@ namespace DividendLiberty
             return split;
         }
 
-        public static string GetStockSymbols(DataTable dt, string delimited)
+        public static string GetStockSymbols(DataTable dt, string delimited, bool all, bool active)
         {
             string symbols = "";
             int count = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                symbols += dt.Rows[i]["symbol"].ToString() + delimited;
+                if (all)
+                {
+                    symbols += dt.Rows[i]["symbol"].ToString() + delimited;
+                }
+                else
+                {
+                    if (Convert.ToBoolean(dt.Rows[i]["active"]) == active)
+                    {
+                        symbols += dt.Rows[i]["symbol"].ToString() + delimited;
+                    }
+                }
                 count++;
             }
             return symbols = symbols.Substring(0, symbols.Length - 1);
@@ -186,11 +201,6 @@ namespace DividendLiberty
                 ids += dt.Rows[i]["id"].ToString() + ",";
             }
             return ids = ids.Substring(0, ids.Length - 1);
-        }
-
-        public static Color GetHighlightColor()
-        {
-            return Color.BurlyWood;
         }
 
         public static decimal GetTotalSectorCount(List<decimal> lst)

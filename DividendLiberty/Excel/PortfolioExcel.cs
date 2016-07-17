@@ -17,7 +17,7 @@ namespace DividendLiberty
         public static void GeneratePortfolioExcel()
         {
             DataTable dt = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
-            string stocks = uti.GetStockSymbols(dt, ",");
+            string stocks = uti.GetStockSymbols(dt, ",", true, false);
             DataTable dtCache = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache), stocks);
             string[] annualDiv = uti.GetColValues(dtCache, DivCacheCodes.annualDiv.ToString());
             string[] yields = uti.GetColValues(dtCache, DivCacheCodes.divPercent.ToString());

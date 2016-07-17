@@ -67,7 +67,7 @@ namespace DividendLiberty
                         if (Convert.ToInt32(lv.Items[i].Tag) == lstID[b])
                         {
                             string yieldTemp = "";
-                            numShares = lv.Items[i].SubItems[4].Text == "" ? 0 : Convert.ToDecimal(lv.Items[i].SubItems[4].Text);
+                            numShares = lv.Items[i].SubItems[9].Text == "" ? 0 : Convert.ToDecimal(lv.Items[i].SubItems[9].Text);
                             try
                             {
                                 DataTable dt = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache),  lv.Items[i].SubItems[1].Text);
@@ -106,7 +106,7 @@ namespace DividendLiberty
             return array;
         }
 
-        public static void LoadDividends(ListView lv, string active, DataTable dtXmlCache, DataTable dtXml)
+        public static void LoadDividends(ListView lv, string active, DataTable dtXmlCache, DataTable dtXml, Label lblAnnualDividends)
         {
             try
             {
@@ -116,13 +116,33 @@ namespace DividendLiberty
                 lv.Columns.Add("Symbol");
                 lv.Columns.Add("Name");
                 lv.Columns.Add("Industry");
-                lv.Columns.Add("Shares");
-                lv.Columns.Add("Cost");
                 lv.Columns.Add("Ex-Dividend");
                 lv.Columns.Add("Pay Date");
                 lv.Columns.Add("Pay Interval");
                 lv.Columns.Add("Payout Ratio");
+                lv.Columns.Add("Portfolio Weight");
+                lv.Columns.Add("Shares");
+                lv.Columns.Add("Cost");
+                lv.Columns.Add("Cost Basis");
+                lv.Columns.Add("Annual Dividend");
+                lv.Columns.Add("Quarterly Dividend");
+                //lv.Columns.Add("");
+                decimal[] eachWeight = new decimal[lv.Items.Count];
+                string[] stocks = new string[lv.Items.Count];
+
+                if (lv.Name == "lvCurrentDividends")
+                {
+                    eachWeight = GetCalculateWeight();
+                    stocks = uti.SplitCommaDelStockData(uti.GetStockSymbols(dtXml, ",", false, true));
+                }
+                else
+                {
+                    stocks = uti.SplitCommaDelStockData(uti.GetStockSymbols(dtXml, ",", false, false));
+                }
+                string[] eachCost = GetEachStockCost(dtXml, stocks);
                 int count = 1;
+                int weightCnt = 0;
+                decimal totalAnnualDiv = 0;
                 for (int i = 0; i < dtXml.Rows.Count; i++)
                 {
                     if (dtXml.Rows[i]["active"].ToString() == active)
@@ -133,17 +153,31 @@ namespace DividendLiberty
                         lvItem.Tag = dtXml.Rows[i]["id"].ToString();
                         lvItem.SubItems.Add(dtXmlCache.Rows[i]["stockname"].ToString().Length == 1 ? "" : dtXmlCache.Rows[i]["stockname"].ToString());
                         lvItem.SubItems.Add(dtXml.Rows[i]["industry"].ToString());
-                        lvItem.SubItems.Add(dtXml.Rows[i]["shares"].ToString());
-                        lvItem.SubItems.Add(dtXml.Rows[i]["cost"].ToString());
                         lvItem.SubItems.Add(dtXmlCache.Rows[i]["exDividend"].ToString().Length == 1 ? "" : dtXmlCache.Rows[i]["exDividend"].ToString());
                         lvItem.SubItems.Add(dtXmlCache.Rows[i]["payDates"].ToString().Length == 1 ? "" : dtXmlCache.Rows[i]["payDates"].ToString());
                         decimal payoutRatio = 0;
                         if (dtXmlCache.Rows[i]["eps"].ToString() != "" && dtXmlCache.Rows[i]["eps"].ToString() != "N/A" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A")
                         {
-                            payoutRatio = Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"].ToString()) / Convert.ToDecimal(dtXmlCache.Rows[i]["eps"].ToString()) * 100, 2); 
+                            payoutRatio = Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"].ToString()) / Convert.ToDecimal(dtXmlCache.Rows[i]["eps"].ToString()) * 100, 2);
                         }
                         lvItem.SubItems.Add(dtXml.Rows[i]["interval"].ToString());
                         lvItem.SubItems.Add(dtXmlCache.Rows[i]["eps"].ToString().Length == 1 ? "" : payoutRatio.ToString() + "%");
+                        lvItem.SubItems.Add(eachWeight.Length > 1 ? eachWeight[weightCnt] + "%" : "-");
+                        lvItem.SubItems.Add(dtXml.Rows[i]["shares"].ToString());
+                        lvItem.SubItems.Add(dtXml.Rows[i]["cost"].ToString());
+                        if (dtXml.Rows[i]["active"].ToString() == "true")
+                        {
+                            lvItem.SubItems.Add(eachCost[weightCnt] != "" ? "$" + Convert.ToDecimal(eachCost[weightCnt]).ToString() : "$0");
+                            weightCnt++;
+                        }
+                        else
+                        {
+                            lvItem.SubItems.Add(eachCost[weightCnt] != "" ? "$" + Convert.ToDecimal(eachCost[weightCnt]).ToString() : "$0");
+                            weightCnt++;
+                        }
+                        lvItem.SubItems.Add(dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? "$" + Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"]), 2).ToString() : "$0");
+                        totalAnnualDiv += dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? (Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"])) : 0;
+                        lvItem.SubItems.Add(dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? "$" + Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"]) / 4, 2).ToString() : "$0");
                         lv.Items.Add(lvItem);
                     }
                     else
@@ -152,12 +186,16 @@ namespace DividendLiberty
                     }
                 }
 
-                for (int i = 0; i < lv.Columns.Count; i++)
+                for (int a = 0; a < lv.Columns.Count; a++)
                 {
-                    lv.Columns[i].TextAlign = HorizontalAlignment.Center;
+                    lv.Columns[a].TextAlign = HorizontalAlignment.Center;
                 }
                 lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                if (active == "true")
+                {
+                    lblAnnualDividends.Text = "$" + Math.Round(totalAnnualDiv, 2).ToString();
+                }
             }
             catch (Exception e)
             {
@@ -328,7 +366,7 @@ namespace DividendLiberty
             string dtpMonthYear = "";
             for (int i = 0; i < lv.Items.Count; i++)
             {
-                string date = lv.Items[i].SubItems[7].Text;
+                string date = lv.Items[i].SubItems[5].Text;
                 string[] dateSplit = date.Split('/');
                 if (date != "N/A")
                 {
@@ -365,7 +403,7 @@ namespace DividendLiberty
             int annDivCnt = 0;
             for (int i = 0; i < lv.Items.Count; i++)
             {
-                string date = lv.Items[i].SubItems[7].Text;
+                string date = lv.Items[i].SubItems[5].Text;
                 string[] dateSplit = date.Split('/');
                 if (date != "N/A")
                 {
@@ -380,7 +418,8 @@ namespace DividendLiberty
                     //}
                     if (monthYear == dtpMonthYear)
                     {
-                        lv.Items[i].BackColor = uti.GetHighlightColor();
+                        lv.Items[i].BackColor = uti.HighlightBarColor;
+                        lv.Items[i].ForeColor = uti.ForeColor;
                         lv.Items[i].Selected = true;
                         lv.Items[i].Focused = true;
                         lv.TopItem = lv.Items[i];
@@ -395,9 +434,9 @@ namespace DividendLiberty
                             MessageBox.Show("Could not highlight, yahoo connection was lost. Please try again later.");
                             return;
                         }
-                        decimal divReceived = uti.GetDivPrice(Convert.ToDecimal(lv.Items[i].SubItems[4].Text.ToString()), div);
+                        decimal divReceived = uti.GetDivPrice(Convert.ToDecimal(lv.Items[i].SubItems[9].Text.ToString()), div);
                         totalDiv += divReceived;
-                        individualDivData += symbol + ": $" + Math.Round(divReceived / 4, 2) + " (Pay Date: " + lv.Items[i].SubItems[7].Text.ToString() + ")\n\n";
+                        individualDivData += symbol + ": $" + Math.Round(divReceived / 4, 2) + " (Pay Date: " + lv.Items[i].SubItems[5].Text.ToString() + ")\n\n";
                         Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                         cnt++;
                     }
@@ -466,7 +505,8 @@ namespace DividendLiberty
                         {
                             if (Convert.ToInt32(lv.Items[i].Tag) == Convert.ToInt32(dt.Rows[a]["id"]))
                             {
-                                lv.Items[i].BackColor = uti.GetHighlightColor();
+                                lv.Items[i].BackColor = uti.HighlightBarColor;
+                                lv.Items[i].ForeColor = uti.ForeColor;
                                 lv.Items[i].Selected = true;
                                 lv.Items[i].Focused = true;
                                 lv.TopItem = lv.Items[i];
@@ -498,14 +538,15 @@ namespace DividendLiberty
                 {
                     count++;
                     Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
-                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                    lv.Items[i].BackColor = uti.HighlightBarColor;
+                    lv.Items[i].ForeColor = uti.ForeColor;
                     lv.Items[i].Selected = true;
                     lv.Items[i].Focused = true;
                     lv.TopItem = lv.Items[i];
                 }
                 else
                 {
-                    lv.Items[i].BackColor = Color.White;
+                    lv.Items[i].BackColor = uti.BackColor;
                 }
             }
             lv.SelectedItems.Clear();
@@ -526,13 +567,64 @@ namespace DividendLiberty
                 if (lv.Items[i].SubItems[1].Text == tb.Text.ToUpper())
                 {
                     Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
-                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                    lv.Items[i].BackColor = uti.HighlightBarColor;
+                    lv.Items[i].ForeColor = uti.ForeColor;
                     lv.Items[i].Selected = true;
                     lv.Items[i].Focused = true;
                     lv.TopItem = lv.Items[i];
-                    //lv.Select();
                 }
             }
+        }
+
+        public static decimal[] GetCalculateWeight()
+        {
+            DataTable dt = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
+            decimal PortfolioTotal = GetTotalPortfolio(dt);
+            string[] stocks = uti.SplitCommaDelStockData(uti.GetStockSymbols(dt, ",", false, true));
+            string[] eachCost = GetEachStockCost(dt, stocks);
+            return BuildPortfolioWeight(stocks, eachCost, PortfolioTotal);
+        }
+
+        public static decimal[] BuildPortfolioWeight(string[] stocks, string[] eachCost, decimal totalCost)
+        {
+            decimal[] eachWeight = new decimal[stocks.Length];
+            for (int a = 0; a < stocks.Length; a++)
+            {
+                decimal weight = Math.Round(Convert.ToDecimal(eachCost[a]) / totalCost * 100, 2);
+                eachWeight[a] = weight;
+            }
+            return eachWeight;
+        }
+
+        public static string[] GetEachStockCost(DataTable dt, string[] stocks)
+        {
+            string[] eachCost = new string[stocks.Length];
+            for (int a = 0; a < dt.Rows.Count; a++)
+            {
+                for (int b = 0; b < stocks.Length; b++)
+                {
+                    if (dt.Rows[a]["symbol"].ToString() == stocks[b])
+                    {
+                        decimal totalCost = Math.Round(Convert.ToDecimal(dt.Rows[a]["cost"]) * Convert.ToDecimal(dt.Rows[a]["shares"]), 2);
+                        eachCost[b] = totalCost.ToString();
+                    }
+                }
+            }
+            return eachCost;
+        }
+
+        public static decimal GetTotalPortfolio(DataTable dt)
+        {
+            decimal PortfolioTotal = 0;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i]["active"].ToString() == "true")
+                {
+                    string id = dt.Rows[i]["id"].ToString();
+                    PortfolioTotal += (Convert.ToDecimal(dt.Rows[i]["shares"]) * Convert.ToDecimal(dt.Rows[i]["cost"]));
+                }
+            }
+            return PortfolioTotal;
         }
 
         public static void CalculateResults()
@@ -552,7 +644,7 @@ namespace DividendLiberty
             //decimal MarketTotalPrice = 0;
             DataTable dt = uti.GetXMLData(FileTypes.xml);
             decimal Purchaseprice = 0;
-            string symbols = uti.GetStockSymbols(dt, ",");
+            string symbols = uti.GetStockSymbols(dt, ",", true, true);
             DataTable dtCache = uti.FilterDataTable(uti.GetXMLData(FileTypes.cache), symbols);
             string[] AnnualDiv = uti.GetColValues(dtCache, DivCacheCodes.annualDiv.ToString());
             string[] DivYield = uti.GetColValues(dtCache, DivCacheCodes.divPercent.ToString());

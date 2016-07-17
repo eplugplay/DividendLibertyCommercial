@@ -103,6 +103,7 @@ namespace DividendLiberty
         {
 
         }
+
         #endregion
 
         private void calculateResultsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,13 +127,8 @@ namespace DividendLiberty
         {
             DataTable dtXmlCache = uti.SortDataTable(uti.GetXMLData(FileTypes.cache), "symbol", "asc");
             DataTable dtXml = uti.SortDataTable(uti.GetXMLData(FileTypes.xml), "symbol", "asc");
-            //string symbols = uti.GetStockSymbols(dtXml, "+");
-            //string stockNames = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.stockname), true);
-            //string exDividend = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.exDividend), true);
-            //string annualDiv = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.annualDividend), true);
-            //string payDates = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.payDate), true);
-            //string eps = YahooFinance.GetValues(symbols, YahooFinance.GetCodes(YahooCodes.eps), true);
-            DividendStocks.LoadDividends(lv, active, dtXmlCache, dtXml);
+            DividendStocks.LoadDividends(lv, active, dtXmlCache, dtXml, lblAnnualDividends);
+            lblPortfolioTotal.Text = "$" + Math.Round(DividendStocks.GetTotalPortfolio(dtXml), 2).ToString();
             Program.PleaseWait.Close();
         }
 
@@ -150,7 +146,7 @@ namespace DividendLiberty
             {
                 dtXmlCache = uti.SortDataTable(dtXmlCache, "symbol", "asc");
             }
-            string symbolsCache = uti.GetStockSymbols(dtxml, ",");
+            string symbolsCache = uti.GetStockSymbols(dtxml, ",", true, true);
             string ids = uti.GetIds(dtxml);
             string stockNames = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.stockname), true);
             string exDividend = YahooFinance.GetValues(symbolsCache, YahooFinance.GetCodes(YahooCodes.exDividend), true);
@@ -175,6 +171,10 @@ namespace DividendLiberty
         private void MainMenu_Load(object sender, EventArgs e)
         {
             string result = "";
+            lvAllDividends.BackColor = uti.BackColor;
+            lvCurrentDividends.BackColor = uti.BackColor;
+            lvAllDividends.ForeColor = uti.ForeColorUnSelected;
+            lvCurrentDividends.ForeColor = uti.ForeColorUnSelected;
             ddlIndustry.SelectedIndex = 0;
             ddlIndustryAll.SelectedIndex = 0;
             dtpPayDate.Format = DateTimePickerFormat.Custom;
@@ -280,7 +280,8 @@ namespace DividendLiberty
                 {
                     if (lstID[b] == Convert.ToInt32(lv.Items[a].Tag))
                     {
-                        lv.Items[a].BackColor = uti.GetHighlightColor();
+                        lv.Items[a].BackColor = uti.HighlightBarColor;
+                        lv.Items[a].ForeColor = uti.ForeColor;
                         lv.Items[a].Selected = true;
                         lv.Items[a].Focused = true;
                         lv.TopItem = lv.Items[a];
@@ -332,11 +333,13 @@ namespace DividendLiberty
             {
                 if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
-                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                    lv.Items[i].BackColor = uti.HighlightBarColor;
+                    lv.Items[i].ForeColor = uti.ForeColor;
                 }
                 if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
-                    lv.Items[i].BackColor = Color.White;
+                    lv.Items[i].BackColor = uti.BackColor;
+                    lv.Items[i].ForeColor = uti.ForeColorUnSelected;
                 }
             }
         }
@@ -352,7 +355,8 @@ namespace DividendLiberty
             lv.SelectedItems.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
-                lv.Items[i].BackColor = uti.GetHighlightColor();
+                lv.Items[i].BackColor = uti.HighlightBarColor;
+                lv.Items[i].ForeColor = uti.ForeColor;
             }
         }
 
@@ -366,11 +370,13 @@ namespace DividendLiberty
             {
                 if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
-                    lv.Items[i].BackColor = uti.GetHighlightColor();
+                    lv.Items[i].BackColor = uti.HighlightBarColor;
+                    lv.Items[i].ForeColor = uti.ForeColor;
                 }
                 else
                 {
-                    lv.Items[i].BackColor = Color.White;
+                    lv.Items[i].BackColor = uti.BackColor;
+                    lv.Items[i].ForeColor = uti.ForeColorUnSelected;
                 }
             }
         }
@@ -522,10 +528,16 @@ namespace DividendLiberty
         public List<StockInfo> GetStockInfoList(ListView lv)
         {
             List<StockInfo> lst = new List<StockInfo>();
-            lst = uti.LoadStockInfo(lstID[0].ToString(), Symbol,
-                    lv.Items[SelectedIndex].SubItems[2].Text, lv.Items[SelectedIndex].SubItems[3].Text, lv.Items[SelectedIndex].SubItems[4].Text,
-                    lv.Items[SelectedIndex].SubItems[5].Text, lv.Items[SelectedIndex].SubItems[6].Text, lv.Items[SelectedIndex].SubItems[7].Text,
-                    lv.Items[SelectedIndex].SubItems[8].Text);
+            lst = uti.LoadStockInfo(
+                    lstID[0].ToString(), 
+                    Symbol,
+                    lv.Items[SelectedIndex].SubItems[2].Text, 
+                    lv.Items[SelectedIndex].SubItems[3].Text, 
+                    lv.Items[SelectedIndex].SubItems[9].Text,
+                    lv.Items[SelectedIndex].SubItems[10].Text, 
+                    lv.Items[SelectedIndex].SubItems[6].Text, 
+                    lv.Items[SelectedIndex].SubItems[5].Text,
+                    lv.Items[SelectedIndex].SubItems[6].Text);
             return lst;
         }
 
@@ -788,6 +800,8 @@ namespace DividendLiberty
             }
             if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
             {
+                uti.ClearListViewColors(lvCurrentDividends);
+
                 uti.ClearListViewColors(lvAllDividends);
                 uti.SetStockIndexSymbol(lvAllDividends);
                 HighlightSingleColor(lvAllDividends);
@@ -802,6 +816,8 @@ namespace DividendLiberty
             }
             if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
             {
+                uti.ClearListViewColors(lvAllDividends);
+
                 uti.ClearListViewColors(lvCurrentDividends);
                 uti.SetStockIndexSymbol(lvCurrentDividends);
                 HighlightSingleColor(lvCurrentDividends);
