@@ -419,7 +419,7 @@ namespace DividendLiberty
                     if (monthYear == dtpMonthYear)
                     {
                         lv.Items[i].BackColor = uti.HighlightBarColor;
-                        lv.Items[i].ForeColor = uti.ForeColor;
+                        lv.Items[i].ForeColor = uti.ForeColorSelected;
                         lv.Items[i].Selected = true;
                         lv.Items[i].Focused = true;
                         lv.TopItem = lv.Items[i];
@@ -506,7 +506,7 @@ namespace DividendLiberty
                             if (Convert.ToInt32(lv.Items[i].Tag) == Convert.ToInt32(dt.Rows[a]["id"]))
                             {
                                 lv.Items[i].BackColor = uti.HighlightBarColor;
-                                lv.Items[i].ForeColor = uti.ForeColor;
+                                lv.Items[i].ForeColor = uti.ForeColorSelected;
                                 lv.Items[i].Selected = true;
                                 lv.Items[i].Focused = true;
                                 lv.TopItem = lv.Items[i];
@@ -539,7 +539,7 @@ namespace DividendLiberty
                     count++;
                     Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                     lv.Items[i].BackColor = uti.HighlightBarColor;
-                    lv.Items[i].ForeColor = uti.ForeColor;
+                    lv.Items[i].ForeColor = uti.ForeColorSelected;
                     lv.Items[i].Selected = true;
                     lv.Items[i].Focused = true;
                     lv.TopItem = lv.Items[i];
@@ -568,7 +568,7 @@ namespace DividendLiberty
                 {
                     Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                     lv.Items[i].BackColor = uti.HighlightBarColor;
-                    lv.Items[i].ForeColor = uti.ForeColor;
+                    lv.Items[i].ForeColor = uti.ForeColorSelected;
                     lv.Items[i].Selected = true;
                     lv.Items[i].Focused = true;
                     lv.TopItem = lv.Items[i];

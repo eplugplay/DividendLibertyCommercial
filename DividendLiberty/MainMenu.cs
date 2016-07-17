@@ -281,7 +281,7 @@ namespace DividendLiberty
                     if (lstID[b] == Convert.ToInt32(lv.Items[a].Tag))
                     {
                         lv.Items[a].BackColor = uti.HighlightBarColor;
-                        lv.Items[a].ForeColor = uti.ForeColor;
+                        lv.Items[a].ForeColor = uti.ForeColorSelected;
                         lv.Items[a].Selected = true;
                         lv.Items[a].Focused = true;
                         lv.TopItem = lv.Items[a];
@@ -334,7 +334,7 @@ namespace DividendLiberty
                 if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
                     lv.Items[i].BackColor = uti.HighlightBarColor;
-                    lv.Items[i].ForeColor = uti.ForeColor;
+                    lv.Items[i].ForeColor = uti.ForeColorSelected;
                 }
                 if (!lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
@@ -356,7 +356,7 @@ namespace DividendLiberty
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 lv.Items[i].BackColor = uti.HighlightBarColor;
-                lv.Items[i].ForeColor = uti.ForeColor;
+                lv.Items[i].ForeColor = uti.ForeColorSelected;
             }
         }
 
@@ -371,7 +371,7 @@ namespace DividendLiberty
                 if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
                     lv.Items[i].BackColor = uti.HighlightBarColor;
-                    lv.Items[i].ForeColor = uti.ForeColor;
+                    lv.Items[i].ForeColor = uti.ForeColorSelected;
                 }
                 else
                 {
