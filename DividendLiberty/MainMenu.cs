@@ -366,12 +366,25 @@ namespace DividendLiberty
             lstID.Clear();
             lstID.Add(tag);
             lv.SelectedItems.Clear();
+            string selectedSymbol = lv.Items[SelectedIndex].SubItems[1].Text;
+            //foreach (ListViewItem lvi in lv.Items)
+            //{
+            //    if (lvi.SubItems[1].Text.Contains(selectedSymbol))
+            //    {
+            //        lvi.UseItemStyleForSubItems = false;
+            //        lvi.SubItems[1].Font = new System.Drawing.Font(lv.Font, FontStyle.Bold);
+            //    }
+            //}
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 if (lstID.Contains(Convert.ToInt32(lv.Items[i].Tag)))
                 {
                     lv.Items[i].BackColor = uti.HighlightBarColor;
                     lv.Items[i].ForeColor = uti.ForeColorSelected;
+
+                    //lv.Items[i].SubItems[i].Font = new Font(lv.Items[i].SubItems[1].Font, FontStyle.Bold);
+                    //lv.Items.SubItems[i].Font = new Font(lv.SubItems[1].Font,
+                    //lv.SubItems[i].Font.Style | FontStyle.Bold);
                 }
                 else
                 {
