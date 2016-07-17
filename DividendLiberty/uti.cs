@@ -125,12 +125,24 @@ namespace DividendLiberty
             return lst;
         }
 
+        public static void ChangedListViewItemBold(ListView lv, int i, bool bold, bool useSubItems)
+        {
+            ListViewItem lvi = (ListViewItem)lv.Items[i];
+            lvi.UseItemStyleForSubItems = useSubItems;
+            for (int a = 0; a < lv.Columns.Count; a++)
+            {
+                lvi.SubItems[a].Font = new System.Drawing.Font(lv.Font, bold == true ? FontStyle.Bold : FontStyle.Regular);
+            }
+            lvi.UseItemStyleForSubItems = !useSubItems;
+        }
+
         public static void ClearListViewColors(ListView lv)
         {
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 lv.InvokeEx(x => x.Items[i].BackColor = BackColor);
                 lv.InvokeEx(x => x.Items[i].ForeColor = ForeColorUnSelected);
+                ChangedListViewItemBold(lv, i, false, true);
             }
         }
 
