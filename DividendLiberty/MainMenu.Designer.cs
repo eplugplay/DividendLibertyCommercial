@@ -567,7 +567,7 @@
             this.lblAnnualDividends.BackColor = System.Drawing.Color.White;
             this.lblAnnualDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAnnualDividends.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblAnnualDividends.Location = new System.Drawing.Point(346, 375);
+            this.lblAnnualDividends.Location = new System.Drawing.Point(317, 375);
             this.lblAnnualDividends.Name = "lblAnnualDividends";
             this.lblAnnualDividends.Size = new System.Drawing.Size(38, 16);
             this.lblAnnualDividends.TabIndex = 44;
@@ -579,11 +579,11 @@
             this.lblAnnualDividendsTotal.BackColor = System.Drawing.Color.Transparent;
             this.lblAnnualDividendsTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAnnualDividendsTotal.ForeColor = System.Drawing.Color.White;
-            this.lblAnnualDividendsTotal.Location = new System.Drawing.Point(240, 377);
+            this.lblAnnualDividendsTotal.Location = new System.Drawing.Point(211, 377);
             this.lblAnnualDividendsTotal.Name = "lblAnnualDividendsTotal";
-            this.lblAnnualDividendsTotal.Size = new System.Drawing.Size(110, 13);
+            this.lblAnnualDividendsTotal.Size = new System.Drawing.Size(106, 13);
             this.lblAnnualDividendsTotal.TabIndex = 43;
-            this.lblAnnualDividendsTotal.Text = "Annual Dividends:";
+            this.lblAnnualDividendsTotal.Text = "Yearly Dividends:";
             // 
             // MainMenu
             // 

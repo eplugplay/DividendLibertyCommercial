@@ -120,12 +120,13 @@ namespace DividendLiberty
                 lv.Columns.Add("Pay Date");
                 lv.Columns.Add("Pay Interval");
                 lv.Columns.Add("Payout Ratio");
-                lv.Columns.Add("Portfolio Weight");
+                lv.Columns.Add("Weight");
                 lv.Columns.Add("Shares");
                 lv.Columns.Add("Cost");
                 lv.Columns.Add("Cost Basis");
-                lv.Columns.Add("Annual Dividend");
                 lv.Columns.Add("Quarterly Dividend");
+                lv.Columns.Add("Yearly Dividend");
+                
                 //lv.Columns.Add("");
                 decimal[] eachWeight = new decimal[lv.Items.Count];
                 string[] stocks = new string[lv.Items.Count];
@@ -175,9 +176,9 @@ namespace DividendLiberty
                             lvItem.SubItems.Add(eachCost[weightCnt] != "" ? "$" + Convert.ToDecimal(eachCost[weightCnt]).ToString() : "$0");
                             weightCnt++;
                         }
+                        lvItem.SubItems.Add(dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? "$" + Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"]) / 4, 2).ToString() : "$0");
                         lvItem.SubItems.Add(dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? "$" + Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"]), 2).ToString() : "$0");
                         totalAnnualDiv += dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? (Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"])) : 0;
-                        lvItem.SubItems.Add(dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? "$" + Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"]) / 4, 2).ToString() : "$0");
                         lv.Items.Add(lvItem);
                     }
                     else
