@@ -130,7 +130,10 @@ namespace DividendLiberty
         #region backgroundworkers
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            DividendStocks.CalculateResults();
+            this.Invoke(new MethodInvoker(delegate
+            {
+                DividendStocks.CalculateResults();
+            }));
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
