@@ -81,14 +81,48 @@ namespace DividendLiberty
             }
             else
             {
-                if (_Dividends.WindowState == FormWindowState.Minimized)
+                _Dividends.Close();
+                if (edit)
                 {
-                    _Dividends.WindowState = FormWindowState.Normal;
+                    if (currentDiv)
+                    {
+                        if (uti.DividendStatsValid(lstID))
+                        {
+                            lstStockInfo = GetStockInfoList(lvCurrentDividends);
+                        }
+                        else
+                        {
+                            pw.Close();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (uti.DividendStatsValid(lstID))
+                        {
+                            lstStockInfo = GetStockInfoList(lvAllDividends);
+                        }
+                        else
+                        {
+                            pw.Close();
+                            return;
+                        }
+                    }
+                    _Dividends = new Dividends(edit, currentDiv, lstStockInfo);
                 }
                 else
                 {
-                    _Dividends.BringToFront();
+                    _Dividends = new Dividends(edit, currentDiv);
                 }
+                //if (_Dividends.WindowState == FormWindowState.Minimized)
+                //{
+                //    _Dividends.WindowState = FormWindowState.Normal;
+                //}
+                //else
+                //{
+                //    _Dividends.BringToFront();
+                //}
+                _Dividends.Show();
             }
             pw.Close();
         }

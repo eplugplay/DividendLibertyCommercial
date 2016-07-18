@@ -194,7 +194,7 @@ namespace DividendLiberty
                 {
                     lv.Columns[a].TextAlign = HorizontalAlignment.Center;
                 }
-                lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                //lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 if (active == "true")
                 {
