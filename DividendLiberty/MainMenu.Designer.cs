@@ -90,7 +90,7 @@
             this.excelOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1278, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1359, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -254,7 +254,7 @@
             this.gpDividendStocks.ForeColor = System.Drawing.Color.White;
             this.gpDividendStocks.Location = new System.Drawing.Point(12, 37);
             this.gpDividendStocks.Name = "gpDividendStocks";
-            this.gpDividendStocks.Size = new System.Drawing.Size(1254, 722);
+            this.gpDividendStocks.Size = new System.Drawing.Size(1335, 722);
             this.gpDividendStocks.TabIndex = 3;
             this.gpDividendStocks.TabStop = false;
             // 
@@ -277,7 +277,7 @@
             this.lvAllDividends.ForeColor = System.Drawing.Color.White;
             this.lvAllDividends.Location = new System.Drawing.Point(13, 44);
             this.lvAllDividends.Name = "lvAllDividends";
-            this.lvAllDividends.Size = new System.Drawing.Size(1227, 287);
+            this.lvAllDividends.Size = new System.Drawing.Size(1308, 287);
             this.lvAllDividends.TabIndex = 40;
             this.lvAllDividends.UseCompatibleStateImageBehavior = false;
             this.lvAllDividends.SelectedIndexChanged += new System.EventHandler(this.lvAllDividends_SelectedIndexChanged);
@@ -295,7 +295,7 @@
             this.lvCurrentDividends.ForeColor = System.Drawing.Color.White;
             this.lvCurrentDividends.Location = new System.Drawing.Point(13, 394);
             this.lvCurrentDividends.Name = "lvCurrentDividends";
-            this.lvCurrentDividends.Size = new System.Drawing.Size(1227, 287);
+            this.lvCurrentDividends.Size = new System.Drawing.Size(1308, 287);
             this.lvCurrentDividends.TabIndex = 39;
             this.lvCurrentDividends.UseCompatibleStateImageBehavior = false;
             this.lvCurrentDividends.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvCurrentDividends_KeyDown);
@@ -590,7 +590,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.ClientSize = new System.Drawing.Size(1278, 770);
+            this.ClientSize = new System.Drawing.Size(1359, 770);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.gpDividendStocks);
             this.Controls.Add(this.pbStatus);
