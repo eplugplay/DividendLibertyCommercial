@@ -38,6 +38,7 @@ namespace DividendLiberty
             {
                 return;
             }
+            this.Hide();
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
