@@ -282,6 +282,7 @@ namespace DividendLiberty
                     {
                         lv.Items[a].BackColor = uti.HighlightBarColor;
                         lv.Items[a].ForeColor = uti.ForeColorSelected;
+                        uti.ChangedListViewItemBold(lv, a, true, false);
                         lv.Items[a].Selected = true;
                         lv.Items[a].Focused = true;
                         lv.TopItem = lv.Items[a];
@@ -384,6 +385,12 @@ namespace DividendLiberty
                     uti.ChangedListViewItemBold(lv, i, false, true);
                 }
             }
+            //for (int a = 0; a < lv.Columns.Count; a++)
+            //{
+            //    lv.Columns[a].TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            //}
+            //lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void lvCurrentDividends_MouseClick(object sender, MouseEventArgs e)

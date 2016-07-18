@@ -179,6 +179,9 @@ namespace DividendLiberty
                         lvItem.SubItems.Add(dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? "$" + Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"]) / 4, 2).ToString() : "$0");
                         lvItem.SubItems.Add(dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? "$" + Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"]), 2).ToString() : "$0");
                         totalAnnualDiv += dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A" ? (Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) * Convert.ToDecimal(dtXml.Rows[i]["shares"])) : 0;
+
+                        lvItem.ForeColor = Color.White;
+                        lvItem.Font = new Font(lv.Font, FontStyle.Bold);
                         lv.Items.Add(lvItem);
                     }
                     else
@@ -196,6 +199,11 @@ namespace DividendLiberty
                 if (active == "true")
                 {
                     lblAnnualDividends.Text = "$" + Math.Round(totalAnnualDiv, 2).ToString();
+                }
+                for (int b = 0; b < lv.Items.Count; b++)
+                {
+                    uti.ChangedListViewItemBold(lv, b, false, true);
+                    lv.Items[b].ForeColor = uti.ForeColorUnSelected;
                 }
             }
             catch (Exception e)
@@ -570,6 +578,7 @@ namespace DividendLiberty
                     Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                     lv.Items[i].BackColor = uti.HighlightBarColor;
                     lv.Items[i].ForeColor = uti.ForeColorSelected;
+                    uti.ChangedListViewItemBold(lv, i, true, false);
                     lv.Items[i].Selected = true;
                     lv.Items[i].Focused = true;
                     lv.TopItem = lv.Items[i];

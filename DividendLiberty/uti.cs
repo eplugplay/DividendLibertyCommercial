@@ -19,8 +19,8 @@ namespace DividendLiberty
     public static class uti
     {
         public static Color BackColor = Color.White;
-        public static Color HighlightBarColor = Color.BurlyWood;
-        public static Color ForeColorSelected = Color.DarkGreen;
+        public static Color HighlightBarColor = Color.Black;
+        public static Color ForeColorSelected = Color.Yellow;
         public static Color ForeColorUnSelected = Color.Black;
         //public FileTypes filetypes { get; set; }
         public static string GetFilePath(FileTypes type)
@@ -129,10 +129,26 @@ namespace DividendLiberty
         {
             ListViewItem lvi = (ListViewItem)lv.Items[i];
             lvi.UseItemStyleForSubItems = useSubItems;
-            for (int a = 0; a < lv.Columns.Count; a++)
-            {
-                lvi.SubItems[a].Font = new System.Drawing.Font(lv.Font, bold == true ? FontStyle.Bold : FontStyle.Regular);
-            }
+                for (int a = 0; a < lv.Columns.Count; a++)
+                {
+                    lvi.SubItems[a].Font = new System.Drawing.Font(lv.Font, bold == true ? FontStyle.Bold : FontStyle.Regular);
+                }
+                //if (useSubItems == false)
+                //{
+                //    lv.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
+                //    lv.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.HeaderSize);
+                //    lv.AutoResizeColumn(4, ColumnHeaderAutoResizeStyle.ColumnContent);
+                //    lv.AutoResizeColumn(4, ColumnHeaderAutoResizeStyle.HeaderSize);
+                //    lv.AutoResizeColumn(5, ColumnHeaderAutoResizeStyle.ColumnContent);
+                //    lv.AutoResizeColumn(5, ColumnHeaderAutoResizeStyle.HeaderSize);
+                //    lv.AutoResizeColumn(8, ColumnHeaderAutoResizeStyle.ColumnContent);
+                //    lv.AutoResizeColumn(8, ColumnHeaderAutoResizeStyle.HeaderSize);
+                //    lv.AutoResizeColumn(10, ColumnHeaderAutoResizeStyle.ColumnContent);
+                //    lv.AutoResizeColumn(10, ColumnHeaderAutoResizeStyle.HeaderSize);
+                //    lv.AutoResizeColumn(11, ColumnHeaderAutoResizeStyle.ColumnContent);
+                //    lv.AutoResizeColumn(11, ColumnHeaderAutoResizeStyle.HeaderSize);
+
+                //}
             lvi.UseItemStyleForSubItems = !useSubItems;
         }
 
