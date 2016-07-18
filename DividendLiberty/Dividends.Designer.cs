@@ -74,6 +74,8 @@
             this.lblSharePurchaseDate = new System.Windows.Forms.Label();
             this.gpSharesOptions = new System.Windows.Forms.GroupBox();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
+            this.txtEPS = new System.Windows.Forms.TextBox();
+            this.lblEPS = new System.Windows.Forms.Label();
             this.gpDividendInfo.SuspendLayout();
             this.gpSharesOptions.SuspendLayout();
             this.SuspendLayout();
@@ -228,6 +230,8 @@
             // gpDividendInfo
             // 
             this.gpDividendInfo.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.gpDividendInfo.Controls.Add(this.txtEPS);
+            this.gpDividendInfo.Controls.Add(this.lblEPS);
             this.gpDividendInfo.Controls.Add(this.lblReq3);
             this.gpDividendInfo.Controls.Add(this.lblReq2);
             this.gpDividendInfo.Controls.Add(this.lblReq1);
@@ -373,7 +377,7 @@
             this.txtExDividend.BackColor = System.Drawing.Color.AliceBlue;
             this.txtExDividend.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtExDividend.ForeColor = System.Drawing.Color.Black;
-            this.txtExDividend.Location = new System.Drawing.Point(123, 154);
+            this.txtExDividend.Location = new System.Drawing.Point(122, 181);
             this.txtExDividend.Name = "txtExDividend";
             this.txtExDividend.ReadOnly = true;
             this.txtExDividend.Size = new System.Drawing.Size(210, 20);
@@ -385,7 +389,7 @@
             this.txtPayDate.BackColor = System.Drawing.Color.AliceBlue;
             this.txtPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPayDate.ForeColor = System.Drawing.Color.Black;
-            this.txtPayDate.Location = new System.Drawing.Point(123, 180);
+            this.txtPayDate.Location = new System.Drawing.Point(122, 207);
             this.txtPayDate.Name = "txtPayDate";
             this.txtPayDate.ReadOnly = true;
             this.txtPayDate.Size = new System.Drawing.Size(211, 20);
@@ -517,7 +521,7 @@
             // 
             this.lblPayDate.AutoSize = true;
             this.lblPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPayDate.Location = new System.Drawing.Point(47, 186);
+            this.lblPayDate.Location = new System.Drawing.Point(46, 213);
             this.lblPayDate.Name = "lblPayDate";
             this.lblPayDate.Size = new System.Drawing.Size(63, 13);
             this.lblPayDate.TabIndex = 29;
@@ -527,7 +531,7 @@
             // 
             this.lblExDividend.AutoSize = true;
             this.lblExDividend.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExDividend.Location = new System.Drawing.Point(30, 160);
+            this.lblExDividend.Location = new System.Drawing.Point(29, 187);
             this.lblExDividend.Name = "lblExDividend";
             this.lblExDividend.Size = new System.Drawing.Size(79, 13);
             this.lblExDividend.TabIndex = 22;
@@ -633,6 +637,28 @@
             this.dtpPurchaseDate.Size = new System.Drawing.Size(210, 20);
             this.dtpPurchaseDate.TabIndex = 3;
             // 
+            // txtEPS
+            // 
+            this.txtEPS.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtEPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEPS.ForeColor = System.Drawing.Color.Black;
+            this.txtEPS.Location = new System.Drawing.Point(122, 155);
+            this.txtEPS.Name = "txtEPS";
+            this.txtEPS.ReadOnly = true;
+            this.txtEPS.Size = new System.Drawing.Size(211, 20);
+            this.txtEPS.TabIndex = 58;
+            this.txtEPS.TabStop = false;
+            // 
+            // lblEPS
+            // 
+            this.lblEPS.AutoSize = true;
+            this.lblEPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEPS.Location = new System.Drawing.Point(46, 161);
+            this.lblEPS.Name = "lblEPS";
+            this.lblEPS.Size = new System.Drawing.Size(31, 13);
+            this.lblEPS.TabIndex = 57;
+            this.lblEPS.Text = "EPS";
+            // 
             // Dividends
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -704,5 +730,7 @@
         private System.Windows.Forms.Label lblReq3;
         private System.Windows.Forms.Label lblReq2;
         private System.Windows.Forms.Label lblReq1;
+        private System.Windows.Forms.TextBox txtEPS;
+        private System.Windows.Forms.Label lblEPS;
     }
 }

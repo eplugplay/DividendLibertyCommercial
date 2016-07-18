@@ -167,6 +167,7 @@ namespace DividendLiberty
             ddlIndustry.SelectedIndex = ddlIndustry.FindString(LstStockInfo[0].Industry);
             ddlDividendInterval.SelectedIndex = ddlDividendInterval.FindString(LstStockInfo[0].Interval);
             txtAnnualDividend.Text = dt.Rows[0][DivCacheCodes.annualDiv.ToString()].ToString();
+            txtEPS.Text = dt.Rows[0][DivCacheCodes.eps.ToString()].ToString();
             txtDividendPercent.Text = dt.Rows[0][DivCacheCodes.divPercent.ToString()].ToString();
             txtMarketCap.Text = dt.Rows[0][DivCacheCodes.marketCap.ToString()].ToString();
             txtExDividend.Text = dt.Rows[0][DivCacheCodes.exDividend.ToString()].ToString();
