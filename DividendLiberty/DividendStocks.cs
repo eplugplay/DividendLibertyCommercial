@@ -376,14 +376,17 @@ namespace DividendLiberty
             for (int i = 0; i < lv.Items.Count; i++)
             {
                 string date = lv.Items[i].SubItems[5].Text;
-                string[] dateSplit = date.Split('/');
-                if (date != "N/A")
+                if (date != "")
                 {
-                    monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
-                    dtpMonthYear = Program.MainMenu.dtpPayDate.Value.ToString("M/yyyy");
-                    if (monthYear == dtpMonthYear)
+                    string[] dateSplit = date.Split('/');
+                    if (date != "N/A")
                     {
-                        symbol += lv.Items[i].SubItems[1].Text.ToString() + ",";
+                        monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
+                        dtpMonthYear = Program.MainMenu.dtpPayDate.Value.ToString("M/yyyy");
+                        if (monthYear == dtpMonthYear)
+                        {
+                            symbol += lv.Items[i].SubItems[1].Text.ToString() + ",";
+                        }
                     }
                 }
             }
