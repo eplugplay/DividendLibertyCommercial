@@ -309,7 +309,7 @@
             // 
             this.dtpPayDate.CalendarMonthBackground = System.Drawing.Color.AliceBlue;
             this.dtpPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpPayDate.Location = new System.Drawing.Point(88, 686);
+            this.dtpPayDate.Location = new System.Drawing.Point(86, 685);
             this.dtpPayDate.Name = "dtpPayDate";
             this.dtpPayDate.Size = new System.Drawing.Size(149, 20);
             this.dtpPayDate.TabIndex = 38;
@@ -318,7 +318,7 @@
             // 
             this.btnPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayDate.ForeColor = System.Drawing.Color.Black;
-            this.btnPayDate.Location = new System.Drawing.Point(243, 685);
+            this.btnPayDate.Location = new System.Drawing.Point(241, 684);
             this.btnPayDate.Name = "btnPayDate";
             this.btnPayDate.Size = new System.Drawing.Size(76, 23);
             this.btnPayDate.TabIndex = 37;
@@ -332,7 +332,7 @@
             this.lblPayDate.AutoSize = true;
             this.lblPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPayDate.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblPayDate.Location = new System.Drawing.Point(19, 690);
+            this.lblPayDate.Location = new System.Drawing.Point(17, 689);
             this.lblPayDate.Name = "lblPayDate";
             this.lblPayDate.Size = new System.Drawing.Size(63, 13);
             this.lblPayDate.TabIndex = 36;
@@ -375,7 +375,7 @@
             // 
             this.lblSearchSymbol.AutoSize = true;
             this.lblSearchSymbol.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSearchSymbol.Location = new System.Drawing.Point(1080, 689);
+            this.lblSearchSymbol.Location = new System.Drawing.Point(1161, 688);
             this.lblSearchSymbol.Name = "lblSearchSymbol";
             this.lblSearchSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchSymbol.TabIndex = 30;
@@ -386,7 +386,7 @@
             this.txtSearchSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchSymbol.Location = new System.Drawing.Point(1181, 686);
+            this.txtSearchSymbol.Location = new System.Drawing.Point(1262, 685);
             this.txtSearchSymbol.Name = "txtSearchSymbol";
             this.txtSearchSymbol.Size = new System.Drawing.Size(59, 20);
             this.txtSearchSymbol.TabIndex = 29;
