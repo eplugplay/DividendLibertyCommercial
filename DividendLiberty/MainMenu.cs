@@ -34,6 +34,7 @@ namespace DividendLiberty
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //CurrentDiv = false;
             OpenDividends(false, false);
         }
 
@@ -666,6 +667,7 @@ namespace DividendLiberty
 
         private void btnHighlight_Click(object sender, EventArgs e)
         {
+            CurrentDiv = true;
             DividendStocks.Highlight(lvCurrentDividends, ddlIndustry, true);
         }
 
@@ -688,6 +690,7 @@ namespace DividendLiberty
 
         private void btnHighlightAll_Click(object sender, EventArgs e)
         {
+            CurrentDiv = false;
             DividendStocks.Highlight(lvAllDividends, ddlIndustryAll, true);
         }
 
@@ -759,10 +762,12 @@ namespace DividendLiberty
 
         private void btnPayDate_Click(object sender, EventArgs e)
         {
-            if (lvCurrentDividends.Items[0].SubItems[7].ToString() == "")
+            if (lvCurrentDividends.Items[0].SubItems[5].ToString() == "")
             {
                 return;
             }
+            CurrentDiv = true;
+            uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
             DividendStocks.HighlightPayDate(lvCurrentDividends);
         }
 

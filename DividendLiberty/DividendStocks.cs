@@ -395,6 +395,7 @@ namespace DividendLiberty
             PleaseWait pw = new PleaseWait();
             pw.Show();
             Application.DoEvents();
+            Program.MainMenu.lstID.Clear();
             decimal totalDiv = 0;
             decimal quarterlyDiv = 0;
             int cnt = 0;
@@ -429,13 +430,15 @@ namespace DividendLiberty
                     {
                         lv.Items[i].BackColor = uti.HighlightBarColor;
                         lv.Items[i].ForeColor = uti.ForeColorSelected;
+                        uti.ChangedListViewItemBold(lv, i, true, false);
                         lv.Items[i].Selected = true;
                         lv.Items[i].Focused = true;
                         lv.TopItem = lv.Items[i];
                         string symbol = lv.Items[i].SubItems[1].Text.ToString();
                         try
                         {
-                            div = Convert.ToDecimal(annualDiv[annDivCnt++]);
+                            div = annualDiv[annDivCnt] == "N/A" ? 0 : Convert.ToDecimal(annualDiv[annDivCnt]);
+                            annDivCnt++;
                         }
                         catch
                         {
@@ -539,7 +542,14 @@ namespace DividendLiberty
             decimal count = 0;
             decimal percentage = Convert.ToDecimal(lv.Items.Count);
             lv.SelectedItems.Clear();
-            uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
+            if (lv.Name == "lvAllDividends")
+            {
+                uti.ClearListViewColors(Program.MainMenu.lvCurrentDividends);
+            }
+            else
+            {
+                uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
+            }
             Program.MainMenu.lstID.Clear();
             for (int i = 0; i < lv.Items.Count; i++)
             {
@@ -552,10 +562,13 @@ namespace DividendLiberty
                     lv.Items[i].Selected = true;
                     lv.Items[i].Focused = true;
                     lv.TopItem = lv.Items[i];
+                    uti.ChangedListViewItemBold(lv, i, true, false);
                 }
                 else
                 {
                     lv.Items[i].BackColor = uti.BackColor;
+                    lv.Items[i].ForeColor = uti.ForeColorUnSelected;
+                    uti.ChangedListViewItemBold(lv, i, false, false);
                 }
             }
             lv.SelectedItems.Clear();

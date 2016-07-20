@@ -34,27 +34,26 @@ namespace DividendLiberty
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            PleaseWait pw = new PleaseWait();
             if (!ValidateAll())
             {
                 return;
             }
-            this.Hide();
-            PleaseWait pw = new PleaseWait();
-            pw.Show();
-            Application.DoEvents();
-            uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
-            uti.ClearListViewColors(Program.MainMenu.lvCurrentDividends);
             if (Edit)
             {
                 if (LstStockInfo[0].Symbol != txtSymbol.Text.Trim().ToUpper())
                 {
                     if (uti.ValidateStock(txtSymbol.Text.Trim()))
                     {
-                        pw.Close();
                         MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
                         return;
                     }
                 }
+                this.Hide();
+                pw.Show();
+                Application.DoEvents();
+                uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
+                uti.ClearListViewColors(Program.MainMenu.lvCurrentDividends);
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.xml);
                 DividendStocks.UpdateDividendStock(LstStockInfo[0].ID, Symbol, txtSymbol.Text, ddlIndustry.Text, ddlDividendInterval.Text, FileTypes.cache);
                 DividendStocks.UpdateShare(LstStockInfo[0].ID, Symbol, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
@@ -62,15 +61,21 @@ namespace DividendLiberty
                 ReloadMainDividends();
                 Program.MainMenu.CurrentDiv = !Program.MainMenu.CurrentDiv;
                 Program.MainMenu.SelectStocks();
+                pw.Close();
+                this.Close();
             }
             else
             {
                 if (uti.ValidateStock(txtSymbol.Text.Trim()))
                 {
-                    pw.Close();
                     MessageBox.Show(string.Format("{0} already exist.", txtSymbol.Text.ToUpper()));
                     return;
                 }
+                this.Hide();
+                pw.Show();
+                Application.DoEvents();
+                uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
+                uti.ClearListViewColors(Program.MainMenu.lvCurrentDividends);
                 string newID = DividendStocks.NewDividendStock(txtSymbol.Text.ToUpper(), ddlIndustry.Text, ddlDividendInterval.Text);
                 DividendStocks.UpdateShare(newID, txtSymbol.Text, txtCost.Text, txtNumberOfShares.Text, dtpPurchaseDate.Value.ToString("MM-dd-yyyy"));
                 AddCache(newID);
@@ -80,9 +85,9 @@ namespace DividendLiberty
                 ReloadMainDividends();
                 Program.MainMenu.CurrentDiv = true;
                 Program.MainMenu.SelectStocks();
+                pw.Close();
+                this.Close();
             }
-            pw.Close();
-            this.Close();
         }
 
         public void AddCache(string newID)
