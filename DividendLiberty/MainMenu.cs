@@ -850,10 +850,10 @@ namespace DividendLiberty
             if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
             {
                 uti.ClearListViewColors(lvCurrentDividends);
-
                 uti.ClearListViewColors(lvAllDividends);
                 uti.SetStockIndexSymbol(lvAllDividends);
                 HighlightSingleColor(lvAllDividends);
+                HighlightNextBuy();
             }
         }
 
