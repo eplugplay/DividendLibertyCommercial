@@ -218,7 +218,7 @@ namespace DividendLiberty
                 }
                 count++;
             }
-            return symbols = symbols.Substring(0, symbols.Length - 1);
+            return symbols = symbols.Substring(0, symbols.Length != 0 ? symbols.Length - 1 : symbols.Length);
         }
 
         public static string GetIds(DataTable dt)
