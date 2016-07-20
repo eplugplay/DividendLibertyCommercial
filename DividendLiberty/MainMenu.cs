@@ -813,6 +813,7 @@ namespace DividendLiberty
 
         private void highlightNextPurchasesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CurrentDiv = false;
             DividendStocks.HighlightAllNextToBuy(lvAllDividends);
         }
 

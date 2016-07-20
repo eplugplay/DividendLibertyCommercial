@@ -507,6 +507,9 @@ namespace DividendLiberty
             try
             {
                 lv.SelectedItems.Clear();
+                Program.MainMenu.lstID.Clear();
+                uti.ClearListViewColors(Program.MainMenu.lvCurrentDividends);
+                uti.ClearListViewColors(Program.MainMenu.lvAllDividends);
                 DataTable dt = uti.GetXMLData(FileTypes.xml);
                 uti.ClearListViewColors(lv);
                 for (int i = 0; i < lv.Items.Count; i++)
@@ -519,12 +522,17 @@ namespace DividendLiberty
                             {
                                 lv.Items[i].BackColor = uti.HighlightBarColor;
                                 lv.Items[i].ForeColor = uti.ForeColorSelected;
+                                uti.ChangedListViewItemBold(lv, i, true, false);
                                 lv.Items[i].Selected = true;
                                 lv.Items[i].Focused = true;
                                 lv.TopItem = lv.Items[i];
                                 Program.MainMenu.lstID.Add(Convert.ToInt32(lv.Items[i].Tag));
                                 cnt++;
                             }
+                        }
+                        else
+                        {
+
                         }
                     }
                 }
