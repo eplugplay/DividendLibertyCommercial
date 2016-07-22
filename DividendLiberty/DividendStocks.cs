@@ -189,13 +189,19 @@ namespace DividendLiberty
 
                         }
                     }
-
+                    lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                     for (int a = 0; a < lv.Columns.Count; a++)
                     {
                         lv.Columns[a].TextAlign = HorizontalAlignment.Center;
+                        if (a == 6 || a == 7 || a == 8 || a == 9 || a == 10 || a == 11 || a == 12 || a == 13)
+                        {
+                            //lv.Columns[a].AutoResize(ColumnHeaderAutoResizeStyle.None);
+                            lv.Columns[a].Width = 95;
+                            //lv.Columns[a].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+                            //lv.Columns[a].Width = 1000;
+                        }
                     }
-                    lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                    lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                     if (active == "true")
                     {
                         lblAnnualDividends.Text = "$" + Math.Round(totalAnnualDiv, 2).ToString();
