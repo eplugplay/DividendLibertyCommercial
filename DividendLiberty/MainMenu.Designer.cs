@@ -90,7 +90,7 @@
             this.excelOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1359, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1437, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -254,7 +254,7 @@
             this.gpDividendStocks.ForeColor = System.Drawing.Color.White;
             this.gpDividendStocks.Location = new System.Drawing.Point(12, 37);
             this.gpDividendStocks.Name = "gpDividendStocks";
-            this.gpDividendStocks.Size = new System.Drawing.Size(1335, 722);
+            this.gpDividendStocks.Size = new System.Drawing.Size(1413, 722);
             this.gpDividendStocks.TabIndex = 3;
             this.gpDividendStocks.TabStop = false;
             // 
@@ -277,7 +277,7 @@
             this.lvAllDividends.ForeColor = System.Drawing.Color.White;
             this.lvAllDividends.Location = new System.Drawing.Point(13, 44);
             this.lvAllDividends.Name = "lvAllDividends";
-            this.lvAllDividends.Size = new System.Drawing.Size(1308, 287);
+            this.lvAllDividends.Size = new System.Drawing.Size(1387, 287);
             this.lvAllDividends.TabIndex = 40;
             this.lvAllDividends.UseCompatibleStateImageBehavior = false;
             this.lvAllDividends.SelectedIndexChanged += new System.EventHandler(this.lvAllDividends_SelectedIndexChanged);
@@ -295,7 +295,7 @@
             this.lvCurrentDividends.ForeColor = System.Drawing.Color.White;
             this.lvCurrentDividends.Location = new System.Drawing.Point(13, 394);
             this.lvCurrentDividends.Name = "lvCurrentDividends";
-            this.lvCurrentDividends.Size = new System.Drawing.Size(1308, 287);
+            this.lvCurrentDividends.Size = new System.Drawing.Size(1387, 287);
             this.lvCurrentDividends.TabIndex = 39;
             this.lvCurrentDividends.UseCompatibleStateImageBehavior = false;
             this.lvCurrentDividends.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvCurrentDividends_KeyDown);
@@ -354,7 +354,7 @@
             // 
             this.lblSearchAllSymbol.AutoSize = true;
             this.lblSearchAllSymbol.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSearchAllSymbol.Location = new System.Drawing.Point(1163, 340);
+            this.lblSearchAllSymbol.Location = new System.Drawing.Point(1242, 336);
             this.lblSearchAllSymbol.Name = "lblSearchAllSymbol";
             this.lblSearchAllSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchAllSymbol.TabIndex = 32;
@@ -365,7 +365,7 @@
             this.txtSearchAllSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchAllSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchAllSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchAllSymbol.Location = new System.Drawing.Point(1264, 337);
+            this.txtSearchAllSymbol.Location = new System.Drawing.Point(1343, 333);
             this.txtSearchAllSymbol.Name = "txtSearchAllSymbol";
             this.txtSearchAllSymbol.Size = new System.Drawing.Size(57, 20);
             this.txtSearchAllSymbol.TabIndex = 31;
@@ -375,7 +375,7 @@
             // 
             this.lblSearchSymbol.AutoSize = true;
             this.lblSearchSymbol.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSearchSymbol.Location = new System.Drawing.Point(1161, 688);
+            this.lblSearchSymbol.Location = new System.Drawing.Point(1240, 687);
             this.lblSearchSymbol.Name = "lblSearchSymbol";
             this.lblSearchSymbol.Size = new System.Drawing.Size(95, 13);
             this.lblSearchSymbol.TabIndex = 30;
@@ -386,7 +386,7 @@
             this.txtSearchSymbol.BackColor = System.Drawing.Color.AliceBlue;
             this.txtSearchSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchSymbol.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchSymbol.Location = new System.Drawing.Point(1262, 685);
+            this.txtSearchSymbol.Location = new System.Drawing.Point(1341, 684);
             this.txtSearchSymbol.Name = "txtSearchSymbol";
             this.txtSearchSymbol.Size = new System.Drawing.Size(59, 20);
             this.txtSearchSymbol.TabIndex = 29;
@@ -396,7 +396,7 @@
             // 
             this.btnHighlightAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHighlightAll.ForeColor = System.Drawing.Color.Black;
-            this.btnHighlightAll.Location = new System.Drawing.Point(1256, 20);
+            this.btnHighlightAll.Location = new System.Drawing.Point(1335, 20);
             this.btnHighlightAll.Name = "btnHighlightAll";
             this.btnHighlightAll.Size = new System.Drawing.Size(65, 23);
             this.btnHighlightAll.TabIndex = 26;
@@ -410,7 +410,7 @@
             this.lblIndustryAll.AutoSize = true;
             this.lblIndustryAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIndustryAll.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblIndustryAll.Location = new System.Drawing.Point(994, 25);
+            this.lblIndustryAll.Location = new System.Drawing.Point(1073, 25);
             this.lblIndustryAll.Name = "lblIndustryAll";
             this.lblIndustryAll.Size = new System.Drawing.Size(56, 13);
             this.lblIndustryAll.TabIndex = 25;
@@ -434,7 +434,7 @@
             "Materials",
             "Telecommunication Services",
             "Utilities"});
-            this.ddlIndustryAll.Location = new System.Drawing.Point(1056, 21);
+            this.ddlIndustryAll.Location = new System.Drawing.Point(1135, 21);
             this.ddlIndustryAll.Name = "ddlIndustryAll";
             this.ddlIndustryAll.Size = new System.Drawing.Size(199, 21);
             this.ddlIndustryAll.TabIndex = 24;
@@ -443,7 +443,7 @@
             // 
             this.btnHighlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHighlight.ForeColor = System.Drawing.Color.Black;
-            this.btnHighlight.Location = new System.Drawing.Point(1255, 370);
+            this.btnHighlight.Location = new System.Drawing.Point(1334, 370);
             this.btnHighlight.Name = "btnHighlight";
             this.btnHighlight.Size = new System.Drawing.Size(66, 23);
             this.btnHighlight.TabIndex = 23;
@@ -457,7 +457,7 @@
             this.lblIndustry.AutoSize = true;
             this.lblIndustry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIndustry.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblIndustry.Location = new System.Drawing.Point(970, 377);
+            this.lblIndustry.Location = new System.Drawing.Point(1049, 377);
             this.lblIndustry.Name = "lblIndustry";
             this.lblIndustry.Size = new System.Drawing.Size(56, 13);
             this.lblIndustry.TabIndex = 22;
@@ -481,7 +481,7 @@
             "Materials",
             "Telecommunication Services",
             "Utilities"});
-            this.ddlIndustry.Location = new System.Drawing.Point(1032, 371);
+            this.ddlIndustry.Location = new System.Drawing.Point(1111, 371);
             this.ddlIndustry.Name = "ddlIndustry";
             this.ddlIndustry.Size = new System.Drawing.Size(223, 21);
             this.ddlIndustry.TabIndex = 21;
@@ -501,7 +501,7 @@
             // btnRemove
             // 
             this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(749, 345);
+            this.btnRemove.Location = new System.Drawing.Point(788, 345);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(42, 34);
             this.btnRemove.TabIndex = 4;
@@ -512,7 +512,7 @@
             // btnAdd
             // 
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(590, 345);
+            this.btnAdd.Location = new System.Drawing.Point(629, 345);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(42, 34);
             this.btnAdd.TabIndex = 3;
@@ -590,7 +590,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.ClientSize = new System.Drawing.Size(1359, 770);
+            this.ClientSize = new System.Drawing.Size(1437, 770);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.gpDividendStocks);
             this.Controls.Add(this.pbStatus);
