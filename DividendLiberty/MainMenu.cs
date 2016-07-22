@@ -904,11 +904,11 @@ namespace DividendLiberty
         private void exportStocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = uti.GetExportPath();
-            PleaseWait pw = new PleaseWait();
-            pw.Show();
-            Application.DoEvents();
             if (path != "")
             {
+                PleaseWait pw = new PleaseWait();
+                pw.Show();
+                Application.DoEvents();
                 uti.ExportXML(path);
                 pw.Close();
                 MessageBox.Show("Successfully Exported!");
@@ -920,11 +920,11 @@ namespace DividendLiberty
         private void importStocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = uti.GetImportPath();
-            PleaseWait pw = new PleaseWait();
-            pw.Show();
-            Application.DoEvents();
             if (path != "")
             {
+                PleaseWait pw = new PleaseWait();
+                pw.Show();
+                Application.DoEvents();
                 uti.ImportXML(path);
                 string cachePath = Path.Combine(Directory.GetCurrentDirectory(), uti.GetFileName(FileTypes.cache));
                 File.Copy(cachePath, uti.GetFilePath(FileTypes.cache), true);
