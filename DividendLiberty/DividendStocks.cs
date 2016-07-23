@@ -144,6 +144,7 @@ namespace DividendLiberty
                     int count = 1;
                     int weightCnt = 0;
                     decimal totalAnnualDiv = 0;
+                    bool isStockNameEmpty = false;
                     for (int i = 0; i < dtXml.Rows.Count; i++)
                     {
                         if (dtXml.Rows[i]["active"].ToString() == active)
@@ -189,11 +190,19 @@ namespace DividendLiberty
 
                         }
                     }
+                    isStockNameEmpty = dtXmlCache.Rows[0]["stockname"].ToString() == "" ? true : false;
                     lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                     lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                     for (int a = 0; a < lv.Columns.Count; a++)
                     {
                         lv.Columns[a].TextAlign = HorizontalAlignment.Center;
+                        if (a == 2)
+                        {
+                            if (isStockNameEmpty)
+                            {
+                                lv.Columns[a].Width = 200;
+                            }
+                        }
                         if (a == 6 || a == 7 || a == 8 || a == 9 || a == 10 || a == 11 || a == 12 || a == 13)
                         {
                             //lv.Columns[a].AutoResize(ColumnHeaderAutoResizeStyle.None);
