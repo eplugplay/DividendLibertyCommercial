@@ -89,6 +89,7 @@
             this.txtSymbol.Name = "txtSymbol";
             this.txtSymbol.Size = new System.Drawing.Size(210, 20);
             this.txtSymbol.TabIndex = 0;
+            this.txtSymbol.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSymbol_KeyUp);
             // 
             // lblSymbol
             // 
@@ -121,6 +122,7 @@
             this.txtStockName.Size = new System.Drawing.Size(214, 20);
             this.txtStockName.TabIndex = 1;
             this.txtStockName.TabStop = false;
+            this.txtStockName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtStockName_KeyUp);
             // 
             // lblCost
             // 
@@ -139,7 +141,8 @@
             this.txtCost.Location = new System.Drawing.Point(127, 119);
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(210, 20);
-            this.txtCost.TabIndex = 5;
+            this.txtCost.TabIndex = 4;
+            this.txtCost.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyUp);
             // 
             // lblIndustry
             // 
@@ -168,7 +171,8 @@
             this.txtNumberOfShares.Location = new System.Drawing.Point(127, 93);
             this.txtNumberOfShares.Name = "txtNumberOfShares";
             this.txtNumberOfShares.Size = new System.Drawing.Size(210, 20);
-            this.txtNumberOfShares.TabIndex = 4;
+            this.txtNumberOfShares.TabIndex = 3;
+            this.txtNumberOfShares.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNumberOfShares_KeyUp);
             // 
             // lblAnnualDividend
             // 
@@ -191,6 +195,7 @@
             this.txtAnnualDividend.Size = new System.Drawing.Size(210, 20);
             this.txtAnnualDividend.TabIndex = 4;
             this.txtAnnualDividend.TabStop = false;
+            this.txtAnnualDividend.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtAnnualDividend_KeyUp);
             // 
             // label1
             // 
@@ -213,6 +218,7 @@
             this.txtDividendPercent.Size = new System.Drawing.Size(211, 20);
             this.txtDividendPercent.TabIndex = 5;
             this.txtDividendPercent.TabStop = false;
+            this.txtDividendPercent.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDividendPercent_KeyUp);
             // 
             // btnSave
             // 
@@ -339,6 +345,7 @@
             this.ddlDividendInterval.Name = "ddlDividendInterval";
             this.ddlDividendInterval.Size = new System.Drawing.Size(210, 21);
             this.ddlDividendInterval.TabIndex = 2;
+            this.ddlDividendInterval.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ddlDividendInterval_KeyUp);
             // 
             // label3
             // 
@@ -371,6 +378,7 @@
             this.txtCurrentPrice.Size = new System.Drawing.Size(214, 20);
             this.txtCurrentPrice.TabIndex = 49;
             this.txtCurrentPrice.TabStop = false;
+            this.txtCurrentPrice.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCurrentPrice_KeyUp);
             // 
             // txtExDividend
             // 
@@ -383,6 +391,7 @@
             this.txtExDividend.Size = new System.Drawing.Size(210, 20);
             this.txtExDividend.TabIndex = 6;
             this.txtExDividend.TabStop = false;
+            this.txtExDividend.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtExDividend_KeyUp);
             // 
             // txtPayDate
             // 
@@ -395,6 +404,7 @@
             this.txtPayDate.Size = new System.Drawing.Size(211, 20);
             this.txtPayDate.TabIndex = 48;
             this.txtPayDate.TabStop = false;
+            this.txtPayDate.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPayDate_KeyUp);
             // 
             // lblOpenPrice
             // 
@@ -417,6 +427,7 @@
             this.txtOpenPrice.Size = new System.Drawing.Size(214, 20);
             this.txtOpenPrice.TabIndex = 45;
             this.txtOpenPrice.TabStop = false;
+            this.txtOpenPrice.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtOpenPrice_KeyUp);
             // 
             // txtMarketCap
             // 
@@ -429,6 +440,7 @@
             this.txtMarketCap.Size = new System.Drawing.Size(214, 20);
             this.txtMarketCap.TabIndex = 3;
             this.txtMarketCap.TabStop = false;
+            this.txtMarketCap.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMarketCap_KeyUp);
             // 
             // lblDaysRange
             // 
@@ -451,6 +463,7 @@
             this.txtDayRange.Size = new System.Drawing.Size(215, 20);
             this.txtDayRange.TabIndex = 38;
             this.txtDayRange.TabStop = false;
+            this.txtDayRange.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDayRange_KeyUp);
             // 
             // lbl52WeekMiddle
             // 
@@ -473,6 +486,7 @@
             this.txt52WeekHigh.Size = new System.Drawing.Size(93, 20);
             this.txt52WeekHigh.TabIndex = 36;
             this.txt52WeekHigh.TabStop = false;
+            this.txt52WeekHigh.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt52WeekHigh_KeyUp);
             // 
             // lbl52WeekRange
             // 
@@ -494,6 +508,7 @@
             this.txt52WeekLow.Size = new System.Drawing.Size(99, 20);
             this.txt52WeekLow.TabIndex = 34;
             this.txt52WeekLow.TabStop = false;
+            this.txt52WeekLow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt52WeekLow_KeyUp);
             // 
             // lblPERatio
             // 
@@ -516,6 +531,7 @@
             this.txtPERatio.Size = new System.Drawing.Size(214, 20);
             this.txtPERatio.TabIndex = 30;
             this.txtPERatio.TabStop = false;
+            this.txtPERatio.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPERatio_KeyUp);
             // 
             // lblPayDate
             // 
@@ -561,6 +577,7 @@
             this.ddlIndustry.Name = "ddlIndustry";
             this.ddlIndustry.Size = new System.Drawing.Size(210, 21);
             this.ddlIndustry.TabIndex = 1;
+            this.ddlIndustry.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ddlIndustry_KeyUp);
             // 
             // lblMarketCap
             // 
@@ -636,6 +653,7 @@
             this.dtpPurchaseDate.Name = "dtpPurchaseDate";
             this.dtpPurchaseDate.Size = new System.Drawing.Size(210, 20);
             this.dtpPurchaseDate.TabIndex = 3;
+            this.dtpPurchaseDate.TabStop = false;
             // 
             // txtEPS
             // 
@@ -648,6 +666,7 @@
             this.txtEPS.Size = new System.Drawing.Size(211, 20);
             this.txtEPS.TabIndex = 58;
             this.txtEPS.TabStop = false;
+            this.txtEPS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtEPS_KeyUp);
             // 
             // lblEPS
             // 
@@ -675,6 +694,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Dividend Stock";
             this.Load += new System.EventHandler(this.Dividends_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Dividends_KeyUp);
             this.gpDividendInfo.ResumeLayout(false);
             this.gpDividendInfo.PerformLayout();
             this.gpSharesOptions.ResumeLayout(false);

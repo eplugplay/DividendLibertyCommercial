@@ -200,7 +200,7 @@ namespace DividendLiberty
                         {
                             if (isStockNameEmpty)
                             {
-                                lv.Columns[a].Width = 200;
+                                lv.Columns[a].Width = 180;
                             }
                         }
                         if (a == 6 || a == 7 || a == 8 || a == 9 || a == 10 || a == 11 || a == 12 || a == 13)

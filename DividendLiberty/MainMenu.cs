@@ -849,6 +849,11 @@ namespace DividendLiberty
 
         private void lvAllDividends_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                OpenDividends(true, CurrentDiv);
+                return;
+            }
             if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Control || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Control)
             {
                 return;
@@ -865,6 +870,11 @@ namespace DividendLiberty
 
         private void lvCurrentDividends_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                OpenDividends(true, CurrentDiv);
+                return;
+            }
             if (e.KeyCode == Keys.Up && Control.ModifierKeys == Keys.Control || e.KeyCode == Keys.Down && Control.ModifierKeys == Keys.Control)
             {
                 return;
@@ -872,7 +882,6 @@ namespace DividendLiberty
             if (e.KeyCode == Keys.Up && Control.ModifierKeys != Keys.Shift || e.KeyCode == Keys.Down && Control.ModifierKeys != Keys.Shift)
             {
                 uti.ClearListViewColors(lvAllDividends);
-
                 uti.ClearListViewColors(lvCurrentDividends);
                 uti.SetStockIndexSymbol(lvCurrentDividends);
                 HighlightSingleColor(lvCurrentDividends);
