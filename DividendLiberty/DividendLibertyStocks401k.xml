@@ -7,7 +7,7 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>50.008424</cost>
+<cost>50.012388</cost>
 <purchasedate>06-29-2016</purchasedate>
 <shares>20.181</shares>
 <nexttobuy>no</nexttobuy>
@@ -18,7 +18,7 @@
 <industry>Health Care</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>118.811258</cost>
+<cost>118.817881</cost>
 <purchasedate>06-29-2016</purchasedate>
 <shares>9.060</shares>
 <nexttobuy>no</nexttobuy>
@@ -172,7 +172,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>71.909964</cost>
+<cost>71.906653</cost>
 <purchasedate>06-29-2016</purchasedate>
 <shares>15.105</shares>
 <nexttobuy>no</nexttobuy>
@@ -315,7 +315,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>136.136928</cost>
+<cost>136.192843</cost>
 <purchasedate>06-29-2016</purchasedate>
 <shares>8.048</shares>
 <nexttobuy>no</nexttobuy>
@@ -447,7 +447,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>35.393971</cost>
+<cost>35.395544</cost>
 <purchasedate>06-29-2016</purchasedate>
 <shares>19.075</shares>
 <nexttobuy>no</nexttobuy>
