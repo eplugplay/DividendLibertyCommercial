@@ -7,7 +7,7 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>45.497878</cost>
+<cost>45.495689</cost>
 <purchasedate>09-18-2015</purchasedate>
 <shares>22.847</shares>
 <nexttobuy>no</nexttobuy>
@@ -18,7 +18,7 @@
 <industry>Health Care</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>109.318228</cost>
+<cost>109.318198</cost>
 <purchasedate>09-21-2015</purchasedate>
 <shares>27.31</shares>
 <nexttobuy>no</nexttobuy>
@@ -40,7 +40,7 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>64.527395</cost>
+<cost>64.525464</cost>
 <purchasedate>09-28-2015</purchasedate>
 <shares>16.69</shares>
 <nexttobuy>no</nexttobuy>
@@ -51,7 +51,7 @@
 <industry>Energy</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>77.190043</cost>
+<cost>77.186853</cost>
 <purchasedate>09-28-2015</purchasedate>
 <shares>14.482</shares>
 <nexttobuy>no</nexttobuy>
@@ -62,7 +62,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>42.377461</cost>
+<cost>42.377062</cost>
 <purchasedate>09-25-2015</purchasedate>
 <shares>24.728</shares>
 <nexttobuy>no</nexttobuy>
@@ -73,7 +73,7 @@
 <industry>Utilities</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>66.051818</cost>
+<cost>65.921912</cost>
 <purchasedate>10-01-2015</purchasedate>
 <shares>14.394</shares>
 <nexttobuy>no</nexttobuy>
@@ -84,7 +84,7 @@
 <industry>Telecommunication Services</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>36.659102</cost>
+<cost>36.658558</cost>
 <purchasedate>09-18-2015</purchasedate>
 <shares>60.432</shares>
 <nexttobuy>no</nexttobuy>
@@ -95,7 +95,7 @@
 <industry>Utilities</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>43.981431</cost>
+<cost>43.980528</cost>
 <purchasedate>11-12-2015</purchasedate>
 <shares>23.007</shares>
 <nexttobuy>no</nexttobuy>
@@ -106,7 +106,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>39.403711</cost>
+<cost>39.402355</cost>
 <purchasedate>09-21-2015</purchasedate>
 <shares>22.505</shares>
 <nexttobuy>no</nexttobuy>
@@ -117,7 +117,7 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>82.731517</cost>
+<cost>82.726976</cost>
 <purchasedate>09-25-2015</purchasedate>
 <shares>12.259</shares>
 <nexttobuy>no</nexttobuy>
@@ -128,7 +128,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>57.182118</cost>
+<cost>57.179764</cost>
 <purchasedate>09-28-2015</purchasedate>
 <shares>18.502</shares>
 <nexttobuy>no</nexttobuy>
@@ -150,7 +150,7 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>140.173141</cost>
+<cost>140.174997</cost>
 <purchasedate>10-01-2015</purchasedate>
 <shares>7.143</shares>
 <nexttobuy>no</nexttobuy>
@@ -161,7 +161,7 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>72.486198</cost>
+<cost>72.484468</cost>
 <purchasedate>10-01-2015</purchasedate>
 <shares>14.325</shares>
 <nexttobuy>no</nexttobuy>
@@ -172,7 +172,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>66.803465</cost>
+<cost>66.146019</cost>
 <purchasedate>10-01-2015</purchasedate>
 <shares>29.777</shares>
 <nexttobuy>no</nexttobuy>
@@ -183,7 +183,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>63.472393</cost>
+<cost>63.470473</cost>
 <purchasedate>10-01-2015</purchasedate>
 <shares>16.358</shares>
 <nexttobuy>no</nexttobuy>
@@ -238,7 +238,7 @@
 <industry>Energy</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>79.628348</cost>
+<cost>79.626711</cost>
 <purchasedate>09-21-2015</purchasedate>
 <shares>25.503</shares>
 <nexttobuy>no</nexttobuy>
@@ -260,7 +260,7 @@
 <industry>Telecommunication Services</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>51.696638</cost>
+<cost>51.696578</cost>
 <purchasedate>05-02-2016</purchasedate>
 <shares>34.157</shares>
 <nexttobuy>yes</nexttobuy>
@@ -1140,7 +1140,7 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>49.7375</cost>
+<cost>50.051081</cost>
 <purchasedate>07-11-2016</purchasedate>
 <shares>37</shares>
 <nexttobuy>no</nexttobuy>
