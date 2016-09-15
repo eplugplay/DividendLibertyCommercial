@@ -130,6 +130,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="401k.xlsx" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -153,6 +154,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Suzie%27s IRA.xlsx" />
+    <None Include="Taxable.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DividendLiberty.ico" />
