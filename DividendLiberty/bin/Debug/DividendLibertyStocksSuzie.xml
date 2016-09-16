@@ -82,11 +82,11 @@
 <id>8</id>
 <symbol>T</symbol>
 <industry>Telecommunication Services</industry>
-<active>false</active>
+<active>true</active>
 <interval>Quarterly</interval>
-<cost>32.672939</cost>
-<purchasedate>09-18-2015</purchasedate>
-<shares>31.085</shares>
+<cost>39.93</cost>
+<purchasedate>09-16-2016</purchasedate>
+<shares>27</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="9">
