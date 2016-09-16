@@ -133,6 +133,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Dividend Calculation.xlsx" />
     <None Include="DividendLibertyConfig.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
