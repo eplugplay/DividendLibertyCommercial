@@ -417,7 +417,7 @@ namespace DividendLiberty
             decimal quarterlyDiv = 0;
             int cnt = 0;
             string monthYear = "";
-            string dtpMonthYear = "";
+            string dtpMonthYear = Program.MainMenu.dtpPayDate.Value.ToString("M/yyyy");
             string individualDivData = "";
             decimal div = 0;
             //lv.SelectedItems.Clear();
@@ -432,10 +432,9 @@ namespace DividendLiberty
             {
                 string date = lv.Items[i].SubItems[5].Text;
                 string[] dateSplit = date.Split('/');
-                if (date != "N/A")
+                if (date != "N/A" && date != "")
                 {
                     monthYear = dateSplit[0].Trim() + "/" + dateSplit[2];
-                    dtpMonthYear = Program.MainMenu.dtpPayDate.Value.ToString("M/yyyy");
                     string dividendInterval = lv.Items[i].SubItems[8].Text.ToString();
                     //if (dividendInterval == "Monthly")
                     //{
