@@ -61,4 +61,3 @@ C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.csproj.GenerateResource.Cache
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.exe
 C:\Users\Steve Yi\Documents\GitHub\DividendLibertyCommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.pdb
-C:\Users\Steve Yi\Documents\GitHub\dividendlibertycommercial\DividendLiberty\obj\x86\Debug\DividendLiberty.csprojResolveAssemblyReference.cache
