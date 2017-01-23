@@ -159,7 +159,7 @@ namespace DividendLiberty
                             decimal payoutRatio = 0;
                             if (dtXmlCache.Rows[i]["eps"].ToString() != "" && dtXmlCache.Rows[i]["eps"].ToString() != "N/A" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "" && dtXmlCache.Rows[i]["annualDiv"].ToString() != "N/A")
                             {
-                                payoutRatio = Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"].ToString()) / Convert.ToDecimal(dtXmlCache.Rows[i]["eps"].ToString()) * 100, 2);
+                                payoutRatio = Convert.ToDecimal(dtXmlCache.Rows[i]["eps"]) == 0 ? 0 : Math.Round(Convert.ToDecimal(dtXmlCache.Rows[i]["annualDiv"]) / Convert.ToDecimal(dtXmlCache.Rows[i]["eps"]) * 100, 2);
                             }
                             lvItem.SubItems.Add(dtXml.Rows[i]["interval"].ToString());
                             lvItem.SubItems.Add(dtXmlCache.Rows[i]["eps"].ToString().Length == 1 ? "" : payoutRatio.ToString() + "%");
