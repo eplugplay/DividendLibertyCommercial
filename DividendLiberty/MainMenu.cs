@@ -216,7 +216,7 @@ namespace DividendLiberty
             ddlIndustry.SelectedIndex = 0;
             ddlIndustryAll.SelectedIndex = 0;
             dtpPayDate.Format = DateTimePickerFormat.Custom;
-            dtpPayDate.CustomFormat = "MM/yyyy";
+            dtpPayDate.CustomFormat = "MMMM dd yyyy";
             dtpPayDate.ShowUpDown = true;
             lvAllDividends.FullRowSelect = true;
             lvCurrentDividends.FullRowSelect = true;

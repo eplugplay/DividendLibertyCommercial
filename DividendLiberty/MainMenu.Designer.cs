@@ -48,6 +48,9 @@
             this.excelOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpDividendStocks = new System.Windows.Forms.GroupBox();
+            this.lblAnnualDividends = new System.Windows.Forms.Label();
+            this.lblAnnualDividendsTotal = new System.Windows.Forms.Label();
+            this.lblPortfolioTotal = new System.Windows.Forms.Label();
             this.lblMyPortfolio = new System.Windows.Forms.Label();
             this.lvAllDividends = new System.Windows.Forms.ListView();
             this.lvCurrentDividends = new System.Windows.Forms.ListView();
@@ -73,9 +76,6 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lblPortfolioTotal = new System.Windows.Forms.Label();
-            this.lblAnnualDividends = new System.Windows.Forms.Label();
-            this.lblAnnualDividendsTotal = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gpDividendStocks.SuspendLayout();
             this.SuspendLayout();
@@ -258,6 +258,42 @@
             this.gpDividendStocks.TabIndex = 3;
             this.gpDividendStocks.TabStop = false;
             // 
+            // lblAnnualDividends
+            // 
+            this.lblAnnualDividends.AutoSize = true;
+            this.lblAnnualDividends.BackColor = System.Drawing.Color.White;
+            this.lblAnnualDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnnualDividends.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblAnnualDividends.Location = new System.Drawing.Point(317, 375);
+            this.lblAnnualDividends.Name = "lblAnnualDividends";
+            this.lblAnnualDividends.Size = new System.Drawing.Size(38, 16);
+            this.lblAnnualDividends.TabIndex = 44;
+            this.lblAnnualDividends.Text = "total";
+            // 
+            // lblAnnualDividendsTotal
+            // 
+            this.lblAnnualDividendsTotal.AutoSize = true;
+            this.lblAnnualDividendsTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblAnnualDividendsTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnnualDividendsTotal.ForeColor = System.Drawing.Color.White;
+            this.lblAnnualDividendsTotal.Location = new System.Drawing.Point(211, 377);
+            this.lblAnnualDividendsTotal.Name = "lblAnnualDividendsTotal";
+            this.lblAnnualDividendsTotal.Size = new System.Drawing.Size(106, 13);
+            this.lblAnnualDividendsTotal.TabIndex = 43;
+            this.lblAnnualDividendsTotal.Text = "Yearly Dividends:";
+            // 
+            // lblPortfolioTotal
+            // 
+            this.lblPortfolioTotal.AutoSize = true;
+            this.lblPortfolioTotal.BackColor = System.Drawing.Color.White;
+            this.lblPortfolioTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPortfolioTotal.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblPortfolioTotal.Location = new System.Drawing.Point(90, 376);
+            this.lblPortfolioTotal.Name = "lblPortfolioTotal";
+            this.lblPortfolioTotal.Size = new System.Drawing.Size(38, 16);
+            this.lblPortfolioTotal.TabIndex = 42;
+            this.lblPortfolioTotal.Text = "total";
+            // 
             // lblMyPortfolio
             // 
             this.lblMyPortfolio.AutoSize = true;
@@ -308,6 +344,7 @@
             // dtpPayDate
             // 
             this.dtpPayDate.CalendarMonthBackground = System.Drawing.Color.AliceBlue;
+            this.dtpPayDate.CustomFormat = "";
             this.dtpPayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPayDate.Location = new System.Drawing.Point(86, 685);
             this.dtpPayDate.Name = "dtpPayDate";
@@ -548,42 +585,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // lblPortfolioTotal
-            // 
-            this.lblPortfolioTotal.AutoSize = true;
-            this.lblPortfolioTotal.BackColor = System.Drawing.Color.White;
-            this.lblPortfolioTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPortfolioTotal.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblPortfolioTotal.Location = new System.Drawing.Point(90, 376);
-            this.lblPortfolioTotal.Name = "lblPortfolioTotal";
-            this.lblPortfolioTotal.Size = new System.Drawing.Size(38, 16);
-            this.lblPortfolioTotal.TabIndex = 42;
-            this.lblPortfolioTotal.Text = "total";
-            // 
-            // lblAnnualDividends
-            // 
-            this.lblAnnualDividends.AutoSize = true;
-            this.lblAnnualDividends.BackColor = System.Drawing.Color.White;
-            this.lblAnnualDividends.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnnualDividends.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblAnnualDividends.Location = new System.Drawing.Point(317, 375);
-            this.lblAnnualDividends.Name = "lblAnnualDividends";
-            this.lblAnnualDividends.Size = new System.Drawing.Size(38, 16);
-            this.lblAnnualDividends.TabIndex = 44;
-            this.lblAnnualDividends.Text = "total";
-            // 
-            // lblAnnualDividendsTotal
-            // 
-            this.lblAnnualDividendsTotal.AutoSize = true;
-            this.lblAnnualDividendsTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblAnnualDividendsTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnnualDividendsTotal.ForeColor = System.Drawing.Color.White;
-            this.lblAnnualDividendsTotal.Location = new System.Drawing.Point(211, 377);
-            this.lblAnnualDividendsTotal.Name = "lblAnnualDividendsTotal";
-            this.lblAnnualDividendsTotal.Size = new System.Drawing.Size(106, 13);
-            this.lblAnnualDividendsTotal.TabIndex = 43;
-            this.lblAnnualDividendsTotal.Text = "Yearly Dividends:";
             // 
             // MainMenu
             // 
