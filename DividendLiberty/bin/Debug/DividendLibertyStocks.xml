@@ -84,9 +84,9 @@
 <industry>Telecommunication Services</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>36.6552</cost>
+<cost>36.7075</cost>
 <purchasedate>09-18-2015</purchasedate>
-<shares>61.229</shares>
+<shares>61.959</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="9">
@@ -128,9 +128,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>57.2133</cost>
+<cost>57.2482</cost>
 <purchasedate>09-28-2015</purchasedate>
-<shares>18.646</shares>
+<shares>18.791</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="13">
@@ -161,9 +161,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>72.5905</cost>
+<cost>72.7815</cost>
 <purchasedate>10-01-2015</purchasedate>
-<shares>14.422</shares>
+<shares>14.503</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="16">
@@ -260,9 +260,9 @@
 <industry>Telecommunication Services</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>51.6404</cost>
+<cost>51.5972</cost>
 <purchasedate>05-02-2016</purchasedate>
-<shares>34.576</shares>
+<shares>34.992</shares>
 <nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="25">
