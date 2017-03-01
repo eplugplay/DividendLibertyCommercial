@@ -29,9 +29,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>77.9226</cost>
+<cost>78.0178</cost>
 <purchasedate>09-18-2015</purchasedate>
-<shares>25.671</shares>
+<shares>25.86</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="4">
@@ -42,7 +42,7 @@
 <interval>Quarterly</interval>
 <cost>64.7593</cost>
 <purchasedate>09-28-2015</purchasedate>
-<shares>16.828</shares>
+<shares>16.96</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="5">
@@ -183,9 +183,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>63.4873</cost>
+<cost>63.5146</cost>
 <purchasedate>10-01-2015</purchasedate>
-<shares>16.454</shares>
+<shares>16.548</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="18">
@@ -249,9 +249,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>104.4781</cost>
+<cost>104.2048</cost>
 <purchasedate>05-02-2016</purchasedate>
-<shares>11.056</shares>
+<shares>11.085</shares>
 <nexttobuy>yes</nexttobuy>
 </dividendstock>
 <dividendstock ID="24">
