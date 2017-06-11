@@ -40,9 +40,9 @@
 <industry>Industrials</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>65.0195</cost>
+<cost>65.3005</cost>
 <purchasedate>09-28-2015</purchasedate>
-<shares>16.96</shares>
+<shares>17.087</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="5">
@@ -62,9 +62,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>42.3308</cost>
+<cost>42.3279</cost>
 <purchasedate>09-25-2015</purchasedate>
-<shares>39.068</shares>
+<shares>39.366</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="7">
@@ -95,9 +95,9 @@
 <industry>Utilities</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>46.1494</cost>
+<cost>46.2031</cost>
 <purchasedate>11-12-2015</purchasedate>
-<shares>33.538</shares>
+<shares>33.92</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="10">
@@ -172,9 +172,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>66.2082</cost>
+<cost>66.2901</cost>
 <purchasedate>10-01-2015</purchasedate>
-<shares>30.205</shares>
+<shares>30.40</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="17">
@@ -1250,9 +1250,9 @@
 <industry>Consumer Discretionary</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>47.4937</cost>
+<cost>47.5115</cost>
 <purchasedate>10-24-2016</purchasedate>
-<shares>43.339</shares>
+<shares>43.496</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="115">
@@ -1283,9 +1283,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>130.3718</cost>
+<cost>130.3736</cost>
 <purchasedate>10-24-2016</purchasedate>
-<shares>10.113</shares>
+<shares>10.171</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 </dividendstocks>
