@@ -62,9 +62,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>35.0570</cost>
+<cost>35.1096</cost>
 <purchasedate>01-28-2016</purchasedate>
-<shares>27.971</shares>
+<shares>28.184</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="7">
@@ -84,9 +84,9 @@
 <industry>Telecommunication Services</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>38.5662</cost>
+<cost>38.5732</cost>
 <purchasedate>09-16-2016</purchasedate>
-<shares>46.080</shares>
+<shares>46.657</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="9">
@@ -106,9 +106,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>40.1649</cost>
+<cost>40.2073</cost>
 <purchasedate>09-21-2015</purchasedate>
-<shares>40.382</shares>
+<shares>40.711</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="11">
@@ -126,11 +126,11 @@
 <id>12</id>
 <symbol>GIS</symbol>
 <industry>Consumer Staples</industry>
-<active>false</active>
+<active>true</active>
 <interval>Quarterly</interval>
-<cost>57.088414</cost>
+<cost>54.0500</cost>
 <purchasedate>09-28-2015</purchasedate>
-<shares>18.378</shares>
+<shares>11</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="13">
@@ -623,9 +623,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>94.7133</cost>
+<cost>94.9151</cost>
 <purchasedate>06-24-2016</purchasedate>
-<shares>11.215</shares>
+<shares>11.314</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="58">
@@ -1129,9 +1129,9 @@
 <industry>Consumer Staples</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>32.4708</cost>
+<cost>32.4099</cost>
 <purchasedate>07-11-2016</purchasedate>
-<shares>25.283</shares>
+<shares>25.428</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 <dividendstock ID="104">
@@ -1206,9 +1206,9 @@
 <industry>Energy</industry>
 <active>true</active>
 <interval>Quarterly</interval>
-<cost>49.4006</cost>
+<cost>49.4963</cost>
 <purchasedate>09-21-2015</purchasedate>
-<shares>19.052</shares>
+<shares>19.377</shares>
 <nexttobuy>no</nexttobuy>
 </dividendstock>
 </dividendstocks>
